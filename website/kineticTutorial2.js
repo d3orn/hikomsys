@@ -5,6 +5,7 @@ var layer = new Kinetic.Layer();
 var CONTAINER_WIDTH = document.getElementById('container').offsetWidth;
 var HORIZONTAL_LINE = {x: 0, y: -100};
 var arrows = new Array();
+var HEIGHT = 25;
 
 var stage = new Kinetic.Stage({
 	container: 'container',
