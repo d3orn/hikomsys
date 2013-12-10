@@ -1,0 +1,9 @@
+body{
+	background-color: lightgrey;
+}
+
+.kineticjs-content{
+	border-style: dotted;
+	border-width: 1px;
+
+}

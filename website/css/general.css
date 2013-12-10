@@ -1,0 +1,30 @@
+body{
+	background-color: lightgrey;
+	font: 12px Verdana, Geneva, Arial, sans-serif;
+	color: #FFFFFF;
+}
+
+
+#wrapper{
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+	min-height: 100%;
+	background-color: grey;
+}
+
+#navi{
+	background-color: #4AC6DD;
+}
+
+#navi ul li{
+	padding-left: 10px;
+	list-style-type: none;
+	display: inline;
+}
+
+#navi a{color: #000000;}
+a:link {text-decoration:none;}
+a:visited {text-decoration:none;}
+a:hover {text-decoration:underline;}
+a:active {text-decoration:underline;}
