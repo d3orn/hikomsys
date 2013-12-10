@@ -30,7 +30,7 @@ tCloning="$(($(date +%s)-tCloning))"
 tVerveineJ="$(date +%s)"
 
 #maybe the src is not there
-./verveinej/verveine.extractor.java/verveinej.sh -Xmx3000m gitRepos/$name
+./verveinej/verveine.extractor.java/verveinej.sh -Xmx3000m $gitRepos/$name
 mv output.mse gitRepos/$name/$name.mse
 
 #inFamix -lang java -path $homeFolder/$name-project -mse $homeFolder/$name-project/$name.mse

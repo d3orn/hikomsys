@@ -67,7 +67,7 @@ function click(packageGroup, event) {
 		packages[0].find('.packageRect')[0].setFill('red');
 		stage.on('mousemove', function(event){
 			var tmpArrow = new Arrow(packages[0], getMousePosition(event), "tmpArrow");
-			tmpArrow.draw();
+			//tmpArrow.draw();
 		})
 	}
 	if(clickCount == 2){
