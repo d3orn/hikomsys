@@ -14,7 +14,7 @@ var stage = new Kinetic.Stage({
 });
 
 var background = new Kinetic.Rect({
-	x: 0,
+	x: 0, 
 	y: 0,
 	width: stage.getWidth(),
 	height: stage.getHeight(),
@@ -67,6 +67,7 @@ function click(packageGroup, event) {
 		packages[0].find('.packageRect')[0].setFill('red');
 		stage.on('mousemove', function(event){
 			var tmpArrow = new Arrow(packages[0], getMousePosition(event), "tmpArrow");
+			writeMessage(getMousePosition(event));
 			//tmpArrow.draw();
 		})
 	}
@@ -230,7 +231,7 @@ function packageGroup(text) {
 				var from = layer.find('#'+packages[0])[0];
 				var to = layer.find('#'+packages[1])[0];
 				arrows[i].remove();
-				arrows[i].draw();
+				arrows[i].dependency();
 			}
 		}
 	});	
