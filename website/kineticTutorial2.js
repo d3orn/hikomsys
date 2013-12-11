@@ -12,7 +12,7 @@ var group, moving = false;
 
 var stage = new Kinetic.Stage({
     container: 'container',
-	width: CONTAINER_WIDTH,
+    width: CONTAINER_WIDTH,
 	height: 480
 });
 
@@ -97,13 +97,13 @@ function Arrow(from, to, id){
 		var centerX = Math.round(packageGroup.getX() + packageGroup.getWidth()/2);
 		var centerY = Math.round(packageGroup.getY() + PACKAGE_HEIGHT/2);
 		return {x: centerX, y: centerY};
-	}
+	};
 
 	this.draw = function(){
 		var fromCenter = this.center(from);
 		var toCenter = (packages.length > 1 ? this.center(to) : to);
 	
-		var anchor1 = this.calcAnchor(fromCenter, toCenter, this.from.getWidth())
+		var anchor1 = this.calcAnchor(fromCenter, toCenter, this.from.getWidth());
 		var anchor2 = (packages.length > 1 ? this.calcAnchor(toCenter, fromCenter, this.to.getWidth()) : to);
  
 		this.createArrow(anchor1, anchor2);
@@ -126,7 +126,7 @@ function Arrow(from, to, id){
 
 		arrowLayer.add(this.line);
 		arrowLayer.add(this.head);
-	}
+	};
 
 	this.createLine = function(point1, point2) {
 		return new Kinetic.Line({
@@ -135,7 +135,7 @@ function Arrow(from, to, id){
 			strokeWidth: 2,
 			name: 'arrowLine'
 		});
-	}
+	};
 
 	this.createHead = function(point, rotation) {
 		return (new Kinetic.RegularPolygon({
@@ -149,11 +149,11 @@ function Arrow(from, to, id){
 			name: 'arrowHead',
 			rotation: Math.PI-rotation
 		}));
-	}
+	};
 
 	this.calcAnchor = function(from, to, width){
 		return {x: (from.x + xOffset(from, to, width)), y: (from.y + yOffset(from, to, PACKAGE_HEIGHT))};
-	}
+	};
 
 	this.remove = function(){
 		this.line.remove();
