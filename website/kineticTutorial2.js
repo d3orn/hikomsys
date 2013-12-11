@@ -111,6 +111,7 @@ document.getElementById('draw').addEventListener('click', function(){
 	for (var i = 0; i < groups.length; i++){
 		groups[i].setDraggable(!drawingEnabled );
 	}
+	mouseDownOnPackage = mouseDownOnStage = false;
 });
 
 function Arrow(from, to, id){
