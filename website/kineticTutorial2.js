@@ -5,14 +5,14 @@ var drawingEnabled = false;
 var layer = new Kinetic.Layer();
 var CONTAINER_WIDTH = document.getElementById('container').offsetWidth;
 var HORIZONTAL_LINE = {x: 0, y: -100};
-var arrows = new Array();
+var arrows = [];
 var HEIGHT = 25;
 var packages = [];
 var tmpLayer = new Kinetic.Layer();
 var group, moving = false;
 
 var stage = new Kinetic.Stage({
-	container: 'container',
+    container: 'container',
 	width: CONTAINER_WIDTH,
 	height: 480
 });
@@ -118,7 +118,7 @@ function Arrow(from, to, id){
 		this.head = head;
 		tmpLayer.add(line);
 		tmpLayer.add(head);
-	}	
+	};	
 	this.dependency = function(){
 		var fromCenterX = Math.round(this.from.getX() + this.from.getWidth()/2);
 		var fromCenterY = Math.round(this.from.getY() + HEIGHT/2);
@@ -149,12 +149,12 @@ function Arrow(from, to, id){
 		this.head = head;
 		arrowLayer.add(line);
 		arrowLayer.add(head);
-	}
+	};
 	this.remove = function(){
 		this.line.remove();
 		this.head.remove();
-	}
-};
+	};
+}
 
 function arrowHead(point, rotation) {
 	return (new Kinetic.RegularPolygon({
@@ -172,14 +172,14 @@ function arrowHead(point, rotation) {
 
 //some refactoring needed
 function xOffset(center1, center2, center1_width) {
-	if (isRightOf(center1, center2, center1_width)) {return center1_width/2}
-	if (isLeftOf(center1, center2, center1_width)) {return -center1_width/2}
+	if (isRightOf(center1, center2, center1_width)) {return center1_width/2;}
+	if (isLeftOf(center1, center2, center1_width)) {return -center1_width/2;}
 	return(0);
 }
 
 function yOffset(center1, center2, center1_height) {
-	if (isBellow(center1, center2, center1_height)) {return center1_height/2}
-	if (isAbove(center1, center2, center1_height)) {return -center1_height/2}
+	if (isBellow(center1, center2, center1_height)) {return center1_height/2;}
+	if (isAbove(center1, center2, center1_height)) {return -center1_height/2;}
 	return(0);
 }
 
@@ -244,7 +244,7 @@ function packageGroup(text) {
 	group.on('dragstart dragmove', function(){
 		for (var i = 0; i < arrows.length; i++){
 			var packageIds = arrows[i].id.split("_");
-			packages = [layer.find('#'+packageIds[0])[0], layer.find('#'+packageIds[1])[0]]
+			packages = [layer.find('#'+packageIds[0])[0], layer.find('#'+packageIds[1])[0]];
 			if(packages[0].getId() == this.getId() || packages[1].getId() == this.getId()){
 				var from = layer.find('#'+packages[0])[0];
 				var to = layer.find('#'+packages[1])[0];
@@ -291,7 +291,7 @@ function writeMessage(message) {
 /* ============================================================ Eventhandler ============================================================ */
 
 layer.on("mousedown", function (e) {
-	if(clickCount == 0) return;
+	if(clickCount === 0) return;
 	if (moving) {
 		moving = false;
 		tmpLayer.drawScene();
@@ -333,6 +333,6 @@ document.getElementById('draw').addEventListener('click', function(){
 	}
 });
 
- $(document).ready(function(){
- 	writeMessage("Double click anywhere to switch to drawing mode");
- });
+$(document).ready(function(){
+    writeMessage("Double click anywhere to switch to drawing mode");
+});
