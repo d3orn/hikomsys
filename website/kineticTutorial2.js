@@ -88,7 +88,7 @@ function click(packageGroup, event) {
 	if (mouseDownOnPackage){
 		packages.push(packageGroup);
 		packages[0].find('.packageRect')[0].setFill('red');
-		writeMessage("package: " + mouseDownOnPackage + " stage: " + mouseDownOnStage + " packages: " packages[0].getId());
+		writeMessage("package: " + mouseDownOnPackage + " stage: " + mouseDownOnStage + " packages: " + packages[0].getId());
 	}
 	if(!mouseDownOnPackage){
 		packages.push(packageGroup);
@@ -96,7 +96,7 @@ function click(packageGroup, event) {
 		var arrow = new Arrow(packages[0],packages[1],packages[0].getId() + "_" + packages[1].getId());
 		arrows.push(arrow);
 		arrow.dependency();
-		writeMessage("package: " + mouseDownOnPackage + " stage: " + mouseDownOnStage + " packages: " packages[0].getId() + " " + packages[1].getId());
+		writeMessage("package: " + mouseDownOnPackage + " stage: " + mouseDownOnStage + " packages: " + packages[0].getId() + " " + packages[1].getId());
 		packages = [];
 	}
 	arrowLayer.draw();
