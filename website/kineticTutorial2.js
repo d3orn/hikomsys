@@ -1,5 +1,5 @@
 var arrowLayer = new Kinetic.Layer();
-var tmpArrow;
+var tmpArrow = null;
 var clickCount = 0;
 var drawingEnabled = false;
 var layer = new Kinetic.Layer();
@@ -8,8 +8,8 @@ var HORIZONTAL_LINE = {x: 0, y: -100};
 var arrows = new Array();
 var HEIGHT = 25;
 var packages = [];
-var mouseDownOnPackage;
-var mouseDownOnStage;
+var tmpLayer = new Kinetic.Layer();
+var group, moving = false;
 
 var stage = new Kinetic.Stage({
 	container: 'container',
@@ -40,6 +40,7 @@ layer.add(background);
 layer.draw();
 layer.add(notification);
 stage.add(layer);
+stage.add(tmpLayer);
 stage.add(arrowLayer);
 
 /*layer.on('dblclick', function(){
@@ -62,58 +63,33 @@ function getMousePosition(event) {
 	};
 }
 
-layer.on('mouseup', function(){
-	mouseDownOnStage = false;
-	//writeMessage(packages[1].getId());
-})
-
-layer.on('mousedown', function(){
-	mouseDownOnStage = true;
-	//writeMessage(packages[1].getId());
-})
-
-layer.on('mousemove', function(event){
-	if(typeof tmpArrow != 'undefined'){tmpArrow.remove();}
-	writeMessage("package: " + mouseDownOnPackage + " stage: " + mouseDownOnStage);
-	//if(!mouseDown) return;
-	/*tmpArrow = new Arrow(packages[0], getMousePosition(event), "tmpArrow");
-	tmpArrow.draw(); 
-	arrowLayer.draw();
-	arrowLayer.draw();*/
-});
-
 //rename!
-function click(packageGroup, event) {
+function mouseDownOnPackage(packageGroup, event){
 	clickCount++;
-	if (mouseDownOnPackage){
+	if(clickCount == 1){
 		packages.push(packageGroup);
 		packages[0].find('.packageRect')[0].setFill('red');
-		writeMessage("package: " + mouseDownOnPackage + " stage: " + mouseDownOnStage + " packages: " + packages[0].getId());
 	}
-	if(!mouseDownOnPackage){
+	arrowLayer.draw();
+	layer.draw();
+}
+function mouseUpOnPackage(packageGroup, event) {
+	clickCount++;
+	if(clickCount == 2){
 		packages.push(packageGroup);
 		packages[0].find('.packageRect')[0].setFill('white');
 		var arrow = new Arrow(packages[0],packages[1],packages[0].getId() + "_" + packages[1].getId());
 		arrows.push(arrow);
 		arrow.dependency();
-		writeMessage("package: " + mouseDownOnPackage + " stage: " + mouseDownOnStage + " packages: " + packages[0].getId() + " " + packages[1].getId());
+
 		packages = [];
+		clickCount = 0;
 	}
 	arrowLayer.draw();
 	layer.draw();
 }
 
-document.getElementById('draw').addEventListener('click', function(){
-	clickCount = 0;
-	this.value = (drawingEnabled ? "Activate drawing" : "Deactivate drawing");
-	drawingEnabled = (drawingEnabled ? false : true);
-	var groups = layer.get('Group');
-	for (var i = 0; i < groups.length; i++){
-		groups[i].setDraggable(!drawingEnabled );
-	}
-	mouseDownOnPackage = mouseDownOnStage = false;
-});
-
+//refactoring HARD
 function Arrow(from, to, id){
 	this.from = from;
 	this.to = to;
@@ -125,7 +101,7 @@ function Arrow(from, to, id){
 	
 		var anchor1 = {x: (fromCenter.x + xOffset(fromCenter, to, this.from.getWidth())), y: (fromCenter.y + yOffset(fromCenter, to, HEIGHT))};
 		
-		var thisVektor = {x: from.x - to.x, y: from.y - to.y};
+		var thisVektor = {x: anchor1.x - to.x, y: anchor1.y - to.y};
 		var line = new Kinetic.Line({
 			points: [{x: anchor1.x, y: anchor1.y},{x: to.x, y: to.y}],
 			stroke: 'black',
@@ -140,8 +116,8 @@ function Arrow(from, to, id){
 	
 		this.line = line;
 		this.head = head;
-		arrowLayer.add(line);
-		arrowLayer.add(head);
+		tmpLayer.add(line);
+		tmpLayer.add(head);
 	}	
 	this.dependency = function(){
 		var fromCenterX = Math.round(this.from.getX() + this.from.getWidth()/2);
@@ -225,7 +201,6 @@ function packageGroup(text) {
 	var textField = packageText(text);
 	var rect = packageRect(textField);
 
-        //those values should be computed and not hardwired xD
         minX = 0;
         minY = 0;
         maxY = stage.getHeight()-rect.getHeight();
@@ -251,16 +226,18 @@ function packageGroup(text) {
 
 	//need to check if to packages are overlapping, would not be nice
 	group.move(1+Math.floor(Math.random() * (CONTAINER_WIDTH-rect.getWidth())), 1 + Math.floor(Math.random()*(480-rect.getHeight())));
-	
+
+	layer.add(group);
+	layer.draw();
+
 	group.on('mousedown', function (event) {
 		if(drawingEnabled){
-			mouseDownOnPackage = true;
-			click(this, event);}
+			mouseDownOnPackage(this,event);
+		}
 	}, false);
 	group.on('mouseup', function (event) {
 		if(drawingEnabled){
-			mouseDownOnPackage = false;
-			click(this, event);}
+			mouseUpOnPackage(this, event);}
 	}, false);
 
 	//redraw arrows whenever a package is dragged arround probably have to hook onto the layer draw event rather then dragstart
@@ -277,12 +254,11 @@ function packageGroup(text) {
 		}
 		arrowLayer.draw();
 	});
-
-	layer.add(group);
-	layer.draw();
 }
 
 function packageRect(text) {
+	this.isHighlightened = false;
+	this.highlight = null;
 	var rect = new Kinetic.Rect({
 		width: text.getWidth()+10,
 		height: HEIGHT,
@@ -312,6 +288,51 @@ function writeMessage(message) {
 	notification.setText(message);
 }
  
+/* ============================================================ Eventhandler ============================================================ */
+
+layer.on("mousedown", function (e) {
+	if(clickCount == 0) return;
+	if (moving) {
+		moving = false;
+		tmpLayer.drawScene();
+	} else {
+		var mousePos = getMousePosition(e);
+		tmpArrow = new Arrow(packages[0], mousePos, "tmpArrow");
+		tmpArrow.draw();
+		moving = true;
+	}
+});
+
+layer.on("mousemove", function (e) {
+	if (moving) {
+		tmpArrow.remove();
+		var mousePos = getMousePosition(e);
+		tmpArrow = new Arrow(packages[0], mousePos, "tmpArrow");
+		tmpArrow.draw();
+
+		moving = true;
+		tmpLayer.drawScene();
+	}
+});
+
+layer.on("mouseup", function (e) {
+	moving = false;
+	if(typeof tmpArrow !== "undefined") {tmpArrow.remove();} //remove only if there is one, if arrow exists dont let it be there twice or more check id
+	tmpLayer.draw();
+});
+
+document.getElementById('draw').addEventListener('click', function(){
+	if(packages.length > 0) packages[0].find('.packageRect')[0].setFill('white');
+	clickCount = 0;
+	packages = [];
+	this.value = (drawingEnabled ? "Activate drawing" : "Deactivate drawing");
+	drawingEnabled = (drawingEnabled ? false : true);
+	var groups = layer.get('Group');
+	for (var i = 0; i < groups.length; i++){
+		groups[i].setDraggable(!drawingEnabled );
+	}
+});
+
  $(document).ready(function(){
  	writeMessage("Double click anywhere to switch to drawing mode");
  });
