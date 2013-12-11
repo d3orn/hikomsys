@@ -6,9 +6,8 @@ var layer = new Kinetic.Layer();
 var CONTAINER_WIDTH = document.getElementById('container').offsetWidth;
 var HORIZONTAL_LINE = {x: 0, y: -100};
 var arrows = [];
-var HEIGHT = 25;
+var PACKAGE_HEIGHT = 25;
 var packages = [];
-var tmpLayer = new Kinetic.Layer();
 var group, moving = false;
 
 var stage = new Kinetic.Stage({
@@ -40,7 +39,7 @@ layer.add(background);
 layer.draw();
 layer.add(notification);
 stage.add(layer);
-stage.add(tmpLayer);
+stage.add(arrowLayer);
 stage.add(arrowLayer);
 
 /*layer.on('dblclick', function(){
@@ -80,7 +79,7 @@ function mouseUpOnPackage(packageGroup, event) {
 		packages[0].find('.packageRect')[0].setFill('white');
 		var arrow = new Arrow(packages[0],packages[1],packages[0].getId() + "_" + packages[1].getId());
 		arrows.push(arrow);
-		arrow.dependency();
+		arrow.draw();
 
 		packages = [];
 		clickCount = 0;
@@ -94,80 +93,72 @@ function Arrow(from, to, id){
 	this.from = from;
 	this.to = to;
 	this.id = id;
+	this.center = function(packageGroup){
+		var centerX = Math.round(packageGroup.getX() + packageGroup.getWidth()/2);
+		var centerY = Math.round(packageGroup.getY() + PACKAGE_HEIGHT/2);
+		return {x: centerX, y: centerY};
+	}
+
 	this.draw = function(){
-		var fromCenterX = Math.round(this.from.getX() + this.from.getWidth()/2);
-		var fromCenterY = Math.round(this.from.getY() + HEIGHT/2);
-		var fromCenter = {x: fromCenterX, y: fromCenterY};
+		var fromCenter = this.center(from);
+		var toCenter = (packages.length > 1 ? this.center(to) : to);
 	
-		var anchor1 = {x: (fromCenter.x + xOffset(fromCenter, to, this.from.getWidth())), y: (fromCenter.y + yOffset(fromCenter, to, HEIGHT))};
-		
-		var thisVektor = {x: anchor1.x - to.x, y: anchor1.y - to.y};
-		var line = new Kinetic.Line({
-			points: [{x: anchor1.x, y: anchor1.y},{x: to.x, y: to.y}],
+		var anchor1 = this.calcAnchor(fromCenter, toCenter, this.from.getWidth())
+		var anchor2 = (packages.length > 1 ? this.calcAnchor(toCenter, fromCenter, this.to.getWidth()) : to);
+ 
+		this.createArrow(anchor1, anchor2);
+	};
+
+	//Draws an arrow from @anchor1 to @anchor2 with an arrowHead at @anchor2
+	this.createArrow = function(anchor1, anchor2){
+		var vektor = {x: anchor1.x - anchor2.x, y: anchor1.y - anchor2.y };
+
+		var line = this.createLine(anchor1, anchor2);
+
+		var rotation = Math.acos((vektor.y * HORIZONTAL_LINE.y)/(Math.sqrt(Math.pow(vektor.x,2)+Math.pow(vektor.y,2))* Math.sqrt(Math.pow(HORIZONTAL_LINE.y,2))));
+		//if the vektor points to the left I have to make the angle negative
+		if (anchor1.x > anchor2.x){rotation = -rotation;}
+		var norm = Math.sqrt(Math.pow(vektor.x,2) + Math.pow(vektor.y,2));
+		var head = this.createHead({x: anchor2.x+(vektor.x*5/norm), y: anchor2.y+(vektor.y*5/norm)}, rotation);
+	
+		this.line = line;
+		this.head = head;
+
+		arrowLayer.add(this.line);
+		arrowLayer.add(this.head);
+	}
+
+	this.createLine = function(point1, point2) {
+		return new Kinetic.Line({
+			points: [{x: point1.x, y: point1.y},{x: point2.x, y: point2.y}],
 			stroke: 'black',
 			strokeWidth: 2,
 			name: 'arrowLine'
 		});
-		var rotation = Math.acos((thisVektor.y * HORIZONTAL_LINE.y)/(Math.sqrt(Math.pow(thisVektor.x,2)+Math.pow(thisVektor.y,2))* Math.sqrt(Math.pow(HORIZONTAL_LINE.y,2))));
-		//if the vektor points to the left I have to make the angle negative
-		if (anchor1.x > to.x){rotation = -rotation;}
-		var norm = Math.sqrt(Math.pow(thisVektor.x,2) + Math.pow(thisVektor.y,2));
-		var head = arrowHead({x: to.x+(thisVektor.x*5/norm), y: to.y+(thisVektor.y*5/norm)}, rotation);
-	
-		this.line = line;
-		this.head = head;
-		tmpLayer.add(line);
-		tmpLayer.add(head);
-	};	
-	this.dependency = function(){
-		var fromCenterX = Math.round(this.from.getX() + this.from.getWidth()/2);
-		var fromCenterY = Math.round(this.from.getY() + HEIGHT/2);
-		var fromCenter = {x: fromCenterX, y: fromCenterY};
-		var toCenterX = Math.round(this.to.getX() + this.to.getWidth()/2);
-		var toCenterY = Math.round(this.to.getY() + HEIGHT/2);
-		var toCenter = {x: toCenterX, y: toCenterY};
-	
-		var anchor1 = {x: (fromCenter.x + xOffset(fromCenter, toCenter, this.from.getWidth())), y: (fromCenter.y + yOffset(fromCenter, toCenter, HEIGHT))};
-		var anchor2 = {x: (toCenter.x + xOffset(toCenter, fromCenter, this.to.getWidth())), y: (toCenter.y + yOffset(toCenter, fromCenter, HEIGHT))};
- 
-		var this_vektor = {x: anchor1.x - anchor2.x, y: anchor1.y - anchor2.y };
-	
-		var line = new Kinetic.Line({
-				points: [{x: anchor1.x, y: anchor1.y},{x: anchor2.x, y: anchor2.y}],
-				stroke: 'black',
-				strokeWidth: 2,
-				name: 'arrowLine'
-		});
-		
-		var rotation = Math.acos((this_vektor.y * HORIZONTAL_LINE.y)/(Math.sqrt(Math.pow(this_vektor.x,2)+Math.pow(this_vektor.y,2))* Math.sqrt(Math.pow(HORIZONTAL_LINE.y,2))));
-		//if the vektor points to the left I have to make the angle negative
-		if (anchor1.x > anchor2.x){rotation = -rotation;}
-		var norm = Math.sqrt(Math.pow(this_vektor.x,2) + Math.pow(this_vektor.y,2));
-		var head = arrowHead({x: anchor2.x+(this_vektor.x*5/norm), y: anchor2.y+(this_vektor.y*5/norm)}, rotation);
-	
-		this.line = line;
-		this.head = head;
-		arrowLayer.add(line);
-		arrowLayer.add(head);
-	};
+	}
+
+	this.createHead = function(point, rotation) {
+		return (new Kinetic.RegularPolygon({
+			x: point.x,
+			y: point.y,
+			sides: 3,
+			radius: 5,
+			stroke: 'black',
+			strokeWidth: 2,
+			fill: 'black',
+			name: 'arrowHead',
+			rotation: Math.PI-rotation
+		}));
+	}
+
+	this.calcAnchor = function(from, to, width){
+		return {x: (from.x + xOffset(from, to, width)), y: (from.y + yOffset(from, to, PACKAGE_HEIGHT))};
+	}
+
 	this.remove = function(){
 		this.line.remove();
 		this.head.remove();
 	};
-}
-
-function arrowHead(point, rotation) {
-	return (new Kinetic.RegularPolygon({
-        x: point.x,
-        y: point.y,
-        sides: 3,
-        radius: 5,
-        stroke: 'black',
-        strokeWidth: 2,
-        fill: 'black',
-        name: 'arrowHead',
-        rotation: Math.PI-rotation
-	}));
 }
 
 //some refactoring needed
@@ -246,10 +237,8 @@ function packageGroup(text) {
 			var packageIds = arrows[i].id.split("_");
 			packages = [layer.find('#'+packageIds[0])[0], layer.find('#'+packageIds[1])[0]];
 			if(packages[0].getId() == this.getId() || packages[1].getId() == this.getId()){
-				var from = layer.find('#'+packages[0])[0];
-				var to = layer.find('#'+packages[1])[0];
 				arrows[i].remove();
-				arrows[i].dependency();
+				arrows[i].draw();
 			}
 		}
 		arrowLayer.draw();
@@ -261,7 +250,7 @@ function packageRect(text) {
 	this.highlight = null;
 	var rect = new Kinetic.Rect({
 		width: text.getWidth()+10,
-		height: HEIGHT,
+		height: PACKAGE_HEIGHT,
 		fill: 'white',
 		stroke: 'black',
 		name: 'packageRect'
@@ -294,7 +283,7 @@ layer.on("mousedown", function (e) {
 	if(clickCount === 0) return;
 	if (moving) {
 		moving = false;
-		tmpLayer.drawScene();
+		arrowLayer.drawScene();
 	} else {
 		var mousePos = getMousePosition(e);
 		tmpArrow = new Arrow(packages[0], mousePos, "tmpArrow");
@@ -311,20 +300,23 @@ layer.on("mousemove", function (e) {
 		tmpArrow.draw();
 
 		moving = true;
-		tmpLayer.drawScene();
+		arrowLayer.drawScene();
 	}
 });
 
 layer.on("mouseup", function (e) {
 	moving = false;
+	if(packages.length > 0){
+		packages[0].find('.packageRect')[0].setFill('white');
+		clickCount = 0;
+		packages = [];
+	}
 	if(typeof tmpArrow !== "undefined") {tmpArrow.remove();} //remove only if there is one, if arrow exists dont let it be there twice or more check id
-	tmpLayer.draw();
+	layer.draw();
+	arrowLayer.draw();
 });
 
 document.getElementById('draw').addEventListener('click', function(){
-	if(packages.length > 0) packages[0].find('.packageRect')[0].setFill('white');
-	clickCount = 0;
-	packages = [];
 	this.value = (drawingEnabled ? "Activate drawing" : "Deactivate drawing");
 	drawingEnabled = (drawingEnabled ? false : true);
 	var groups = layer.get('Group');
