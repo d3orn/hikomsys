@@ -1,4 +1,5 @@
 var arrowLayer = new Kinetic.Layer();
+var tmpArrow;
 var clickCount = 0;
 var drawingEnabled = false;
 var layer = new Kinetic.Layer();
@@ -6,6 +7,9 @@ var CONTAINER_WIDTH = document.getElementById('container').offsetWidth;
 var HORIZONTAL_LINE = {x: 0, y: -100};
 var arrows = new Array();
 var HEIGHT = 25;
+var packages = [];
+var mouseDownOnPackage;
+var mouseDownOnStage;
 
 var stage = new Kinetic.Stage({
 	container: 'container',
@@ -38,7 +42,7 @@ layer.add(notification);
 stage.add(layer);
 stage.add(arrowLayer);
 
-layer.on('dblclick', function(){
+/*layer.on('dblclick', function(){
 	writeMessage("Double click anywhere to switch to " + (drawingEnabled ? "drawing" : "moving") + " mode");
 	clickCount = 0;
 	document.getElementById('draw').value = (drawingEnabled ? "Activate drawing" : "Deactivate drawing");
@@ -47,7 +51,7 @@ layer.on('dblclick', function(){
 	for (var i = 0; i < groups.length; i++){
 		groups[i].setDraggable(!drawingEnabled );
 	}
-});
+});*/
 
 function getMousePosition(event) {
 	var canvas = document.getElementById('container');
@@ -58,28 +62,44 @@ function getMousePosition(event) {
 	};
 }
 
+layer.on('mouseup', function(){
+	mouseDownOnStage = false;
+	//writeMessage(packages[1].getId());
+})
+
+layer.on('mousedown', function(){
+	mouseDownOnStage = true;
+	//writeMessage(packages[1].getId());
+})
+
+layer.on('mousemove', function(event){
+	if(typeof tmpArrow != 'undefined'){tmpArrow.remove();}
+	writeMessage("package: " + mouseDownOnPackage + " stage: " + mouseDownOnStage);
+	//if(!mouseDown) return;
+	/*tmpArrow = new Arrow(packages[0], getMousePosition(event), "tmpArrow");
+	tmpArrow.draw(); 
+	arrowLayer.draw();
+	arrowLayer.draw();*/
+});
+
 //rename!
 function click(packageGroup, event) {
 	clickCount++;
-	if (clickCount == 1){
-		packages = [];
+	if (mouseDown){
 		packages.push(packageGroup);
 		packages[0].find('.packageRect')[0].setFill('red');
-		stage.on('mousemove', function(event){
-			var tmpArrow = new Arrow(packages[0], getMousePosition(event), "tmpArrow");
-			writeMessage(getMousePosition(event));
-			//tmpArrow.draw();
-		})
+		writeMessage("package: " + mouseDownOnPackage + " stage: " + mouseDownOnStage + " packages: " packages[0].getId());
 	}
-	if(clickCount == 2){
-		stage.off('mousemove');
+	if(!mouseDown){
 		packages.push(packageGroup);
 		packages[0].find('.packageRect')[0].setFill('white');
 		var arrow = new Arrow(packages[0],packages[1],packages[0].getId() + "_" + packages[1].getId());
 		arrows.push(arrow);
 		arrow.dependency();
-		clickCount = 0;
+		writeMessage("package: " + mouseDownOnPackage + " stage: " + mouseDownOnStage + " packages: " packages[0].getId() + " " + packages[1].getId());
+		packages = [];
 	}
+	arrowLayer.draw();
 	layer.draw();
 }
 
@@ -98,14 +118,29 @@ function Arrow(from, to, id){
 	this.to = to;
 	this.id = id;
 	this.draw = function(){
+		var fromCenterX = Math.round(this.from.getX() + this.from.getWidth()/2);
+		var fromCenterY = Math.round(this.from.getY() + HEIGHT/2);
+		var fromCenter = {x: fromCenterX, y: fromCenterY};
+	
+		var anchor1 = {x: (fromCenter.x + xOffset(fromCenter, to, this.from.getWidth())), y: (fromCenter.y + yOffset(fromCenter, to, HEIGHT))};
+		
 		var thisVektor = {x: from.x - to.x, y: from.y - to.y};
 		var line = new Kinetic.Line({
-			points: [{x: anchor1.x, y: anchor1.y},{x: anchor2.x, y: anchor2.y}],
+			points: [{x: anchor1.x, y: anchor1.y},{x: to.x, y: to.y}],
 			stroke: 'black',
 			strokeWidth: 2,
 			name: 'arrowLine'
 		});
-		
+		var rotation = Math.acos((thisVektor.y * HORIZONTAL_LINE.y)/(Math.sqrt(Math.pow(thisVektor.x,2)+Math.pow(thisVektor.y,2))* Math.sqrt(Math.pow(HORIZONTAL_LINE.y,2))));
+		//if the vektor points to the left I have to make the angle negative
+		if (anchor1.x > to.x){rotation = -rotation;}
+		var norm = Math.sqrt(Math.pow(thisVektor.x,2) + Math.pow(thisVektor.y,2));
+		var head = arrowHead({x: to.x+(thisVektor.x*5/norm), y: to.y+(thisVektor.y*5/norm)}, rotation);
+	
+		this.line = line;
+		this.head = head;
+		arrowLayer.add(line);
+		arrowLayer.add(head);
 	}	
 	this.dependency = function(){
 		var fromCenterX = Math.round(this.from.getX() + this.from.getWidth()/2);
@@ -137,7 +172,6 @@ function Arrow(from, to, id){
 		this.head = head;
 		arrowLayer.add(line);
 		arrowLayer.add(head);
-		arrowLayer.draw();
 	}
 	this.remove = function(){
 		this.line.remove();
@@ -217,10 +251,16 @@ function packageGroup(text) {
 	//need to check if to packages are overlapping, would not be nice
 	group.move(1+Math.floor(Math.random() * (CONTAINER_WIDTH-rect.getWidth())), 1 + Math.floor(Math.random()*(480-rect.getHeight())));
 	
-	group.on('click', function (event) {
-                //alert(this.attrs.id);
-		if(drawingEnabled){click(this, event);}
-        }, false);
+	group.on('mousedown', function (event) {
+		if(drawingEnabled){
+			mouseDownOnPackage = true;
+			click(this, event);}
+	}, false);
+	group.on('mouseup', function (event) {
+		if(drawingEnabled){
+			mouseDownOnPackage = false;
+			click(this, event);}
+	}, false);
 
 	//redraw arrows whenever a package is dragged arround probably have to hook onto the layer draw event rather then dragstart
 	group.on('dragstart dragmove', function(){
@@ -234,7 +274,8 @@ function packageGroup(text) {
 				arrows[i].dependency();
 			}
 		}
-	});	
+		arrowLayer.draw();
+	});
 
 	layer.add(group);
 	layer.draw();
@@ -268,8 +309,7 @@ function packageText(pText) {
 
 function writeMessage(message) {
 	notification.setText(message);
-        layer.draw();
- }
+}
  
  $(document).ready(function(){
  	writeMessage("Double click anywhere to switch to drawing mode");
