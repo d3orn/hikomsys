@@ -1,5 +1,5 @@
 var arrowLayer = new Kinetic.Layer();
-var tmpArrow = null;
+var tmpArrow;
 var clickCount = 0;
 var drawingEnabled = false;
 var layer = new Kinetic.Layer();
