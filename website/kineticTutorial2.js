@@ -85,12 +85,12 @@ layer.on('mousemove', function(event){
 //rename!
 function click(packageGroup, event) {
 	clickCount++;
-	if (mouseDown){
+	if (mouseDownOnPackage){
 		packages.push(packageGroup);
 		packages[0].find('.packageRect')[0].setFill('red');
 		writeMessage("package: " + mouseDownOnPackage + " stage: " + mouseDownOnStage + " packages: " packages[0].getId());
 	}
-	if(!mouseDown){
+	if(!mouseDownOnPackage){
 		packages.push(packageGroup);
 		packages[0].find('.packageRect')[0].setFill('white');
 		var arrow = new Arrow(packages[0],packages[1],packages[0].getId() + "_" + packages[1].getId());
