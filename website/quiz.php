@@ -26,7 +26,7 @@
 				foreach($_POST as $key => $value){
 					$strRepName = str_replace('check_','',$key);
 					$strRepName = str_replace('\\:\\:','::', $strRepName);
-					echo "packageGroup(\"$strRepName\");";
+					echo "new PackageGroup(\"$strRepName\");";
 				}
 				echo "</script>";
 			?>

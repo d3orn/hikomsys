@@ -67,7 +67,6 @@ function mouseDownOnPackage(packageGroup, event){
 	clickCount++;
 	if(clickCount == 1){
 		packages.push(packageGroup);
-		packages[0].find('.packageRect')[0].setFill('red');
 	}
 	arrowLayer.draw();
 	layer.draw();
@@ -76,7 +75,7 @@ function mouseUpOnPackage(packageGroup, event) {
 	clickCount++;
 	if(clickCount == 2){
 		packages.push(packageGroup);
-		packages[0].find('.packageRect')[0].setFill('white');
+		packages[0].highlight.remove();
 		var arrow = new Arrow(packages[0],packages[1],packages[0].getId() + "_" + packages[1].getId());
 		arrows.push(arrow);
 		arrow.draw();
@@ -87,6 +86,38 @@ function mouseUpOnPackage(packageGroup, event) {
 	arrowLayer.draw();
 	layer.draw();
 }
+
+//some refactoring needed
+function xOffset(center1, center2, center1_width) {
+	if (isRightOf(center1, center2, center1_width)) {return center1_width/2;}
+	if (isLeftOf(center1, center2, center1_width)) {return -center1_width/2;}
+	return(0);
+}
+
+function yOffset(center1, center2, center1_height) {
+	if (isBellow(center1, center2, center1_height)) {return center1_height/2;}
+	if (isAbove(center1, center2, center1_height)) {return -center1_height/2;}
+	return(0);
+}
+
+function isRightOf(center1, center2, center1_width) {
+	return center2.x > (center1.x + center1_width/2);
+}
+function isLeftOf(center1, center2, center1_width) {
+	return center2.x < (center1.x - center1_width/2);
+}
+function isAbove(center1, center2, center1_height) {
+	return center2.y < (center1.y - center1_height/2);
+}
+function isBellow(center1, center2, center1_height) {
+	return center2.y > (center1.y + center1_height/2);
+}
+
+function writeMessage(message) {
+	notification.setText(message);
+}
+
+/* ============================================================ Objects ============================================================ */
 
 //refactoring HARD
 function Arrow(from, to, id){
@@ -161,78 +192,56 @@ function Arrow(from, to, id){
 	};
 }
 
-//some refactoring needed
-function xOffset(center1, center2, center1_width) {
-	if (isRightOf(center1, center2, center1_width)) {return center1_width/2;}
-	if (isLeftOf(center1, center2, center1_width)) {return -center1_width/2;}
-	return(0);
-}
+function PackageGroup(text){
+	this.textField = packageText(text);
+	this.rect = packageRect(this.textField);
+	this.isHighlightened = false;
+	this.highlight = null;
 
-function yOffset(center1, center2, center1_height) {
-	if (isBellow(center1, center2, center1_height)) {return center1_height/2;}
-	if (isAbove(center1, center2, center1_height)) {return -center1_height/2;}
-	return(0);
-}
+	this.minX = 0;
+	this.minY = 0;
+	this.maxX = stage.getWidth()-this.rect.getWidth();
+	this.maxY = stage.getHeight()-this.rect.getHeight();
 
-function isRightOf(center1, center2, center1_width) {
-	return center2.x > (center1.x + center1_width/2);
-}
-function isLeftOf(center1, center2, center1_width) {
-	return center2.x < (center1.x - center1_width/2);
-}
-function isAbove(center1, center2, center1_height) {
-	return center2.y < (center1.y - center1_height/2);
-}
-function isBellow(center1, center2, center1_height) {
-	return center2.y > (center1.y + center1_height/2);
-}
-
-
-function packageGroup(text) {
-	var textField = packageText(text);
-	var rect = packageRect(textField);
-
-        minX = 0;
-        minY = 0;
-        maxY = stage.getHeight()-rect.getHeight();
-
-	var group = new Kinetic.Group({
-		width: rect.getWidth(),
+	this.group = new Kinetic.Group({
+		width: this.rect.getWidth(),
 		draggable: true,
 		dragBoundFunc: function (pos) {
-			maxX = stage.getWidth()-rect.getWidth();
 			var X = pos.x;
 			var Y = pos.y;
-			if (X < minX) { X = minX; }
-			if (X > maxX) { X = maxX; }
-			if (Y < minY) { Y = minY; }
-			if (Y > maxY) { Y = maxY; }
+			if (X < this.minX) { X = this.minX; }
+			if (X > this.maxX) { X = this.maxX; }
+			if (Y < this.minY) { Y = this.minY; }
+			if (Y > this.maxY) { Y = this.maxY; }
 			return ({ x: X, y: Y });	
 		},
-		id: textField.getText(),
+		id: this.textField.getText(),
 		name: 'packageGroup'	
 	});
-	group.add(rect);
-	group.add(textField);
+	this.group.add(this.rect);
+	this.group.add(this.textField);
 
 	//need to check if to packages are overlapping, would not be nice
-	group.move(1+Math.floor(Math.random() * (CONTAINER_WIDTH-rect.getWidth())), 1 + Math.floor(Math.random()*(480-rect.getHeight())));
+	this.group.move(1+Math.floor(Math.random() * (CONTAINER_WIDTH-this.rect.getWidth())), 1 + Math.floor(Math.random()*(480-this.rect.getHeight())));
 
-	layer.add(group);
+	layer.add(this.group);
+	this.group.moveToTop();
 	layer.draw();
 
-	group.on('mousedown', function (event) {
+	this.group.on('mousedown', function (event) {
 		if(drawingEnabled){
+			highlightPackage(this);
 			mouseDownOnPackage(this,event);
 		}
 	}, false);
-	group.on('mouseup', function (event) {
+	this.group.on('mouseup', function (event) {
 		if(drawingEnabled){
+			//this.highlight.remove();
 			mouseUpOnPackage(this, event);}
 	}, false);
 
 	//redraw arrows whenever a package is dragged arround probably have to hook onto the layer draw event rather then dragstart
-	group.on('dragstart dragmove', function(){
+	this.group.on('dragstart dragmove', function(){
 		for (var i = 0; i < arrows.length; i++){
 			var packageIds = arrows[i].id.split("_");
 			packages = [layer.find('#'+packageIds[0])[0], layer.find('#'+packageIds[1])[0]];
@@ -243,38 +252,56 @@ function packageGroup(text) {
 		}
 		arrowLayer.draw();
 	});
+
 }
 
+//have to move those methods into PackageGroup
 function packageRect(text) {
-	this.isHighlightened = false;
-	this.highlight = null;
-	var rect = new Kinetic.Rect({
-		width: text.getWidth()+10,
-		height: PACKAGE_HEIGHT,
-		fill: 'white',
-		stroke: 'black',
-		name: 'packageRect'
-	});
-	return rect;
-}
-
+        this.isHighlightened = false;
+        this.highlight = null;
+        var rect = new Kinetic.Rect({
+                width: text.getWidth()+10,
+                height: PACKAGE_HEIGHT,
+                fill: 'white',
+                stroke: 'black',
+                name: 'packageRect'
+        });
+        return rect;
+	}	
 
 function packageText(pText) {
-	var simpleText = new Kinetic.Text({
-		x: 5,	
-		y: 5,
-		text: pText,
-		fontSize: 15,
-		fontFamily: 'Calibri',
-		fill: 'black',
-		align: 'center',
-		name: 'packageText'
-	});
-	return simpleText;
+        var simpleText = new Kinetic.Text({
+                x: 5,        
+                y: 5,
+                text: pText,
+                fontSize: 15,
+                fontFamily: 'Calibri',
+                fill: 'black',
+                align: 'center',
+                name: 'packageText'
+        });
+        return simpleText;
 }
 
-function writeMessage(message) {
-	notification.setText(message);
+function highlightPackage(packageGroup){
+	var pos = packageGroup.find('.packageRect')[0].getAbsolutePosition();
+	var x = pos.x-4;
+	var y = pos.y-4;
+	var width = packageGroup.find('.packageRect')[0].getWidth()+8;
+	var height = packageGroup.find('.packageRect')[0].getHeight()+8;
+	var highlight = new Kinetic.Rect({
+		width: width,
+		height: height,
+		fill: "lightblue",
+		stroke: "lightblue",
+		strokeWidth:2
+	});
+	highlight.move(x,y);
+	packageGroup.isHighlighted = true;
+	packageGroup.highlight = highlight;
+	layer.add(highlight);
+	highlight.setZIndex(2);
+	layer.draw();
 }
  
 /* ============================================================ Eventhandler ============================================================ */
@@ -307,7 +334,7 @@ layer.on("mousemove", function (e) {
 layer.on("mouseup", function (e) {
 	moving = false;
 	if(packages.length > 0){
-		packages[0].find('.packageRect')[0].setFill('white');
+		packages[0].highlight.remove();
 		clickCount = 0;
 		packages = [];
 	}
