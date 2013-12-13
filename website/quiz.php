@@ -22,11 +22,11 @@
 
 			<!--The following javascript calls are created with PHP, creating a new packageGroup (displayed on the canvas) for each selected package stored within &POST -->	
 			<?php
-				echo "<script>";
+				echo "<script> var allPackages = [];";
 				foreach($_POST as $key => $value){
 					$strRepName = str_replace('check_','',$key);
 					$strRepName = str_replace('\\:\\:','::', $strRepName);
-					echo "new PackageGroup(\"$strRepName\");";
+					echo "allPackages.push(new PackageGroup(\"$strRepName\"));";
 				}
 				echo "</script>";
 			?>

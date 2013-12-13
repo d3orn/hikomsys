@@ -10,9 +10,10 @@ var PACKAGE_HEIGHT = 25;
 var packages = [];
 var group, moving = false;
 
+
 var stage = new Kinetic.Stage({
     container: 'container',
-    width: CONTAINER_WIDTH,
+	width: CONTAINER_WIDTH,
 	height: 480
 });
 
@@ -53,6 +54,13 @@ stage.add(arrowLayer);
 	}
 });*/
 
+function findById(id){
+	for (var i = 0; i < allPackages.length; i++){
+		if(allPackages[i].text === id){return allPackages[i];}
+	}
+	return -1;
+}
+
 function getMousePosition(event) {
 	var canvas = document.getElementById('container');
 	var rect = canvas.getBoundingClientRect();
@@ -62,11 +70,12 @@ function getMousePosition(event) {
 	};
 }
 
-//rename!
 function mouseDownOnPackage(packageGroup, event){
 	clickCount++;
+	var pack = findById(packageGroup.getId());
+	pack.highlightPackage(); 
 	if(clickCount == 1){
-		packages.push(packageGroup);
+		packages.push(pack);
 	}
 	arrowLayer.draw();
 	layer.draw();
@@ -74,14 +83,17 @@ function mouseDownOnPackage(packageGroup, event){
 function mouseUpOnPackage(packageGroup, event) {
 	clickCount++;
 	if(clickCount == 2){
-		packages.push(packageGroup);
-		packages[0].highlight.remove();
-		var arrow = new Arrow(packages[0],packages[1],packages[0].getId() + "_" + packages[1].getId());
+		var firstPack = findById(packages[0].text);
+		var pack = findById(packageGroup.getId());
+		firstPack.highlight.remove();
+		packages.push(pack);
+		var arrow = new Arrow(packages[0],packages[1],packages[0].text + "_" + packages[1].text);
 		arrows.push(arrow);
 		arrow.draw();
 
 		packages = [];
 		clickCount = 0;
+
 	}
 	arrowLayer.draw();
 	layer.draw();
@@ -117,16 +129,17 @@ function writeMessage(message) {
 	notification.setText(message);
 }
 
-/* ============================================================ Objects ============================================================ */
+/* ================================================================= Classes ================================================================= */
 
+/* --------------------------------------------------------------- Arrow Class --------------------------------------------------------------- */
 //refactoring HARD
 function Arrow(from, to, id){
 	this.from = from;
 	this.to = to;
 	this.id = id;
 	this.center = function(packageGroup){
-		var centerX = Math.round(packageGroup.getX() + packageGroup.getWidth()/2);
-		var centerY = Math.round(packageGroup.getY() + PACKAGE_HEIGHT/2);
+		var centerX = Math.round(packageGroup.group.getX() + packageGroup.group.getWidth()/2);
+		var centerY = Math.round(packageGroup.group.getY() + PACKAGE_HEIGHT/2);
 		return {x: centerX, y: centerY};
 	};
 
@@ -134,9 +147,9 @@ function Arrow(from, to, id){
 		var fromCenter = this.center(from);
 		var toCenter = (packages.length > 1 ? this.center(to) : to);
 	
-		var anchor1 = this.calcAnchor(fromCenter, toCenter, this.from.getWidth());
-		var anchor2 = (packages.length > 1 ? this.calcAnchor(toCenter, fromCenter, this.to.getWidth()) : to);
- 
+		var anchor1 = this.calcAnchor(fromCenter, toCenter, this.from.group.getWidth());
+		var anchor2 = (packages.length > 1 ? this.calcAnchor(toCenter, fromCenter, this.to.group.getWidth()) : to);
+
 		this.createArrow(anchor1, anchor2);
 	};
 
@@ -192,120 +205,120 @@ function Arrow(from, to, id){
 	};
 }
 
+/* ------------------------------------------------------------ PackageGroup Class ----------------------------------------------------------- */
 function PackageGroup(text){
-	this.textField = packageText(text);
-	this.rect = packageRect(this.textField);
+	this.text = text;
 	this.isHighlightened = false;
-	this.highlight = null;
 
-	this.minX = 0;
-	this.minY = 0;
-	this.maxX = stage.getWidth()-this.rect.getWidth();
-	this.maxY = stage.getHeight()-this.rect.getHeight();
+	this.create = function(){
+		this.createTextField();
+		this.createContainer();
+		this.createGroup();
+		this.addEventListener();
+	};
 
-	this.group = new Kinetic.Group({
-		width: this.rect.getWidth(),
-		draggable: true,
-		dragBoundFunc: function (pos) {
-			var X = pos.x;
-			var Y = pos.y;
-			if (X < this.minX) { X = this.minX; }
-			if (X > this.maxX) { X = this.maxX; }
-			if (Y < this.minY) { Y = this.minY; }
-			if (Y > this.maxY) { Y = this.maxY; }
-			return ({ x: X, y: Y });	
-		},
-		id: this.textField.getText(),
-		name: 'packageGroup'	
-	});
-	this.group.add(this.rect);
-	this.group.add(this.textField);
+	this.createTextField = function() {
+		this.textField = new Kinetic.Text({
+			x: 5,
+			y: 5,
+			text: this.text,
+			fontSize: 15,
+			fontFamily: 'Calibri',
+			fill: 'black',
+			align: 'center',
+			name: 'textField'
+		});
+	};
 
-	//need to check if to packages are overlapping, would not be nice
-	this.group.move(1+Math.floor(Math.random() * (CONTAINER_WIDTH-this.rect.getWidth())), 1 + Math.floor(Math.random()*(480-this.rect.getHeight())));
+	this.createContainer = function(){
+		this.rect = new Kinetic.Rect({
+			width: this.textField.getWidth()+10,
+			height: PACKAGE_HEIGHT,
+			fill: 'white',
+			stroke: 'black',
+			name: 'packageRect'
+		}); 
+	};	
 
-	layer.add(this.group);
-	this.group.moveToTop();
-	layer.draw();
+	this.createGroup = function(){
+		this.minX = 0;
+		this.minY = 0;
+		this.maxX = stage.getWidth()-this.rect.getWidth();
+		this.maxY = stage.getHeight()-this.rect.getHeight();
 
-	this.group.on('mousedown', function (event) {
-		if(drawingEnabled){
-			highlightPackage(this);
-			mouseDownOnPackage(this,event);
-		}
-	}, false);
-	this.group.on('mouseup', function (event) {
-		if(drawingEnabled){
-			//this.highlight.remove();
-			mouseUpOnPackage(this, event);}
-	}, false);
+		this.group = new Kinetic.Group({
+			width: this.rect.getWidth(),
+			draggable: true,
+			dragBoundFunc: function (pos) {
+				var X = pos.x;
+				var Y = pos.y;
+				if (X < this.minX) { X = this.minX; }
+				if (X > this.maxX) { X = this.maxX; }
+				if (Y < this.minY) { Y = this.minY; }
+				if (Y > this.maxY) { Y = this.maxY; }
+				return ({ x: X, y: Y });	
+			},
+			id: this.textField.getText(),
+			name: 'packageGroup'	
+		});
+		this.group.add(this.rect);
+		this.group.add(this.textField);
+		//need to check if to packages are overlapping, would not be nice
+		this.group.move(1+Math.floor(Math.random() * (CONTAINER_WIDTH-this.rect.getWidth())), 1 + Math.floor(Math.random()*(480-this.rect.getHeight())));
 
-	//redraw arrows whenever a package is dragged arround probably have to hook onto the layer draw event rather then dragstart
-	this.group.on('dragstart dragmove', function(){
-		for (var i = 0; i < arrows.length; i++){
-			var packageIds = arrows[i].id.split("_");
-			packages = [layer.find('#'+packageIds[0])[0], layer.find('#'+packageIds[1])[0]];
-			if(packages[0].getId() == this.getId() || packages[1].getId() == this.getId()){
-				arrows[i].remove();
-				arrows[i].draw();
+		layer.add(this.group);
+		this.group.moveToTop();
+	};
+
+	this.addEventListener = function(){
+		this.group.on('mousedown', function (event) {
+			if(drawingEnabled){
+				mouseDownOnPackage(this,event);
 			}
-		}
-		arrowLayer.draw();
-	});
+		}, false);
+		this.group.on('mouseup', function (event) {
+			if(drawingEnabled){
+			mouseUpOnPackage(this, event);}
+		}, false);
+
+		//redraw arrows whenever a package is dragged arround probably have to hook onto the layer draw event rather then dragstart
+		this.group.on('dragstart dragmove', function(){
+			for (var i = 0; i < arrows.length; i++){
+				var packageIds = arrows[i].id.split("_");
+				packages = [layer.find('#'+packageIds[0])[0], layer.find('#'+packageIds[1])[0]];
+				if(packages[0].getId() == this.getId() || packages[1].getId() == this.getId()){
+					arrows[i].remove();
+					arrows[i].draw();
+				}
+			}
+			arrowLayer.draw();
+		});
+
+	};
+
+	this.highlightPackage = function(){
+		var pos = this.rect.getAbsolutePosition();
+		var x = pos.x-4;
+		var y = pos.y-4;
+		var width = this.rect.getWidth()+8;
+		var height = this.rect.getHeight()+8;
+		this.highlight = new Kinetic.Rect({
+			width: width,
+			height: height,
+			fill: "lightblue",
+			stroke: "lightblue",
+			strokeWidth:2
+		});
+		this.highlight.move(x,y);
+		this.isHighlighted = true;
+		layer.add(this.highlight);
+		this.highlight.setZIndex(2);
+		layer.draw();
+	};	
 
 }
 
-//have to move those methods into PackageGroup
-function packageRect(text) {
-        this.isHighlightened = false;
-        this.highlight = null;
-        var rect = new Kinetic.Rect({
-                width: text.getWidth()+10,
-                height: PACKAGE_HEIGHT,
-                fill: 'white',
-                stroke: 'black',
-                name: 'packageRect'
-        });
-        return rect;
-	}	
-
-function packageText(pText) {
-        var simpleText = new Kinetic.Text({
-                x: 5,        
-                y: 5,
-                text: pText,
-                fontSize: 15,
-                fontFamily: 'Calibri',
-                fill: 'black',
-                align: 'center',
-                name: 'packageText'
-        });
-        return simpleText;
-}
-
-function highlightPackage(packageGroup){
-	var pos = packageGroup.find('.packageRect')[0].getAbsolutePosition();
-	var x = pos.x-4;
-	var y = pos.y-4;
-	var width = packageGroup.find('.packageRect')[0].getWidth()+8;
-	var height = packageGroup.find('.packageRect')[0].getHeight()+8;
-	var highlight = new Kinetic.Rect({
-		width: width,
-		height: height,
-		fill: "lightblue",
-		stroke: "lightblue",
-		strokeWidth:2
-	});
-	highlight.move(x,y);
-	packageGroup.isHighlighted = true;
-	packageGroup.highlight = highlight;
-	layer.add(highlight);
-	highlight.setZIndex(2);
-	layer.draw();
-}
- 
-/* ============================================================ Eventhandler ============================================================ */
-
+/* =============================================================== Eventhandler ============================================================== */
 layer.on("mousedown", function (e) {
 	if(clickCount === 0) return;
 	if (moving) {
@@ -325,7 +338,6 @@ layer.on("mousemove", function (e) {
 		var mousePos = getMousePosition(e);
 		tmpArrow = new Arrow(packages[0], mousePos, "tmpArrow");
 		tmpArrow.draw();
-
 		moving = true;
 		arrowLayer.drawScene();
 	}
@@ -354,4 +366,8 @@ document.getElementById('draw').addEventListener('click', function(){
 
 $(document).ready(function(){
     writeMessage("Double click anywhere to switch to drawing mode");
+	for(var i = 0; i < allPackages.length; i++){
+		allPackages[i].create();
+	}	
+	layer.draw();
 });
