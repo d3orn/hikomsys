@@ -13,13 +13,19 @@ var clickCount = 0; // suspicious :)
 var drawingEnabled = false;
 var arrows = [];
 var packages = [];
+
 var group, moving = false; // group? needed?
+var MIN_X = 0;
+var MIN_Y = 0;
+
 
 var stage = new Kinetic.Stage({
     container: 'container',
 	width: CONTAINER_WIDTH,
 	height: 480
 });
+
+var MAX_Y = stage.getHeight()-PACKAGE_HEIGHT;
 
 var background = new Kinetic.Rect({
 	x: 0, 
@@ -40,15 +46,13 @@ var notification = new Kinetic.Text({
 	fill: 'black'
 });
 
-
-
-
 layer.add(background);
 layer.draw();
 layer.add(notification);
 stage.add(layer);
 stage.add(arrowLayer);
-stage.add(arrowLayer);
+layer.setZIndex(2);
+arrowLayer.setZIndex(1);
 
 /*layer.on('dblclick', function(){
 	writeMessage("Double click anywhere to switch to " + (drawingEnabled ? "drawing" : "moving") + " mode");
@@ -61,11 +65,11 @@ stage.add(arrowLayer);
 	}
 });*/
 
-function arrowExists(id){
+function findArrowById(id){
 	for (var i = 0; i < arrows.length; i++){
-		if(arrows[i].id === id){return true}
+			if(arrows[i].id == id){return i}
 	}
-	return false;
+	return -1;
 }
 
 function findPackageById(id){
@@ -84,10 +88,11 @@ function getMousePosition(event) {
 	};
 }
 
+//I have to check if mouseUp on same Package
 function mouseDownOnPackage(packageGroup, event){
 	clickCount++;
 	var pack = findPackageById(packageGroup.getId());
-	pack.highlightPackage(); 
+	pack.highlightPackage("lightblue"); 
 	if(clickCount == 1){
 		packages.push(pack);
 	}
@@ -99,10 +104,11 @@ function mouseUpOnPackage(packageGroup, event) {
 	if(clickCount == 2){
 		var firstPack = findPackageById(packages[0].text);
 		var pack = findPackageById(packageGroup.getId());
-		firstPack.highlight.remove();
 		packages.push(pack);
-		var id = packages[0].text + "_" + packages[1].text
-		if(!arrowExists(id)){
+		firstPack.highlight.remove();
+		pack.highlight.remove();
+		var id = packages[0].text + "_" + packages[1].text;
+		if(findArrowById(id) === -1){
 			var arrow = new Arrow(packages[0],packages[1],id);
 			arrows.push(arrow);
 			arrow.draw();
@@ -186,9 +192,13 @@ function Arrow(from, to, id){
 	
 		this.line = line;
 		this.head = head;
-
-		arrowLayer.add(this.line);
-		arrowLayer.add(this.head);
+		this.arrowGroup = new Kinetic.Group({
+			id: this.id
+		});
+		this.arrowGroup.add(this.line);
+		this.arrowGroup.add(this.head);
+		arrowLayer.add(this.arrowGroup);
+		this.addEventListener();
 	};
 
 	this.createLine = function(point1, point2) {
@@ -219,9 +229,25 @@ function Arrow(from, to, id){
 	};
 
 	this.remove = function(){
-		this.line.remove();
-		this.head.remove();
+		this.arrowGroup.remove();
 	};
+
+	this.deleteArrow = function(){
+		this.arrowGroup.remove();
+		delete this.from;
+		delete this.to;
+		delete this.id
+	}
+
+	this.addEventListener = function(){
+		this.arrowGroup.on('click', function(){
+			var index = findArrowById(this.getId());
+			arrows[index].deleteArrow();
+			arrows.remove(index);
+
+			arrowLayer.draw();
+		})
+	}
 }
 
 /* ------------------------------------------------------------ PackageGroup Class ----------------------------------------------------------- */
@@ -259,27 +285,25 @@ function PackageGroup(text){
 		}); 
 	};	
 
+//dragBound funktioniert nicht mehr
 	this.createGroup = function(){
-		this.minX = 0;
-		this.minY = 0;
-		this.maxX = stage.getWidth()-this.rect.getWidth();
-		this.maxY = stage.getHeight()-this.rect.getHeight();
-
+		var maxX = stage.getWidth()-this.rect.getWidth();
 		this.group = new Kinetic.Group({
 			width: this.rect.getWidth(),
 			draggable: true,
 			dragBoundFunc: function (pos) {
 				var X = pos.x;
 				var Y = pos.y;
-				if (X < this.minX) { X = this.minX; }
-				if (X > this.maxX) { X = this.maxX; }
-				if (Y < this.minY) { Y = this.minY; }
-				if (Y > this.maxY) { Y = this.maxY; }
+				if (X < MIN_X) { X = MIN_X; }
+				if (X > maxX) { X = maxX; }
+				if (Y < MIN_Y) { Y = MIN_Y; }
+				if (Y > MAX_Y) { Y = MAX_Y; }
 				return ({ x: X, y: Y });	
 			},
 			id: this.textField.getText(),
 			name: 'packageGroup'	
 		});
+
 		this.group.add(this.rect);
 		this.group.add(this.textField);
 		//need to check if to packages are overlapping, would not be nice
@@ -297,7 +321,7 @@ function PackageGroup(text){
 		}, false);
 		this.group.on('mouseup', function (event) {
 			if(drawingEnabled){
-			mouseUpOnPackage(this, event);}
+				mouseUpOnPackage(this, event);}
 		}, false);
 
 		//redraw arrows whenever a package is dragged arround probably have to hook onto the layer draw event rather then dragstart
@@ -313,9 +337,25 @@ function PackageGroup(text){
 			arrowLayer.draw();
 		});
 
+		this.group.on('mouseenter', function(){
+			if(drawingEnabled){
+				var pack = findPackageById(this.getId());
+				pack.highlightPackage("lightblue"); 
+			}
+		});
+
+		this.group.on('mouseleave', function(){
+			if(drawingEnabled){
+				if(packages.length > 0 && this.getId() === packages[0].text){return;}
+				var pack = findPackageById(this.getId());
+				pack.highlight.remove(); 
+				layer.draw();
+			}
+		});
 	};
 
-	this.highlightPackage = function(){
+	this.highlightPackage = function(color){
+		if(typeof this.highlight !== 'undefined'){this.highlight.remove();}
 		var pos = this.rect.getAbsolutePosition();
 		var x = pos.x-4;
 		var y = pos.y-4;
@@ -324,9 +364,9 @@ function PackageGroup(text){
 		this.highlight = new Kinetic.Rect({
 			width: width,
 			height: height,
-			fill: "lightblue",
-			stroke: "lightblue",
-			strokeWidth:2
+			fill: color,
+			stroke: color,
+			strokeWidth:2,
 		});
 		this.highlight.move(x,y);
 		this.isHighlighted = true;
@@ -364,7 +404,7 @@ layer.on("mousemove", function (e) {
 
 layer.on("mouseup", function (e) {
 	moving = false;
-	if(packages.length > 0){
+	if(drawingEnabled && packages.length > 0){
 		packages[0].highlight.remove();
 		clickCount = 0;
 		packages = [];
@@ -375,6 +415,7 @@ layer.on("mouseup", function (e) {
 });
 
 document.getElementById('draw').addEventListener('click', function(){
+	packages = [];
 	this.value = (drawingEnabled ? "Activate drawing" : "Deactivate drawing");
 	drawingEnabled = (drawingEnabled ? false : true);
 	var groups = layer.get('Group');
@@ -390,3 +431,11 @@ $(document).ready(function(){
 	}	
 	layer.draw();
 });
+
+/* =============================================================== Prototype Methods ============================================================== */
+// Array Remove - By John Resig (MIT Licensed)
+Array.prototype.remove = function(from, to) {
+  var rest = this.slice((to || from) + 1 || this.length);
+  this.length = from < 0 ? this.length + from : from;
+  return this.push.apply(this, rest);
+};
