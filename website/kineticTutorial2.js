@@ -1,15 +1,19 @@
-var arrowLayer = new Kinetic.Layer();
-var tmpArrow;
-var clickCount = 0;
-var drawingEnabled = false;
-var layer = new Kinetic.Layer();
+// Constants
 var CONTAINER_WIDTH = document.getElementById('container').offsetWidth;
-var HORIZONTAL_LINE = {x: 0, y: -100};
-var arrows = [];
+var VERTICAL_VECTOR = {x: 0, y: -100};
 var PACKAGE_HEIGHT = 25;
-var packages = [];
-var group, moving = false;
+var FOUREIGHTY = 480; // replace in stage and elsewhere!
 
+// Variables. Alphabetically...not!
+var arrowLayer = new Kinetic.Layer();
+var layer = new Kinetic.Layer();
+
+var tmpArrow; //follows your mousE!
+var clickCount = 0; // suspicious :) 
+var drawingEnabled = false;
+var arrows = [];
+var packages = [];
+var group, moving = false; // group? needed?
 
 var stage = new Kinetic.Stage({
     container: 'container',
@@ -35,6 +39,9 @@ var notification = new Kinetic.Text({
 	text: '',
 	fill: 'black'
 });
+
+
+
 
 layer.add(background);
 layer.draw();
@@ -171,7 +178,7 @@ function Arrow(from, to, id){
 
 		var line = this.createLine(anchor1, anchor2);
 
-		var rotation = Math.acos((vektor.y * HORIZONTAL_LINE.y)/(Math.sqrt(Math.pow(vektor.x,2)+Math.pow(vektor.y,2))* Math.sqrt(Math.pow(HORIZONTAL_LINE.y,2))));
+		var rotation = Math.acos((vektor.y * VERTICAL_VECTOR.y)/(Math.sqrt(Math.pow(vektor.x,2)+Math.pow(vektor.y,2))* Math.sqrt(Math.pow(VERTICAL_VECTOR.y,2))));
 		//if the vektor points to the left I have to make the angle negative
 		if (anchor1.x > anchor2.x){rotation = -rotation;}
 		var norm = Math.sqrt(Math.pow(vektor.x,2) + Math.pow(vektor.y,2));
