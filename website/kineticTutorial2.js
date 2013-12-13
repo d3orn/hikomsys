@@ -54,7 +54,14 @@ stage.add(arrowLayer);
 	}
 });*/
 
-function findById(id){
+function arrowExists(id){
+	for (var i = 0; i < arrows.length; i++){
+		if(arrows[i].id === id){return true}
+	}
+	return false;
+}
+
+function findPackageById(id){
 	for (var i = 0; i < allPackages.length; i++){
 		if(allPackages[i].text === id){return allPackages[i];}
 	}
@@ -72,7 +79,7 @@ function getMousePosition(event) {
 
 function mouseDownOnPackage(packageGroup, event){
 	clickCount++;
-	var pack = findById(packageGroup.getId());
+	var pack = findPackageById(packageGroup.getId());
 	pack.highlightPackage(); 
 	if(clickCount == 1){
 		packages.push(pack);
@@ -83,14 +90,19 @@ function mouseDownOnPackage(packageGroup, event){
 function mouseUpOnPackage(packageGroup, event) {
 	clickCount++;
 	if(clickCount == 2){
-		var firstPack = findById(packages[0].text);
-		var pack = findById(packageGroup.getId());
+		var firstPack = findPackageById(packages[0].text);
+		var pack = findPackageById(packageGroup.getId());
 		firstPack.highlight.remove();
 		packages.push(pack);
-		var arrow = new Arrow(packages[0],packages[1],packages[0].text + "_" + packages[1].text);
-		arrows.push(arrow);
-		arrow.draw();
-
+		var id = packages[0].text + "_" + packages[1].text
+		if(!arrowExists(id)){
+			var arrow = new Arrow(packages[0],packages[1],id);
+			arrows.push(arrow);
+			arrow.draw();
+		}
+		else {
+			writeMessage("dependency allready drawn");
+		}
 		packages = [];
 		clickCount = 0;
 
