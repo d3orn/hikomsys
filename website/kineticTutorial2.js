@@ -1,31 +1,50 @@
 // Constants
-var CONTAINER_WIDTH = document.getElementById('container').offsetWidth;
-var VERTICAL_VECTOR = {x: 0, y: -100};
+var CONTAINER_WIDTH = document.getElementById('container').clientWidth;
+var CONTAINER_HEIGHT = document.getElementById('container').clientHeight;
 var PACKAGE_HEIGHT = 25;
-var FOUREIGHTY = 480; // replace in stage and elsewhere!
-
-// Variables. Alphabetically...not!
-var arrowLayer = new Kinetic.Layer();
-var layer = new Kinetic.Layer();
-
-var tmpArrow; //follows your mousE!
-var clickCount = 0; // suspicious :) 
-var drawingEnabled = false;
-var arrows = [];
-var packages = [];
-
-var group, moving = false; // group? needed?
+var VERTICAL_VECTOR = {x: 0, y: -100};
+var MAX_Y = CONTAINER_HEIGHT-PACKAGE_HEIGHT;
 var MIN_X = 0;
 var MIN_Y = 0;
 
+// Variables. Alphabetically...not!
+var arrowLayer = new Kinetic.Layer();
+var altDown = false;
+var arrows = [];
+
+var background;
+
+var clickCount = 0; // suspicious :) 
+
+var drawingEnabled = false;
+
+var layer = new Kinetic.Layer();
+
+var moving = false; 
+
+var notification;
+
+var packages = [];
+
+var stage;
+
+var tmpArrow; //follows your mousE!
+
+
+var notification = new Kinetic.Text({
+	x: 10,
+	y: 460,
+	fontFamily: 'Calibri',
+	fontSize: 24,
+	text: '',
+	fill: 'black'
+});
 
 var stage = new Kinetic.Stage({
     container: 'container',
 	width: CONTAINER_WIDTH,
-	height: 480
+	height: CONTAINER_HEIGHT,
 });
-
-var MAX_Y = stage.getHeight()-PACKAGE_HEIGHT;
 
 var background = new Kinetic.Rect({
 	x: 0, 
@@ -33,17 +52,8 @@ var background = new Kinetic.Rect({
 	width: stage.getWidth(),
 	height: stage.getHeight(),
 	fill: 'white',
-	stroke: 'black',
-	strokeWidth: 5                                           
-});
-
-var notification = new Kinetic.Text({
-	x: 10,
-	y: 10,
-	fontFamily: 'Calibri',
-	fontSize: 24,
-	text: '',
-	fill: 'black'
+	stroke: "red",
+    strokeWidth: 1
 });
 
 layer.add(background);
@@ -53,17 +63,6 @@ stage.add(layer);
 stage.add(arrowLayer);
 layer.setZIndex(2);
 arrowLayer.setZIndex(1);
-
-/*layer.on('dblclick', function(){
-	writeMessage("Double click anywhere to switch to " + (drawingEnabled ? "drawing" : "moving") + " mode");
-	clickCount = 0;
-	document.getElementById('draw').value = (drawingEnabled ? "Activate drawing" : "Deactivate drawing");
-	drawingEnabled = (drawingEnabled ? false : true);
-	var groups = layer.get('Group');
-	for (var i = 0; i < groups.length; i++){
-		groups[i].setDraggable(!drawingEnabled );
-	}
-});*/
 
 function findArrowById(id){
 	for (var i = 0; i < arrows.length; i++){
@@ -96,9 +95,8 @@ function mouseDownOnPackage(packageGroup, event){
 	if(clickCount == 1){
 		packages.push(pack);
 	}
-	arrowLayer.draw();
-	layer.draw();
 }
+
 function mouseUpOnPackage(packageGroup, event) {
 	clickCount++;
 	if(clickCount == 2){
@@ -154,6 +152,20 @@ function writeMessage(message) {
 	notification.setText(message);
 }
 
+function switchMode(){
+	if(packages.length > 0){
+		packages[0].highlight.remove();
+	}
+	clickCount = 0;
+	packages = [];
+
+	drawingEnabled = !drawingEnabled;
+	var groups = layer.get('Group');
+	for (var i = 0; i < groups.length; i++){
+		groups[i].setDraggable(!drawingEnabled );
+	}
+}
+
 /* ================================================================= Classes ================================================================= */
 
 /* --------------------------------------------------------------- Arrow Class --------------------------------------------------------------- */
@@ -168,6 +180,7 @@ function Arrow(from, to, id){
 		return {x: centerX, y: centerY};
 	};
 
+	//Oman there is a big bug in here the packages.lenght has to be > 1 if i want to redraw the packages need to fix this
 	this.draw = function(){
 		var fromCenter = this.center(from);
 		var toCenter = (packages.length > 1 ? this.center(to) : to);
@@ -243,7 +256,7 @@ function Arrow(from, to, id){
 		this.arrowGroup.on('click', function(){
 			var index = findArrowById(this.getId());
 			arrows[index].deleteArrow();
-			arrows.remove(index);
+			arrows.remove(index); //prototype
 
 			arrowLayer.draw();
 		})
@@ -254,7 +267,6 @@ function Arrow(from, to, id){
 function PackageGroup(text){
 	this.text = text;
 	this.isHighlightened = false;
-
 	this.create = function(){
 		this.createTextField();
 		this.createContainer();
@@ -285,7 +297,6 @@ function PackageGroup(text){
 		}); 
 	};	
 
-//dragBound funktioniert nicht mehr
 	this.createGroup = function(){
 		var maxX = stage.getWidth()-this.rect.getWidth();
 		this.group = new Kinetic.Group({
@@ -328,13 +339,15 @@ function PackageGroup(text){
 		this.group.on('dragstart dragmove', function(){
 			for (var i = 0; i < arrows.length; i++){
 				var packageIds = arrows[i].id.split("_");
+				//see the bug in Arrow.draw()
 				packages = [layer.find('#'+packageIds[0])[0], layer.find('#'+packageIds[1])[0]];
 				if(packages[0].getId() == this.getId() || packages[1].getId() == this.getId()){
 					arrows[i].remove();
 					arrows[i].draw();
 				}
 			}
-			arrowLayer.draw();
+			packages = [];
+			arrowLayer.drawScene();
 		});
 
 		this.group.on('mouseenter', function(){
@@ -414,18 +427,53 @@ layer.on("mouseup", function (e) {
 	arrowLayer.draw();
 });
 
-document.getElementById('draw').addEventListener('click', function(){
-	packages = [];
-	this.value = (drawingEnabled ? "Activate drawing" : "Deactivate drawing");
-	drawingEnabled = (drawingEnabled ? false : true);
-	var groups = layer.get('Group');
-	for (var i = 0; i < groups.length; i++){
-		groups[i].setDraggable(!drawingEnabled );
-	}
+
+/* ------  Buttons ------*/
+$('#draw').click(function(){
+	clicked($('#move'));
+	switchMode();
 });
 
+$('#move').click(function(){
+	clicked($('#draw'));
+	switchMode();
+});
+
+$('#help').click(function(){
+	$('#help_container').toggle();
+});
+
+$('#submit').click(function(){
+	alert("sure?");
+});
+
+$('.buttonlike').click(function(){
+	var currentId = $(this).attr('id');
+	clicked($(this));
+});
+
+function clicked(object){
+	if(object.hasClass("gradientBG")){
+		object.removeClass("gradientBG");
+		object.addClass("activatedIcon");
+	}
+	else{
+		object.removeClass("activatedIcon");
+		object.addClass("gradientBG");
+	}
+}
+
+//ALT key soll temporär mode wechseln
+/*$(window).on("keydown", function(event) {
+    if (event.which === 18) {
+        switchMode();
+    }
+}).on("keyup", function(event) {
+	switchMode();
+});*/
+
 $(document).ready(function(){
-    writeMessage("Double click anywhere to switch to drawing mode");
+    //writeMessage("Double click anywhere to switch to drawing mode");
 	for(var i = 0; i < allPackages.length; i++){
 		allPackages[i].create();
 	}	
@@ -439,3 +487,54 @@ Array.prototype.remove = function(from, to) {
   this.length = from < 0 ? this.length + from : from;
   return this.push.apply(this, rest);
 };
+
+
+//REFACTORING NEEDED
+//save initial scale
+var initialScale = {x: 1, y: 1};
+var initialWidth = $("#container").innerWidth(); // initial width
+var initialHeight = $("#container").innerHeight(); // initial height
+
+/*window.onresize = function(event) { // listen for change
+  var width = $("#container").innerWidth(); // new width of page
+    var height = $("#container").innerHeight(); // new height of page
+   console.log(width);
+    console.log(height);
+    var xScale =  (width  / initialWidth) * initialScale.x;  // percent change in width (Ex: 1000 - 400/1000 means the page scaled down 60%, you should play with this to get wanted results)
+    var yScale = (height / initialHeight) * initialScale.y;
+    var newScale = {x: xScale, y: yScale};
+        console.log(newScale);
+    stage.setAttr('width', width);
+    stage.setAttr('height', height);    
+    stage.setAttr('scale', newScale ); 
+    stage = new Kinetic.Stage({
+    	container: 'container',
+		width: width,
+		height: height
+	});
+    stage.add(layer);
+    stage.draw();
+}*/
+
+$(window).on('resize',function(){
+    if(this.resizeTO) clearTimeout(this.resizeTO);
+    this.resizeTO = setTimeout(function(){
+        $(this).trigger('resizeEnd');
+    },500);
+});
+
+
+//after resizing the draboundfunction fails need to update MaxX for every element
+$(window).on('resizeEnd orientationchange',function(){
+    var width = $("#container").innerWidth(); // new width of page
+    var height = $("#container").innerHeight(); // new height of page
+    background.setWidth(width);
+    background.setHeight(height);
+    stage.setWidth(width);
+    stage.setHeight(height);
+    var groups = layer.get('Group');
+	for (var i = 0; i < groups.length; i++){
+		//alert(groups[i].maxX);
+	}
+});
+

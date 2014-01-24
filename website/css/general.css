@@ -1,7 +1,12 @@
+html {
+       overflow-y: scroll;
+       overflow: -moz-scrollbars-vertical;
+}
+
 body{
 	background-color: lightgrey;
 	font: 12px Verdana, Geneva, Arial, sans-serif;
-	color: #FFFFFF;
+	color: #000;
 }
 
 
@@ -10,7 +15,7 @@ body{
 	margin-right: auto;
 	width: 60%;
 	min-height: 100%;
-	background-color: grey;
+	background-color: white;
 }
 
 #navi{

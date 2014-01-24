@@ -12,7 +12,7 @@ elif [[ "$OSTYPE" == 'linux-gnu' ]]; then
    cog="pharo-vm-nox"
    headless=""	
 fi
-moose="Hikomsys.image"
+moose="../datagatherer/Hikomsys.image"
 
 smalltalk="runDataGatherer --projectName="$name
 
