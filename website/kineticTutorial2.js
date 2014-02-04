@@ -106,7 +106,10 @@ function mouseUpOnPackage(packageGroup, event) {
 		firstPack.highlight.remove();
 		pack.highlight.remove();
 		var id = packages[0].text + "_" + packages[1].text;
-		if(findArrowById(id) === -1){
+		if(packages[0].text == packages[1].text){
+			writeMessage("You cannot add a loop");
+		}
+		else if(findArrowById(id) === -1){
 			var arrow = new Arrow(packages[0],packages[1],id);
 			arrows.push(arrow);
 			arrow.draw();
@@ -388,6 +391,10 @@ function PackageGroup(text){
 		layer.draw();
 	};	
 
+	this.position = function(){
+		return this.group.getAbsolutePosition();
+	}
+
 }
 
 /* =============================================================== Eventhandler ============================================================== */
@@ -444,13 +451,49 @@ $('#help').click(function(){
 });
 
 $('#submit').click(function(){
-	alert("sure?");
+	output = createJSON();
+	$.ajax({
+    type: "POST",
+    url: "createResult.php",
+    data: {"packages": output},
+    success: function(msg) {
+    	alert(msg);
+    }
+  });
 });
 
 $('.buttonlike').click(function(){
 	var currentId = $(this).attr('id');
 	clicked($(this));
 });
+
+function createJSON(){
+	var output = [];
+	for ( var i = 0; i < allPackages.length; i = i + 1 ) {
+		var p;
+		var position = {"X" : allPackages[i].position().x, "Y" : allPackages[i].position().y};
+		name = allPackages[i].text
+		var dep =[];
+		for ( var j = 0; j < arrows.length; j++){
+			currentPackage = arrows[j];
+			if(currentPackage.from.text == name){
+				toName = currentPackage.to.text;
+				thisDep = {"to" : toName}
+			 	dep.push(thisDep);
+			}
+			
+		}
+		if (dep.length != 0){
+			p={"name" : name, "dependencies" : dep, "position": position };
+		}
+		else{
+			p={"name" : name, "position": position};
+		}
+		output.push(p);
+    }
+    var packagesAsJson = JSON.stringify(output);
+	return packagesAsJson;
+}
 
 function clicked(object){
 	if(object.hasClass("gradientBG")){
@@ -537,4 +580,3 @@ $(window).on('resizeEnd orientationchange',function(){
 		//alert(groups[i].maxX);
 	}
 });
-

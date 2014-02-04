@@ -1,3 +1,6 @@
+<?php 
+	session_start();
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -36,6 +39,26 @@
 
 			<!--The following javascript calls are created with PHP, creating a new packageGroup (displayed on the canvas) for each selected package stored within &POST -->	
 			<?php
+				//if(!isset($_SESSION['projectname'])){var_dump("Session closed!")};
+				$dbhost = 'localhost';
+				$dbname = 'hikomsys';
+
+				// Connect to test database  
+				$m = new Mongo("mongodb://$dbhost");
+				$db = $m->selectDB("$dbname");
+
+				$solution = $db->createCollection($_SESSION['projectname']."Solution");
+				$solution->ensureIndex(array("name" => 1), array("unique" => 1));
+
+				$collection = $db->$_SESSION['projectname'];	
+
+				//Find the most top packages (those without parentPackages) and wihtout including the "Default Package"
+				$cursor = $collection->find(array(),array('outgoingDependencies.from' => 0, 'outgoingDependencies.to.class' => 0, 'outgoingDependencies.to.name' => 0, 'outgoingDependencies.to.class' => 0, 'classes' => 0, 'parentPackages' => 0,  'children' => 0));
+				foreach($cursor as $document){
+					$solution->insert($document);
+				};
+		
+
 				echo "<script> var allPackages = [];";
 				foreach($_POST as $key => $value){
 					$strRepName = str_replace('check_','',$key);

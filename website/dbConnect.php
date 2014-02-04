@@ -1,3 +1,8 @@
+<?php 
+	session_start();
+	$_SESSION['projectname']=$_GET[db_name];	
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -36,7 +41,7 @@
 	$list = $db->listCollections();
 	$collection = $db->$collectionName;
 
-	//Find the most top packages (those without parentPackages) and wihtout including the "Default Package"
+	//Find the most top packages (those without parentPackages), excluding the "Default Package"
 	$cursor = $collection->find(array("parentPackage"=>array('$exists'=>false), "name"=>array('$ne'=>'Default Package')));	
 
 	echo "<form id=\"package_viewer\" action=\"quiz.php\" method=\"post\">";	
