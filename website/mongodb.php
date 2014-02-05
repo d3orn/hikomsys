@@ -1,4 +1,5 @@
 <?php 
+	// Config 
 	$dbhost = 'localhost';
 	$dbname = 'hikomsys';
 

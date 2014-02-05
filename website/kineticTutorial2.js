@@ -28,7 +28,7 @@ var packages = [];
 
 var stage;
 
-var tmpArrow; //follows your mousE!
+var tmpArrow; //follows your mouse!
 
 
 var notification = new Kinetic.Text({
@@ -43,7 +43,7 @@ var notification = new Kinetic.Text({
 var stage = new Kinetic.Stage({
     container: 'container',
 	width: CONTAINER_WIDTH,
-	height: CONTAINER_HEIGHT,
+	height: CONTAINER_HEIGHT
 });
 
 var background = new Kinetic.Rect({
@@ -66,7 +66,7 @@ arrowLayer.setZIndex(1);
 
 function findArrowById(id){
 	for (var i = 0; i < arrows.length; i++){
-			if(arrows[i].id == id){return i}
+			if(arrows[i].id == id){return i};
 	}
 	return -1;
 }
@@ -87,7 +87,6 @@ function getMousePosition(event) {
 	};
 }
 
-//I have to check if mouseUp on same Package
 function mouseDownOnPackage(packageGroup, event){
 	clickCount++;
 	var pack = findPackageById(packageGroup.getId());
@@ -252,8 +251,8 @@ function Arrow(from, to, id){
 		this.arrowGroup.remove();
 		delete this.from;
 		delete this.to;
-		delete this.id
-	}
+		delete this.id;
+	};
 
 	this.addEventListener = function(){
 		this.arrowGroup.on('click', function(){
@@ -262,8 +261,8 @@ function Arrow(from, to, id){
 			arrows.remove(index); //prototype
 
 			arrowLayer.draw();
-		})
-	}
+		});
+	};
 }
 
 /* ------------------------------------------------------------ PackageGroup Class ----------------------------------------------------------- */
@@ -338,7 +337,7 @@ function PackageGroup(text){
 				mouseUpOnPackage(this, event);}
 		}, false);
 
-		//redraw arrows whenever a package is dragged arround probably have to hook onto the layer draw event rather then dragstart
+		//redraw arrows whenever a package is dragged arround
 		this.group.on('dragstart dragmove', function(){
 			for (var i = 0; i < arrows.length; i++){
 				var packageIds = arrows[i].id.split("_");
@@ -382,7 +381,7 @@ function PackageGroup(text){
 			height: height,
 			fill: color,
 			stroke: color,
-			strokeWidth:2,
+			strokeWidth:2
 		});
 		this.highlight.move(x,y);
 		this.isHighlighted = true;
@@ -393,7 +392,7 @@ function PackageGroup(text){
 
 	this.position = function(){
 		return this.group.getAbsolutePosition();
-	}
+	};
 
 }
 
@@ -453,13 +452,13 @@ $('#help').click(function(){
 $('#submit').click(function(){
 	output = createJSON();
 	$.ajax({
-    type: "POST",
-    url: "createResult.php",
-    data: {"packages": output},
-    success: function(msg) {
-    	alert(msg);
-    }
-  });
+		type: "POST",
+		url: "createResult.php",
+		data: {"packages": output},
+		success: function(msg) {
+			window.location.href = "result.php";
+		}
+	});
 });
 
 $('.buttonlike').click(function(){
@@ -472,26 +471,26 @@ function createJSON(){
 	for ( var i = 0; i < allPackages.length; i = i + 1 ) {
 		var p;
 		var position = {"X" : allPackages[i].position().x, "Y" : allPackages[i].position().y};
-		name = allPackages[i].text
+		name = allPackages[i].text;
 		var dep =[];
 		for ( var j = 0; j < arrows.length; j++){
 			currentPackage = arrows[j];
 			if(currentPackage.from.text == name){
 				toName = currentPackage.to.text;
-				thisDep = {"to" : toName}
-			 	dep.push(thisDep);
+				thisDep = {"to" : toName};
+				dep.push(thisDep);
 			}
 			
 		}
-		if (dep.length != 0){
+		if (dep.length !== 0){
 			p={"name" : name, "dependencies" : dep, "position": position };
 		}
 		else{
 			p={"name" : name, "position": position};
 		}
 		output.push(p);
-    }
-    var packagesAsJson = JSON.stringify(output);
+	}
+	var packagesAsJson = JSON.stringify(output);
 	return packagesAsJson;
 }
 
@@ -516,7 +515,6 @@ function clicked(object){
 });*/
 
 $(document).ready(function(){
-    //writeMessage("Double click anywhere to switch to drawing mode");
 	for(var i = 0; i < allPackages.length; i++){
 		allPackages[i].create();
 	}	
@@ -526,9 +524,9 @@ $(document).ready(function(){
 /* =============================================================== Prototype Methods ============================================================== */
 // Array Remove - By John Resig (MIT Licensed)
 Array.prototype.remove = function(from, to) {
-  var rest = this.slice((to || from) + 1 || this.length);
-  this.length = from < 0 ? this.length + from : from;
-  return this.push.apply(this, rest);
+	var rest = this.slice((to || from) + 1 || this.length);
+	this.length = from < 0 ? this.length + from : from;
+	return this.push.apply(this, rest);
 };
 
 
@@ -560,22 +558,22 @@ var initialHeight = $("#container").innerHeight(); // initial height
 }*/
 
 $(window).on('resize',function(){
-    if(this.resizeTO) clearTimeout(this.resizeTO);
-    this.resizeTO = setTimeout(function(){
-        $(this).trigger('resizeEnd');
-    },500);
+	if(this.resizeTO) clearTimeout(this.resizeTO);
+	this.resizeTO = setTimeout(function(){
+		$(this).trigger('resizeEnd');
+	},500);
 });
 
 
 //after resizing the draboundfunction fails need to update MaxX for every element
 $(window).on('resizeEnd orientationchange',function(){
-    var width = $("#container").innerWidth(); // new width of page
-    var height = $("#container").innerHeight(); // new height of page
-    background.setWidth(width);
-    background.setHeight(height);
-    stage.setWidth(width);
-    stage.setHeight(height);
-    var groups = layer.get('Group');
+	var width = $("#container").innerWidth(); // new width of page
+	var height = $("#container").innerHeight(); // new height of page
+	background.setWidth(width);
+	background.setHeight(height);
+	stage.setWidth(width);
+	stage.setHeight(height);
+	var groups = layer.get('Group');
 	for (var i = 0; i < groups.length; i++){
 		//alert(groups[i].maxX);
 	}

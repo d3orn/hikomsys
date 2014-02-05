@@ -40,16 +40,9 @@
 
 			<!--The following javascript calls are created with PHP, creating a new packageGroup (displayed on the canvas) for each selected package stored within &POST -->	
 			<?php
-				$solution = $db->createCollection($_SESSION['projectname'].'Solution');
-				$solution->ensureIndex(array('name' => 1), array('unique' => 1));
-
-				$collection = $db->$_SESSION['projectname'];	
-
-				$cursor = $collection->find(array(),array('outgoingDependencies.from' => 0, 'outgoingDependencies.to.class' => 0, 'outgoingDependencies.to.name' => 0, 'outgoingDependencies.to.class' => 0, 'classes' => 0, 'parentPackages' => 0,  'children' => 0));
-				foreach($cursor as $document){
-					$solution->insert($document);
-				};
-		
+				// I have to get all the information about all the packages in the result table
+				$resultName = $_SESSION['projectname'].'Result';	
+				$collection = $db->$resultName;	
 
 				echo "<script> var allPackages = [];";
 				foreach($_POST as $key => $value){
