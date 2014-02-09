@@ -26,6 +26,7 @@
 		addPackages($userSub);
 		crossCheck($userSub);
 		addForgottenDependencies($userSub);
+    colorPackage();
 
 		cleanUp();
  
@@ -97,6 +98,30 @@
   		}
   	}
 	}
+
+  function colorPackage(){
+    global $result;
+
+    $alpha = 0.3;
+    $packages = $result->find(array(),array('position' => 0, '_id' => 0));
+
+    foreach ($packages as $key => $package) {
+      $color = "rgba(0,128,0,$alpha)";   
+      if(array_key_exists('dependencies', $package)){
+        $dependencies = $package['dependencies'];
+        foreach ($dependencies as $k => $dependency) {
+          if($dependency['color'] == 'orange'){ 
+            $color = "rgba(242,165,0,$alpha)";
+          };
+          if($dependency['color'] == 'red'){ 
+            $color = "rgba(255,0,0,$alpha)"; 
+            break;
+          };
+        }
+      }
+      $result->update(array('name' => $package['name']),array('$set' => array('color' => $color)));
+    }
+  }
 
   //This function just resets the Solutiontable to it's original state
 	function cleanUp(){

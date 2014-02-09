@@ -1,0 +1,67 @@
+function findArrowById(id){
+	for (var i = 0; i < arrows.length; i++){
+			if(arrows[i].id == id){return i};
+	}
+	return -1;
+}
+
+function findPackageById(id){
+	for (var i = 0; i < allPackages.length; i++){
+		if(allPackages[i].text === id){return allPackages[i];}
+	}
+	return -1;
+}
+
+function getMousePosition(event) {
+	var canvas = document.getElementById('container');
+	var rect = canvas.getBoundingClientRect();
+	return {
+		x: event.clientX - rect.left,
+		y: event.clientY - rect.top
+	};
+}
+
+//some refactoring needed
+function xOffset(center1, center2, center1_width) {
+	if (isRightOf(center1, center2, center1_width)) {return center1_width/2;}
+	if (isLeftOf(center1, center2, center1_width)) {return -center1_width/2;}
+	return(0);
+}
+
+function yOffset(center1, center2, center1_height) {
+	if (isBellow(center1, center2, center1_height)) {return center1_height/2;}
+	if (isAbove(center1, center2, center1_height)) {return -center1_height/2;}
+	return(0);
+}
+
+function isRightOf(center1, center2, center1_width) {
+	return center2.x > (center1.x + center1_width/2);
+}
+function isLeftOf(center1, center2, center1_width) {
+	return center2.x < (center1.x - center1_width/2);
+}
+function isAbove(center1, center2, center1_height) {
+	return center2.y < (center1.y - center1_height/2);
+}
+function isBellow(center1, center2, center1_height) {
+	return center2.y > (center1.y + center1_height/2);
+}
+
+function clicked(object){
+	if(object.hasClass("gradientBG")){
+		object.removeClass("gradientBG");
+		object.addClass("activatedIcon");
+	}
+	else{
+		object.removeClass("activatedIcon");
+		object.addClass("gradientBG");
+	}
+}
+
+/* =============================================================== Prototype Methods ============================================================== */
+// Array Remove - By John Resig (MIT Licensed)
+Array.prototype.remove = function(from, to) {
+	var rest = this.slice((to || from) + 1 || this.length);
+	this.length = from < 0 ? this.length + from : from;
+	return this.push.apply(this, rest);
+};

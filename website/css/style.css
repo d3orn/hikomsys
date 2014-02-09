@@ -45,6 +45,18 @@
 	border-color: black;
 }
 
+#greenArrow{
+	color: green;
+}
+
+#redArrow{
+	color: red;
+}
+
+#orangeArrow{
+	color: orange;
+}
+
 #help{
 	padding: 3px 8px 4px 6px;
 }
@@ -94,6 +106,10 @@
 }
 
 .icon:before{
+}
+
+.icon-arrow-right:before {
+	content: "\e600";
 }
 
 .icon-expand:before {
