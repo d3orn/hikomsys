@@ -7,8 +7,6 @@ class QuizzesController extends \BaseController {
 
 		$quizzes = Quiz::where('project_id', '=', $projectId);
 
-		dd($quizzes);
-
 		return View::make('quizzes.quizlist', compact('quizzes'));
 	}
 
