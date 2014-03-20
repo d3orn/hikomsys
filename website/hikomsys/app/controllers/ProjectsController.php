@@ -119,3 +119,4 @@ class ProjectsController extends BaseController {
 			]);
 		return View::make('projects.index', compact('projects', 'title'));
 	}
+}
