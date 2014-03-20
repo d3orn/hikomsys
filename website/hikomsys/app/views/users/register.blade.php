@@ -3,7 +3,7 @@
 @section("content")
 
     <h1>Sign Up now!</h1>
-    <p>To find out how well you know your code just fill out the form below and you are ready to take the quiz!</p>
+    <p>To find out how well you know your code just fill out the form below and you are ready to go!</p>
      
     @if($errors->has())
         <div id="errors">

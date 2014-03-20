@@ -3,7 +3,13 @@
 class QuizzesController extends \BaseController {
 
 	public function index(){
-		return Input::get('project_id');
+		$projectId =Input::get('project_id');
+
+		$quizzes = Quiz::findOrFail($projectId);
+
+		dd($quizzes);
+
+		return View::make('quizzes.quizlist', compact('quizzes'));
 	}
 
 	/**
