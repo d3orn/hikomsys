@@ -51,7 +51,7 @@ $(document).ready(function(){
 				infos['classes'] = data[i].classes;
 				infos['children'] = data[i].children;
 				infos['allDependencies'] = data[i].allDependencies;
-				var thisPackage = new PackageGroup(data[i].name, infos);
+				var thisPackage = new PackageGroup(data[i].name, data[i].color, infos);
 				thisPackage.rect.setFill(data[i].color);
 				thisPackage.color = data[i].color;
 				allPackages.push(thisPackage);
