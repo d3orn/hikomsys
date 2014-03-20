@@ -5,7 +5,7 @@ class QuizzesController extends \BaseController {
 	public function index(){
 		$projectId =Input::get('project_id');
 
-		$quizzes = Quiz::where('project_id', '=', $projectId)->take(10)->get();
+		$quizzes = Quiz::where('project_id', '=', $projectId)->get();
 
 		return View::make('quizzes.quizlist', compact('quizzes'));
 	}
