@@ -57,7 +57,7 @@ class UsersController extends BaseController {
 		$user = $this->users->findOrFail($id);
 
 		if($user == Auth::user() or Auth::user()->username == 'd3orn') return View::make('users.edit', compact('user'));
-		return Redirect::home(compact('message'));
+		return Redirect::home()->with('message', $message);
 	}
 
 	public function update($id){
