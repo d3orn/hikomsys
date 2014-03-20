@@ -5,7 +5,7 @@ class QuizzesController extends \BaseController {
 	public function index(){
 		$projectId =Input::get('project_id');
 
-		$quizzes = Quiz::findOrFail($projectId);
+		$quizzes = Quiz::where('project_id', '=', $projectId);
 
 		dd($quizzes);
 
