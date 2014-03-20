@@ -77,8 +77,8 @@ class UsersController extends BaseController {
 	//should be added for admin purposes
 	public function destroy($id){
 		// delete
-		$nerd = User::find($id);
-		$nerd->delete();
+		$user = $this->users->findOrFail($id);
+		$user->delete();
 
 		// redirect
 		Session::flash('message', 'Successfully deleted the nerd!');
