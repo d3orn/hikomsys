@@ -10,7 +10,7 @@
 	@if(count($quizzes) > 0 )
 		<ul>
 		@foreach($quizzes as $quiz)
-			<li>{{ HTML::linkRoute('quiz.show', $quiz->id, [$quiz->id]) }}</li>
+			<li>{{ HTML::linkRoute('quizzes.show', $quiz->id, [$quiz->id]) }}</li>
 		@endforeach
 		</ul>
 	@else
