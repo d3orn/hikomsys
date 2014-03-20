@@ -287,6 +287,7 @@ class QuizzesController extends \BaseController {
 		global $solution;
 
 		$solution->drop();
+		self::dbdisconnect();
 	}
 
 }
