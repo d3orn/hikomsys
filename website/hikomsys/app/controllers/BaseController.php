@@ -16,22 +16,22 @@ class BaseController extends Controller {
 	}
 
 	public function dbconnect(){
-		global $db, $dbhost;
+		global $db, $host;
 
 		$dbhost = 'localhost';
 		$dbname = 'hikomsys';
 
 		// Connect to test database
-		$m = new Mongo("mongodb://$dbhost");
-		$db = $m->selectDB("$dbname");
+		$host = new Mongo("mongodb://$dbhost");
+		$db = $host->selectDB("$dbname");
 
 		//I should just return the $db rather than having it as a global var
 	}
 
 	public function dbdisconnect(){
-		global $dbhost;
+		global $host;
 
-		$dbhost->close();
+		$host->close();
 	}
 
 }
