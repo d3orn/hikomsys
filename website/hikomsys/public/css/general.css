@@ -126,7 +126,7 @@ fieldset{
 
 /* this should in a seperate file probably*/
 #scrollbox{
-	width: 300px; 
-	height: 100px;
+	min-width: 35em; 
+	height: 50%;
 	overflow: auto;
 }
