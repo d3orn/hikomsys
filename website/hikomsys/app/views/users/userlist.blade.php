@@ -8,9 +8,8 @@
 		<thead>
 			<tr>
 				<td>ID</td>
-				<td>Name</td>
+				<td>Firstname</td>
 				<td>Email</td>
-				<td>Nerd Level</td>
 				<td>Actions</td>
 			</tr>
 		</thead>
@@ -18,7 +17,7 @@
 			@foreach($users as $user)
 				<tr>
 					<td>{{ $user->id }}</td>
-					<td>{{ $user->name }}</td>
+					<td>{{ $user->firstname }}</td>
 					<td>{{ $user->email }}</td>
 
 					<!-- we will also add show, edit, and delete buttons -->
