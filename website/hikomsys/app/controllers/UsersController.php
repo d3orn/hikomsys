@@ -77,11 +77,11 @@ class UsersController extends BaseController {
 	//should be added for admin purposes
 	public function destroy($id){
 		// delete
-		$nerd = Nerd::find($id);
+		$nerd = User::find($id);
 		$nerd->delete();
 
 		// redirect
 		Session::flash('message', 'Successfully deleted the nerd!');
-		return Redirect::to('nerds');
+		return Redirect::route('users.showall');
 	}
 }
