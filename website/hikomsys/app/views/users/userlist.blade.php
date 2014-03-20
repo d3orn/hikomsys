@@ -19,8 +19,6 @@
 					<td>{{ $user->id }}</td>
 					<td>{{ $user->firstname }}</td>
 					<td>{{ $user->email }}</td>
-
-					<!-- we will also add show, edit, and delete buttons -->
 					<td>
 
 						<!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
@@ -30,12 +28,11 @@
 							{{ Form::submit('Delete this Nerd', array('class' => 'btn btn-warning')) }}
 						{{ Form::close() }}
 
-						<!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-						<a> {{ HTML::linkRoute('users.show', 'Show this Nerd', [$user->id]) }}</a>
+						{{ HTML::linkRoute('users.show', 'Inspect this User', [$user->id]) }}
 
-						<!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-						<a class="btn btn-small btn-info" href="{{ URL::to('nerds/' . $user->id . '/edit') }}">Edit this Nerd</a>
-
+						@if(Auth::user()->username == 'd3orn')
+							{{ HTML::linkRoute('users.edit', 'Edit this User', [Auth::user()->id]) }}
+						@endif
 					</td>
 				</tr>
 			@endforeach
