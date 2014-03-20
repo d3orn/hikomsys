@@ -36,7 +36,7 @@ h1{
 }	
 
 #navi ul{
-	width: 50%;
+	width: 65%;
 	padding: 0.64% 0%;
 	margin:auto;
 }
@@ -58,7 +58,7 @@ a:visited{}
 a:active{}
 
 #maincontent{
-	width: 50%;
+	width: 65%;
 	min-height: 50%;
 	background-color: #FFFFFF;
 	margin-left: auto;
@@ -82,7 +82,7 @@ address{
 }
 
 .boxed{
-	width: 50%;
+	width: 65%;
 	margin: auto;
 }
 
@@ -100,13 +100,13 @@ label{
 }
 
 input{
-	width: 50%;
+	width: 65%;
 	font-size: inherit;
 }
 
 form{
 	margin-top: 1%;
-	width: 50%;
+	width: 65%;
 }	
 
 fieldset{
@@ -115,7 +115,7 @@ fieldset{
 }
 
 #errors{
-	width: 50%;
+	width: 65%;
 	margin-top: 1%;
 	border: 0.1em solid #000000;
 	background-color: rgba(255, 132, 132, 0.57);
