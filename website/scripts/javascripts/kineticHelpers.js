@@ -21,6 +21,29 @@ function getMousePosition(event) {
 	};
 }
 
+function newText(size){
+	return new Kinetic.Text({
+		fontSize: size,
+		fontFamily: 'Calibri',
+		fill: 'black',
+		align: 'left',
+	});
+}
+
+function newText2(array){
+	return new Kinetic.Text({
+		x: array.x,
+		y: array.y,
+		fontSize: array.size,
+		fontFamily: 'Calibri',
+		fill: 'black',
+		align: 'left',
+		text: array.text,
+		id: array.id,
+		name: array.name
+	});
+}
+
 //some refactoring needed
 function xOffset(center1, center2, center1_width) {
 	if (isRightOf(center1, center2, center1_width)) {return center1_width/2;}

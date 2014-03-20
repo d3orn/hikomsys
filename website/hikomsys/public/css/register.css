@@ -1,0 +1,34 @@
+label{
+	float: left;
+	width: 30%;
+	text-align: right;
+	margin-top: 8px;
+}
+
+.submit{
+	width: 30%;
+	margin: 5px 0px;
+}
+
+input{
+	margin: 5px 0px 0px 10px;
+	width: 50%;
+	font-size: inherit;
+}
+
+form{
+	margin-top: 1%;
+	width:50%;
+}	
+
+fieldset{
+	border: 1px solid #E8B217;
+	padding: 15px;
+}
+
+#errors{
+	width: 50%;
+	margin-top: 1%;
+	border: 1px solid #000000;
+	background-color: rgba(255, 132, 132, 0.57);
+}

@@ -1,7 +1,6 @@
 var moving = false; 
 
-layer.setZIndex(2);
-arrowLayer.setZIndex(1);
+var moreInfosEnabled = false;
 
 function mouseDownOnPackage(packageGroup, event){
 	clickCount++;
@@ -36,8 +35,7 @@ function mouseUpOnPackage(packageGroup, event) {
 		clickCount = 0;
 
 	}
-	arrowLayer.draw();
-	layer.draw();
+	stage.draw();
 }
 
 function switchMode(){
@@ -48,14 +46,14 @@ function switchMode(){
 	packages = [];
 
 	drawingEnabled = !drawingEnabled;
-	var groups = layer.get('Group');
+	var groups = packageLayer.get('Group');
 	for (var i = 0; i < groups.length; i++){
 		groups[i].setDraggable(!drawingEnabled );
 	}
 }
 
 /* =============================================================== Eventhandler ============================================================== */
-layer.on("mousedown", function (e) {
+stage.on("mousedown", function (e) {
 	if(clickCount === 0) return;
 	if (moving) {
 		moving = false;
@@ -68,18 +66,18 @@ layer.on("mousedown", function (e) {
 	}
 });
 
-layer.on("mousemove", function (e) {
+stage.on("mousemove", function (e) {
 	if (moving) {
 		tmpArrow.remove();
 		var mousePos = getMousePosition(e);
 		tmpArrow = new Arrow(packages[0], mousePos, "tmpArrow");
 		tmpArrow.draw();
 		moving = true;
-		arrowLayer.drawScene();
+		stage.draw();
 	}
 });
 
-layer.on("mouseup", function (e) {
+stage.on("mouseup", function (e) {
 	moving = false;
 	if(drawingEnabled && packages.length > 0){
 		packages[0].highlight.remove();
@@ -87,8 +85,7 @@ layer.on("mouseup", function (e) {
 		packages = [];
 	}
 	if(typeof tmpArrow !== "undefined") {tmpArrow.remove();} //remove only if there is one, if arrow exists dont let it be there twice or more check id
-	layer.draw();
-	arrowLayer.draw();
+	stage.draw();
 });
 
 
@@ -170,7 +167,7 @@ $(document).ready(function(){
 	for(var i = 0; i < allPackages.length; i++){
 		allPackages[i].create();
 	}	
-	layer.draw();
+	stage.draw();
 });
 
 /* =============================================================== Prototype Methods ============================================================== */

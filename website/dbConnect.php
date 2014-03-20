@@ -81,7 +81,7 @@
 			<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 			<script src="/hikomsys/scripts/javascripts/jstree/jquery.jstree.js"></script>
 			<script src="/hikomsys/scripts/javascripts/jstree/_lib/jquery.cookie.js"></script>
-			<script type="text/javascript" src="/hikomsys/min/?b=hikomsys/scripts/javascripts&amp;f=packageViewer.js"></script> 
+			<script src="/hikomsys/scripts/javascripts/packageViewer.js"></script>
 	
 		</div>
 	</body>

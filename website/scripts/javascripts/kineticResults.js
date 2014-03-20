@@ -4,6 +4,7 @@ var WIDTHRED = 5;
 
 var allPackages = [];
 
+var moreInfosEnabled = true;
 
 var moving, draggable = false; 
 
@@ -11,7 +12,7 @@ var moving, draggable = false;
 
 function switchMode(){
 	draggable = !draggable;
-	var groups = layer.get('Group');
+	var groups = packageLayer.find('.packageGroup');
 	for (var i = 0; i < groups.length; i++){
 		groups[i].setDraggable(draggable);
 	}
@@ -62,8 +63,7 @@ $(document).ready(function(){
 				}
 			}			
 		}
-		arrowLayer.draw();
-		layer.draw();
+		stage.draw();
 	});
 	$.get("getPoints.php", function(data){
 		writeMessage(data);
@@ -86,6 +86,14 @@ $('#redArrow').click(function(){
 $('#orangeArrow').click(function(){
 	switchDependencies($(this),'orange');
 });
+
+$('#infosEnabled').click(function(){
+	moreInfosEnabled = !moreInfosEnabled;
+	for (var i = 0; i < allPackages.length; i++){
+		allPackages[i].removeInfos();
+	}
+});
+
 
 $('#help').click(function(){
 	$('#help_container').toggle();

@@ -18,8 +18,9 @@
 			<div id="menu">
 				<div id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand gradientBG buttonlike"></div>
 				<div id="greenArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right activatedIcon buttonlike"></div>
-				<div id="redArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right activatedIcon buttonlike"></div>
 				<div id="orangeArrow" aria-hidden="true" data-icon="&#xe600;" color="orange" class="icon-arrow-right activatedIcon buttonlike"></div>
+				<div id="redArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right activatedIcon buttonlike"></div>
+				<div id="infosEnabled" class="activatedIcon buttonlike">Additional information</div>
 				<div id="help" class="gradientBG buttonlike">Help</div>
 				<div id="continue" class="gradientBG buttonlike">Continue</div>
 			</div>
