@@ -5,7 +5,7 @@
 
 @section("content")
 
-	<div style="width: 300px; overflow: auto; height: 100px;">
+	<div id='scrollbox'>
 
 		@if(count($quizzes) > 0 )
 			<ul>
