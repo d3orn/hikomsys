@@ -52,10 +52,12 @@ class UsersController extends BaseController {
 	}
 
 	public function edit($id){
+		$message = 'You do not have permission to edit other users!';
+
 		$user = $this->users->findOrFail($id);
 
 		if($user == Auth::user() or Auth::user()->username == 'd3orn') return View::make('users.edit', compact('user'));
-		return Redirect::home()->with('message', 'You do not have permission to edit other users!');
+		return Redirect::home(compact('message'));
 	}
 
 	public function update($id){
