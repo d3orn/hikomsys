@@ -55,7 +55,6 @@ $(document).ready(function(){
 				thisPackage.rect.setFill(data[i].color);
 				thisPackage.color = data[i].color;
 				allPackages.push(thisPackage);
-				console.log(thisPackage);
 				thisPackage.create();
 				thisPackage.group.setPosition(data[i].position.X ,data[i].position.Y);
 				thisPackage.group.setDraggable(draggable);

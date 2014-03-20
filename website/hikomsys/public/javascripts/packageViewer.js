@@ -21,7 +21,6 @@ $('form').submit(function (e) {
    	stuff = $("#package_list").jstree("get_selected", true, false);
 	var array = [];
 	$.each(stuff, function(idx, obj) {
-		console.log(obj.id);
 		array.push(obj.id);
 	});
 	var $hidden = $("<input type='hidden' name='selected'/>");
