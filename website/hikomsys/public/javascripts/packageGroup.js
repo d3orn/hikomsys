@@ -4,7 +4,7 @@ function PackageGroup(text, color, infos){
 	this.className = 'packageGroup';
 	this.text = text;
 	this.infos = infos;
-	this.color = if color ? color : 'white';
+	this.color = (color ? color : 'white');
 	this.isHighlightened = false;
 	this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false;
 
