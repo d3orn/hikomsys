@@ -14,12 +14,16 @@
 	{{ Form::open(array('route'=>'projects.store', 'class' => 'form-horizontal')) }}
 
 		<fieldset>
+			
+			<div id="control-group">
+				{{Form::label('url', 'Gitrepository URL:')}}
+				{{Form::url('url')}}
+			</div>
 
-			{{Form::label('url', 'Gitrepository URL:')}}
-			{{Form::url('url')}}
-
-			{{Form::label('projectName', 'Project name:')}}
-			{{Form::text('projectName')}}
+			<div id="control-group">
+				{{Form::label('projectName', 'Project name:')}}
+				{{Form::text('projectName')}}
+			</div>
 
 		</fieldset>
 
