@@ -17,6 +17,8 @@ class QuizzesController extends \BaseController {
 	 */
 	public function store()
 	{
+		global $solution;
+		
 		$db = self::getDb('localhost', 'hikomsys');
 
 		$input = Input::all();
