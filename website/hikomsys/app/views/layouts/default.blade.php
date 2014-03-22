@@ -45,11 +45,11 @@
 		                    	<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
 		                    	<li>{{ HTML::linkRoute('users.showall', 'Users') }}</li>
 		                    	<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
-		                    	<li class="pull-right">{{ HTML::link('logout', 'Logout') }}</li>
 		                    @else
 		                    	{{-- TODO need a login directly in nav --}}
 		                	@endif
 						</ul>
+						<div class="navbar-right">{{ HTML::link('logout', 'Logout') }}</div>
 					</div>
 				</div>
 			</nav>
