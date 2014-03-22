@@ -11,7 +11,7 @@
 
 	<p>Please enter a valid Github link below</p>
 
-	{{ Form::open(array('route'=>'projects.store', 'class' => 'well')) }}
+	{{ Form::open(array('route'=>'projects.store', 'class' => 'well span6')) }}
 
 		<fieldset>
 			
