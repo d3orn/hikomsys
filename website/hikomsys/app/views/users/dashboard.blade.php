@@ -27,7 +27,7 @@
 
 		</fieldset>
 
-		{{ Form::submit('Submit Repository', array('class'=>'submit')) }}
+		{{ Form::submit('Submit Repository', ['class'=>'submit btn btn-primary']) }}
 
 	{{ Form::close() }}
 
