@@ -21,9 +21,9 @@
 
 	{{Form::close()}}
 
-	@section("scripts")
+@stop
+
+@section("scripts")
 		{{ HTML::script('javascripts/jstree3/dist/jstree.min.js') }}
 		{{ HTML::script('javascripts/packageViewer.js') }}
-	@stop
-
 @stop
