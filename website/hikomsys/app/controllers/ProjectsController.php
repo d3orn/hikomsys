@@ -2,6 +2,7 @@
 
 class ProjectsController extends BaseController {
 
+	//I should just add this filter to the BaseController
 	public function __construct() {
 		$this->beforeFilter(function(){
 			if(Auth::guest()) 
@@ -33,6 +34,7 @@ class ProjectsController extends BaseController {
 		}	
 
 		#Need some more github verifications like size and so on
+		// actually it should be possible to just use any gitrepo so I could just fetch the sha and if it exists it is legal
 		if (preg_match("/github.com/", $url)) 
 		{	
 			#I have to compare the shas of all the other versions and this one before doing anything
@@ -42,7 +44,7 @@ class ProjectsController extends BaseController {
 			$sha = $sha[0];
 
 			$projectExits = DB::table('projects')->where('sha', '=', $sha)->where('path' ,'=', $url);
-			$message = 'Sorry your project is already in our system and we just added it to your projects';
+			$message = 'Awesome your project is already in our system and you should be able to access it now!';
 
 			#only if there is not sha 
 			if(!$projectExits->first()){
@@ -52,9 +54,10 @@ class ProjectsController extends BaseController {
 				$folderName = $projectName.'V'.$version;
 
 				exec("./clone.sh ". escapeshellarg($url)." ". escapeshellarg($folderName));
-				#i should delete the project folder and only keep the .mse file
+				#I should delete the project folder and only keep the .mse file
 				exec(escapeshellcmd("pharo-vm-nox datagatherer/Hikomsys.image runDataGatherer --projectName=$folderName"));
 
+				//I could proably just work with create() see UserController for example
 				$project = new Project;
 				$project->path = $url;
 				$project->version = $version;
@@ -66,7 +69,7 @@ class ProjectsController extends BaseController {
 				$usersprojects->user_id = Auth::user()->id;
 				$usersprojects->project_id = $project->id;
 				$usersprojects->save();
-				$message = "Thank you! Your project has been added to our system";
+				$message = "Thank you for adding your project to our system";
 			}
 			else{
 				$userId = Auth::user()->id;
@@ -89,6 +92,7 @@ class ProjectsController extends BaseController {
 	}
 
 	public function show($id){
+		//@deprecated see BaseController update
 		global $db;
 
 		self::dbconnect();
@@ -100,7 +104,7 @@ class ProjectsController extends BaseController {
 		$collectionName = $collectionName.'V'.$project->version;
 
 		// select the collection  
-		$list = $db->listCollections();
+		$list = $db->listCollections(); //whaaat? probably not needed
 		$collection = $db->$collectionName;
 		$cursor = $collection->find(['parentPackage' => ['$exists' => false], 'name' => ['$ne' => 'Default Package']]);	
 

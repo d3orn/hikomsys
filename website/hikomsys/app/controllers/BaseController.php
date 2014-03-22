@@ -2,6 +2,7 @@
 
 class BaseController extends Controller {
 
+	private $db, $connection;
 	/**
 	 * Setup the layout used by the controller.
 	 *
@@ -13,25 +14,28 @@ class BaseController extends Controller {
 		{
 			$this->layout = View::make($this->layout);
 		}
+
+	public function getDb($hostName, $dbName)
+	{
+		self::mongoConnect($hostName, $dbName);
+
+		return $db;
 	}
 
-	public function dbconnect(){
-		global $db, $host;
-
-		$dbhost = 'localhost';
-		$dbname = 'hikomsys';
-
+	private function mongoConnect($hostName = 'localhost', $dbName){
+		
+		/*I should use this method
+			$connection = new MongoClient( "mongodb://$hostName" )
+		*/
+		//@Deprecated
 		// Connect to test database
-		$host = new Mongo("mongodb://$dbhost");
-		$db = $host->selectDB("$dbname");
-
-		//I should just return the $db rather than having it as a global var
+		$connection = new Mongo("mongodb://$hostName");//	, ['username' => '', 'password' => '', 'db' => '']
+		$db = $connection->selectDB("$dbName");
 	}
 
-	public function dbdisconnect(){
-		global $host;
-
-		$host->close();
+	//I probably do not even have to close the db
+	public function disconnectDb(){
+		$connection->close();
 	}
 
 }
