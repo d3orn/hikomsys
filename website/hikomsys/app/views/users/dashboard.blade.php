@@ -16,7 +16,7 @@
 		<fieldset>
 			
 			<div id="control-group">
-				{{Form::label('url', 'Gitrepository URL:')}}
+				{{Form::label('url', 'Gitrepository URL:', 'class' => 'control-label')}}
 				{{Form::url('url')}}
 			</div>
 
