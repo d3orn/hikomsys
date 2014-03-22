@@ -46,8 +46,6 @@ class QuizzesController extends \BaseController {
 			$solution->insert($document);
 		};
 
-		self::dbdisconnect();
-
 		return Redirect::route('quizzes.edit', [$quiz->id])
 			->with('selected', $input);
 	}
@@ -112,8 +110,6 @@ class QuizzesController extends \BaseController {
 
 		$cursor = $results->find([],['_id' => 0]);
 
-		self::dbdisconnect();
-
 		return json_encode(iterator_to_array($cursor));
 	}
 
@@ -156,8 +152,6 @@ class QuizzesController extends \BaseController {
 		$quiz = Quiz::find($quizId);
 		$quiz->points = $userPoints;
 		$quiz->save();
-
-		self::dbdisconnect();
 
 		return $userPoints;
 	}
@@ -294,8 +288,7 @@ class QuizzesController extends \BaseController {
 	private function cleanUp(){
 		global $solution;
 
-		$solution->drop();
-		self::dbdisconnect();
+		$solution->drop()
 	}
 
-}
+}	
