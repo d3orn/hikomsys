@@ -21,17 +21,17 @@ class QuizzesController extends \BaseController {
 
 		$input = Input::all();
 
-		$user_id = Auth::user()->id;
-		$project_id = $input['project_id'];
+		$userId = Auth::user()->id;
+		$projectId = $input['project_id'];
 
-		$quiz = Quiz::create([$user_id, $project_id]); //maybe this works if so i have some ref to do
+		$quiz = Quiz::create(['user_id' => $userId, 'project_id' => $projectId]); //maybe this works if so i have some ref to do
 		/*
 		 	$quiz = new Quiz;
 			$quiz->user_id = $userId;
 			$quiz->project_id = $projectId;
 			$quiz->save();
 		*/
-		$project = Project::find($project_id);
+		$project = Project::find($projectId);
 		$projectName = $project->name.'V'.$project->version;
 
 		//TODO Somehow MongoDB Namespace is limited I have to fiqure out how exactly to limit user input of the project name
