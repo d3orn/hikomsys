@@ -35,10 +35,10 @@
 	</head>
 	<body>	
 		<div id="wrapper">
-			<nav class="nav nav-fixed-top">
-				<div class="nav-inner">
+			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+				<div class="navbar-inner">
 					<div class="container">
-						<ul class="nav nav-pills">
+						<ul class="nav navbar-nav">
 							<li>{{ HTML::linkRoute('home', 'Home') }}</li>
 						 	@if(Auth::check())
 		                    	<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
@@ -46,6 +46,8 @@
 		                    	<li>{{ HTML::linkRoute('users.showall', 'Users') }}</li>
 		                    	<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
 		                    	<li class="pull-right">{{ HTML::link('logout', 'Logout') }}</li>
+		                    @else
+		                    	{{-- TODO need a login directly in nav --}}
 		                	@endif
 						</ul>
 					</div>
