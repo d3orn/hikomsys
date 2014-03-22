@@ -17,8 +17,6 @@ class QuizzesController extends \BaseController {
 	 */
 	public function store()
 	{
-		global $solution;
-		
 		$db = self::getDb('localhost', 'hikomsys');
 
 		$input = Input::all();
@@ -83,7 +81,7 @@ class QuizzesController extends \BaseController {
 
 	//REFACTOR stuff below is so ugly..
 	public function createResults(){
-		//global $solution;
+		global $solution;
 
 		$db = self::getDb('localhost', 'hikomsys');
 		$packages = Input::get('packages');
