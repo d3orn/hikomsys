@@ -49,7 +49,9 @@
 		                    	{{-- TODO need a login directly in nav --}}
 		                	@endif
 						</ul>
-						<div class="navbar-right">{{ HTML::link('logout', 'Logout') }}</div>
+						<ul class="nav pull-right">
+							<li>{{ HTML::link('logout', 'Logout') }}</li>
+						</ul>
 					</div>
 				</div>
 			</nav>
