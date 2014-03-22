@@ -31,7 +31,7 @@ class BaseController extends Controller {
 		//@Deprecated
 		// Connect to test database
 		$this->connection = new Mongo("mongodb://$hostName");//	, ['username' => '', 'password' => '', 'db' => '']
-		$this->db = $connection->selectDB("$dbName");
+		$this->db = $this->connection->selectDB("$dbName");
 	}
 
 	//I probably do not even have to close the db
