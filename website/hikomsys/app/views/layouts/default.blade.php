@@ -36,9 +36,8 @@
 	<body>	
 		<div id="wrapper">
 			<nav class="nav-wrapper nav-fixed-top">
-				
+				<div class="container">
 					<ul class="nav nav-tabs">
-					<div class="container">
 						<li>{{ HTML::linkRoute('home', 'Home') }}</li>
 					 	@if(Auth::check())
 	                    	<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
@@ -47,9 +46,8 @@
 	                    	<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
 	                    	<li>{{ HTML::link('logout', 'Logout') }}</li>
 	                	@endif
-	                	</div>
 					</ul>
-				
+				</div>
 			</nav>
 			<header>
 				<div class="container">How I KnOw My SYStem</div>
