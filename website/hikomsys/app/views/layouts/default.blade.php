@@ -59,8 +59,10 @@
 					</div>
 				</div>
 			</nav>
-			<header>
-				<div class="container">How I KnOw My SYStem</div>
+			<header class="page-header">
+				<div class="container">
+					<h1>How I KnOw My SYStem</h1>
+				</div>
 			</header>
 			<main class="container">
 
