@@ -21,8 +21,8 @@ class QuizzesController extends \BaseController {
 
 		$input = Input::all();
 
-		$userId = Auth::user()->id;
-		$projectId = $input['project_id'];
+		$user_id = Auth::user()->id;
+		$project_id = $input['project_id'];
 
 		$quiz = Quiz::create([$userId, $projectId]); //maybe this works if so i have some ref to do
 		/*
