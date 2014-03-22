@@ -45,7 +45,7 @@
 		                    	<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
 		                    	<li>{{ HTML::linkRoute('users.showall', 'Users') }}</li>
 		                    	<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
-		                    	<li>{{ HTML::link('logout', 'Logout', [class => 'pull-right']) }}</li>
+		                    	<li>{{ HTML::link('logout', 'Logout', ['class' => 'pull-right']) }}</li>
 		                	@endif
 						</ul>
 					</div>
