@@ -44,7 +44,7 @@ class QuizzesController extends \BaseController {
 
 		foreach($cursor as $document){
 			$solution->insert($document);
-		};
+		};;
 
 		return Redirect::route('quizzes.edit', [$quiz->id])
 			->with('selected', $input);
@@ -108,7 +108,7 @@ class QuizzesController extends \BaseController {
 		$resultsName = $quizId.'_RES';	
 		$results = $db->$resultsName;
 
-		$cursor = $results->find([],['_id' => 0]);
+		$cursor = $results->find([],['_id' => 0]);;
 
 		return json_encode(iterator_to_array($cursor));
 	}
@@ -151,7 +151,7 @@ class QuizzesController extends \BaseController {
 
 		$quiz = Quiz::find($quizId);
 		$quiz->points = $userPoints;
-		$quiz->save();
+		$quiz->save();;
 
 		return $userPoints;
 	}
@@ -288,7 +288,7 @@ class QuizzesController extends \BaseController {
 	private function cleanUp(){
 		global $solution;
 
-		$solution->drop()
+		$solution->drop();
 	}
 
 }	
