@@ -93,7 +93,7 @@ class ProjectsController extends BaseController {
 
 	public function show($id){
 		//@deprecated see BaseController update
-		$db = self::getDb();
+		$db = self::getDb('localhost', 'hikomsys');
 
 		$project = Project::findOrFail($id);
 
