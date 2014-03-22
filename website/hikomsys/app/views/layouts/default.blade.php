@@ -8,6 +8,8 @@
 		<meta name="robots" content="all" />
 		<meta name="copyright" content="copyright by d3orn, CH-3072 Ostermundigen" />
 		<meta name="author" content="www.d3orn.ch" />
+		<meta name="description" content="Learn how well YOU know your Java System!">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<link rel="shortcut icon" href="pictures/magnifying_glass.png" type="image/x-icon" />
 		<link rel="apple-touch-icon" sizes="114×114" href="/touch-icon-114×114.png" />
