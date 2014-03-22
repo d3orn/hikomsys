@@ -15,12 +15,12 @@
 			
 			<div class="form-group">
 				{{ Form::label('url', 'Gitrepository URL:', ['class' => 'form-label']) }}
-				{{ Form::url('url', ['class' => 'form-control'])}}
+				{{ Form::url('url', null, ['class' => 'form-control'])}}
 			</div>
 
 			<div class="form-group">
 				{{ Form::label('projectName', 'Project name:',  ['class' => 'form-label']) }}
-				{{ Form::text('projectName', ['class' => 'form-control']) }}
+				{{ Form::text('projectName', null, ['class' => 'form-control']) }}
 			</div>
 
 		{{ Form::submit('Submit Repository', ['class'=>'submit btn btn-primary']) }}
