@@ -24,15 +24,17 @@ class QuizzesController extends \BaseController {
 		$userId = Auth::user()->id;
 		$projectId = $input['project_id'];
 
-		$quiz = new Quiz;
-		$quiz->user_id = $userId;
-		$quiz->project_id = $projectId;
-		$quiz->save();
-
+		$quiz->create([$userId, $projectId]); //maybe this works if so i have some ref to do
+		/*
+		 	$quiz = new Quiz;
+			$quiz->user_id = $userId;
+			$quiz->project_id = $projectId;
+			$quiz->save();
+		*/
 		$project = Project::find($projectId);
 		$projectName = $project->name.'V'.$project->version;
 
-		#Somehow MongoDB Namespace is limited I have to fiqure out how exactly to limit user input of the project name
+		//TODO Somehow MongoDB Namespace is limited I have to fiqure out how exactly to limit user input of the project name
 		$solutionName = $quiz->id.'_So';
 
 		$solution = $db->createCollection($solutionName);
@@ -40,6 +42,7 @@ class QuizzesController extends \BaseController {
 
 		$collection = $db->$projectName;	
 
+		//TODO I have to replace this with the answer provided on SOF
 		$cursor = $collection->find([],['parentPackages' => 0]);
 
 		foreach($cursor as $document){
@@ -78,7 +81,7 @@ class QuizzesController extends \BaseController {
 
 	//REFACTOR stuff below is so ugly..
 	public function createResults(){
-		global $solution;
+		//global $solution;
 
 		$db = self::getDb('localhost', 'hikomsys');
 		$packages = Input::get('packages');

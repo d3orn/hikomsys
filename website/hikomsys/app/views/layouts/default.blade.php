@@ -34,10 +34,10 @@
 
 	</head>
 	<body>	
-		<div id="wrapper">	
-			<div id="logo">	
-				<div class="boxed">How I KnOw My SYStem</div>
-			</div>
+		<div id="wrapper">
+			<header>
+				<div class="container">How I KnOw My SYStem</div>
+			</header>
 			<nav class="nav">
 				<ul class="nav nav-tabs">
 					<li>{{ HTML::linkRoute('home', 'Home') }}</li>
@@ -50,18 +50,19 @@
                 	@endif
 				</ul>
 			</nav>
-			<main>
+			<main class="container">
 
 				@if(Session::has('message'))
 					<p id="message">
 						{{Session::get('message')}}
 					</p>
 				@endif
-				@yield('content')
-				
+				<section>
+					@yield('content')
+				</section>
 			</main>	
 			<footer>
-				<div class="boxed">
+				<div class="container">
 					<address>Dominique Rahm &middot {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
 				</div>
 			</footer>

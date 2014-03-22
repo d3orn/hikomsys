@@ -11,17 +11,17 @@
 
 	<p>Please enter a valid Github link below</p>
 
-	{{ Form::open(array('route'=>'projects.store', 'class' => 'well span6')) }}
+	{{ Form::open(array('route'=>'projects.store', 'class' => 'well col-4')) }}
 
 		<fieldset>
 			
 			<div class="form-group">
-				{{ Form::label('url', 'Gitrepository URL:', ['class' => 'form-label span3']) }}
+				{{ Form::label('url', 'Gitrepository URL:', ['class' => 'form-label']) }}
 				{{ Form::url('url', null,   ['class' => 'form-control'])}}
 			</div>
 
 			<div class="form-group">
-				{{ Form::label('projectName', 'Project name:',  ['class' => 'form-label span3']) }}
+				{{ Form::label('projectName', 'Project name:',  ['class' => 'form-label']) }}
 				{{ Form::text('projectName', null, ['class' => 'form-control']) }}
 			</div>
 

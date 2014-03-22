@@ -27,16 +27,13 @@ class BaseController extends Controller {
 		
 		/*I should use this method
 			$connection = new MongoClient( "mongodb://$hostName" )
+			figure out how it is about closing the connection if it happens automaticly or if
+			I need a dbdisc function
 		*/
 		//@Deprecated
 		// Connect to test database
 		$this->connection = new Mongo("mongodb://$hostName");//	, ['username' => '', 'password' => '', 'db' => '']
 		$this->db = $this->connection->selectDB("$dbName");
-	}
-
-	//I probably do not even have to close the db
-	public function disconnectDb(){
-		$connection->close();
 	}
 
 }

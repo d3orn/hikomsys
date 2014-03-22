@@ -40,7 +40,7 @@ class UsersController extends BaseController {
 
 		$this->users->create($input);
 		
-		return Redirect::route('users.index')->with('message', 'Thanks for siging up!');
+		return Redirect::route('users.index')->with('message', 'Thanks for signing up!');
 	}
 
 	public function show($id){
@@ -60,6 +60,9 @@ class UsersController extends BaseController {
 
 		$user = $this->users->findOrFail($id);
 
+		//TODO
+		//this should not check if the user is 'd3orn' it should check if the user is an admin 
+		//=> I should add a field isAdmint to the userstable
 		if($user == Auth::user() or Auth::user()->username == 'd3orn') return View::make('users.edit', compact('user'));
 		return Redirect::home()->with('message', $message);
 	}
@@ -74,7 +77,6 @@ class UsersController extends BaseController {
 		return Redirect::route('users.index');
 	}
 
-	//should be added for admin purposes
 	public function destroy($id){
 		// delete
 		$user = $this->users->findOrFail($id);
