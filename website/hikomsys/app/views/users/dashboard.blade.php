@@ -15,14 +15,14 @@
 
 		<fieldset>
 			
-			<div class="control-group">
-				{{ Form::label('url', 'Gitrepository URL:', ['class' => 'control-label']) }}
-				{{ Form::url('url', null,   ['class' => 'controls'])}}
+			<div class="form-group">
+				{{ Form::label('url', 'Gitrepository URL:', ['class' => 'form-label']) }}
+				{{ Form::url('url', null,   ['class' => 'form-control'])}}
 			</div>
 
-			<div class="control-group">
-				{{ Form::label('projectName', 'Project name:',  ['class' => 'control-label']) }}
-				{{ Form::text('projectName', null, ['class' => 'controls']) }}
+			<div class="form-group">
+				{{ Form::label('projectName', 'Project name:',  ['class' => 'form-label']) }}
+				{{ Form::text('projectName', null, ['class' => 'form-control']) }}
 			</div>
 
 		</fieldset>
