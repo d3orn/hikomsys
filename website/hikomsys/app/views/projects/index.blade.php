@@ -25,25 +25,25 @@
 		<p> Sorry you did not uplade any projects yet, please do so by filling out the form below </p>
 		<p>Please enter a valid Github link</p>
 
-			{{ Form::open(['route'=>'projects.store', 'class' => 'well col-4']) }}
+		{{ Form::open(['route'=>'projects.store', 'class' => 'well col-4']) }}
 
-				<fieldset>
-					
-					<div class="form-group">
-						{{Form::label('url', 'Gitrepository URL:', ['class' => 'form-label'])}}
-						{{Form::url('url', ['class' => 'form-control'])}}
-					</div>
-	
-					<div class="form-group">
-						{{Form::label('projectName', 'Project name:', ['class' => 'form-label'])}}
-						{{Form::text('projectName', ['class' => 'form-control'])}}
-					</div>
+			<fieldset>
+				
+				<div class="form-group">
+					{{ Form::label('url', 'Gitrepository URL:', ['class' => 'form-label']) }}
+					{{ Form::url('url', null,   ['class' => 'form-control'])}}
+				</div>
 
-				</fieldset>
+				<div class="form-group">
+					{{ Form::label('projectName', 'Project name:',  ['class' => 'form-label']) }}
+					{{ Form::text('projectName', null, ['class' => 'form-control']) }}
+				</div>
 
-				{{ Form::submit('Submit Repository', ['class'=>'submit btn btn-primary']) }}
+			</fieldset>
 
-			{{Form::close()}}
+			{{ Form::submit('Submit Repository', ['class'=>'submit btn btn-primary']) }}
+
+		{{ Form::close() }}
 	@endif
 
 @stop
