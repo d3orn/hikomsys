@@ -35,12 +35,9 @@
 	</head>
 	<body>	
 		<div id="wrapper">
-			<header>
-				<div class="container">How I KnOw My SYStem</div>
-			</header>
-			<nav class="navbar-wrapper navbar-default navbar-fixed-top">
+			<nav class="navbar-wrapper navbar-fixed-top navbar-tabs">
 				<div class="container">
-					<ul class="nav nav-tabs">
+					<ul class="nav navbar-nav">
 						<li>{{ HTML::linkRoute('home', 'Home') }}</li>
 					 	@if(Auth::check())
 	                    	<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
@@ -52,6 +49,9 @@
 					</ul>
 				</div>
 			</nav>
+			<header>
+				<div class="container">How I KnOw My SYStem</div>
+			</header>
 			<main class="container">
 
 				@if(Session::has('message'))
