@@ -1,4 +1,8 @@
-body { padding-top: 70px; }
+body { 
+	padding-top: 70px; 
+	min-height: 101%;
+	font-size: 101%;
+}
 
 th {
   font-weight: bold;
