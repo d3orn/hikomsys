@@ -16,19 +16,19 @@
 		<fieldset>
 			
 			<div class="control-group">
-				{{Form::label('url', 'Gitrepository URL:', ['class' => 'control-label'])}}
-				{{Form::url('url',  ['class' => 'controls'])}}
+				{{ Form::label('url', 'Gitrepository URL:', ['class' => 'control-label']) }}
+				{{ Form::url('url', null,   ['class' => 'controls'])}}
 			</div>
 
 			<div class="control-group">
-				{{Form::label('projectName', 'Project name:',  ['class' => 'control-label'])}}
-				{{Form::text('projectName',  ['class' => 'controls'])}}
+				{{ Form::label('projectName', 'Project name:',  ['class' => 'control-label']) }}
+				{{ Form::text('projectName', null, ['class' => 'controls']) }}
 			</div>
 
 		</fieldset>
 
-		{{Form::submit('Submit Repository', array('class'=>'submit'))}}
+		{{ Form::submit('Submit Repository', array('class'=>'submit')) }}
 
-	{{Form::close()}}
+	{{ Form::close() }}
 
 @stop
