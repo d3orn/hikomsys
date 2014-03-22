@@ -19,7 +19,7 @@ class BaseController extends Controller {
 	{
 		self::mongoConnect($hostName, $dbName);
 
-		return $db;
+		return $this->$db;
 	}
 
 	private function mongoConnect($hostName = 'localhost', $dbName){
@@ -29,8 +29,8 @@ class BaseController extends Controller {
 		*/
 		//@Deprecated
 		// Connect to test database
-		$connection = new Mongo("mongodb://$hostName");//	, ['username' => '', 'password' => '', 'db' => '']
-		$db = $connection->selectDB("$dbName");
+		$this->$connection = new Mongo("mongodb://$hostName");//	, ['username' => '', 'password' => '', 'db' => '']
+		$this->$db = $connection->selectDB("$dbName");
 	}
 
 	//I probably do not even have to close the db

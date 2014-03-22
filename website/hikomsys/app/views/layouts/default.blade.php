@@ -1,5 +1,7 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
+		<meta charset="utf-8">
 		<title>HIKOMSYS - How I KnOw My SYStem: Home</title>
 		
 		<meta name="keywords" content="Filler" />
@@ -8,9 +10,10 @@
 		<meta name="author" content="www.d3orn.ch" />
 		
 		<link rel="shortcut icon" href="pictures/magnifying_glass.png" type="image/x-icon" />
-		<link rel=”apple-touch-icon” sizes=”114×114? href=”/touch-icon-114×114.png” />
-		<link rel=”apple-touch-icon” sizes=”72×72? href=”/touch-icon-72×72.png” />
-		<link rel=”apple-touch-icon” href=”/touch-icon-iphone.png” />
+		<link rel="apple-touch-icon" sizes="114×114" href="/touch-icon-114×114.png" />
+		<link rel="apple-touch-icon" sizes="72×72" href="/touch-icon-72×72.png" />
+		<link rel="apple-touch-icon" sizes="72×72" href="/touch-icon-72×72.png" />
+		<link rel="apple-touch-icon" href="/touch-icon-iphone.png" />
 		
 		{{ HTML::style('css/cssreset.css') }}
 		{{ HTML::style('css/general.css') }}
@@ -27,9 +30,9 @@
 		@yield('header')
 
 	</head>
-	<body>
-		<div id="wrapper">
-			<div id="logo">
+	<body>	
+		<div id="wrapper">	
+			<div id="logo">	
 				<div class="boxed">How I KnOw My SYStem</div>
 			</div>
 			<div id="navi">
@@ -59,10 +62,10 @@
 					<address>Dominique Rahm &middot {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
 				</div>
 			</div>
-	
-		{{ HTML::script('http://code.jquery.com/jquery-1.10.1.min.js') }}
-		{{ HTML::script('http://code.jquery.com/jquery-migrate-1.2.1.min.js') }}
-		{{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js') }}
 
+			{{ HTML::script('http://code.jquery.com/jquery-1.10.1.min.js') }}
+			{{ HTML::script('http://code.jquery.com/jquery-migrate-1.2.1.min.js') }}
+			{{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js') }}
+		</div>	
 	</body>
 </html>
