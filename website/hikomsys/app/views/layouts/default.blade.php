@@ -38,7 +38,7 @@
 			<div id="logo">	
 				<div class="boxed">How I KnOw My SYStem</div>
 			</div>
-			<nav>
+			<nav class="nav nav-tabs">
 				<ul>
 					<li>{{ HTML::linkRoute('home', 'Home') }}</li>
 				 	@if(Auth::check())
@@ -64,7 +64,7 @@
 				<div class="boxed">
 					<address>Dominique Rahm &middot {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
 				</div>
-			<footer>
+			</footer>
 
 			{{ HTML::script('http://code.jquery.com/jquery-1.10.1.min.js') }}
 			{{ HTML::script('http://code.jquery.com/jquery-migrate-1.2.1.min.js') }}
