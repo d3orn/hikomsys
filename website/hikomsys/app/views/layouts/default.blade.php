@@ -21,6 +21,8 @@
 		{{ HTML::style('css/cssreset.css') }}
 		{{ HTML::style('css/general.css') }}
 		{{ HTML::style('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css') }}
+		
+		@yield('styles')
 
 		<!-- 
 			Thank you for looking at the sources
@@ -30,15 +32,13 @@
 				Copyright © 2014 - All rights reserved
 		-->
 
-		@yield('header')
-
 	</head>
 	<body>	
 		<div id="wrapper">	
 			<div id="logo">	
 				<div class="boxed">How I KnOw My SYStem</div>
 			</div>
-			<div id="navi">
+			<nav>
 				<ul>
 					<li>{{ HTML::linkRoute('home', 'Home') }}</li>
 				 	@if(Auth::check())
@@ -49,8 +49,8 @@
                     	<li>{{ HTML::link('logout', 'Logout') }}</li>
                 	@endif
 				</ul>
-			</div>
-			<div id="maincontent">
+			<nav>
+			<main>
 
 				@if(Session::has('message'))
 					<p id="message">
@@ -59,19 +59,19 @@
 				@endif
 				@yield('content')
 				
-			</div>	
-			<div id="footer">
+			</main>	
+			<footer>
 				<div class="boxed">
 					<address>Dominique Rahm &middot {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
 				</div>
-			</div>
+			<footer>
 
 			{{ HTML::script('http://code.jquery.com/jquery-1.10.1.min.js') }}
 			{{ HTML::script('http://code.jquery.com/jquery-migrate-1.2.1.min.js') }}
 			{{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js') }}
 
 			@yield('scripts')
-			
+
 		</div>	
 	</body>
 </html>

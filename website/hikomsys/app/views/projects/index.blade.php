@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section("header")
+@section("styles")
 @stop
 
 @section("content")

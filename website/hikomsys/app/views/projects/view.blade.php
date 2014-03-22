@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section("header")
+@section("styles")
 	{{ HTML::style('javascripts/jstree3/dist/themes/default/style.min.css') }}
 @stop
 
