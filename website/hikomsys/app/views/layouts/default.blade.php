@@ -38,14 +38,14 @@
 			<nav class="nav nav-fixed-top">
 				<div class="nav-inner">
 					<div class="container">
-						<ul class="nav">
+						<ul class="nav nav-pills">
 							<li>{{ HTML::linkRoute('home', 'Home') }}</li>
 						 	@if(Auth::check())
 		                    	<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
 		                    	<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
 		                    	<li>{{ HTML::linkRoute('users.showall', 'Users') }}</li>
 		                    	<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
-		                    	<li>{{ HTML::link('logout', 'Logout') }}</li>
+		                    	<li>{{ HTML::link('logout', 'Logout', [class => 'pull-right']) }}</li>
 		                	@endif
 						</ul>
 					</div>
