@@ -4,13 +4,13 @@
 @stop
 
 @section("content")
-	<table class="table table-striped table-bordered table-hover container">
+	<table class="table table-striped table-bordered table-hover">
 		<thead>
 			<tr>
-				<td>ID</td>
-				<td>Firstname</td>
-				<td>Email</td>
-				<td>Actions</td>
+				<th>ID</th>
+				<th>Firstname</th>
+				<th>Email</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
