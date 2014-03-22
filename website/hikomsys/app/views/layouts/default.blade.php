@@ -49,7 +49,7 @@
                     	<li>{{ HTML::link('logout', 'Logout') }}</li>
                 	@endif
 				</ul>
-			<nav>
+			</nav>
 			<main>
 
 				@if(Session::has('message'))
