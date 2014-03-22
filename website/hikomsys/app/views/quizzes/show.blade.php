@@ -24,14 +24,16 @@
 		<br> As soon as you are satisfied with your dependencies please submit your solution by clicking on the submit dependencies button below.</div>
 	<div id="container"></div>
 
+	{{ Helpers::addPackages($selected) }}
+	<input id="quizId" type="hidden" value={{ $quizId }} >
+
+@stop
+
+@section("scripts")
 	{{ HTML::script('http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.4.min.js') }}
 	{{ HTML::script('javascripts/kineticSetup.js') }}
 	{{ HTML::script('javascripts/kineticHelpers.js') }}
 	{{ HTML::script('javascripts/arrow.js') }}
 	{{ HTML::script('javascripts/packageGroup.js') }}
 	{{ HTML::script('javascripts/kineticQuiz.js') }}
-
-	{{ Helpers::addPackages($selected) }}
-	<input id="quizId" type="hidden" value={{ $quizId }} >
-
 @stop

@@ -21,12 +21,14 @@
 	<div id="help_container">THIS IS JUST A FILLER</div>
 	<div id="container"></div>
 
+	<input id="quizId" type="hidden" value={{ $quizId }} >
+@stop
+
+@section("scripts")
 	{{ HTML::script('http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.4.min.js') }}
 	{{ HTML::script('javascripts/kineticSetup.js') }}
 	{{ HTML::script('javascripts/kineticHelpers.js') }}
 	{{ HTML::script('javascripts/arrow.js') }}
 	{{ HTML::script('javascripts/packageGroup.js') }}
 	{{ HTML::script('javascripts/kineticResults.js') }}
-
-	<input id="quizId" type="hidden" value={{ $quizId }} >
 @stop
