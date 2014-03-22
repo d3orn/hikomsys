@@ -54,7 +54,7 @@
 								<li>{{ HTML::link('logout', 'Logout') }}</li>
 							@else
 								<li>{{ HTML::link('login', 'Login') }}</li>
-							@endig
+							@endif
 						</ul>
 					</div>
 				</div>
