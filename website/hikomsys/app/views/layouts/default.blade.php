@@ -69,7 +69,7 @@
 						{{Session::get('message')}}
 					</p>
 				@endif
-				<section class="well">
+				<section class="well row">
 					@yield('content')
 				</section>
 			</main>	

@@ -11,7 +11,7 @@
 
 	<p>Please enter a valid Github link below</p>
 
-	{{ Form::open(array('route'=>'projects.store', 'class' => 'well col-4')) }}
+	{{ Form::open(['route'=>'projects.store', 'class' => 'col-md-4']) }}
 
 		<fieldset>
 			

@@ -25,7 +25,7 @@
 		<p> Sorry you did not uplade any projects yet, please do so by filling out the form below </p>
 		<p>Please enter a valid Github link</p>
 
-		{{ Form::open(['route'=>'projects.store', 'class' => 'well col-4']) }}
+		{{ Form::open(['route'=>'projects.store', 'class' => 'well col-md-4']) }}
 
 			<fieldset>
 				

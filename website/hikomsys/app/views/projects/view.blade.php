@@ -9,7 +9,7 @@
 	<h1>{{ $project->name }}</h1>  
 
 	<p> Please select the packages you think are most important for your project. Your knowledge will be tested base on the selection you made. </p> 
-	{{ Form::open(['route' => 'quizzes.store', 'id' => 'package_viewer' , 'class' => 'well col-4']) }}
+	{{ Form::open(['route' => 'quizzes.store', 'id' => 'package_viewer' , 'class' => 'col-md-4']) }}
 
 		<div id="package_list">
 			<ul>
