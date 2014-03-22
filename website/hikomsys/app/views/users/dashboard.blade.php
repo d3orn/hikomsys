@@ -11,7 +11,7 @@
 
 	<p>Please enter a valid Github link below</p>
 
-	{{ Form::open(array('route'=>'projects.store')) }}
+	{{ Form::open(array('route'=>'projects.store', 'class' => 'input-group')) }}
 
 		<fieldset>
 
