@@ -12,6 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<link rel="shortcut icon" href="pictures/magnifying_glass.png" type="image/x-icon" />
+		<link rel="shortcut icon" href="pictures/magnifying_glass.ico" type="image/x-icon" />
 		<link rel="apple-touch-icon" sizes="114×114" href="/touch-icon-114×114.png" />
 		<link rel="apple-touch-icon" sizes="72×72" href="/touch-icon-72×72.png" />
 		<link rel="apple-touch-icon" sizes="72×72" href="/touch-icon-72×72.png" />

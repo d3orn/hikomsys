@@ -93,9 +93,7 @@ class ProjectsController extends BaseController {
 
 	public function show($id){
 		//@deprecated see BaseController update
-		global $db;
-
-		self::dbconnect();
+		$db = self::getDb();
 
 		$project = Project::findOrFail($id);
 
