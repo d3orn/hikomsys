@@ -24,13 +24,8 @@ class QuizzesController extends \BaseController {
 		$userId = Auth::user()->id;
 		$projectId = $input['project_id'];
 
-		$quiz = Quiz::create(['user_id' => $userId, 'project_id' => $projectId]); //maybe this works if so i have some ref to do
-		/*
-		 	$quiz = new Quiz;
-			$quiz->user_id = $userId;
-			$quiz->project_id = $projectId;
-			$quiz->save();
-		*/
+		$quiz = Quiz::create(['user_id' => $userId, 'project_id' => $projectId]); 
+		
 		$project = Project::find($projectId);
 		$projectName = $project->name.'V'.$project->version;
 
