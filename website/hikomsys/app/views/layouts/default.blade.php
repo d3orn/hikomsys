@@ -38,8 +38,8 @@
 			<div id="logo">	
 				<div class="boxed">How I KnOw My SYStem</div>
 			</div>
-			<nav class="nav nav-tabs">
-				<ul>
+			<nav class="nav">
+				<ul class="nav nav-tabs">
 					<li>{{ HTML::linkRoute('home', 'Home') }}</li>
 				 	@if(Auth::check())
                     	<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
