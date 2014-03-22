@@ -4,7 +4,7 @@
 @stop
 
 @section("content")
-	<table class="table table-striped table-bordered">
+	<table class="table table-striped table-bordered table-hover container">
 		<thead>
 			<tr>
 				<td>ID</td>
