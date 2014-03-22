@@ -1,1 +1,5 @@
 body { padding-top: 70px; }
+
+th {
+  font-weight: bold;
+}
