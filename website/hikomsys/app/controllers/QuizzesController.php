@@ -17,9 +17,7 @@ class QuizzesController extends \BaseController {
 	 */
 	public function store()
 	{
-		global $db;
-
-		self::dbconnect();
+		$db = self::getDb('localhost', 'hikomsys');
 
 		$input = Input::all();
 
@@ -82,9 +80,9 @@ class QuizzesController extends \BaseController {
 
 	//REFACTOR stuff below is so ugly..
 	public function createResults(){
-		global $db, $solution;
+		global $solution;
 
-		self::dbconnect();
+		$db = self::getDb('localhost', 'hikomsys');
 		$packages = Input::get('packages');
 		$quizId = Input::get('quizId');
 
@@ -105,9 +103,7 @@ class QuizzesController extends \BaseController {
 	}
 
 	public function sendJSON(){
-		global $db;
-
-		self::dbconnect();
+		$db = self::getDb('localhost', 'hikomsys');
 
 		$quizId = Input::get('quizId');
 
@@ -123,9 +119,7 @@ class QuizzesController extends \BaseController {
 
 	//It can happend that totelDependencies is 0 and then I divide by zero => BAD
 	public function getPoints(){
-		global $db;
-
-		self::dbconnect();
+		$db = self::getDb('localhost', 'hikomsys');
 
 		$quizId = Input::get('quizId');
 
@@ -169,7 +163,9 @@ class QuizzesController extends \BaseController {
 	}
 
 	private function createUserSubmTable($packages, $id){
-		global $userSub, $db;
+		global $userSub;
+
+		$db = self::getDb('localhost', 'hikomsys');
 
 		$userSub = $db->createCollection($id.'_'.'US');
 
@@ -181,7 +177,9 @@ class QuizzesController extends \BaseController {
 	}
 
 	private function createResultTable($id){
-		global $results, $db, $userSub;
+		global $results, $userSub;
+
+		$db = self::getDb('localhost', 'hikomsys');
 
 		$results = $db->createCollection($id.'_RES');
 
