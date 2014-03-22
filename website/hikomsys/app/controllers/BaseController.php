@@ -20,7 +20,7 @@ class BaseController extends Controller {
 	{
 		self::mongoConnect($hostName, $dbName);
 
-		return $this->$db;
+		return $this->db;
 	}
 
 	private function mongoConnect($hostName = 'localhost', $dbName){
