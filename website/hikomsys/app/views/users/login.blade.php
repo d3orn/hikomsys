@@ -7,18 +7,15 @@
 
 	{{ Form::open(['route'=>'sessions.store', 'class' => 'col-md-4']) }}
 	  
-		<fieldset>
 			<div class="form-group">
 				{{ Form::label('username', 'Username', ['class' => 'form-label']) }}
-			    {{ Form::text('username', null, array('placeholder'=>'Username', 'class' => 'form-control')) }}
+			    {{ Form::text('username', ['placeholder'=>'Username', 'class' => 'form-control']) }}
 			</div>
 
 			<div class="form-group">
 			    {{ Form::label('password', 'Password', ['class' => 'form-label']) }}
-			    {{ Form::password('password', array('placeholder'=>'Password','class' => 'form-control')) }}
+			    {{ Form::password('password', ['placeholder'=>'Password','class' => 'form-control']) }}
 			</div>
-
-		</fieldset>
 
 	    {{ Form::submit('Login', ['class'=>'submit btn btn-primary'])}}
 	{{ Form::close() }}
