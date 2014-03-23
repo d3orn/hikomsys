@@ -25,8 +25,6 @@ function switchDependencies(color){
 			arrows[i].changeVisibility();
 		}
 	}
-	arrowLayer.draw();
-	arrowLayer.drawScence();
 }
 
 /* =============================================================== Eventhandler ============================================================== */
@@ -89,6 +87,9 @@ $('#redArrow').click(function(){
 
 $('#orangeArrow').click(function(){
 	switchDependencies('orange');
+	
+	arrowLayer.draw();
+	arrowLayer.drawScence();
 });
 
 $('#infosEnabled').click(function(){
