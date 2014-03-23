@@ -85,9 +85,8 @@ function Arrow(from, to, id){
 	this.changeVisibility = function(){
 		this.isVisible = !this.isVisible;
 
-		arrowLayer.draw();
-		arrowLayer.drawScene();
-		stage.draw();
+		this.remove();
+		this.draw();
 
 	}
 
