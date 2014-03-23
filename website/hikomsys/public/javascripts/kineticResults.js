@@ -25,7 +25,7 @@ function switchDependencies(object, color){
 			arrows[i].changeVisibility();
 		}
 	}
-	arrowLayer.drawScene();
+	stage.draw();
 }
 
 /* =============================================================== Eventhandler ============================================================== */
