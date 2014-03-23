@@ -188,6 +188,7 @@ class QuizzesController extends \BaseController {
 		foreach ($cursor as $package => $value) {
 			$dependencies = $value['dependencies'];
 			$currentPackageName = $value['name'];
+			var_dump($value);
 			var_dump($dependencies);
 			var_dump($currentPackageName);
 			self::checkDependencies($dependencies, $currentPackageName);
