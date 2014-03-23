@@ -112,7 +112,7 @@ $('#submit').click(function(){
 		type : 'post',
 		data : {"packages": output, "quizId" : quizId},
 		success : function(){
-			window.location.href = '/hikomsys/quizzes/'+quizId
+			//window.location.href = '/hikomsys/quizzes/'+quizId
 		}
 	});
 });
