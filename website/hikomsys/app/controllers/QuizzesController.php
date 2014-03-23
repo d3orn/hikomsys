@@ -188,9 +188,6 @@ class QuizzesController extends \BaseController {
 		foreach ($cursor as $package => $value) {
 			$dependencies = $value['dependencies'];
 			$currentPackageName = $value['name'];
-			var_dump($value);
-			var_dump($dependencies);
-			var_dump($currentPackageName);
 			self::checkDependencies($dependencies, $currentPackageName);
 		}
 	}
@@ -202,7 +199,8 @@ class QuizzesController extends \BaseController {
 
 		foreach ($dependencies as $dep => $depName) {
 			$test = $solution->find(['name' => $packageName,'outgoingDependencies' => ['$elemMatch' => ['to' => ['$elemMatch' => ['package' => $depName['to']]]]]]);
-
+			var_dump($test);
+			var_dump($depName);
 			if($test->hasNext()){
 				$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => 'green']]]);
 				$solution->update(['name' => $packageName], ['$pull' => ['outgoingDependencies' => ['to' => ['package' => $depName['to']]]]]);
