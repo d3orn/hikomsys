@@ -81,8 +81,7 @@ $('#move').click(function(){
 //I can make those into 1 event
 $('.arrowbtn').click(function(){
 	color = $(this).attr('id').replace('Arrow','');
-	alert(color);
-	switchDependencies('green')
+	switchDependencies(color);
 });
 
 $('#infosEnabled').click(function(){
@@ -91,7 +90,6 @@ $('#infosEnabled').click(function(){
 		allPackages[i].removeInfos();
 	}
 });
-
 
 $('#help').click(function(){
 	$('#help_container').toggle();
