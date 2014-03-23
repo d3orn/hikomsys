@@ -111,7 +111,8 @@ $('#submit').click(function(){
 		url : '/hikomsys/quizzes/create_result',
 		type : 'post',
 		data : {"packages": output, "quizId" : quizId},
-		success : function(){
+		success : function(data){
+			console.log(data);
 			//window.location.href = '/hikomsys/quizzes/'+quizId
 			//dafuq
 		}
