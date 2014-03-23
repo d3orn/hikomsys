@@ -18,14 +18,15 @@ function switchMode(){
 	}
 }
 
-function switchDependencies(object, color){
+function switchDependencies(color){
 	//Hides/Shows arrows depending on theire color
 	for(var i = 0; i < arrows.length; i++){
 		if (arrows[i].color == color){ 
 			arrows[i].changeVisibility();
 		}
 	}
-	stage.draw();
+	arrowLayer.draw();
+	arrowLayer.drawScence();
 }
 
 /* =============================================================== Eventhandler ============================================================== */
@@ -77,16 +78,17 @@ $('#move').click(function(){
 	switchMode();
 });
 
+//I can make those into 1 event
 $('#greenArrow').click(function(){
-	switchDependencies($(this),'green')
+	switchDependencies('green')
 });
 
 $('#redArrow').click(function(){
-	switchDependencies($(this),'red');
+	switchDependencies('red');
 });
 
 $('#orangeArrow').click(function(){
-	switchDependencies($(this),'orange');
+	switchDependencies('orange');
 });
 
 $('#infosEnabled').click(function(){
