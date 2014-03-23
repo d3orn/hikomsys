@@ -87,9 +87,6 @@ $('#redArrow').click(function(){
 
 $('#orangeArrow').click(function(){
 	switchDependencies('orange');
-
-	arrowLayer.draw();
-	arrowLayer.drawScene();
 });
 
 $('#infosEnabled').click(function(){
