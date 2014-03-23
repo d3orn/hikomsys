@@ -23,6 +23,7 @@ function switchDependencies(object, color){
 	for(var i = 0; i < arrows.length; i++){
 		if (arrows[i].color == color){ 
 			arrows[i].changeVisibility();
+		}
 	}
 	arrowLayer.draw();
 }
