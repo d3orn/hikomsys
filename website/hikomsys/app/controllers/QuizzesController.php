@@ -91,7 +91,7 @@ class QuizzesController extends \BaseController {
 		self::addForgottenDependencies();
 		self::colorPackage();
 		self::addAdditionalInformation();
-		self::cleanUp();
+		//self::cleanUp();
 
 		$quiz = Quiz::findOrFail($quizId);
 		$quiz->points = self::getPoints();
