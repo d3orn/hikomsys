@@ -77,7 +77,7 @@ $('#move').click(function(){
 });
 
 //I can make those into 1 event
-$('#greenArrow').click(function(){
+$('.arrowbtn').click(function(){
 	switchDependencies('green')
 });
 
