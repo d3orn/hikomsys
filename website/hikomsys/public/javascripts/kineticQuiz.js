@@ -113,6 +113,7 @@ $('#submit').click(function(){
 		data : {"packages": output, "quizId" : quizId},
 		success : function(){
 			//window.location.href = '/hikomsys/quizzes/'+quizId
+			//dafuq
 		}
 	});
 });
