@@ -93,9 +93,9 @@ class QuizzesController extends \BaseController {
 		//self::addAdditionalInformation();
 		//self::cleanUp();
 
-		$quiz = Quiz::findOrFail($quizId);
-		$quiz->points = self::getPoints();
-		$quiz->save();
+		//$quiz = Quiz::findOrFail($quizId);
+		//$quiz->points = self::getPoints();
+		//$quiz->save();
 	}
 
 	public function sendJSON(){
