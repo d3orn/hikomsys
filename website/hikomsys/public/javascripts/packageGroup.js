@@ -409,15 +409,16 @@ function PackageGroup(text, color, infos){
 				stage.draw();
 			})
 			from.on('mouseleave', function(event){
-				alert('leave');
 				this.setFill('black');
 				var index = this.getName();
 				var id = this.getId().replace('From', '');
 				var pack = findPackageById(id);
 				var to = pack.dependenciesInfoBox[index]['to'];
 
-				to.remove();
-				stage.draw();
+				if(to){
+					to.remove();
+					stage.draw();
+				}
 			})
 		}
 
