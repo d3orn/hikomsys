@@ -5,7 +5,7 @@ function Arrow(from, to, id){
 	this.to = to;
 	this.id = id;
 	this.color = 'black';
-	this.visible = true;
+	this.isVisible = true;
 	this.width = 2;
 	this.center = function(packageGroup){
 		var centerX = Math.round(packageGroup.group.getX() + packageGroup.group.getWidth()/2);
@@ -41,7 +41,8 @@ function Arrow(from, to, id){
 		this.line = line;
 		this.head = head;
 		this.arrowGroup = new Kinetic.Group({
-			id: this.id
+			id: this.id,
+			visible: this.isVisible
 		});
 		this.arrowGroup.add(this.line);
 		this.arrowGroup.add(this.head);
@@ -79,6 +80,11 @@ function Arrow(from, to, id){
 	this.calcWidth = function(){
 		if(this.color == 'red'){this.width = WIDTHRED;}
 		else if(this.color == 'orange'){this.width = WIDTHORANGE;}
+	}
+
+	this.changeVisibility = function(){
+		this.isVisible = !this.isVisible;
+
 	}
 
 	this.remove = function(){

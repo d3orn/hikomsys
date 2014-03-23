@@ -20,19 +20,9 @@ function switchMode(){
 
 function switchDependencies(object, color){
 	//Hides/Shows arrows depending on theire color
-	if(object.hasClass("activatedIcon")){
-		for(var i = 0; i < arrows.length; i++){
-			if (arrows[i].color == color){ 
-				arrows[i].visible = false;
-				arrows[i].arrowGroup.hide();}
-		}
-	}
-	else{
-		for(var i = 0; i < arrows.length; i++){
-			if (arrows[i].color == color){ 
-				arrows[i].visible = true;
-				arrows[i].arrowGroup.show();}
-		}
+	for(var i = 0; i < arrows.length; i++){
+		if (arrows[i].color == color){ 
+			arrows[i].changeVisibility();
 	}
 	arrowLayer.draw();
 }
