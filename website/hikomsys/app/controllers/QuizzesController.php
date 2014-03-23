@@ -87,7 +87,7 @@ class QuizzesController extends \BaseController {
 
 		self::createUserSubmTable($packages, $quizId);
 		self::createResultTable($quizId);
-		//self::crossCheck();
+		self::crossCheck();
 		//self::addForgottenDependencies();
 		//self::colorPackage();
 		//self::addAdditionalInformation();
@@ -186,8 +186,8 @@ class QuizzesController extends \BaseController {
 
 		$cursor = $userSub->find(['dependencies' => ['$exists' => true]]);
 		foreach ($cursor as $package => $value) {
-				$dependencies = $value['dependencies'];
-				$currentPackageName = $value['name'];
+			$dependencies = $value['dependencies'];
+			$currentPackageName = $value['name'];
 			self::checkDependencies($dependencies, $currentPackageName);
 		}
 	}
@@ -199,7 +199,7 @@ class QuizzesController extends \BaseController {
 
 		foreach ($dependencies as $dep => $depName) {
 			$test = $solution->find(['name' => $packageName,'outgoingDependencies' => ['$elemMatch' => ['to' => ['$elemMatch' => ['package' => $depName['to']]]]]]);
-
+			dd($test);
 			if($test->hasNext()){
 				$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => 'green']]]);
 				$solution->update(['name' => $packageName], ['$pull' => ['outgoingDependencies' => ['to' => ['package' => $depName['to']]]]]);
