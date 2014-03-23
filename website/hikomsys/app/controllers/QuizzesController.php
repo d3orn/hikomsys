@@ -86,11 +86,11 @@ class QuizzesController extends \BaseController {
 		$solution = $db->$solutionName;
 
 		self::createUserSubmTable($packages, $quizId);
-		self::createResultTable($quizId);
-		self::crossCheck();
-		self::addForgottenDependencies();
-		self::colorPackage();
-		self::addAdditionalInformation();
+		//self::createResultTable($quizId);
+		//self::crossCheck();
+		//self::addForgottenDependencies();
+		//self::colorPackage();
+		//self::addAdditionalInformation();
 		//self::cleanUp();
 
 		$quiz = Quiz::findOrFail($quizId);
