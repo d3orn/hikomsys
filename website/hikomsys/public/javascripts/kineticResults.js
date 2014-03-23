@@ -18,8 +18,10 @@ function switchMode(){
 	}
 }
 
+/*
+	Hides or Shows all arrows with the given color
+ */
 function switchDependencies(color){
-	//Hides/Shows arrows depending on theire color
 	for(var i = 0; i < arrows.length; i++){
 		if (arrows[i].color == color){ 
 			arrows[i].changeVisibility();
@@ -78,15 +80,9 @@ $('#move').click(function(){
 
 //I can make those into 1 event
 $('.arrowbtn').click(function(){
+	color = $(this).attr('id').replace('Arrow','');
+	alert(color);
 	switchDependencies('green')
-});
-
-$('#redArrow').click(function(){
-	switchDependencies('red');
-});
-
-$('#orangeArrow').click(function(){
-	switchDependencies('orange');
 });
 
 $('#infosEnabled').click(function(){
