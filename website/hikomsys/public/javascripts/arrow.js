@@ -87,6 +87,7 @@ function Arrow(from, to, id){
 
 		arrowLayer.draw();
 		arrowLayer.drawScene();
+		stage.draw();
 
 	}
 
