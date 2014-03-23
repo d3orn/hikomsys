@@ -187,6 +187,8 @@ class QuizzesController extends \BaseController {
 		$cursor = $userSub->find(['dependencies' => ['$exists' => true]]);
 		var_dump($userSub);
 		print_r($userSub);
+		var_dump($cursor);
+		print_r($cursor);
 		foreach ($cursor as $package => $value) {
 			$dependencies = $value['dependencies'];
 			$currentPackageName = $value['name'];
