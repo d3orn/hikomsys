@@ -87,6 +87,7 @@ function Arrow(from, to, id){
 
 		this.remove();
 		this.draw();
+		arrowLayer.draw();
 
 	}
 
