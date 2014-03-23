@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-		"twitter/bootstrap": "dev-master"
+		"zurb/foundation": "dev-master"
 	},
 		"require-dev": {
     		"way/generators": "2.*",
