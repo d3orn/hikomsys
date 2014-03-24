@@ -83,7 +83,7 @@
 
 				@if($errors->has())
 					<div data-alert data-options="animation_speed:500;" class="alert-box">
-						$error
+						{{ $error }}
 						<ul>
 							@foreach($errors->all() as $error)
 								<li>{{ $error }}</li>
@@ -107,7 +107,7 @@
 			{{ HTML::script('http://code.jquery.com/jquery-1.10.1.min.js') }}
 			{{ HTML::script('http://code.jquery.com/jquery-migrate-1.2.1.min.js') }}
 			{{ HTML::script('foundation/js/foundation.min.js') }}	
-			{{ HTML::script('foundation/js/js/vendor/modernizr.js') }}
+			{{ HTML::script('foundation/js/vendor/modernizr.js') }}
 			
 			@yield('scripts')
 
