@@ -74,7 +74,7 @@
 			</div>
 
 			<header class="panel">
-				<a href={{ link_to_route('home') }}>
+				<a href="{{ link_to_route('home') }}">
 					<h1 class="row">
 						{{ HTML::image('foundation/img/logo.fw.png', 'Hikomsys Logo') }}
 						How I KnOw My SYStem
