@@ -32,12 +32,12 @@ class QuizzesController extends \BaseController {
 		//TODO Somehow MongoDB Namespace is limited I have to fiqure out how exactly to limit user input of the project name
 		$solutionName = $quiz->id.'_So';
 
-		$db->command(array(
+		$db->command([
 			"eval" => new MongoCode("function(){
 				db['".$projectName."'].copyTo('".$solutionName."')
 			};"
 			)
-		));
+		]);
 
 		return Redirect::route('quizzes.edit', [$quiz->id])
 			->with('selected', $input);
@@ -69,7 +69,7 @@ class QuizzesController extends \BaseController {
 	}
 
 
-	//REFACTOR stuff below is so ugly..
+	//TODO refactor stuff below is so ugly..
 	public function createResults(){
 		global $solution;
 
@@ -86,11 +86,11 @@ class QuizzesController extends \BaseController {
 		self::addForgottenDependencies();
 		self::colorPackage();
 		self::addAdditionalInformation();
-		//self::cleanUp();
+		self::cleanUp();
 
-		//$quiz = Quiz::findOrFail($quizId);
-		//$quiz->points = self::getPoints();
-		//$quiz->save();
+		$quiz = Quiz::findOrFail($quizId);
+		$quiz->points = self::getPoints();
+		$quiz->save();
 	}
 
 	public function sendJSON(){
@@ -170,7 +170,7 @@ class QuizzesController extends \BaseController {
 
 		$results = $db->createCollection($id.'_RES');
 
-		//TODO use mongo CopyTo
+		//TODO use mongo CopyTo and also add the dependencies, classes and children
 		$cursor = $userSub->find([],['name' => 1, 'position' => 1]);
 		foreach($cursor as $document){
 			$results->insert($document);
@@ -197,12 +197,9 @@ class QuizzesController extends \BaseController {
 		foreach ($dependencies as $dep => $depName) {
 			$test = $solution->find(['name' => $packageName,'outgoingDependencies.to.package' => $depName['to']]);
 			
-			if($test->hasNext()){
-				$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => 'green']]]);
-			}
-			else{
-				$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => 'red']]]);
-			}
+			$color = $test->hasNext() ? 'green' : 'red'
+
+			$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => $color]]]);
 		}
 	}
 
@@ -223,6 +220,7 @@ class QuizzesController extends \BaseController {
 					$dependencyToCheck = $dependency['to']['package'];
 					$test = $results->find(['name' => $remainingName,'dependencies.to' => $dependencyToCheck]);
 
+					//TODO this if is not very nice and I should think about a better way
 					if(!$test->hasNext() and ($remainingName != $dependencyToCheck) and in_array($dependencyToCheck, $packageNames)){
 						$results->update(['name' => $remainingName], ['$push' => ['dependencies' => ['to' => $dependencyToCheck, 'color' => 'orange']]]);
 					}
