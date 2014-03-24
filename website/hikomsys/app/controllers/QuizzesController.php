@@ -212,10 +212,10 @@ class QuizzesController extends \BaseController {
 
 		$packages = $userSub->find([], ['_id' => 0, 'position' => 0, 'dependencies' => 0]);
 		foreach ($packages as $key => $value) {
-			$packageNames[] = ($value['name']);
+			$packageNames[] = $value['name'];
 		}
 
-		$packagesToCheck = $solution->find(['name' => ['$in' => $packageNames]], ['name' => 1,'outgoingDependencies' => 1, 'classes' => 1, 'children' => 1]);
+		$packagesToCheck = $solution->find(['name' => ['$in' => $packageNames]], ['name' => 1,'outgoingDependencies' => 1]);
 		foreach ($packagesToCheck as $key => $package) {
 			$remainingName = $package['name'];
 			if (array_key_exists('outgoingDependencies', $package)){
@@ -223,8 +223,12 @@ class QuizzesController extends \BaseController {
 				foreach ($dependencies as $otherKey => $dependency) {
 					$dependencyToCheck = $dependency['to']['package'];
 					
-					if(($remainingName != $dependencyToCheck) and (in_array($dependencyToCheck, $packageNames))){
-						$results->update(['name' => $remainingName], ['$push' => ['dependencies' => ['to' => $dependencyToCheck, 'color' => 'orange']]]);
+					$test = $results->find(['name' => $remainingName,'outgoingDependencies.to.package' => $dependencyToCheck);
+			
+					if(! $test->hasNext()){
+						if(($remainingName != $dependencyToCheck) and (in_array($dependencyToCheck, $packageNames))){
+							$results->update(['name' => $remainingName], ['$push' => ['dependencies' => ['to' => $dependencyToCheck, 'color' => 'orange']]]);
+						}
 					}
 					$solution->update(['name' => $remainingName], ['$pull' => ['outgoingDependencies' => ['to' => ['package' => $dependencyToCheck]]]]);
 				}
