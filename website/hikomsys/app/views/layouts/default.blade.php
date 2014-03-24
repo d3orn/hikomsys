@@ -18,9 +18,8 @@
 		<link rel="apple-touch-icon" sizes="72×72" href="/touch-icon-72×72.png" />
 		<link rel="apple-touch-icon" href="/touch-icon-iphone.png" />
 		
-		{{ HTML::style('css/cssreset.css') }}
-		{{ HTML::style('foundation/css/foundation.css') }}
 		{{ HTML::style('css/general.css') }}
+		{{ HTML::style('foundation/css/foundation.css') }}
 		
 		@yield('styles')
 

@@ -22,7 +22,7 @@
 			    {{ Form::submit('Login', ['class'=>'submit button'])}}
 			{{ Form::close() }}
 		</div>
-		<div class="large-7 medium-7 columns">
+		<div class="panel large-7 medium-7 columns">
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, sed, maiores, tempore itaque quaerat nisi aliquid inventore ducimus ipsa saepe sunt enim voluptate velit. Cupiditate, doloribus, harum laborum eligendi id numquam culpa dolor sunt fuga beatae tempora quisquam temporibus. Nemo, cumque, fugit, autem, quia ullam neque aperiam deleniti quas quos praesentium molestias eaque vitae dolore et veniam? Voluptatem, fugit, laborum, temporibus nesciunt alias est enim minus reiciendis qui culpa provident numquam ullam optio officia nisi possimus debitis rem. Laboriosam, amet, doloremque, hic dicta aperiam quis modi asperiores quam veritatis earum tempora non dolores excepturi aliquid quidem ratione eaque! Molestiae, delectus.</p>
 		</div>
 	</div>
