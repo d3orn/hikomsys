@@ -33,9 +33,9 @@ class QuizzesController extends \BaseController {
 
 		$solutionName = $quiz->id.'_So';
 
-		echo ('"eval" => new MongoCode("function(){
+		echo ("function(){
 		       db[".$projectName."].copyTo(".$solutionName.")
-			};"');
+			};");
 
 		/*$db->command(array(
 			"eval" => new MongoCode("function(){
