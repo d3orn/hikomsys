@@ -223,7 +223,7 @@ class QuizzesController extends \BaseController {
 					$dependencyToCheck = $dependency['to']['package'];
 					$test = $results->find(['name' => $remainingName,'dependencies.to' => $dependencyToCheck]);
 
-					if(!$test->hasNext() and ($remainingName != $dependencyToCheck){
+					if(!$test->hasNext() and ($remainingName != $dependencyToCheck)){
 						$results->update(['name' => $remainingName], ['$push' => ['dependencies' => ['to' => $dependencyToCheck, 'color' => 'orange']]]);
 					}
 				}
