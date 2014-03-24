@@ -49,7 +49,7 @@
 			    <!-- Right Nav Section -->
 			    <ul class="right">
 			     	@if(Auth::check())
-						<li class="has-form">{{ HTML::link('logout', 'Logout') }}</li>
+						<li class="has-form">{{ HTML::link('logout', 'Logout',['class'=>'small button']) }}</li>
 					@else
 						<li>{{ HTML::link('login', 'Login') }}</li>
 					@endif
@@ -58,12 +58,16 @@
 			    <!-- Left Nav Section -->
 			    <ul class="left">
 			      	<li>{{ HTML::linkRoute('home', 'Home') }}</li>
+			      	<li class="divider"></li>
 				 	@if(Auth::check())
                     	<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
                     	<li class="divider"></li>
                     	<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
+                    	<li class="divider"></li>
                     	<li>{{ HTML::linkRoute('users.showall', 'Users') }}</li>
+                    	<li class="divider"></li>
                     	<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
+                    	<li class="divider"></li>
                     @else
                     	{{-- TODO need a login directly in nav --}}
                 	@endif
