@@ -93,7 +93,7 @@
 				</div>
 	
 				<section class="row">
-					{{ link_to_route(home) }}
+					{{ link_to_route('home') }}
 					@yield('content')
 					}
 				</section>
