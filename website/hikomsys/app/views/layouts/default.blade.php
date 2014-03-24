@@ -37,10 +37,10 @@
 	</head>
 	<body>	
 		<div id="wrapper">
-			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-				<div class="navbar-inner">
-					<div class="container">
-						<ul class="nav navbar-nav">
+			<nav>
+				<div>
+					<div>
+						<ul>
 							<li>{{ HTML::linkRoute('home', 'Home') }}</li>
 						 	@if(Auth::check())
 		                    	<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
@@ -51,7 +51,7 @@
 		                    	{{-- TODO need a login directly in nav --}}
 		                	@endif
 						</ul>
-						<ul class="nav navbar-nav pull-right">
+						<ul>
 							@if(Auth::check())
 								<li>{{ HTML::link('logout', 'Logout') }}</li>
 							@else
@@ -61,7 +61,7 @@
 					</div>
 				</div>
 			</nav>
-			<header class="page-header">
+			<header>
 				<h1>How I KnOw My SYStem</h1>
 			</header>
 			<main class="row">
