@@ -24,8 +24,6 @@
 		
 		@yield('styles')
 
-	<script src="js/vendor/modernizr.js"></script>
-
 		<!-- 
 			Thank you for looking at the sources
 			
@@ -94,7 +92,8 @@
 
 			{{ HTML::script('http://code.jquery.com/jquery-1.10.1.min.js') }}
 			{{ HTML::script('http://code.jquery.com/jquery-migrate-1.2.1.min.js') }}
-			{{ HTML::script('foundation/js/foundation.min.js') }}
+			{{ HTML::script('foundation/js/foundation.min.js') }}	
+			{{ HTML::script('foundation/js/js/vendor/modernizr.js') }}
 			
 			@yield('scripts')
 
