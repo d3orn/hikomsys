@@ -83,10 +83,10 @@ class QuizzesController extends \BaseController {
 		self::createUserSubmTable($packages, $quizId);
 		self::createResultTable($quizId);
 		self::crossCheck();
-		self::addForgottenDependencies();
-		self::colorPackage();
-		self::addAdditionalInformation();
-		self::cleanUp();
+		//self::addForgottenDependencies();
+		//self::colorPackage();
+		//self::addAdditionalInformation();
+		//self::cleanUp();
 
 		//$quiz = Quiz::findOrFail($quizId);
 		//$quiz->points = self::getPoints();
@@ -186,6 +186,7 @@ class QuizzesController extends \BaseController {
 			$currentPackageName = $value['name'];
 			self::checkDependencies($dependencies, $currentPackageName);
 		}
+		var_dump($results);
 	}
 
 	private function checkDependencies($dependencies, $packageName){
@@ -196,9 +197,6 @@ class QuizzesController extends \BaseController {
 		foreach ($dependencies as $dep => $depName) {
 			$test = $solution->find(['name' => $packageName,'outgoingDependencies.to.package' => $depName['to']]);
 			
-			//$test = $solution->find(['name' => $packageName,'outgoingDependencies' => ['$elemMatch' => ['to' => ['$elemMatch' => ['package' => $depName['to']]]]]]);
-			var_dump($test->hasNext());
-			var_dump($depName['to']);
 			if($test->hasNext()){
 				$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => 'green']]]);
 				$solution->update(['name' => $packageName], ['$pull' => ['outgoingDependencies' => ['to' => ['package' => $depName['to']]]]]);
