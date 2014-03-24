@@ -35,14 +35,14 @@ class QuizzesController extends \BaseController {
 
 		echo ('"eval" => new MongoCode("function(){
 		       db[".$projectName."].copyTo(".$solutionName.")
-			};"')
+			};"');
 
-		$db->command(array(
+		/*$db->command(array(
 			"eval" => new MongoCode("function(){
 		       db[".$projectName."].copyTo(".$solutionName.")
 			};"
 			)
-		));
+		));*/
 
 		/*$solution = $db->createCollection($solutionName);
 		$solution->ensureIndex(['name' => 1], ['unique' => 1]);
