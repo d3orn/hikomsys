@@ -37,33 +37,12 @@
 	</head>
 	<body>	
 		<div id="wrapper">
-<!-- 			<nav>
-				<ul>
-					<li>{{ HTML::linkRoute('home', 'Home') }}</li>
-				 	@if(Auth::check())
-                    	<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
-                    	<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
-                    	<li>{{ HTML::linkRoute('users.showall', 'Users') }}</li>
-                    	<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
-                    @else
-                    	{{-- TODO need a login directly in nav --}}
-                	@endif
-				</ul>
-				<ul>
-					@if(Auth::check())
-						<li>{{ HTML::link('logout', 'Logout') }}</li>
-					@else
-						<li>{{ HTML::link('login', 'Login') }}</li>
-					@endif
-				</ul>
-			</nav> -->
-
 			<nav class="top-bar" data-topbar>
 			  <ul class="title-area">
 			    <li class="name">
-			      <h1><a href="#">My Site</a></h1>
+			      <h1><a href="#">Hikomsys</a></h1>
 			    </li>
-			    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+			    <li class="toggle-topbar menu-icon"><a href="#"></a></li>
 			  </ul>
 
 			  <section class="top-bar-section">
@@ -78,7 +57,15 @@
 
 			    <!-- Left Nav Section -->
 			    <ul class="left">
-			      <li><a href="#">Left Nav Button</a></li>
+			      	<li>{{ HTML::linkRoute('home', 'Home') }}</li>
+				 	@if(Auth::check())
+                    	<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
+                    	<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
+                    	<li>{{ HTML::linkRoute('users.showall', 'Users') }}</li>
+                    	<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
+                    @else
+                    	{{-- TODO need a login directly in nav --}}
+                	@endif
 			    </ul>
 			  </section>
 			</nav>
