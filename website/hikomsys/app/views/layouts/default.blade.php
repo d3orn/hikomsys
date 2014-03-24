@@ -77,11 +77,21 @@
 
 				@if(Session::has('message'))
 					<div data-alert class="alert-box">
-						<p id="message">
-							{{Session::get('message')}}
-						</p>
+						{{Session::get('message')}}
 					</div>
 				@endif
+
+				@if($errors->has())
+					<div data-alert class="alert-box">
+						<ul>
+							@foreach($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
+
+
 				<section>
 					@yield('content')
 				</section>

@@ -5,16 +5,6 @@
 	<h1>Sign Up now!</h1>
 	<p>To find out how well you know your code just fill out the form below and you are ready to go!</p>
 	 
-	@if($errors->has())
-		<div id="errors">
-			<ul>
-				@foreach($errors->all() as $error)
-					<li>{{ $error }}</li>
-				@endforeach
-			</ul>
-		</div>
-	@endif
-
 	{{ Form::open(['url'=>'users']) }}
 
 
