@@ -66,7 +66,7 @@
 					<h1>How I KnOw My SYStem</h1>
 				</div>
 			</header>
-			<main class="container">
+			<main class="row">
 
 				@if(Session::has('message'))
 					<p id="message">
