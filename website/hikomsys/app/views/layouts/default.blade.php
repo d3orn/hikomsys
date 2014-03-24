@@ -45,13 +45,13 @@
 			    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 			  </ul>
 
-			  <section class="top-bar-section ">
+			  <section class="top-bar-section">
 			    <!-- Right Nav Section -->
 			    <ul class="right">
 			     	@if(Auth::check())
-						<li class="has-form">{{ HTML::link('logout', 'Logout',['class'=>'small button']) }}</li>
+						<li class="has-form">{{ HTML::link('logout', 'Logout',['class'=>'button']) }}</li>
 					@else
-						<li>{{ HTML::link('login', 'Login') }}</li>
+						<li class="has-form">{{ HTML::link('login', 'Login',['class'=>'button']) }}</li>
 					@endif
 			    </ul>
 
