@@ -5,9 +5,9 @@
 		<p> If you are new please {{ HTML::linkRoute('users.create', 'Sign up') }} , else sign in below </p>
 	<h2>Login</h2>
 
-	{{ Form::open(['route'=>'sessions.store', 'class' => '']) }}
+	{{ Form::open(['route'=>'sessions.store', 'class' => 'large-6 columns']) }}
 	  
-			<div class="form">
+			<div class="">
 				{{ Form::label('username', 'Username') }}
 			    {{ Form::text('username', null, ['placeholder'=>'Username', 'class' => 'large-12 columns']) }}
 
