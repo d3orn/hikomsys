@@ -84,8 +84,8 @@ class QuizzesController extends \BaseController {
 		self::createResultTable($quizId);
 		self::crossCheck();
 		self::addForgottenDependencies();
-		//self::colorPackage();
-		//self::addAdditionalInformation();
+		self::colorPackage();
+		self::addAdditionalInformation();
 		//self::cleanUp();
 
 		//$quiz = Quiz::findOrFail($quizId);
@@ -199,7 +199,6 @@ class QuizzesController extends \BaseController {
 			
 			if($test->hasNext()){
 				$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => 'green']]]);
-				$solution->update(['name' => $packageName], ['$pull' => ['outgoingDependencies' => ['to' => ['package' => $depName['to']]]]]);
 			}
 			else{
 				$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => 'red']]]);
@@ -222,17 +221,11 @@ class QuizzesController extends \BaseController {
 				$dependencies = $package['outgoingDependencies'];
 				foreach ($dependencies as $otherKey => $dependency) {
 					$dependencyToCheck = $dependency['to']['package'];
-					
 					$test = $results->find(['name' => $remainingName,'dependencies.to' => $dependencyToCheck]);
-				var_dump($test->hasNext());
-				var_dump($remainingName);
-				var_dump($dependencyToCheck);
-					if(!$test->hasNext()){
-						if(($remainingName != $dependencyToCheck) and (in_array($dependencyToCheck, $packageNames))){
-							$results->update(['name' => $remainingName], ['$push' => ['dependencies' => ['to' => $dependencyToCheck, 'color' => 'orange']]]);
-						}
+
+					if(!$test->hasNext() and ($remainingName != $dependencyToCheck){
+						$results->update(['name' => $remainingName], ['$push' => ['dependencies' => ['to' => $dependencyToCheck, 'color' => 'orange']]]);
 					}
-					$solution->update(['name' => $remainingName], ['$pull' => ['outgoingDependencies' => ['to' => ['package' => $dependencyToCheck]]]]);
 				}
 			}
 		}
