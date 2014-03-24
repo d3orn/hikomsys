@@ -47,7 +47,7 @@
 					<!-- Right Nav Section -->
 						<ul class="right">
 							@if(Auth::check())
-								<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
+								<li>{{ HTML::linkRoute('users.edit', Auth::user()->username, [Auth::user()->id]) }}</li>
 								<li class="divider"></li>
 								<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
 								<li class="divider"></li>
