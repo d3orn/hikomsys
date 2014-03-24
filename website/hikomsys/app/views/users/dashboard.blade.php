@@ -17,19 +17,15 @@
 
 				<p>Please enter a valid Github link below</p>
 
-				{{ Form::open(['route'=>'projects.store', 'class' => 'col-md-4']) }}
+				{{ Form::open(['route'=>'projects.store']) }}
 						
-						<div class="form-group">
-							{{ Form::label('url', 'Gitrepository URL:', ['class' => 'form-label']) }}
-							{{ Form::url('url', null, ['class' => 'form-control'])}}
-						</div>
+							{{ Form::label('url', 'Gitrepository URL:') }}
+							{{ Form::url('url')}}
 
-						<div class="form-group">
 							{{ Form::label('projectName', 'Project name:',  ['class' => 'form-label']) }}
 							{{ Form::text('projectName', null, ['class' => 'form-control']) }}
-						</div>
 
-					{{ Form::submit('Submit Repository', ['class'=>'submit btn btn-primary']) }}
+					{{ Form::submit('Submit Repository', ['class'=>'submit button']) }}
 
 				{{ Form::close() }}
 
