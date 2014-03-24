@@ -59,15 +59,18 @@
 								<li class="divider"></li>
 								<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
 								<li class="divider"></li>
+								
 								<li class="has-form">
-									<div class="row collapse">
-										<div class="large-8 small-9 columns">
-											<input type="text" placeholder="Find Stuff">
+									<form>
+										<div class="row collapse">
+											<div class="large-8 small-9 columns">
+												<input type="text" placeholder="Find Stuff">
+											</div>
+											<div class="large-4 small-3 columns">
+												<a href="#" class="alert button expand">Search</a>
+											</div>
 										</div>
-										<div class="large-4 small-3 columns">
-											<a href="#" class="alert button expand">Search</a>
-										</div>
-									</div>
+									</form>
 								</li>
 								<li class="divider"></li>
 								<li class="has-form">{{ HTML::link('#', 'Random Quiz',['class'=>'button success']) }}</li>
