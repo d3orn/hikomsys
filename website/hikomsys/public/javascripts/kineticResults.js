@@ -52,6 +52,7 @@ $(document).ready(function(){
 			for(var i = 0; i < data.length; i++){
 				var thisPackage = findPackageById(data[i].name);
 				var dependencies = data[i].dependencies;
+				console.log(dependencies);
 				if(dependencies){
 					for(var j = 0; j < dependencies.length; j++){
 						var to = findPackageById(dependencies[j]['to']);
