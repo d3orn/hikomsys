@@ -7,17 +7,15 @@
 
 	{{ Form::open(['route'=>'sessions.store', 'class' => '']) }}
 	  
-			<div class="form-group">
+			<div class="form">
 				{{ Form::label('username', 'Username', ['class' => '']) }}
 			    {{ Form::text('username', null, ['placeholder'=>'Username', 'class' => '']) }}
-			</div>
 
-			<div class="form-group">
 			    {{ Form::label('password', 'Password', ['class' => '']) }}
 			    {{ Form::password('password', ['placeholder'=>'Password','class' => '']) }}
 			</div>
 
-	    {{ Form::submit('Login', ['class'=>'submit button success'])}}
+	    {{ Form::submit('Login', ['class'=>'submit button'])}}
 	{{ Form::close() }}
 
 @stop
