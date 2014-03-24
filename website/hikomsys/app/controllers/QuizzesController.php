@@ -41,7 +41,7 @@ class QuizzesController extends \BaseController {
 
 		return Redirect::route('quizzes.edit', [$quiz->id])
 			->with('selected', $input);
-	}
+	}	
 
 	/**
 	 * Display the specified resource.
@@ -83,10 +83,10 @@ class QuizzesController extends \BaseController {
 		self::createUserSubmTable($packages, $quizId);
 		self::createResultTable($quizId);
 
-		//self::crossCheck();
-		//self::addForgottenDependencies();
-		//self::colorPackage();
-		//self::addAdditionalInformation();
+		self::crossCheck();
+		self::addForgottenDependencies();
+		self::colorPackage();
+		self::addAdditionalInformation();
 		//self::cleanUp();
 
 		//$quiz = Quiz::findOrFail($quizId);
