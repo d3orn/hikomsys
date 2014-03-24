@@ -20,9 +20,11 @@
 		
 		{{ HTML::style('css/cssreset.css') }}
 		{{ HTML::style('css/general.css') }}
-		{{ HTML::style('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css') }}
+		{{ HTML::style('foundation/css/foundation.css') }}
 		
 		@yield('styles')
+
+    	<script src="js/vendor/modernizr.js"></script>
 
 		<!-- 
 			Thank you for looking at the sources
@@ -83,9 +85,13 @@
 
 			{{ HTML::script('http://code.jquery.com/jquery-1.10.1.min.js') }}
 			{{ HTML::script('http://code.jquery.com/jquery-migrate-1.2.1.min.js') }}
-			{{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js') }}
-
+			{{ HTML::script('foundation/js/foundation.min.js') }}
+			
 			@yield('scripts')
+
+			<script>
+		   		$(document).foundation();
+		    </script>
 
 		</div>	
 	</body>
