@@ -24,7 +24,7 @@
 		
 		@yield('styles')
 
-    	<script src="js/vendor/modernizr.js"></script>
+	<script src="js/vendor/modernizr.js"></script>
 
 		<!-- 
 			Thank you for looking at the sources
@@ -39,35 +39,35 @@
 		<div id="wrapper">
 			<div class="fixed">
 				<nav class="top-bar" data-topbar>
-				  <ul class="title-area">
-				    <li class="name">
-				      <h1>{{ HTML::linkRoute('home', 'Hikomsys') }}</h1>
-				    </li>
-				    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-				  </ul>
+					<ul class="title-area">
+						<li class="name">
+							<h1>{{ HTML::linkRoute('home', 'Hikomsys') }}</h1>
+						</li>
+						<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+					</ul>
 
-				  <section class="top-bar-section">
-				    <!-- Right Nav Section -->
-				    <ul class="right">
-				    	@if(Auth::check())
-	                    	<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
-	                    	<li class="divider"></li>
-	                    	<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
-	                    	<li class="divider"></li>
-	                    	<li>{{ HTML::linkRoute('users.showall', 'Users') }}</li>
-	                    	<li class="divider"></li>
-	                    	<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
-	                    	<li class="divider"></li>
-	                    	<li class="has-form">{{ HTML::link('logout', 'Logout',['class'=>'button']) }}</li>
-	                    @else
-	                   	 <li class="has-form">{{ HTML::link('login', 'Login',['class'=>'button']) }}</li>
-	                    	{{-- TODO need a login directly in nav --}}
-	                	@endif
-				    </ul>
-
-				    <!-- Left Nav Section -->
-				    <ul class="left"></ul>
-				  </section>
+					<section class="top-bar-section">
+					<!-- Right Nav Section -->
+						<ul class="right">
+							@if(Auth::check())
+								<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
+								<li class="divider"></li>
+								<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
+								<li class="divider"></li>
+								<li>{{ HTML::linkRoute('users.showall', 'Users') }}</li>
+								<li class="divider"></li>
+								<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
+								<li class="divider"></li>
+								<li class="has-form">{{ HTML::link('#', 'Random Quiz',['class'=>'button success']) }}</li>
+								<li class="has-form">{{ HTML::link('logout', 'Logout',['class'=>'button']) }}</li>
+							@else
+								<li class="has-form">{{ HTML::link('login', 'Login',['class'=>'button']) }}</li>
+								{{-- TODO need a login directly in nav --}}
+							@endif
+						</ul>
+						<!-- Left Nav Section -->
+						<ul class="left"></ul>
+					</section>
 				</nav>
 			</div>
 
@@ -98,8 +98,8 @@
 			@yield('scripts')
 
 			<script>
-		   		$(document).foundation();
-		    </script>
+		 		$(document).foundation();
+		</script>
 
 		</div>	
 	</body>

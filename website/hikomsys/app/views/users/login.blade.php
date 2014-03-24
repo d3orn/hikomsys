@@ -5,19 +5,19 @@
 		<p> If you are new please {{ HTML::linkRoute('users.create', 'Sign up') }} , else sign in below </p>
 	<h2>Login</h2>
 
-	{{ Form::open(['route'=>'sessions.store', 'class' => 'col-md-4']) }}
+	{{ Form::open(['route'=>'sessions.store', 'class' => '']) }}
 	  
 			<div class="form-group">
-				{{ Form::label('username', 'Username', ['class' => 'form-label']) }}
-			    {{ Form::text('username', null, ['placeholder'=>'Username', 'class' => 'form-control']) }}
+				{{ Form::label('username', 'Username', ['class' => '']) }}
+			    {{ Form::text('username', null, ['placeholder'=>'Username', 'class' => '']) }}
 			</div>
 
 			<div class="form-group">
-			    {{ Form::label('password', 'Password', ['class' => 'form-label']) }}
-			    {{ Form::password('password', ['placeholder'=>'Password','class' => 'form-control']) }}
+			    {{ Form::label('password', 'Password', ['class' => '']) }}
+			    {{ Form::password('password', ['placeholder'=>'Password','class' => '']) }}
 			</div>
 
-	    {{ Form::submit('Login', ['class'=>'submit btn btn-primary'])}}
+	    {{ Form::submit('Login', ['class'=>'submit button success'])}}
 	{{ Form::close() }}
 
 @stop
