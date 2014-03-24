@@ -19,8 +19,8 @@
 		<link rel="apple-touch-icon" href="/touch-icon-iphone.png" />
 		
 		{{ HTML::style('css/cssreset.css') }}
-		{{ HTML::style('css/general.css') }}
 		{{ HTML::style('foundation/css/foundation.css') }}
+		{{ HTML::style('css/general.css') }}
 		
 		@yield('styles')
 
