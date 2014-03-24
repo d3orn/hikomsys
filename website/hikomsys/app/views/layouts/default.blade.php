@@ -75,14 +75,16 @@
 					How I KnOw My SYStem
 				</h1>
 			</header>
-			<main class="row">
+			<main>
+				<div class="row">
 
-				@if(Session::has('message'))
-					<div data-alert data-options="animation_speed:500;" class="alert-box warning large-12">
-						{{Session::get('message')}}
-						<a href="#" class="close">&times;</a>
-					</div>
-				@endif
+					@if(Session::has('message'))
+						<div data-alert data-options="animation_speed:500;" class="alert-box warning large-12">
+							{{Session::get('message')}}
+							<a href="#" class="close">&times;</a>
+						</div>
+					@endif
+				</div>
 	
 				<section class="row">
 					@yield('content')
