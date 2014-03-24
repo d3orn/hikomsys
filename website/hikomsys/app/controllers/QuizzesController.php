@@ -89,7 +89,7 @@ class QuizzesController extends \BaseController {
 		self::createResultTable($quizId);
 		$db->command(array(
 		   "eval" => new MongoCode("function(){ " .
-		       "db['pomodoroboxV1'].copyTo('test2')};"
+		       "db['3dgpV1'].copyTo('test3')};"
 		   )
 		));
 		//self::crossCheck();
