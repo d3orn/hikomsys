@@ -82,11 +82,10 @@ class QuizzesController extends \BaseController {
 
 		self::createUserSubmTable($packages, $quizId);
 		self::createResultTable($quizId);
-
 		self::crossCheck();
-		self::addForgottenDependencies();
-		self::colorPackage();
-		self::addAdditionalInformation();
+		//self::addForgottenDependencies();
+		//self::colorPackage();
+		//self::addAdditionalInformation();
 		//self::cleanUp();
 
 		//$quiz = Quiz::findOrFail($quizId);
@@ -171,6 +170,7 @@ class QuizzesController extends \BaseController {
 
 		$results = $db->createCollection($id.'_RES');
 
+		//TODO use mongo CopyTo
 		$cursor = $userSub->find([],['name' => 1, 'position' => 1]);
 		foreach($cursor as $document){
 			$results->insert($document);
@@ -194,7 +194,9 @@ class QuizzesController extends \BaseController {
 		$results->update(['name' => $packageName], ['$set' => ['dependencies' => []]]);
 
 		foreach ($dependencies as $dep => $depName) {
-			$test = $solution->find(['name' => $packageName,'outgoingDependencies' => ['$elemMatch' => ['to' => ['$elemMatch' => ['package' => $depName['to']]]]]]);
+			$test = $solution->find(['name' => $packageName,'outgoingDependencies.to.package' => $depName['to']]);
+			
+			//$test = $solution->find(['name' => $packageName,'outgoingDependencies' => ['$elemMatch' => ['to' => ['$elemMatch' => ['package' => $depName['to']]]]]]);
 			var_dump($test->hasNext());
 			var_dump($depName['to']);
 			if($test->hasNext()){
