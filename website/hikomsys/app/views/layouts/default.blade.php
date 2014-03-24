@@ -71,7 +71,7 @@
 				</nav>
 			</div>
 
-			<header>
+			<header class="panel">
 				<h1>How I KnOw My SYStem</h1>
 			</header>
 			<main class="row">
@@ -86,6 +86,7 @@
 				</section>
 			</main>	
 			<footer>
+				<hr>
 				<div>
 					<address>Dominique Rahm &middot {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
 				</div>
