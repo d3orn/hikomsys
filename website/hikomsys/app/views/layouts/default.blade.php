@@ -19,7 +19,7 @@
 		<link rel="apple-touch-icon" href="/touch-icon-iphone.png" />
 		
 		{{ HTML::style('css/cssreset.css') }}
-		{{-- {{ HTML::style('css/general.css') }} --}}
+		{{ HTML::style('css/general.css') }}
 		{{ HTML::style('foundation/css/foundation.css') }}
 		
 		@yield('styles')
@@ -100,7 +100,6 @@
 			{{ HTML::script('http://code.jquery.com/jquery-migrate-1.2.1.min.js') }}
 			{{ HTML::script('foundation/js/foundation.min.js') }}	
 			{{ HTML::script('foundation/js/vendor/modernizr.js') }}
-			{{ HTML::script('foundation/js/stickyfooter.js') }}
 			
 			@yield('scripts')
 

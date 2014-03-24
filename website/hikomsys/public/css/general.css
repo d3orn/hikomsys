@@ -11,3 +11,10 @@ body {
 th {
 	font-weight: bold;
 }
+
+.bottom-bar{
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	margin-bottom: 0px;
+}
