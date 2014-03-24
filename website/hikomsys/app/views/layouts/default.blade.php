@@ -76,13 +76,14 @@
 			<main class="row">
 
 				@if(Session::has('message'))
-					<div data-alert class="alert-box">
+					<div data-alert data-options="animation_speed:500;" class="alert-box">
 						{{Session::get('message')}}
 					</div>
 				@endif
 
 				@if($errors->has())
-					<div data-alert class="alert-box">
+					<div data-alert data-options="animation_speed:500;" class="alert-box">
+						$error
 						<ul>
 							@foreach($errors->all() as $error)
 								<li>{{ $error }}</li>
