@@ -74,10 +74,12 @@
 			</div>
 
 			<header class="panel">
-				<h1 class="row">
-					{{ HTML::image('foundation/img/logo.fw.png', 'Hikomsys Logo') }}
-					How I KnOw My SYStem
-				</h1>
+				<a href="www.blick.ch">
+					<h1 class="row">
+						{{ HTML::image('foundation/img/logo.fw.png', 'Hikomsys Logo') }}
+						How I KnOw My SYStem
+					</h1>
+				</a>
 			</header>
 			<main>
 				<div class="row">

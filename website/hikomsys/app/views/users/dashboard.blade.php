@@ -20,7 +20,7 @@
 					{{ Form::label('url', 'Gitrepository URL:') }}
 					<div class="row collapse">
 						<div class="small-3 large-2 columns">
-							<span class="prefix">http://</span>
+							<span class="prefix">https://</span>
 						</div>
 						<div class="small-9 large-10 columns">
 							{{ Form::url('url')}}
