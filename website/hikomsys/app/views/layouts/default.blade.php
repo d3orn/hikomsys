@@ -89,7 +89,7 @@
 					@yield('content')
 				</section>
 			</main>	
-			<footer>
+			<footer class="bottom-bar">
 				<hr>
 				<div>
 					<address>Dominique Rahm &middot {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
