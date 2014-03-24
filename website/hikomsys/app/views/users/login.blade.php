@@ -3,7 +3,7 @@
 
 	<div class="large-12 columns">
 		<h1>Welcome on Hikomsys</h1>
-		<p> If you are new please {{ HTML::linkRoute('users.create', 'Sign up') }} , else sign in below </p>
+		<h1 class="subheader"> If you are new please {{ HTML::linkRoute('users.create', 'Sign up') }} , else sign in below </h1>
 	</div>
 	<h2>Login</h2>
 
