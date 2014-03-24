@@ -223,7 +223,7 @@ class QuizzesController extends \BaseController {
 				foreach ($dependencies as $otherKey => $dependency) {
 					$dependencyToCheck = $dependency['to']['package'];
 					
-					$test = $results->find(['name' => $remainingName,'outgoingDependencies.to' => $dependencyToCheck]);
+					$test = $results->find(['name' => $remainingName,'dependencies.to' => $dependencyToCheck]);
 				var_dump($test->hasNext());
 				var_dump($remainingName);
 				var_dump($dependencyToCheck);
