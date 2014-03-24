@@ -6,10 +6,10 @@
 		<p> If you are new please {{ HTML::linkRoute('users.create', 'Sign up') }} , else sign in below </p>
 	</div>
 	<div class="row"></div>
-		<div class="large-8 columns">
+		<div class="large-4 columns">
 			<h2>Login</h2>
 
-			{{ Form::open(['route'=>'sessions.store', 'class' => 'large-6 columns']) }}
+			{{ Form::open(['route'=>'sessions.store']) }}
 			  
 					<div class="">
 						{{ Form::label('username', 'Username') }}
