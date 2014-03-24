@@ -9,7 +9,7 @@
 
 		<h2>How do you know your system?</h2>
 		 
-		<p>Welcome back {{ Auth::user()->name }} on How I KnOw My SYStem.</p>
+		<p>Welcome back {{ Auth::user()->firstname }} on How I KnOw My SYStem.</p>
 
 		<p>Please enter a valid Github link below</p>
 
