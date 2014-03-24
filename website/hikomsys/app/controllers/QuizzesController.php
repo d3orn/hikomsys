@@ -197,7 +197,7 @@ class QuizzesController extends \BaseController {
 		foreach ($dependencies as $dep => $depName) {
 			$test = $solution->find(['name' => $packageName,'outgoingDependencies.to.package' => $depName['to']]);
 			
-			$color = $test->hasNext() ? 'green' : 'red'
+			$color = $test->hasNext() ? 'green' : 'red';
 
 			$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => $color]]]);
 		}
