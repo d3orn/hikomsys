@@ -223,7 +223,7 @@ class QuizzesController extends \BaseController {
 				foreach ($dependencies as $otherKey => $dependency) {
 					$dependencyToCheck = $dependency['to']['package'];
 					
-					$test = $results->find(['name' => $remainingName,'outgoingDependencies.to.package' => $dependencyToCheck);
+					$test = $results->find(['name' => $remainingName,'outgoingDependencies.to.package' => $dependencyToCheck]);
 			
 					if(! $test->hasNext()){
 						if(($remainingName != $dependencyToCheck) and (in_array($dependencyToCheck, $packageNames))){
