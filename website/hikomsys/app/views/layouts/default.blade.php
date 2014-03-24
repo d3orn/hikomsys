@@ -108,7 +108,6 @@
 	
 				<section class="row">
 					@yield('content')
-					}
 				</section>
 			</main>	
 			<footer class="bottom-bar">	
