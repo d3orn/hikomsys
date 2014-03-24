@@ -31,7 +31,7 @@
 	{{ Form::text('email', null, ['placeholder'=>'Email Address']) }}
 
 	{{ Form::label('password', 'Password') }}
-	{{ Form::password('password', array ('placeholder'=>'Password']) }}
+	{{ Form::password('password', ['placeholder'=>'Password']) }}
 
 	{{ Form::label('password_confirmation', 'Password') }}
 	{{ Form::password('password_confirmation', ['placeholder'=>'Confirm Password']) }}
