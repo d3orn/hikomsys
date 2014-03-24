@@ -71,7 +71,10 @@
 			</div>
 
 			<header class="panel">
-				<h1>How I KnOw My SYStem</h1>
+				<h1>
+					HTML::image('foundation/img/logo.png', 'Hikomsys Logo')
+					How I KnOw My SYStem
+				</h1>
 			</header>
 			<main class="row">
 
