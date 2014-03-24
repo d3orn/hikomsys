@@ -30,9 +30,16 @@ class QuizzesController extends \BaseController {
 		$projectName = $project->name.'V'.$project->version;
 
 		//TODO Somehow MongoDB Namespace is limited I have to fiqure out how exactly to limit user input of the project name
+
 		$solutionName = $quiz->id.'_So';
 
-		$solution = $db->createCollection($solutionName);
+		$db->command(array(
+			"eval" => new MongoCode('function(){
+		       db[$projectName].copyTo($solutionName)
+			};'		   )
+		));
+
+		/*$solution = $db->createCollection($solutionName);
 		$solution->ensureIndex(['name' => 1], ['unique' => 1]);
 
 		$collection = $db->$projectName;	
@@ -42,7 +49,7 @@ class QuizzesController extends \BaseController {
 
 		foreach($cursor as $document){
 			$solution->insert($document);
-		};;
+		};;*/
 
 		return Redirect::route('quizzes.edit', [$quiz->id])
 			->with('selected', $input);
@@ -87,11 +94,7 @@ class QuizzesController extends \BaseController {
 
 		self::createUserSubmTable($packages, $quizId);
 		self::createResultTable($quizId);
-		$db->command(array(
-		   "eval" => new MongoCode("function(){ " .
-		       "db['3dgpV1'].copyTo('test3')};"
-		   )
-		));
+
 		//self::crossCheck();
 		//self::addForgottenDependencies();
 		//self::colorPackage();
