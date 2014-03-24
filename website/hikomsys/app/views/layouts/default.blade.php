@@ -38,28 +38,24 @@
 	<body>	
 		<div id="wrapper">
 			<nav>
-				<div>
-					<div>
-						<ul>
-							<li>{{ HTML::linkRoute('home', 'Home') }}</li>
-						 	@if(Auth::check())
-		                    	<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
-		                    	<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
-		                    	<li>{{ HTML::linkRoute('users.showall', 'Users') }}</li>
-		                    	<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
-		                    @else
-		                    	{{-- TODO need a login directly in nav --}}
-		                	@endif
-						</ul>
-						<ul>
-							@if(Auth::check())
-								<li>{{ HTML::link('logout', 'Logout') }}</li>
-							@else
-								<li>{{ HTML::link('login', 'Login') }}</li>
-							@endif
-						</ul>
-					</div>
-				</div>
+				<ul>
+					<li>{{ HTML::linkRoute('home', 'Home') }}</li>
+				 	@if(Auth::check())
+                    	<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
+                    	<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
+                    	<li>{{ HTML::linkRoute('users.showall', 'Users') }}</li>
+                    	<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
+                    @else
+                    	{{-- TODO need a login directly in nav --}}
+                	@endif
+				</ul>
+				<ul>
+					@if(Auth::check())
+						<li>{{ HTML::link('logout', 'Logout') }}</li>
+					@else
+						<li>{{ HTML::link('login', 'Login') }}</li>
+					@endif
+				</ul>
 			</nav>
 			<header>
 				<h1>How I KnOw My SYStem</h1>
