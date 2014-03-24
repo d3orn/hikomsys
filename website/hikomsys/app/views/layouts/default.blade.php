@@ -72,7 +72,7 @@
 
 			<header class="panel">
 				<h1>
-					{{ HTML::image('foundation/img/logo.png', 'Hikomsys Logo') }}
+					{{ HTML::image('foundation/img/logo.fw.png', 'Hikomsys Logo') }}
 					How I KnOw My SYStem
 				</h1>
 			</header>
