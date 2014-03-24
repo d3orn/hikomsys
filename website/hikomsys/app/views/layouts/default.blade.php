@@ -74,7 +74,7 @@
 			</div>
 
 			<header class="panel">
-				<a href="www.blick.ch">
+				<a href={{ link_to_route('home') }}>
 					<h1 class="row">
 						{{ HTML::image('foundation/img/logo.fw.png', 'Hikomsys Logo') }}
 						How I KnOw My SYStem
@@ -93,7 +93,6 @@
 				</div>
 	
 				<section class="row">
-					{{ link_to_route('home') }}
 					@yield('content')
 					}
 				</section>
