@@ -50,10 +50,8 @@
 								<li class="has-dropdown">
 									<a href="#">{{ Auth::user()->username }}</a>
 									<ul class="dropdown">
-										{{ HTML::linkRoute('users.edit', 'Edit Profile', [Auth::user()->id]) }}
-									</ul>
-									<ul class="dropdown">
-										{{ HTML::linkRoute('users.edit', 'Edit Profile', [Auth::user()->id]) }}
+										<li>{{ HTML::linkRoute('users.edit', 'Edit Profile', [Auth::user()->id]) }}</li>
+										<li>{{ HTML::linkRoute('users.edit', 'Edit Profile', [Auth::user()->id]) }}</li>
 									</ul>
 								</li>
 								<li class="divider"></li>
