@@ -22,5 +22,8 @@
 			    {{ Form::submit('Login', ['class'=>'submit button'])}}
 			{{ Form::close() }}
 		</div>
+		<div class="large-8 medium-8 columns">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, neque!</p>
+		</div>
 	</div>
 @stop
