@@ -42,14 +42,14 @@
 			    <li class="name">
 			      <h1><a href="#">Hikomsys</a></h1>
 			    </li>
-			    <li class="toggle-topbar menu-icon"><a href="#"></a></li>
+			    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 			  </ul>
 
-			  <section class="top-bar-section">
+			  <section class="top-bar-section ">
 			    <!-- Right Nav Section -->
 			    <ul class="right">
 			     	@if(Auth::check())
-						<li>{{ HTML::link('logout', 'Logout') }}</li>
+						<li class="has-form">{{ HTML::link('logout', 'Logout') }}</li>
 					@else
 						<li>{{ HTML::link('login', 'Login') }}</li>
 					@endif
@@ -60,6 +60,7 @@
 			      	<li>{{ HTML::linkRoute('home', 'Home') }}</li>
 				 	@if(Auth::check())
                     	<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
+                    	<li class="divider"></li>
                     	<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
                     	<li>{{ HTML::linkRoute('users.showall', 'Users') }}</li>
                     	<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
@@ -69,11 +70,6 @@
 			    </ul>
 			  </section>
 			</nav>
-
-
-
-
-
 
 			<header>
 				<h1>How I KnOw My SYStem</h1>
