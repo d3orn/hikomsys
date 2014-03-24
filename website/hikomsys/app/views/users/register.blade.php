@@ -36,6 +36,6 @@
 	{{ Form::label('password_confirmation', 'Password') }}
 	{{ Form::password('password_confirmation', ['placeholder'=>'Confirm Password']) }}
 
-	{{ Form::submit('Sign Up', ['class'=>'submit'))}}
+	{{ Form::submit('Sign Up', ['class'=>'submit'])}}
 
 @stop
