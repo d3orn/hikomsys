@@ -92,9 +92,14 @@
 			<footer class="top-bar bottom-bar">
 				<hr>
 				<section class="top-bar-section">
+					<ul class="title-area">
+					</ul>
 					<ul class="right">
 						<address>Dominique Rahm &middot {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
 					</ul>
+					</ul>
+					<!-- Left Nav Section -->
+					<ul class="left"></ul>
 				</section>
 			</footer>
 
