@@ -4,8 +4,6 @@
 @stop
 
 @section("content")
-	
-	<div class="row">
 
 		<h2>How do you know your system?</h2>
 		 
@@ -32,7 +30,5 @@
 			</div>
 
 		</div>
-
-	</div>
 
 @stop
