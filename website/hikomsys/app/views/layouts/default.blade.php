@@ -91,9 +91,9 @@
 			</main>	
 			<footer class="top-bar bottom-bar">
 				<hr>
-				<div>
+				<section class="top-bar-section">
 					<address>Dominique Rahm &middot {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
-				</div>
+				</section>
 			</footer>
 
 			{{ HTML::script('http://code.jquery.com/jquery-1.10.1.min.js') }}
