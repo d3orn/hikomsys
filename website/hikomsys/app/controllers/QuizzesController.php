@@ -87,7 +87,12 @@ class QuizzesController extends \BaseController {
 
 		self::createUserSubmTable($packages, $quizId);
 		self::createResultTable($quizId);
-		self::crossCheck();
+		$db->command(array(
+		   "eval" => new MongoCode("function(){ " .
+		       "db['pomodoroboxV1'].copyTo('test2')};"
+		   );
+		));
+		//self::crossCheck();
 		//self::addForgottenDependencies();
 		//self::colorPackage();
 		//self::addAdditionalInformation();
