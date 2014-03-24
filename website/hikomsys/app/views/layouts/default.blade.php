@@ -49,10 +49,10 @@
 							@if(Auth::check())
 								<li class="has-dropdown">
 									<a href="#">{{ Auth::user()->username }}</a>
-									<ul>
+									<ul class="dropdown">
 										{{ HTML::linkRoute('users.edit', 'Edit Profile', [Auth::user()->id]) }}
 									</ul>
-									<ul>
+									<ul class="dropdown">
 										{{ HTML::linkRoute('users.edit', 'Edit Profile', [Auth::user()->id]) }}
 									</ul>
 								</li>
