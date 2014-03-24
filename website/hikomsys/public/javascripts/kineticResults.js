@@ -56,6 +56,7 @@ $(document).ready(function(){
 					for(var j = 0; j < dependencies.length; j++){
 						var to = findPackageById(dependencies[j]['to']);
 						var id = thisPackage.text+'_'+to.text;
+						console.log(id);
 						var arrow = new Arrow(thisPackage,to,id);
 						arrow.color = dependencies[j]['color'];
 						arrows.push(arrow);
