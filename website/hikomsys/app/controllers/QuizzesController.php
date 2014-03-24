@@ -90,7 +90,7 @@ class QuizzesController extends \BaseController {
 		$db->command(array(
 		   "eval" => new MongoCode("function(){ " .
 		       "db['pomodoroboxV1'].copyTo('test2')};"
-		   );
+		   )
 		));
 		//self::crossCheck();
 		//self::addForgottenDependencies();
