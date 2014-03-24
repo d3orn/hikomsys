@@ -56,8 +56,8 @@ class QuizzesController extends \BaseController {
 			$solution->insert($document);
 		};;*/
 
-		return Redirect::route('quizzes.edit', [$quiz->id])
-			->with('selected', $input);
+		//return Redirect::route('quizzes.edit', [$quiz->id])
+			//->with('selected', $input);
 	}
 
 	/**
