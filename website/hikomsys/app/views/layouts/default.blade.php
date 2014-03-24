@@ -37,43 +37,39 @@
 	</head>
 	<body>	
 		<div id="wrapper">
-			<nav class="top-bar" data-topbar>
-			  <ul class="title-area">
-			    <li class="name">
-			      <h1><a href="#">Hikomsys</a></h1>
-			    </li>
-			    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-			  </ul>
+			<div class="fixed">
+				<nav class="top-bar" data-topbar>
+				  <ul class="title-area">
+				    <li class="name">
+				      <h1>{{ HTML::linkRoute('home', 'Hikomsys') }}</h1>
+				    </li>
+				    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+				  </ul>
 
-			  <section class="top-bar-section">
-			    <!-- Right Nav Section -->
-			    <ul class="right">
-			     	@if(Auth::check())
-						<li class="has-form">{{ HTML::link('logout', 'Logout',['class'=>'button']) }}</li>
-					@else
-						<li class="has-form">{{ HTML::link('login', 'Login',['class'=>'button']) }}</li>
-					@endif
-			    </ul>
+				  <section class="top-bar-section">
+				    <!-- Right Nav Section -->
+				    <ul class="right">
+				    	@if(Auth::check())
+	                    	<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
+	                    	<li class="divider"></li>
+	                    	<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
+	                    	<li class="divider"></li>
+	                    	<li>{{ HTML::linkRoute('users.showall', 'Users') }}</li>
+	                    	<li class="divider"></li>
+	                    	<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
+	                    	<li class="divider"></li>
+	                    	<li class="has-form">{{ HTML::link('logout', 'Logout',['class'=>'button']) }}</li>
+	                    @else
+	                   	 <li class="has-form">{{ HTML::link('login', 'Login',['class'=>'button']) }}</li>
+	                    	{{-- TODO need a login directly in nav --}}
+	                	@endif
+				    </ul>
 
-			    <!-- Left Nav Section -->
-			    <ul class="left">
-			      	<li>{{ HTML::linkRoute('home', 'Home') }}</li>
-			      	<li class="divider"></li>
-				 	@if(Auth::check())
-                    	<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
-                    	<li class="divider"></li>
-                    	<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
-                    	<li class="divider"></li>
-                    	<li>{{ HTML::linkRoute('users.showall', 'Users') }}</li>
-                    	<li class="divider"></li>
-                    	<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
-                    	<li class="divider"></li>
-                    @else
-                    	{{-- TODO need a login directly in nav --}}
-                	@endif
-			    </ul>
-			  </section>
-			</nav>
+				    <!-- Left Nav Section -->
+				    <ul class="left"></ul>
+				  </section>
+				</nav>
+			</div>
 
 			<header>
 				<h1>How I KnOw My SYStem</h1>
