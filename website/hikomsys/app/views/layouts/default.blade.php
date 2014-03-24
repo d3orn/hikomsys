@@ -93,7 +93,9 @@
 				</div>
 	
 				<section class="row">
+					{{ link_to_route(home) }}
 					@yield('content')
+					}
 				</section>
 			</main>	
 			<footer class="bottom-bar">	
