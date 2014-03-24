@@ -90,7 +90,7 @@
 				</section>
 			</main>	
 			<footer class="bottom-bar">	
-				<section>
+				<section class="footertext">
 					<address>Dominique Rahm &middot {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
 				</section>
 			</footer>
