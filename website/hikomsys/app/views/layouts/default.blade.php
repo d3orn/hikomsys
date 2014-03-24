@@ -37,7 +37,7 @@
 	</head>
 	<body>	
 		<div id="wrapper">
-			<nav>
+<!-- 			<nav>
 				<ul>
 					<li>{{ HTML::linkRoute('home', 'Home') }}</li>
 				 	@if(Auth::check())
@@ -56,7 +56,38 @@
 						<li>{{ HTML::link('login', 'Login') }}</li>
 					@endif
 				</ul>
+			</nav> -->
+
+			<nav class="top-bar" data-topbar>
+			  <ul class="title-area">
+			    <li class="name">
+			      <h1><a href="#">My Site</a></h1>
+			    </li>
+			    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+			  </ul>
+
+			  <section class="top-bar-section">
+			    <!-- Right Nav Section -->
+			    <ul class="right">
+			     	@if(Auth::check())
+						<li>{{ HTML::link('logout', 'Logout') }}</li>
+					@else
+						<li>{{ HTML::link('login', 'Login') }}</li>
+					@endif
+			    </ul>
+
+			    <!-- Left Nav Section -->
+			    <ul class="left">
+			      <li><a href="#">Left Nav Button</a></li>
+			    </ul>
+			  </section>
 			</nav>
+
+
+
+
+
+
 			<header>
 				<h1>How I KnOw My SYStem</h1>
 			</header>
