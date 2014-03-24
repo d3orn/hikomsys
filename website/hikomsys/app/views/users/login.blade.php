@@ -8,11 +8,11 @@
 	{{ Form::open(['route'=>'sessions.store', 'class' => '']) }}
 	  
 			<div class="form">
-				{{ Form::label('username', 'Username', ['class' => '']) }}
-			    {{ Form::text('username', null, ['placeholder'=>'Username', 'class' => '']) }}
+				{{ Form::label('username', 'Username') }}
+			    {{ Form::text('username', null, ['placeholder'=>'Username', 'class' => 'large-12 columns']) }}
 
-			    {{ Form::label('password', 'Password', ['class' => '']) }}
-			    {{ Form::password('password', ['placeholder'=>'Password','class' => '']) }}
+			    {{ Form::label('password', 'Password') }}
+			    {{ Form::password('password', ['placeholder'=>'Password','class' => 'large-12 columns']) }}
 			</div>
 
 	    {{ Form::submit('Login', ['class'=>'submit button'])}}
