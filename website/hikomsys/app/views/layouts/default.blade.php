@@ -76,23 +76,12 @@
 			<main class="row">
 
 				@if(Session::has('message'))
-					<div data-alert data-options="animation_speed:500;" class="alert-box">
+					<div data-alert data-options="animation_speed:500;" class="alert-box warning">
 						{{Session::get('message')}}
+						<a href="#" class="close">&times;</a>
 					</div>
 				@endif
-
-				@if($errors->has())
-					<div data-alert data-options="animation_speed:500;" class="alert-box">
-						{{ $error }}
-						<ul>
-							@foreach($errors->all() as $error)
-								<li>{{ $error }}</li>
-							@endforeach
-						</ul>
-					</div>
-				@endif
-
-
+	
 				<section>
 					@yield('content')
 				</section>
