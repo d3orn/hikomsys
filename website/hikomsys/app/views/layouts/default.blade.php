@@ -62,9 +62,7 @@
 				</div>
 			</nav>
 			<header class="page-header">
-				<div class="container">
-					<h1>How I KnOw My SYStem</h1>
-				</div>
+				<h1>How I KnOw My SYStem</h1>
 			</header>
 			<main class="row">
 
@@ -73,12 +71,12 @@
 						{{Session::get('message')}}
 					</p>
 				@endif
-				<section class="well row">
+				<section>
 					@yield('content')
 				</section>
 			</main>	
 			<footer>
-				<div class="container">
+				<div>
 					<address>Dominique Rahm &middot {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
 				</div>
 			</footer>
