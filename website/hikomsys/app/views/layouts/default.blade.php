@@ -57,6 +57,7 @@
 								<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
 								<li class="divider"></li>
 								<li class="has-form">{{ HTML::link('#', 'Random Quiz',['class'=>'button success']) }}</li>
+								<li class="divider"></li>
 								<li class="has-form">{{ HTML::link('logout', 'Logout',['class'=>'button']) }}</li>
 							@else
 								<li class="has-form">{{ HTML::link('login', 'Login',['class'=>'button']) }}</li>
@@ -75,9 +76,11 @@
 			<main class="row">
 
 				@if(Session::has('message'))
-					<p id="message">
-						{{Session::get('message')}}
-					</p>
+					<div data-alert class="alert-box">
+						<p id="message">
+							{{Session::get('message')}}
+						</p>
+					</div>
 				@endif
 				<section>
 					@yield('content')

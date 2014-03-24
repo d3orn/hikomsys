@@ -8,7 +8,7 @@
 	<h1>{{ $title }}</h1>
 
 	@if($projects)
-		<table class="table table-striped table-hover">
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>Project Name</th>
