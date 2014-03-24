@@ -160,9 +160,6 @@ function PackageGroup(text, color, infos){
 				var packageIds = arrows[i].id.split("_");
 				//see the bug in Arrow.draw()
 				packages = [packageLayer.find('#'+packageIds[0])[0], packageLayer.find('#'+packageIds[1])[0]];
-				console.log(this.getId())
-				console.log(packages[0].getId())
-				console.log(packages[1].getId())
 				if(packages[0].getId() == this.getId() || packages[1].getId() == this.getId()){
 					arrows[i].remove();
 					arrows[i].draw();

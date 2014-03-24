@@ -36,10 +36,8 @@ $(document).ready(function(){
 	$.post('sendJSON', {'quizId' : quizId})
 		.done(function(data){
 			data = $.parseJSON(data);
-			console.log(data);
 			for(var i = 0; i < data.length; i++){
 				infos = [];
-				//console.log(data[i].classes);
 				infos['classes'] = data[i].classes;
 				infos['children'] = data[i].children;
 				infos['allDependencies'] = data[i].allDependencies;
@@ -52,12 +50,10 @@ $(document).ready(function(){
 			for(var i = 0; i < data.length; i++){
 				var thisPackage = findPackageById(data[i].name);
 				var dependencies = data[i].dependencies;
-				//console.log(dependencies);
 				if(dependencies){
 					for(var j = 0; j < dependencies.length; j++){
 						var to = findPackageById(dependencies[j]['to']);
 						var id = thisPackage.text+'_'+to.text;
-						//console.log(id);
 						var arrow = new Arrow(thisPackage,to,id);
 						arrow.color = dependencies[j]['color'];
 						arrows.push(arrow);

@@ -186,7 +186,6 @@ class QuizzesController extends \BaseController {
 			$currentPackageName = $value['name'];
 			self::checkDependencies($dependencies, $currentPackageName);
 		}
-		var_dump($results);
 	}
 
 	private function checkDependencies($dependencies, $packageName){
