@@ -35,7 +35,7 @@ class QuizzesController extends \BaseController {
 
 		$db->command(array(
 			"eval" => new MongoCode("function(){
-		       db[$projectName].copyTo($solutionName)
+		       db[".$projectName."].copyTo(".$solutionName.")
 			};"
 			)
 		));
