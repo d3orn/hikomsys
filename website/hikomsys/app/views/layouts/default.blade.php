@@ -47,7 +47,15 @@
 					<!-- Right Nav Section -->
 						<ul class="right">
 							@if(Auth::check())
-								<li>{{ HTML::linkRoute('users.edit', Auth::user()->username, [Auth::user()->id]) }}</li>
+								<li class="has-dropdown">
+									<a href="#">{{ Auth::user()->username }}</a>
+									<ul>
+										{{ HTML::linkRoute('users.edit',Edit Profile, [Auth::user()->id]) }}
+									</ul>
+									<ul>
+										{{ HTML::linkRoute('users.edit',Edit Profile, [Auth::user()->id]) }}
+									</ul>
+								</li>
 								<li class="divider"></li>
 								<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
 								<li class="divider"></li>
