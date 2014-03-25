@@ -32,23 +32,23 @@
 			<p> Sorry you did not uplade any projects yet, please do so by filling out the form below </p>
 			<p>Please enter a valid Github link</p>
 
-			{{ Form::open(['route'=>'projects.store', 'class' => 'well col-md-4']) }}
+			{{ Form::open(['route'=>'projects.store']) }}
 
 				<fieldset>
 					
 					<div class="form-group">
-						{{ Form::label('url', 'Gitrepository URL:', ['class' => 'form-label']) }}
+						{{ Form::label('url', 'Gitrepository URL:') }}
 						{{ Form::url('url', null,   ['class' => 'form-control'])}}
 					</div>
 
 					<div class="form-group">
-						{{ Form::label('projectName', 'Project name:',  ['class' => 'form-label']) }}
+						{{ Form::label('projectName', 'Project name:') }}
 						{{ Form::text('projectName', null, ['class' => 'form-control']) }}
 					</div>
 
 				</fieldset>
 
-				{{ Form::submit('Submit Repository', ['class'=>'submit btn btn-primary']) }}
+				{{ Form::submit('Submit Repository', ['class'=>'submit button']) }}
 
 			{{ Form::close() }}
 		@endif
