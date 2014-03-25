@@ -25,7 +25,7 @@
 								{{ HTML::linkRoute('users.edit', 'Edit this User', [$user->id], ['class'=>'small button success radius']) }}
 								{{ Form::open(['route' => ['users.destroy' , $user->id]]) }}
 									{{ Form::hidden('_method', 'DELETE') }}
-									{{ Form::submit('Delete', 'class' => 'small button alert radius') }}
+									{{ Form::submit('Delete', ['class' => 'small button alert radius']) }}
 								{{ Form::close() }}
 							@endif
 						</td>
