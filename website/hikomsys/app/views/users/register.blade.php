@@ -29,6 +29,7 @@
 
 				{{ Form::label('email', 'E-Mail') }}
 				{{ Form::email('email', null, ['placeholder'=>'Email Address']) }}
+				<small class="error">An email address is required.</small>
 
 				{{ Form::label('password', 'Password') }}
 				{{ Form::password('password', ['placeholder'=>'Password']) }}
