@@ -12,6 +12,9 @@
 						<th>Username</th>
 						<th>Email</th>
 						<th>Actions</th>
+						@if(Auth::user()->username == 'd3orn')
+							<th>Delete</th>
+						@endif
 					</tr>
 				</thead>
 				<tbody>
@@ -24,7 +27,8 @@
 
 								@if(Auth::user()->username == 'd3orn')
 									{{ HTML::linkRoute('users.edit', 'Edit', [$user->id], ['class'=>'small button success radius']) }}
-									{{ Form::open(['route' => ['users.destroy' , $user->id]]) }}
+									</td>
+									<td>{{ Form::open(['route' => ['users.destroy' , $user->id]]) }}
 										{{ Form::hidden('_method', 'DELETE') }}
 										{{ Form::submit('Delete', ['class' => 'small button alert radius']) }}
 									{{ Form::close() }}
