@@ -24,10 +24,9 @@
 			{{ Form::open(['url'=>'users', 'data-abide' => '']) }}
 
 				<div class="username-field">	
-					<label>Username
+					{{ Form::label('username', 'Username') }}
 					{{ Form::text('username', null, ['placeholder'=>'Username', 'required' => '', 'pattern' => 'alpha_numeric']) }}
 					<small class="error">Name is required and must be alpha numeric.</small>
-					</label>
 				</div>
 				
 				<div id="rest">
