@@ -5,7 +5,7 @@
 		<h2>Welcome on Hikomsys</h2>
 		<p> If you are new please {{ HTML::linkRoute('users.create', 'Sign up') }} , else sign in below </p>
 	</div>
-	<div class="row"></div>
+	<div class="row">
 		<div class="large-5 medium-5 columns">
 			<h2>Login</h2>
 
