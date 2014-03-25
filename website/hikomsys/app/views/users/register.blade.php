@@ -31,20 +31,20 @@
 				
 				<div class="email-field">
 					{{ Form::label('email', 'E-Mail') }}
-					{{ Form::email('email', null, ['placeholder'=>'Email Address']) }}
-					<small class="error">An email address is required.</small>
+					{{ Form::email('email', null, ['placeholder'=>'Email Address', 'required' => '']) }}
+					<small class="error">An  valid email address is required.</small>
 				</div>
 
 				<div class="password-field">
 					{{ Form::label('password', 'Password') }}
-					{{ Form::password('password', ['placeholder'=>'Password']) }}
+					{{ Form::password('password', ['placeholder'=>'Password', 'patter' => 'password']) }}
 					<small class="error">Your password has to be atleast 8 characters long.</small>
 				</div>
 	
 				<div class="password-confirmation-field">
 					{{ Form::label('password_confirmation', 'Password') }}
 					{{ Form::password('password_confirmation', ['placeholder'=>'Confirm Password', 'required' => '', 'pattern' => 'password', 'data-equalto' => 'password']) }}
-					<small class="error">The password did not match.</small>
+					<small class="error">Passwords must match.</small>
 				</div>
 
 				{{ Form::submit('Sign Up', ['class'=>'submit button'])}}
