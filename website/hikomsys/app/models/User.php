@@ -8,8 +8,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $guarded = array('id', 'created_at', 'updated_at');
 
 	public static $rules = array(
-   		'firstname'=>'required|alpha|min:2',
-    	'lastname'=>'required|alpha|min:2',
+   		'firstname'=>'alpha|min:2',
+    	'lastname'=>'alpha|min:2',
     	'email'=>'required|email|unique:users',
     	'username'=>'required|alpha_num|unique:users',
     	'password'=>'required|alpha_num|between:6,12|confirmed',
