@@ -25,6 +25,7 @@ class ProjectsController extends BaseController {
 	}
 
 	public function store(){
+		//maybe I have to manually add https://
 		$url = Input::get("url");
 		$parsedUrl = parse_url($url);
 

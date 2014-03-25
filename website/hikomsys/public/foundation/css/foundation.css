@@ -1146,9 +1146,9 @@ meta.foundation-mq-topbar {
   .top-bar input {
     margin-bottom: 0; }
   .top-bar input {
-    height: auto;
-    padding-top: .35rem;
-    padding-bottom: .35rem;
+    height: auto !important;
+    padding-top: .35rem !important;
+    padding-bottom: .35rem !important;
     font-size: 0.75rem; }
   .top-bar .button {
     padding-top: .45rem;

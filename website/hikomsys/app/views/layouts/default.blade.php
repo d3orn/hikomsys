@@ -18,7 +18,6 @@
 		<link rel="apple-touch-icon" sizes="72×72" href="/touch-icon-72×72.png" />
 		<link rel="apple-touch-icon" href="/touch-icon-iphone.png" />
 		
-		{{ HTML::style('css/cssreset.css') }}
 		{{ HTML::style('css/general.css') }}
 		{{ HTML::style('foundation/css/foundation.css') }}
 		
@@ -48,13 +47,31 @@
 					<!-- Right Nav Section -->
 						<ul class="right">
 							@if(Auth::check())
-								<li id="navUser">{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
-								<li class="divider"></li>
-								<li id="navProjects">{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
+								<li class="has-dropdown">
+									<a href="#">{{ Auth::user()->username }}</a>
+									<ul class="dropdown">
+										<li>{{ HTML::linkRoute('users.edit', 'Edit My Profile', [Auth::user()->id]) }}</li>
+										<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
+									</ul>
+								</li>	
 								<li class="divider"></li>
 								<li id="navUsers">{{ HTML::linkRoute('users.showall', 'Users') }}</li>
 								<li class="divider"></li>
 								<li id="navAllProjects">{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
+								<li class="divider"></li>
+								
+								<li class="has-form">
+									<form>
+										<div class="row collapse">
+											<div class="large-8 small-9 columns">
+												<input type="text" placeholder="Find Stuff">
+											</div>
+											<div class="large-4 small-3 columns">
+												<a href="#" class="alert button expand">Search</a>
+											</div>
+										</div>
+									</form>
+								</li>
 								<li class="divider"></li>
 								<li class="has-form">{{ HTML::link('#', 'Random Quiz',['class'=>'button success']) }}</li>
 								<li class="divider"></li>
@@ -71,36 +88,44 @@
 			</div>
 
 			<header class="panel">
-				<h1>How I KnOw My SYStem</h1>
+				<a href="{{ route('home') }}">
+					<h1 class="row">
+						{{ HTML::image('foundation/img/logo.fw.png', 'Hikomsys Logo') }}
+						How I KnOw My SYStem
+					</h1>
+				</a>
 			</header>
-			<main class="row">
+			<main>
+				<div class="row">
 
-				@if(Session::has('message'))
-					<p id="message">
-						{{Session::get('message')}}
-					</p>
-				@endif
-				<section>
+					@if(Session::has('message'))
+						<div data-alert data-options="animation_speed:500;" class="alert-box warning large-12">
+							{{Session::get('message')}}
+							<a href="#" class="close">&times;</a>
+						</div>
+					@endif
+				</div>
+	
+				<section class="row">
 					@yield('content')
 				</section>
 			</main>	
-			<footer>
-				<hr>
-				<div>
+			<footer class="bottom-bar">	
+				<section class="footertext">
 					<address>Dominique Rahm &middot {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
-				</div>
+				</section>
 			</footer>
 
 			{{ HTML::script('http://code.jquery.com/jquery-1.10.1.min.js') }}
 			{{ HTML::script('http://code.jquery.com/jquery-migrate-1.2.1.min.js') }}
 			{{ HTML::script('foundation/js/foundation.min.js') }}	
-			{{ HTML::script('foundation/js/js/vendor/modernizr.js') }}
+			{{ HTML::script('foundation/js/vendor/modernizr.js') }}
 			
 			@yield('scripts')
 
 			<script>
 		 		$(document).foundation();
-		</script>
+			</script>
 
 		</div>	
 	</body>
