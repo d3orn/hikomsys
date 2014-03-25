@@ -37,7 +37,7 @@
 
 				<div class="password-field">
 					{{ Form::label('password', 'Password') }}
-					{{ Form::password('password', ['placeholder'=>'Password', 'patter' => 'password']) }}
+					{{ Form::password('password', ['placeholder'=>'Password', 'required' => '', 'pattern' => 'password']) }}
 					<small class="error">Your password has to be atleast 8 characters long.</small>
 				</div>
 	
