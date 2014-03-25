@@ -19,7 +19,7 @@
 				</div>
 			@endif
 
-			{{ Form::open(['url'=>'users', 'class' => 'large-6 columns']) }}
+			{{ Form::open(['url'=>'users']) }}
 
 			{{ Form::label('username', 'Username') }}
 			{{ Form::text('username', null, ['placeholder'=>'Username']) }}
