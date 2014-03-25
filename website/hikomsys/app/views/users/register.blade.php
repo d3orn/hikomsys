@@ -29,7 +29,8 @@
 					<small class="error">Name is required and must be alpha numeric.</small>
 					</label>
 				</div>
-
+				
+				<div id="rest">
 				{{ Form::label('email', 'E-Mail') }}
 				{{ Form::email('email', null, ['placeholder'=>'Email Address']) }}
 				<small class="error">An email address is required.</small>
@@ -41,6 +42,7 @@
 				{{ Form::label('password_confirmation', 'Password') }}
 				{{ Form::password('password_confirmation', ['placeholder'=>'Confirm Password', 'required' => '', 'pattern' => 'password', 'data-equalto' => 'password']) }}
 				<small class="error">The password did not match.</small>
+				</div>
 
 				{{ Form::submit('Sign Up', ['class'=>'submit button'])}}
 
