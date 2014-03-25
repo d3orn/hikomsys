@@ -73,11 +73,11 @@
 									</form>
 								</li>
 								<li class="divider"></li>
-								<li class="has-form">{{ HTML::linkRoute('projects.random', 'Random Quiz', 'class'=>'button success') }}</li>
+								<li class="has-form">{{ HTML::linkRoute('projects.random', 'Random Quiz', ['class'=>'button success']) }}</li>
 								<li class="divider"></li>
-								<li class="has-form">{{ HTML::link('logout', 'Logout',['class'=>'button']) }}</li>
+								<li class="has-form">{{ HTML::link('logout', 'Logout', ['class'=>'button']) }}</li>
 							@else
-								<li class="has-form">{{ HTML::link('login', 'Login',['class'=>'button']) }}</li>
+								<li class="has-form">{{ HTML::link('login', 'Login', ['class'=>'button']) }}</li>
 								{{-- TODO need a login directly in nav --}}
 							@endif
 						</ul>
