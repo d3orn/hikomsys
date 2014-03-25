@@ -1,9 +1,11 @@
 @extends('layouts.default')
 @section("content")
 
-	<div class="large-12 columns">
-		<h2>Welcome on Hikomsys</h2>
-		<p> If you are new please {{ HTML::linkRoute('users.create', 'Sign up') }} , else sign in below </p>
+	<div class="row">
+		<div class="large-12 columns">
+			<h2>Welcome on Hikomsys</h2>
+			<p> If you are new please {{ HTML::linkRoute('users.create', 'Sign up') }} , else sign in below </p>
+		</div>
 	</div>
 	<div class="row">
 		<div class="large-5 medium-5 columns">
