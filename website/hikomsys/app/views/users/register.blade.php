@@ -33,11 +33,11 @@
 
 				{{ Form::label('password', 'Password') }}
 				{{ Form::password('password', ['placeholder'=>'Password', 'required' => '', 'pattern' => 'password']) }}
-				<small class="error">An email address is required.</small>
+				<small class="error">Your password has to be atleast 8 characters long.</small>
 
 				{{ Form::label('password_confirmation', 'Password') }}
 				{{ Form::password('password_confirmation', ['placeholder'=>'Confirm Password', 'required' => '', 'pattern' => 'password', 'data-equalto' => 'password']) }}
-				<small class="error">An email address is required.</small>
+				<small class="error">The password did not match.</small>
 
 				{{ Form::submit('Sign Up', ['class'=>'submit button'])}}
 
