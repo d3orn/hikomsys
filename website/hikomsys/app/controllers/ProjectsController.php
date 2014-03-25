@@ -121,4 +121,10 @@ class ProjectsController extends BaseController {
 			]);
 		return View::make('projects.index', compact('projects', 'title'));
 	}
+
+	public function random(){
+		$id = Project::all()->random(1)->id
+		return Redirect::route('projects.show', $id);
+	}
+
 }
