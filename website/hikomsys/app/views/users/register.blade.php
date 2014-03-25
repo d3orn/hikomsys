@@ -23,10 +23,11 @@
 
 			{{ Form::open(['url'=>'users', 'data-abide' => '']) }}
 
-				<div id="username-field">	
-					{{ Form::label('username', 'Username') }}
+				<div class="username-field">	
+					<label>Username
 					{{ Form::text('username', null, ['placeholder'=>'Username', 'required' => '', 'pattern' => 'alpha_numeric']) }}
 					<small class="error">Name is required and must be alpha numeric.</small>
+					</label>
 				</div>
 
 				{{ Form::label('email', 'E-Mail') }}
