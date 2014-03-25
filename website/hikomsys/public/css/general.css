@@ -10,11 +10,11 @@ body {
 
 td{
 	text-align: center;
+	width: 100%;
 }
 
 td a{
 	margin: 0 !important;
-	width: 100%;
 }
 
 .bottom-bar{
