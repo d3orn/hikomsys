@@ -25,12 +25,13 @@
 
 				{{ Form::label('username', 'Username') }}
 				{{ Form::text('username', null, ['placeholder'=>'Username', 'required' => '', 'pattern' => 'alpha_numeric']) }}
+				<small class="error">Name is required and must be alpha numeric.</small>
 
 				{{ Form::label('email', 'E-Mail') }}
-				{{ Form::text('email', null, ['placeholder'=>'Email Address', 'type' => 'email']) }}
+				{{ Form::email('email', null, ['placeholder'=>'Email Address']) }}
 
 				{{ Form::label('password', 'Password') }}
-				{{ Form::password('password', ['placeholder'=>'Password', 'type' => 'password']) }}
+				{{ Form::password('password', ['placeholder'=>'Password']) }}
 
 				{{ Form::label('password_confirmation', 'Password') }}
 				{{ Form::password('password_confirmation', ['placeholder'=>'Confirm Password']) }}
