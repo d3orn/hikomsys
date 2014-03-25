@@ -26,12 +26,6 @@
 			{{ Form::label('username', 'Username') }}
 			{{ Form::text('username', null, ['placeholder'=>'Username']) }}
 
-			{{ Form::label('firstname', 'Firstname') }}
-			{{ Form::text('firstname', null, ['placeholder'=>'First Name']) }}
-
-			{{ Form::label('lastname', 'Lastname') }}
-			{{ Form::text('lastname', null, ['placeholder'=>'Last Name']) }}
-
 			{{ Form::label('email', 'E-Mail') }}
 			{{ Form::text('email', null, ['placeholder'=>'Email Address']) }}
 
