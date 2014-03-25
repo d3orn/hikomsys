@@ -4,6 +4,7 @@
 @stop
 
 @section("content")
+
 	<div class="row">
 		<div class="large-12 medium-12 columns">
 			<table>
@@ -20,7 +21,7 @@
 				<tbody>
 					@foreach($users as $user)
 						<tr>
-							<td>{{ $user->firstname }}</td>
+							<td>{{ $user->username }}</td>
 							<td>{{ $user->email }}</td>
 							<td>
 								{{ HTML::linkRoute('users.show', 'Inspect', [$user->id], ['class'=>'small button radius']) }}
