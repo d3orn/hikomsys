@@ -14,7 +14,7 @@ Route::resource('sessions' , 'SessionsController', ['only' => ['store']]);
 
 //ProjectsController
 Route::get('projects/showall' ,['as' => 'projects.showall', 'uses' => 'ProjectsController@showall']);
-Route::get('projects/random', ['as' => 'projects.random', 'uses' => 'ProjectsController@random'])
+Route::get('projects/random', ['as' => 'projects.random', 'uses' => 'ProjectsController@random']);
 Route::resource('projects', 'ProjectsController', ['only' => ['index', 'store', 'show']]);  
 
 //QuizzesController
