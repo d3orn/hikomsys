@@ -106,7 +106,7 @@
 					@endif
 				</div>
 	
-				<section class="row">
+				<section>
 					@yield('content')
 				</section>
 			</main>	
