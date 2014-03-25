@@ -37,13 +37,13 @@
 
 				<div class="password-field">
 					{{ Form::label('password', 'Password') }}
-					{{ Form::password('password', ['placeholder'=>'Password', 'required' => '', 'pattern' => 'password']) }}
+					{{ Form::password('password', ['placeholder'=>'Password', 'required' => '', 'pattern' => 'alpha_numeric']) }}
 					<small class="error">Your password has to be atleast 8 characters long.</small>
 				</div>
 	
 				<div class="password-confirmation-field">
 					{{ Form::label('password_confirmation', 'Password') }}
-					{{ Form::password('password_confirmation', ['placeholder'=>'Confirm Password', 'required' => '', 'pattern' => 'password', 'data-equalto' => 'password']) }}
+					{{ Form::password('password_confirmation', ['placeholder'=>'Confirm Password', 'data-equalto' => 'password']) }}
 					<small class="error">Passwords must match.</small>
 				</div>
 
