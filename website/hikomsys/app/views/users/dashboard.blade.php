@@ -6,9 +6,11 @@
 @section("content")
 	
 		<div class="row">
-			<h2>How do you know your system?</h2>
-			
-			<p>Welcome back {{ Auth::user()->firstname }} on How I KnOw My SYStem.</p>
+			<div class="large-12 columns">
+				<h2>How do you know your system?</h2>
+				
+				<p>Welcome back {{ Auth::user()->firstname }} on How I KnOw My SYStem.</p>
+			</div>
 		</div>
 
 		<div class="row">
