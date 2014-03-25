@@ -4,10 +4,12 @@
 @stop
 
 @section("content")
-
-		<h2>How do you know your system?</h2>
-		 
-		<p>Welcome back {{ Auth::user()->firstname }} on How I KnOw My SYStem.</p>
+	
+		<div class="row">
+			<h2>How do you know your system?</h2>
+			
+			<p>Welcome back {{ Auth::user()->firstname }} on How I KnOw My SYStem.</p>
+		</div>
 
 		<div class="row">
 
