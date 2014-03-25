@@ -48,15 +48,16 @@
 					<!-- Right Nav Section -->
 						<ul class="right">
 							@if(Auth::check())
-								<li>{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
+								<li id="navUser">{{ HTML::linkRoute('users.edit', 'Profile', [Auth::user()->id]) }}</li>
 								<li class="divider"></li>
-								<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
+								<li id="navProjects">{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
 								<li class="divider"></li>
-								<li>{{ HTML::linkRoute('users.showall', 'Users') }}</li>
+								<li id="navUsers">{{ HTML::linkRoute('users.showall', 'Users') }}</li>
 								<li class="divider"></li>
-								<li>{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
+								<li id="navAllProjects">{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
 								<li class="divider"></li>
 								<li class="has-form">{{ HTML::link('#', 'Random Quiz',['class'=>'button success']) }}</li>
+								<li class="divider"></li>
 								<li class="has-form">{{ HTML::link('logout', 'Logout',['class'=>'button']) }}</li>
 							@else
 								<li class="has-form">{{ HTML::link('login', 'Login',['class'=>'button']) }}</li>

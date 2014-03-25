@@ -15,28 +15,26 @@
         </div>
     @endif
 
-    {{ Form::open(array('url'=>'users')) }}
+    {{ Form::open(['url'=>'users', 'class' => 'large-6 columns']) }}
         
-        <fieldset>
             {{ Form::label('username', 'Username') }}
-            {{ Form::text('username', null, array('placeholder'=>'Username')) }}
+            {{ Form::text('username', null, ['placeholder'=>'Username']) }}
 
             {{ Form::label('firstname', 'Firstname') }}
-            {{ Form::text('firstname', null, array('placeholder'=>'First Name')) }}
+            {{ Form::text('firstname', null, ['placeholder'=>'First Name']) }}
 
             {{ Form::label('lastname', 'Lastname') }}
-            {{ Form::text('lastname', null, array('placeholder'=>'Last Name')) }}
+            {{ Form::text('lastname', null, ['placeholder'=>'Last Name']) }}
 
             {{ Form::label('email', 'E-Mail') }}
-            {{ Form::text('email', null, array('placeholder'=>'Email Address')) }}
+            {{ Form::text('email', null, ['placeholder'=>'Email Address']) }}
 
             {{ Form::label('password', 'Password') }}
-            {{ Form::password('password', array ('placeholder'=>'Password')) }}
+            {{ Form::password('password', ['placeholder'=>'Password']) }}
 
             {{ Form::label('password_confirmation', 'Password') }}
-            {{ Form::password('password_confirmation', array('placeholder'=>'Confirm Password')) }}
-        </fieldset>
+            {{ Form::password('password_confirmation', ['placeholder'=>'Confirm Password']) }}
 
-    {{ Form::submit('Sign Up', array('class'=>'submit'))}}
+    {{ Form::submit('Sign Up', ['class'=>'submit'])}}
 
 @stop
