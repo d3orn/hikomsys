@@ -12,7 +12,7 @@ td{
 	text-align: center;
 }
 
-td a, td form{
+td a, td form, td input{
 	margin: 0 !important;
 }
 
