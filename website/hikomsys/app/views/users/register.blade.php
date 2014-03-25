@@ -43,7 +43,7 @@
 	
 				<div class="password-confirmation-field">
 					{{ Form::label('password_confirmation', 'Password') }}
-					{{ Form::password('password_confirmation', ['placeholder'=>'Confirm Password', 'data-equalto' => 'password']) }}
+					{{ Form::password('password_confirmation', ['placeholder'=>'Confirm Password', 'required' => '', 'data-equalto' => 'password']) }}
 					<small class="error">Passwords must match.</small>
 				</div>
 

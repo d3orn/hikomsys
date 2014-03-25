@@ -22,15 +22,7 @@
 				{{ Form::open(['route'=>'projects.store']) }}
 
 					{{ Form::label('url', 'Gitrepository URL:') }}
-					<div class="row collapse">
-						<div class="small-3 large-2 columns">
-							<span class="prefix">https://</span>
-						</div>
-						<div class="small-9 large-10 columns">
-							{{ Form::url('url')}}
-						</div>
-					</div>
-						
+					{{ Form::url('url')}}
 							
 					{{ Form::label('projectName', 'Project name:',['class' => 'form-label']) }}
 					{{ Form::text('projectName', null, ['class' => 'form-control']) }}
