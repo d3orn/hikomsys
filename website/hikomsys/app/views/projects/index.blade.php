@@ -22,7 +22,7 @@
 						<tr>
 							<td>{{ $project->name }}</td>
 							<td>{{ $project->version }}</td>
-							<td>{{ HTML::linkRoute('projects.show', 'Start new Quiz', [$project->project_id, 'class'=>'submit button'])}}
+							<td>{{ HTML::linkRoute('projects.show', 'Start new Quiz', [$project->project_id], ['class'=>'submit button'])}}
 							{{ HTML::linkRoute('quizzes.index', 'Checkout your results', ['project_id' => $project->project_id])}}</td>
 						</tr>
 					@endforeach
