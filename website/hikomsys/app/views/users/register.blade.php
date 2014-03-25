@@ -23,20 +23,22 @@
 
 			{{ Form::open(['url'=>'users', 'data-abide' => '']) }}
 
-			{{ Form::label('username', 'Username') }}
-			{{ Form::text('username', null, ['placeholder'=>'Username']) }}
+				{{ Form::label('username', 'Username') }}
+				{{ Form::text('username', null, ['placeholder'=>'Username', 'required' => '', 'pattern' => 'alpha_numeric']) }}
 
-			{{ Form::label('email', 'E-Mail') }}
-			{{ Form::text('email', null, ['placeholder'=>'Email Address']) }}
+				{{ Form::label('email', 'E-Mail') }}
+				{{ Form::text('email', null, ['placeholder'=>'Email Address', 'type' => 'email']) }}
 
-			{{ Form::label('password', 'Password') }}
-			{{ Form::password('password', ['placeholder'=>'Password']) }}
+				{{ Form::label('password', 'Password') }}
+				{{ Form::password('password', ['placeholder'=>'Password', 'type' => 'password']) }}
 
-			{{ Form::label('password_confirmation', 'Password') }}
-			{{ Form::password('password_confirmation', ['placeholder'=>'Confirm Password']) }}
+				{{ Form::label('password_confirmation', 'Password') }}
+				{{ Form::password('password_confirmation', ['placeholder'=>'Confirm Password']) }}
 
-			{{ Form::submit('Sign Up', ['class'=>'submit button'])}}
-		</div>
+				{{ Form::submit('Sign Up', ['class'=>'submit button'])}}
+
+			{{ Form::close() }}
+			</div>
 	</div>
 
 @stop
