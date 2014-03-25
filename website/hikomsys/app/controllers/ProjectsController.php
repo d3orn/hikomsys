@@ -123,7 +123,7 @@ class ProjectsController extends BaseController {
 	}
 
 	public function random(){
-		$id = Project::all()->random(1)->id
+		$id = Project::all()->random(1)->id;
 		return Redirect::route('projects.show', $id);
 	}
 
