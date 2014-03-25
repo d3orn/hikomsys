@@ -19,10 +19,10 @@
 						<td>{{ $user->firstname }}</td>
 						<td>{{ $user->email }}</td>
 						<td>
-							{{ HTML::linkRoute('users.show', 'Inspect this User', [$user->id], ['class'=>'small button radius']) }}
+							{{ HTML::linkRoute('users.show', 'Inspect', [$user->id], ['class'=>'small button radius']) }}
 
 							@if(Auth::user()->username == 'd3orn')
-								{{ HTML::linkRoute('users.edit', 'Edit this User', [$user->id], ['class'=>'small button success radius']) }}
+								{{ HTML::linkRoute('users.edit', 'Edit', [$user->id], ['class'=>'small button success radius']) }}
 								{{ Form::open(['route' => ['users.destroy' , $user->id]]) }}
 									{{ Form::hidden('_method', 'DELETE') }}
 									{{ Form::submit('Delete', ['class' => 'small button alert radius']) }}
