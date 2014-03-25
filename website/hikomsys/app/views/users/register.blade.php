@@ -21,7 +21,7 @@
 				</div>
 			@endif
 
-			{{ Form::open(['url'=>'users', 'data-abide']) }}
+			{{ Form::open(['url'=>'users', 'data-abide' => true]) }}
 
 			{{ Form::label('username', 'Username') }}
 			{{ Form::text('username', null, ['placeholder'=>'Username']) }}
