@@ -6,52 +6,54 @@
 @section("content")
 
 	<div class="row">
-		<h1>{{ $title }}</h1>
+		<div class="large-12 columns">
+			<h1>{{ $title }}</h1>
 
-		@if($projects)
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Project Name</th>
-						<th>Version</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach($projects as $project)
+			@if($projects)
+				<table class="table table-striped">
+					<thead>
 						<tr>
-							<td>{{ $project->name }}</td>
-							<td>{{ $project->version }}</td>
-							<td>{{ HTML::linkRoute('projects.show', 'Start new Quiz', [$project->project_id], ['class'=>'small button radius'])}}
-							{{ HTML::linkRoute('quizzes.index', 'Solutions', ['project_id' => $project->project_id], ['class'=>'success small button radius']) }}</td>
+							<th>Project Name</th>
+							<th>Version</th>
+							<th>Actions</th>
 						</tr>
-					@endforeach
-				</tbody>
-			</table>
-		@else
-			<p> Sorry you did not uplade any projects yet, please do so by filling out the form below </p>
-			<p>Please enter a valid Github link</p>
+					</thead>
+					<tbody>
+						@foreach($projects as $project)
+							<tr>
+								<td>{{ $project->name }}</td>
+								<td>{{ $project->version }}</td>
+								<td>{{ HTML::linkRoute('projects.show', 'Start new Quiz', [$project->project_id], ['class'=>'small button radius'])}}
+								{{ HTML::linkRoute('quizzes.index', 'Solutions', ['project_id' => $project->project_id], ['class'=>'success small button radius']) }}</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+			@else
+				<p> Sorry you did not uplade any projects yet, please do so by filling out the form below </p>
+				<p>Please enter a valid Github link</p>
 
-			{{ Form::open(['route'=>'projects.store']) }}
+				{{ Form::open(['route'=>'projects.store']) }}
 
-				<fieldset>
-					
-					<div class="form-group">
-						{{ Form::label('url', 'Gitrepository URL:') }}
-						{{ Form::url('url', null,   ['class' => 'form-control'])}}
-					</div>
+					<fieldset>
+						
+						<div class="form-group">
+							{{ Form::label('url', 'Gitrepository URL:') }}
+							{{ Form::url('url', null,   ['class' => 'form-control'])}}
+						</div>
 
-					<div class="form-group">
-						{{ Form::label('projectName', 'Project name:') }}
-						{{ Form::text('projectName', null, ['class' => 'form-control']) }}
-					</div>
+						<div class="form-group">
+							{{ Form::label('projectName', 'Project name:') }}
+							{{ Form::text('projectName', null, ['class' => 'form-control']) }}
+						</div>
 
-				</fieldset>
+					</fieldset>
 
-				{{ Form::submit('Submit Repository', ['class'=>'submit button']) }}
+					{{ Form::submit('Submit Repository', ['class'=>'submit button']) }}
 
-			{{ Form::close() }}
-		@endif
+				{{ Form::close() }}
+			@endif
+		</div>
 	</div>
 
 @stop
