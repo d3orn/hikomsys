@@ -33,9 +33,11 @@
 
 				{{ Form::label('password', 'Password') }}
 				{{ Form::password('password', ['placeholder'=>'Password']) }}
+				<small class="error">An email address is required.</small>
 
 				{{ Form::label('password_confirmation', 'Password') }}
 				{{ Form::password('password_confirmation', ['placeholder'=>'Confirm Password']) }}
+				<small class="error">An email address is required.</small>
 
 				{{ Form::submit('Sign Up', ['class'=>'submit button'])}}
 
