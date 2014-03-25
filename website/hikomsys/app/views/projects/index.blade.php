@@ -13,9 +13,8 @@
 				<thead>
 					<tr>
 						<th>Project Name</th>
-						<th>Versione</th>
-						<th>New Quiz</th>
-						<th>Results</th>
+						<th>Version</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -23,8 +22,8 @@
 						<tr>
 							<td>{{ $project->name }}</td>
 							<td>{{ $project->version }}</td>
-							<td>{{ HTML::linkRoute('projects.show', 'Take the quiz!', [$project->project_id])}}</td>
-							<td>{{ HTML::linkRoute('quizzes.index', 'Checkout your results', ['project_id' => $project->project_id])}}</td>
+							<td>{{ HTML::linkRoute('projects.show', 'Take the quiz!', [$project->project_id])}}
+							{{ HTML::linkRoute('quizzes.index', 'Checkout your results', ['project_id' => $project->project_id])}}</td>
 						</tr>
 					@endforeach
 				</tbody>
