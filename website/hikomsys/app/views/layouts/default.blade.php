@@ -110,8 +110,9 @@
 					@yield('content')
 				</section>
 			</main>	
+			<div class="push"></div>
 		</div>
-		<footer class="bottom-bar">	
+		<footer>	
 			<div class="row">
 				<div class="medium-12 columns">
 					<section id="links" class="row">
@@ -145,7 +146,6 @@
 					</section>
 				</div>
 			</div>
-			</div>
 		</footer>
 
 		{{ HTML::script('http://code.jquery.com/jquery-1.10.1.min.js') }}
@@ -158,6 +158,6 @@
 		<script>
 	 		$(document).foundation();
 		</script>
-				
+
 	</body>
 </html>
