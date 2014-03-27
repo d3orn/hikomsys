@@ -117,18 +117,17 @@
 							<div class="medium-4 columns">
 								<a href="http://www.pharo-project.org/home" target="_blank">
 									{{ HTML::image('foundation/img/pharo.fw.png', 'Smalltalk Pharo Logo') }}
-									
 								</a>	
 								<p>a clean, innovative, free open-source Smalltalk-inspired environment</p>
 							</div>
 							<div class="vertDivider"></div>
-							<div class="medium-4 columns">
-								<a href="http://www.moosetechnology.org/" target="_blank">
-									<p>a platform for software and data analysis</p>
+							<div class="medium-5 columns">
+								<p>a platform for software and data analysis</p>
+								<a href="http://www.moosetechnology.org/" target="_blank">	
 									{{ HTML::image('foundation/img/mooseTech.fw.png', 'Moose Technology Logo') }}
 								</a>
 							</div>	
-							<div class="medium-2 columns left">
+							<div class="medium-3 columns left">
 							<a href="http://www.d3orn.ch" target="_blank">
 								{{ HTML::image('foundation/img/d3orn.fw.png', 'd3orn Logo') }}
 							</a>	
