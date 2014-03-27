@@ -15,7 +15,7 @@
 
 		<div class="row">
 
-			<div class="large-5 medium-5 columns">
+			<div class="medium-8 columns">
 
 				<p>Please enter a valid Github link below</p>
 
@@ -23,7 +23,7 @@
 
 					<div class="row">
 						<div class="medium-3 columns">   
-							{{ Form::label('url', 'Gitrepository URL:') }}
+							{{ Form::label('url', 'URL to your Git Repository:') }}
 						</div>
 				 		<div class="medium-9 columns">
 						{{ Form::url('url')}}
