@@ -21,11 +21,23 @@
 
 				{{ Form::open(['route'=>'projects.store']) }}
 
-					{{ Form::label('url', 'Gitrepository URL:') }}
-					{{ Form::url('url')}}
-							
-					{{ Form::label('projectName', 'Project name:',['class' => 'form-label']) }}
-					{{ Form::text('projectName', null, ['class' => 'form-control']) }}
+					<div class="row">
+						<div class="medium-3 columns">   
+							{{ Form::label('url', 'Gitrepository URL:') }}
+						</div>
+				 		<div class="medium-9 columns">
+						{{ Form::url('url')}}
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="medium-3 columns">							
+							{{ Form::label('projectName', 'Project name:',['class' => 'form-label']) }}
+						</div>
+				 		<div class="medium-9 columns">
+							{{ Form::text('projectName', null, ['class' => 'form-control']) }}
+						</div>
+					</div>
 
 					{{ Form::submit('Submit Repository', ['class'=>'submit button']) }}
 
