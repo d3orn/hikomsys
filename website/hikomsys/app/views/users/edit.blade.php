@@ -6,14 +6,22 @@
 @section("content")
     
     <div class="row">
-    	<div class="large-5 medium-5 columns">
+    	<div class="medium-10 columns">
 			<h1> Edit your profile </h1>
-
+		</div>
+	</div>
+	
 		     {{ Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) }}
 
-		            {{ Form::label('firstname', 'First Name:') }}
-		            {{ Form::text('firstname') }}
-
+				<div class="row">
+		        	<div class="small-3 columns">   	
+		            	{{ Form::label('firstname', 'First Name:') }}
+		            </div>
+		            <div class="small-9 columns">
+		           		{{ Form::text('firstname') }}
+		            </div>
+				</div>
+	
 		            {{ Form::label('lastname', 'Last Name:') }}
 		            {{ Form::text('lastname') }}
 
