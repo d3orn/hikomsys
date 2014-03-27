@@ -32,7 +32,7 @@
 
 					<div class="row">
 						<div class="medium-4 columns">							
-							{{ Form::label('projectName', 'Project name:',, ['class' => 'left inline']) }}
+							{{ Form::label('projectName', 'Project name:', ['class' => 'left inline']) }}
 						</div>
 				 		<div class="medium-8 columns">
 							{{ Form::text('projectName') }}
