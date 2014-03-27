@@ -112,8 +112,14 @@
 			</main>	
 			<footer class="bottom-bar">	
 				<section class="Links">
-					<a href="http://www.pharo-project.org/home">
+					<a href="http://www.pharo-project.org/home" target="_blank">
 						{{ HTML::image('foundation/img/pharo.png', 'Smalltalk Pharo Logo') }}
+					</a>	
+					<a href="http://www.moosetechnology.org/" target="_blank">
+						{{ HTML::image('foundation/img/mooseTech.png', 'Moose Technology Logo') }}
+					</a>	
+					<a href="http://www.d3orn.ch" target="_blank">
+						{{ HTML::image('foundation/img/d3orn.png', 'd3orn Logo') }}
 					</a>		
 				</section>
 				<section class="footertext">
