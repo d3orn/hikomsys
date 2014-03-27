@@ -128,9 +128,10 @@
 								</a>
 							</div>	
 							<div class="medium-3 columns left">
-							<a href="http://www.d3orn.ch" target="_blank">
-								{{ HTML::image('foundation/img/d3orn.fw.png', 'd3orn Logo') }}
-							</a>	
+								<div class="vertDivider"></div>
+								<a href="http://www.d3orn.ch" target="_blank">
+									{{ HTML::image('foundation/img/d3orn.fw.png', 'd3orn Logo') }}
+								</a>	
 							</div>	
 						</section>
 					</div>
