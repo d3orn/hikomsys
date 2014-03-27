@@ -31,5 +31,5 @@ header {
     opacity: 0.7 !important;
 }
 .links .columns {
-    height: 130px
+    height: 130px !important;
 }
