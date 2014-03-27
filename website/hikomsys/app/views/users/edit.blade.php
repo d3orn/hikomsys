@@ -12,21 +12,21 @@
 		     {{ Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) }}
 
 		            {{ Form::label('firstname', 'First Name:') }}
-		            {{ Form::text('firstname', null, ['class' => 'form-control']) }}
+		            {{ Form::text('firstname') }}
 
 		            {{ Form::label('lastname', 'Last Name:') }}
-		            {{ Form::text('lastname', null, ['class' => 'form-control']) }}
+		            {{ Form::text('lastname') }}
 
 		            {{ Form::label('email', 'E-Mail') }}
-		            {{ Form::text('email', null, ['class' => 'form-control']) }}
+		            {{ Form::text('email') }}
 
 		            {{ Form::label('username', 'Username') }}
-		            {{ Form::text('username', null, ['class' => 'form-control']) }}
+		            {{ Form::text('username') }}
 
 		            {{ Form::label('description', 'Description') }}
-		            {{ Form::textarea('description', null, ['class' => 'form-control']) }}
+		            {{ Form::textarea('description') }}
 
-				{{ Form::submit('Update Profile') }}
+				{{ Form::submit('Update Profile', ['class'=>'submit button']) }}
 		    {{ Form::close() }}
 	    </div>
 	</div>
