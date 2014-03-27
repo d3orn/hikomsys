@@ -13,8 +13,10 @@ td {
 td a, td form, td input {
     margin: 0 !important;
 }
-footer, .push {
-    position: relative;
+.push {
+    height: 4em;
+}
+footer, {
     bottom: 0px;
     height: 4em;
     width: 100%;
