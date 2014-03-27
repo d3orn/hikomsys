@@ -14,10 +14,10 @@
 		     {{ Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) }}
 
 				<div class="row">
-		        	<div class="small-3 columns">   	
-		            	{{ Form::label('firstname', 'First Name:') }}
+		        	<div class="medium-3 columns">   	
+		            	{{ Form::label('firstname', 'First Name:', ['class' => 'left inline']) }}
 		            </div>
-		            <div class="small-9 columns">
+		            <div class="medium-9 columns">
 		           		{{ Form::text('firstname') }}
 		            </div>
 				</div>
@@ -36,7 +36,4 @@
 
 				{{ Form::submit('Update Profile', ['class'=>'submit button']) }}
 		    {{ Form::close() }}
-	    </div>
-	</div>
-
 @stop
