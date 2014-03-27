@@ -117,7 +117,7 @@
 							<div class="medium-4 columns">
 							<a href="http://www.pharo-project.org/home" target="_blank">
 								{{ HTML::image('foundation/img/pharo.fw.png', 'Smalltalk Pharo Logo') }}
-								a clean, innovative, free open-source Smalltalk-inspired environment
+								<p>a clean, innovative, free open-source Smalltalk-inspired environment</p>
 							</a>	
 							</div>
 							<div class="vertDivider"></div>
