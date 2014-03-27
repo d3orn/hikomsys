@@ -111,24 +111,17 @@
 				</section>
 			</main>	
 			<footer class="bottom-bar">	
-				<section class="Links">
-					<ul class="left">
-						<li>
-							<a href="http://www.pharo-project.org/home" target="_blank">
-								{{ HTML::image('foundation/img/pharo.fw.png', 'Smalltalk Pharo Logo') }}
-							</a>
-						</li>	
-						<li>
-							<a href="http://www.moosetechnology.org/" target="_blank">
-								{{ HTML::image('foundation/img/mooseTech.fw.png', 'Moose Technology Logo') }}
-							</a>
-						</li>	
-						<li>
-							<a href="http://www.d3orn.ch" target="_blank">
-								{{ HTML::image('foundation/img/d3orn.fw.png', 'd3orn Logo') }}
-							</a>
-						</li>	
-					</ul>	
+				<section class="row">
+					<a href="http://www.pharo-project.org/home" target="_blank">
+						{{ HTML::image('foundation/img/pharo.fw.png', 'Smalltalk Pharo Logo') }}
+					</a>	
+
+					<a href="http://www.moosetechnology.org/" target="_blank">
+						{{ HTML::image('foundation/img/mooseTech.fw.png', 'Moose Technology Logo') }}
+					</a>	
+					<a href="http://www.d3orn.ch" target="_blank">
+						{{ HTML::image('foundation/img/d3orn.fw.png', 'd3orn Logo') }}
+					</a>		
 				</section>
 				<section class="footertext">
 					<address>Dominique Rahm &middot {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
