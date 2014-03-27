@@ -1,8 +1,10 @@
-main{
+html, body {
+    height: 100%;
+}
+main {
     min-height: 100%;
     padding-bottom: 202px;
 }
-
 td {
     text-align: center;
 }
