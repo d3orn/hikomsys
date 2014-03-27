@@ -12,6 +12,8 @@
 	</div>
 
 	<div class="row">
+
+		<div class="medium-9 columns">
 		
 		{{ Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) }}
 
@@ -63,7 +65,7 @@
 			{{ Form::submit('Update Profile', ['class'=>'submit button']) }}
 
 		{{ Form::close() }}
-
+		</div>
 	</div>
 
 @stop
