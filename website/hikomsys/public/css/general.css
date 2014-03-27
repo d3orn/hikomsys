@@ -25,16 +25,17 @@ td a, td form, td input {
 .footertext {
     top:50%;
 }
-.vertDivider {
-    border-left:1px solid #38546d;
-    border-right:1px solid #16222c;
-    height:80px;
-    position:absolute;
-    right:249px;
-    top:10px;
-}
 header {
     background-color: #E8B217 !important;
     border-color: #E8B217 !important;
     opacity: 0.7 !important;
+}
+.column:before {
+    content:" ";
+    margin:0 -15px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #666666;
 }
