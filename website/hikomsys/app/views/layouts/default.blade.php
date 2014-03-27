@@ -119,7 +119,7 @@
 								{{ HTML::image('foundation/img/pharo.fw.png', 'Smalltalk Pharo Logo') }}
 							</a>	
 							</div>
-							<div class="divider"></div>
+							<div class="vertDivider"></div>
 							<div class="medium-2 columns">
 							<a href="http://www.moosetechnology.org/" target="_blank">
 								{{ HTML::image('foundation/img/mooseTech.fw.png', 'Moose Technology Logo') }}

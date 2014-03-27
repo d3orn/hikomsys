@@ -1,38 +1,40 @@
 html {
-	overflow-y: scroll;
-	overflow: -moz-scrollbars-vertical;
+    overflow-y: scroll;
+    overflow: -moz-scrollbars-vertical;
 }
-
-body { 
-	padding-top: 70px; 
-	font-size: 101%;
+body {
+    padding-top: 70px;
+    font-size: 101%;
 }
-
-td{
-	text-align: center;
+td {
+    text-align: center;
 }
-
-td a, td form, td input{
-	margin: 0 !important;
+td a, td form, td input {
+    margin: 0 !important;
 }
-
-.bottom-bar{
-	position: fixed;
-	bottom: 0px;
-	width: 100%;
-	padding: 0.7%;
-	margin-bottom: 0px;
-	text-align: center;
-	background: #333333;
-	color: #FFFFFF;
+.bottom-bar {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    padding: 0.7%;
+    margin-bottom: 0px;
+    text-align: center;
+    background: #333333;
+    color: #FFFFFF;
 }
-
-.footertext{
-	top:50%;
+.footertext {
+    top:50%;
 }
-
-header{
-	background-color: #E8B217 !important;
-	border-color: #E8B217 !important;
-	opacity: 0.7 !important;
+.vertDivider {
+    border-left:1px solid #38546d;
+    border-right:1px solid #16222c;
+    height:80px;
+    position:absolute;
+    right:249px;
+    top:10px;
+}
+header {
+    background-color: #E8B217 !important;
+    border-color: #E8B217 !important;
+    opacity: 0.7 !important;
 }
