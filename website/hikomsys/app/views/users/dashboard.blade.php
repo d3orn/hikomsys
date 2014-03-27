@@ -17,7 +17,7 @@
 
 			<div class="medium-8 columns">
 
-				<p>Please enter a valid Github link below</p>
+				<p>The first step you have to take is to upload one of your Opensource Java projects. To do so, please enter a valid link to a Git Repository below</p>
 
 				{{ Form::open(['route'=>'projects.store']) }}
 
