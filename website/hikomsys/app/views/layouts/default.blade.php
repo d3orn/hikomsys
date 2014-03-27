@@ -115,17 +115,23 @@
 					<div class="medium-12 columns">
 						<section id="links" class="row">
 							<div class="medium-4 columns">
-							<a href="http://www.pharo-project.org/home" target="_blank">
-								{{ HTML::image('foundation/img/pharo.fw.png', 'Smalltalk Pharo Logo') }}
-								<p>a clean, innovative, free open-source Smalltalk-inspired environment</p>
-							</a>	
+								<a href="http://www.pharo-project.org/home" target="_blank">
+									{{ HTML::image('foundation/img/pharo.fw.png', 'Smalltalk Pharo Logo') }}
+									<p>a clean, innovative, free open-source Smalltalk-inspired environment</p>
+								</a>	
 							</div>
 							<div class="vertDivider"></div>
-							<div class="medium-2 columns">
-							<a href="http://www.moosetechnology.org/" target="_blank">
-								{{ HTML::image('foundation/img/mooseTech.fw.png', 'Moose Technology Logo') }}
-								<p>a platform for software and data analysis</p>
-							</a>
+							<div class="medium-4 columns">
+								<div class="row">
+									<div class="medium-6 columns">
+										<a href="http://www.moosetechnology.org/" target="_blank">
+											{{ HTML::image('foundation/img/mooseTech.fw.png', 'Moose Technology Logo') }}
+										</a>
+									</div>
+									<div class="medium-6 columns">
+										<p>a platform for software and data analysis</p>
+									</div>
+								</div>
 							</div>	
 							<div class="medium-2 columns left">
 							<a href="http://www.d3orn.ch" target="_blank">
