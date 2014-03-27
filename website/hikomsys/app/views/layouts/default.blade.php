@@ -124,6 +124,7 @@
 							<div class="medium-2 columns">
 							<a href="http://www.moosetechnology.org/" target="_blank">
 								{{ HTML::image('foundation/img/mooseTech.fw.png', 'Moose Technology Logo') }}
+								<p>a platform for software and data analysis</p>
 							</a>
 							</div>	
 							<div class="medium-2 columns left">
