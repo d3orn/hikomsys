@@ -39,7 +39,7 @@
 						</div>
 					</div>
 
-					{{ Form::submit('Submit Repository', ['class'=>'submit button']) }}
+					{{ Form::submit('Upload my Project', ['class'=>'submit button']) }}
 
 				{{ Form::close() }}
 
