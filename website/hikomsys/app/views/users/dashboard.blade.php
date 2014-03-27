@@ -22,20 +22,20 @@
 				{{ Form::open(['route'=>'projects.store']) }}
 
 					<div class="row">
-						<div class="medium-3 columns">   
-							{{ Form::label('url', 'URL to your Git Repository:') }}
+						<div class="medium-4 columns">   
+							{{ Form::label('url', 'URL to your Git Repository:', ['class' => 'left inline']) }}
 						</div>
-				 		<div class="medium-9 columns">
-						{{ Form::url('url')}}
+				 		<div class="medium-8 columns">
+							{{ Form::url('url')}}
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="medium-3 columns">							
-							{{ Form::label('projectName', 'Project name:',['class' => 'form-label']) }}
+						<div class="medium-4 columns">							
+							{{ Form::label('projectName', 'Project name:',, ['class' => 'left inline']) }}
 						</div>
-				 		<div class="medium-9 columns">
-							{{ Form::text('projectName', null, ['class' => 'form-control']) }}
+				 		<div class="medium-8 columns">
+							{{ Form::text('projectName') }}
 						</div>
 					</div>
 
