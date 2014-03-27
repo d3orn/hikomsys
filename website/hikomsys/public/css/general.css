@@ -30,12 +30,6 @@ header {
     border-color: #E8B217 !important;
     opacity: 0.7 !important;
 }
-.column:before {
-    content:" ";
-    margin:0 -15px;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: #666666;
+.links .columns {
+    height: 130px
 }
