@@ -30,6 +30,6 @@ header {
     border-color: #E8B217 !important;
     opacity: 0.7 !important;
 }
-.links .columns {
+#links .columns {
     height: 130px !important;
 }
