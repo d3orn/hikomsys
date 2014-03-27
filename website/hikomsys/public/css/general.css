@@ -1,6 +1,6 @@
 html, body {
     height: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 #wrapper {
     min-height: 100%;
