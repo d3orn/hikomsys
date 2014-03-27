@@ -1,12 +1,3 @@
-html {
-    overflow-y: scroll;
-    overflow: -moz-scrollbars-vertical;
-}
-body {
-    padding-top: 70px;
-    font-size: 101%;
-}
-
 #main{
     min-height: 100%;
     padding-bottom: 202px;
@@ -24,6 +15,7 @@ td a, td form, td input {
     height: 202px;
     width: 100%;
     padding: 0.7%;
+    margin-top: -202px;
     margin-bottom: 0px;
     text-align: center;
     background: #333333;
