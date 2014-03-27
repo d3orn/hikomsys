@@ -5,7 +5,7 @@ html, body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -4em;
+    margin: 0 auto -13em;
 }
 td {
     text-align: center;
@@ -14,11 +14,11 @@ td a, td form, td input {
     margin: 0 !important;
 }
 .push {
-    height: 4em;
+    height: 13em;
 }
 footer {
     bottom: 0px;
-    height: 4em;
+    height: 13em;
     width: 100%;
     padding: 0.7%;
     margin-bottom: 0px;
