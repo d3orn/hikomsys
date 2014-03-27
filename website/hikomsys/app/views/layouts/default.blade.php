@@ -112,8 +112,8 @@
 			</main>	
 			<footer class="bottom-bar">	
 				<div class="row">
-					<div class="medium-8 columns">
-						<section id="references" class="row">
+					<div class="medium-12 columns">
+						<section id="links" class="row">
 							<div class="medium-6 columns">
 							<a href="http://www.pharo-project.org/home" target="_blank">
 								{{ HTML::image('foundation/img/pharo.fw.png', 'Smalltalk Pharo Logo') }}
@@ -132,11 +132,15 @@
 							</div>	
 						</section>
 					</div>
+				</div>
+				<hr>
+				<div class="row">
 					<div class="medium-4 columns">
 						<section class="footertext">
 							<address>Dominique Rahm &middot {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
 						</section>
 					</div>
+				</div>
 				</div>
 			</footer>
 
