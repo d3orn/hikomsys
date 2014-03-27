@@ -121,6 +121,7 @@
 								<p>a clean, innovative, free open-source Smalltalk-inspired environment</p>
 							</div>
 							<div class="medium-5 columns">
+								<div class="vertDivider"></div>
 								<p>a platform for software and data analysis</p>
 								<a href="http://www.moosetechnology.org/" target="_blank">	
 									{{ HTML::image('foundation/img/mooseTech.fw.png', 'Moose Technology Logo') }}

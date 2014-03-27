@@ -33,3 +33,12 @@ header {
 #links .columns {
     height: 130px !important;
 }
+.vertDivider {
+    content:" ";
+    margin:0 -15px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #666666;
+}
