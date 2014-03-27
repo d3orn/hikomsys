@@ -112,21 +112,26 @@
 			</main>	
 			<footer class="bottom-bar">	
 				<div class="row">
-					<div class="medium-8 columns">
-						<section id="references">
+					<div class="medium-6 columns">
+						<section id="references" class="row">
+							<div class="medium-4 columns">
 							<a href="http://www.pharo-project.org/home" target="_blank">
 								{{ HTML::image('foundation/img/pharo.fw.png', 'Smalltalk Pharo Logo') }}
 							</a>	
-
+							</div>
+							<div class="medium-4 columns">
 							<a href="http://www.moosetechnology.org/" target="_blank">
 								{{ HTML::image('foundation/img/mooseTech.fw.png', 'Moose Technology Logo') }}
-							</a>	
+							</a>
+							</div>	
+							<div class="medium-4 columns">
 							<a href="http://www.d3orn.ch" target="_blank">
 								{{ HTML::image('foundation/img/d3orn.fw.png', 'd3orn Logo') }}
-							</a>		
+							</a>	
+							</div>	
 						</section>
 					</div>
-					<div class="medium-4 columns">
+					<div class="medium-6 columns">
 						<section class="footertext">
 							<address>Dominique Rahm &middot {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
 						</section>
