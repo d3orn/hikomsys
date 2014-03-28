@@ -17,10 +17,9 @@
 
 			<dl class="sub-nav">
 			  <dt>Functions:</dt>
-			  <dd class="active"><a href="#">All</a></dd>
-			  <dd><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand button"></a></dd>
-			  <dd><a href="#">Pending</a></dd>
-			  <dd><a href="#">Suspended</a></dd>
+			  <dd><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand active"></a></dd>
+			  <dd><a id="draw" aria-hidden="true" data-icon="&#xe602;" class="icon-loop button"></a></dd>
+			  <dd><a data-reveal-id="myModal" class="button" data-reveal>Help</a></dd>
 			</dl>
 
 
