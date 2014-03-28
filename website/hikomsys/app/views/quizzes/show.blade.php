@@ -18,7 +18,7 @@
 			<div id="menu">
 				<div id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand activatedIcon buttonlike"></div>
 				<div id="draw" aria-hidden="true" data-icon="&#xe602;" class="icon-loop gradientBG buttonlike"></div>
-				<div id="help" class="gradientBG buttonlike">Help</div>
+				<a href="#" data-reveal-id="myModal" class="button" data-reveal>Help</a>
 				<div id="submit" class="gradientBG buttonlike">Submit dependencies</div>
 			</div>
 			<div id="help_container"><br>You are able to switch between moving mode <a aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a> and
@@ -31,7 +31,6 @@
 			<div id="container"></div>
 
 			<input id="quizId" type="hidden" value={{ $quizId }} >
-			<input type="text">
 
 			<!-- Size Classes: [small medium large xlarge expand] -->
 			<div id="myModal" class="reveal-modal" data-reveal>
@@ -39,8 +38,7 @@
 				<p class="lead">Your couch.  It is mine.</p>
 				<p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
 				<a class="close-reveal-modal">&#215;</a>
-			</div>
-			<a href="#" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a>
+			</div>	
 		</div>
 	</div>
 @stop
