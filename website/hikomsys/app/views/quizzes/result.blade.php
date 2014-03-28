@@ -14,9 +14,9 @@
 			<dl class="sub-nav">
 			  <dt>Functions:</dt>
 			  <dd class=""><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a></dd>
-			  <dd class="active"><a id="greenArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right"></a></dd>
-			  <dd class="active"><a id="orangeArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right"></a></dd>
-			  <dd class="active"><a id="redArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right"></a></dd>
+			  <dd class="active"><a id="greenArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right arrowbtn"></a></dd>
+			  <dd class="active"><a id="orangeArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right arrowbtn"></a></dd>
+			  <dd class="active"><a id="redArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right arrowbtn"></a></dd>
 			  <dd class=""><a id="infosEnabled"></a>Additional Information</dd>
 			</dl>
 		</div>
