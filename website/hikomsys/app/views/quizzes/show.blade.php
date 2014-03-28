@@ -31,6 +31,7 @@
 			<div id="container"></div>
 
 			<input id="quizId" type="hidden" value={{ $quizId }} >
+			<input type="text">
 
 			<!-- Size Classes: [small medium large xlarge expand] -->
 			<div id="myModal" class="reveal-modal" data-reveal>
@@ -39,6 +40,7 @@
 				<p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
 				<a class="close-reveal-modal">&#215;</a>
 			</div>
+			<a href="#" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a>
 		</div>
 	</div>
 @stop
