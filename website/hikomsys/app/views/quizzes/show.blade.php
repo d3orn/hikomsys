@@ -14,6 +14,16 @@
 	</div>
 	<div class="row">
 		<div class="medium-12 columns">
+
+			<dl class="sub-nav">
+			  <dt>Functions:</dt>
+			  <dd class="active"><a href="#">All</a></dd>
+			  <dd><a href="#">Active</a></dd>
+			  <dd><a href="#">Pending</a></dd>
+			  <dd><a href="#">Suspended</a></dd>
+			</dl>
+
+
 			<div id="menu">
 				<div id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand button"></div>
 				<div id="draw" aria-hidden="true" data-icon="&#xe602;" class="icon-loop button"></div>
@@ -37,19 +47,6 @@
 				<p> As soon as you are satisfied with your dependencies please submit your solution by clicking on the submit dependencies button.</p>
 				<a class="close-reveal-modal">&#215;</a>
 			</div>	
-		</div>
-	</div>
-	<div class="row">
-		<div class="medium-5 columns">
-			<div class="small-3 switch small">
-			  <input id="b" name="switch-b" type="radio" checked="">
-			  <label for="b" onclick="">Off</label>
-
-			  <input id="b1" name="switch-b" type="radio">
-			  <label for="b1" onclick="">On</label>
-
-			  <span></span>
-			</div>
 		</div>
 	</div>
 @stop
