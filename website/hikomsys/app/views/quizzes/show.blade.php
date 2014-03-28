@@ -13,19 +13,17 @@
 		</div>
 	</div>
 	<div class="row">
-		<fieldset>
-			<div class="medium-6 columns">
-				<dl class="sub-nav">
-				  <dt>Functions:</dt>
-				  <dd class="active" id="move"><a aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a></dd>
-				  <dd id="draw" class=""><a aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a></dd>
-				</dl>
-			</div>
-			<div class="medium-6 columns">	
-				<div id="submit" class="button tiny radius success right">Submit dependencies</div>
-				<div id="help" data-reveal-id="myModal" class="button tiny radius alert right" data-reveal>Help</div>
-			</div>
-		</fieldset>
+		<div class="medium-6 columns">
+			<dl class="sub-nav">
+			  <dt>Functions:</dt>
+			  <dd class="active" id="move"><a aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a></dd>
+			  <dd id="draw" class=""><a aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a></dd>
+			</dl>
+		</div>
+		<div class="medium-6 columns">	
+			<div id="submit" class="button tiny radius success right">Submit dependencies</div>
+			<div id="help" data-reveal-id="myModal" class="button tiny radius alert right" data-reveal>Help</div>
+		</div>
 	</div>	
 
 	<div class="row">
