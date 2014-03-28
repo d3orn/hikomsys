@@ -36,6 +36,11 @@ dt, dd{
 #help{
 	margin-right: 0.625rem;
 }
+
+.sub-nav{
+	margin-bottom: 0 !important;
+}
+
 #help, #submit, .sub-nav{
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
