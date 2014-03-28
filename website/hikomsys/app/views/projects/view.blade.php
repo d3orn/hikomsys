@@ -24,7 +24,7 @@
 				</div>
 				{{ Form::hidden('project_id', $project->id) }}
 				{{Form::submit('Start Quiz', ['class'=>'submit button'])}}
-
+				<br>
 			{{Form::close()}}
 		</div>
 	</div>
