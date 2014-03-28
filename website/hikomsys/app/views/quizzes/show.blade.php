@@ -18,7 +18,7 @@
 			<div id="menu">
 				<div id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand activatedIcon buttonlike"></div>
 				<div id="draw" aria-hidden="true" data-icon="&#xe602;" class="icon-loop gradientBG buttonlike"></div>
-				<a href="#" data-reveal-id="myModal" class="button" data-reveal>Help</a>
+				<div data-reveal-id="myModal" class="button" data-reveal>Help</div>
 				<div id="submit" class="gradientBG buttonlike">Submit dependencies</div>
 			</div>
 			<div id="help_container"><br>You are able to switch between moving mode <a aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a> and
