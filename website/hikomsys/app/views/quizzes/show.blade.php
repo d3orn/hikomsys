@@ -18,8 +18,8 @@
 			<dl class="sub-nav">
 			  <dt>Functions:</dt>
 			  <dd><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand active"></a></dd>
-			  <dd><a id="draw" aria-hidden="true" data-icon="&#xe602;" class="icon-loop button"></a></dd>
-			  <dd><a data-reveal-id="myModal" class="button" data-reveal>Help</a></dd>
+			  <dd><a id="draw" aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a></dd>
+			  <dd><a data-reveal-id="myModal" class="" data-reveal>Help</a></dd>
 			</dl>
 
 
