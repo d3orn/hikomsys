@@ -18,7 +18,7 @@
 			<dl class="sub-nav">
 			  <dt>Functions:</dt>
 			  <dd class="active"><a href="#">All</a></dd>
-			  <dd><a href="#">Active</a></dd>
+			  <dd id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand button"></dd>
 			  <dd><a href="#">Pending</a></dd>
 			  <dd><a href="#">Suspended</a></dd>
 			</dl>
