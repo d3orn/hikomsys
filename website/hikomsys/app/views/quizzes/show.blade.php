@@ -22,7 +22,7 @@
 			</dl>
 		</div>
 		<div class="medium-6 columns">	
-			<div class="button tiny radius success right">Submit dependencies</div>
+			<div id="submit" class="button tiny radius success right">Submit dependencies</div>
 			<div id="help" data-reveal-id="myModal" class="button tiny radius alert right" data-reveal>Help</div>
 		</div>
 	</div>	

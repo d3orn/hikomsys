@@ -36,6 +36,14 @@ dt, dd{
 #help{
 	margin-right: 0.625rem;
 }
+#help, #submit{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
 
 .icon:before{
 }
