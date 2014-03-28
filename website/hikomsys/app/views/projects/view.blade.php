@@ -14,7 +14,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="medium-5 columns">
+		<div class="medium-12 columns">
 			{{ Form::open(['route' => 'quizzes.store', 'id' => 'package_viewer' , 'class' => 'col-md-4']) }}
 
 				<div id="package_list">
@@ -23,7 +23,7 @@
 					</ul>
 				</div>
 				{{ Form::hidden('project_id', $project->id) }}
-				{{Form::submit('Start Quiz', ['class'=>'submit btn btn-primary'])}}
+				{{Form::submit('Start Quiz', ['class'=>'submit button'])}}
 
 			{{Form::close()}}
 		</div>
