@@ -6,7 +6,7 @@
 
 @section('content')
 	<div class="row">
-		<div class="medium-12 columns"></div>
+		<div class="medium-12 columns">
 			<h2>Draw the dependencies</h2>
 			<p>
 				Please draw the dependencies between the packages you selected previously. 
