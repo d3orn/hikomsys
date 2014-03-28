@@ -67,7 +67,7 @@ function clicked(object){
 	object.addClass("active")
 	if(object.attr('id') == '#move'){
 		$('#draw').removeClass("active")
-	};
+	}
 	else{
 		$('#move').removeClass("active")
 	};
