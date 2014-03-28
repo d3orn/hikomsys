@@ -16,8 +16,8 @@
 		<div class="medium-6 columns">
 			<dl class="sub-nav">
 			  <dt>Functions:</dt>
-			  <dd id="move" class="active"><a aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a></dd>
-			  <dd id="draw" class=""><a aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a></dd>
+			  <dd class="active"><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a></dd>
+			  <dd class=""><a id="draw" aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a></dd>
 			</dl>
 		</div>
 		<div class="medium-6 columns">	
