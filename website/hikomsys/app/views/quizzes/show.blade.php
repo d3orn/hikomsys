@@ -33,11 +33,6 @@
 
 			<input id="quizId" type="hidden" value={{ $quizId }} >
 
-
-
-
-
-
 			<!-- Size Classes: [small medium large xlarge expand] -->
 			<div id="myModal" class="reveal-modal" data-reveal>
 				<h2>Help</h2>
