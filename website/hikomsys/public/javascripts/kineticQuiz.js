@@ -91,17 +91,13 @@ stage.on("mouseup", function (e) {
 
 /* ------  Buttons ------*/
 $('#draw').click(function(){
-	clicked($('#move'));
+	clicked($(this));
 	switchMode();
 });
 
 $('#move').click(function(){
 	clicked($('#draw'));
 	switchMode();
-});
-
-$('#help').click(function(){
-	$('#help_container').toggle();
 });
 
 $('#submit').click(function(){
@@ -112,7 +108,6 @@ $('#submit').click(function(){
 		type : 'post',
 		data : {"packages": output, "quizId" : quizId},
 		success : function(data){
-			console.log(data);
 			window.location.href = '/hikomsys/quizzes/'+quizId
 		}
 	});

@@ -63,14 +63,14 @@ function isBellow(center1, center2, center1_height) {
 }
 
 function clicked(object){
-	if(object.hasClass("gradientBG")){
-		object.removeClass("gradientBG");
-		object.addClass("activatedIcon");
-	}
+	object.addClass("active")
+	if(object.attr('id') == '#move'){
+		$('#draw').removeClass("active")
+	};
 	else{
-		object.removeClass("activatedIcon");
-		object.addClass("gradientBG");
-	}
+		$('#move').removeClass("active")
+	};
+
 }
 
 /* =============================================================== Prototype Methods ============================================================== */
