@@ -17,21 +17,18 @@
 
 			<dl class="sub-nav">
 			  <dt>Functions:</dt>
-			  <dd class="active"><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a></dd>
-			  <dd><a id="draw" aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a></dd>
-			  <dd><a data-reveal-id="myModal" class="" data-reveal>Help</a></dd>
+			  <dd class="active" id="move"><a aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a></dd>
+			  <dd id="draw"><a aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a></dd>
+			  <dd id="help"><a data-reveal-id="myModal" class="" data-reveal>Help</a></dd>
 			</dl>
+			<div  class="button success">Submit dependencies</div>
 
-
-			<div id="menu">
-				<div id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand button"></div>
-				<div id="draw" aria-hidden="true" data-icon="&#xe602;" class="icon-loop button"></div>
-				<div data-reveal-id="myModal" class="button" data-reveal>Help</div>
-				<div id="submit" class="gradientBG buttonlike">Submit dependencies</div>
-			</div>
 			<div id="container"></div>
 
 			<input id="quizId" type="hidden" value={{ $quizId }} >
+
+
+
 
 
 
