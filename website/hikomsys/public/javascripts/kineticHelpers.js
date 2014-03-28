@@ -63,6 +63,7 @@ function isBellow(center1, center2, center1_height) {
 }
 
 function clicked(object){
+	alert(object.attr('id'))
 	object.addClass("active")
 	if(object.attr('id') == '#move'){
 		$('#draw').removeClass("active")
