@@ -22,7 +22,7 @@
 			</dl>
 		</div>
 		<div class="medium-6 columns right">
-			<div id="help" class="active" data-reveal-id="myModal" class="button tiny alert" data-reveal>Help</div>
+			<div id="help" data-reveal-id="myModal" class="button tiny alert" data-reveal>Help</div>
 			<div class="button tiny success">Submit dependencies</div>
 		</div>
 	</div>	
