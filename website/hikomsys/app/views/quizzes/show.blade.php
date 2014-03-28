@@ -18,12 +18,11 @@
 			<dl class="sub-nav">
 			  <dt>Functions:</dt>
 			  <dd class="active" id="move"><a aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a></dd>
-			  <dd id="draw" class="active"><a aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a></dd>
-			  <dd id="help" class=""><a data-reveal-id="myModal" class="" data-reveal>Help</a></dd>
+			  <dd id="draw" class=""><a aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a></dd>
 			</dl>
 		</div>
 		<div class="medium-6 columns right">
-			<div id="help" class="active" data-reveal-id="myModal" class="" data-reveal>Help</div>
+			<div id="help" class="active" data-reveal-id="myModal" class="button tiny alert" data-reveal>Help</div>
 			<div class="button tiny success">Submit dependencies</div>
 		</div>
 	</div>	
