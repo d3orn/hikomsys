@@ -33,6 +33,10 @@ dt, dd{
 	margin-top: 0.625rem;
 }
 
+#help{
+	padding: 3px 8px 4px 6px;
+}
+
 .icon:before{
 }
 
