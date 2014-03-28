@@ -48,6 +48,18 @@ dt, dd{
 	margin-bottom: 0 !important;
 }
 
+#greenArrow{
+	color: green;
+}
+
+#redArrow{
+	color: red;
+}
+
+#orangeArrow{
+	color: orange;
+}
+
 .icon:before{
 }
 

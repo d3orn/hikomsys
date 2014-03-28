@@ -10,7 +10,7 @@
 	<p id="result"></p>
 
 	<div class="row">
-		<div class="medium-6 columns">
+		<div class="medium-8 columns">
 			<dl class="sub-nav">
 			  <dt>Functions:</dt>
 			  <dd class=""><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a></dd>
@@ -20,7 +20,7 @@
 			  <dd class=""><a id="infosEnabled"></a>Additional Information</dd>
 			</dl>
 		</div>
-		<div class="medium-6 columns">	
+		<div class="medium-4 columns">	
 			<div id="submit" class="button tiny radius success right">Continue</div>
 			<div id="help" data-reveal-id="myModal" class="button tiny radius alert right" data-reveal>Help</div>
 		</div>
