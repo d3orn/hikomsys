@@ -24,15 +24,7 @@
 
 			<input id="quizId" type="hidden" value={{ $quizId }} >
 
-			<div class="switch">
-			  <input id="x" name="switch-x" type="radio" checked>
-			  <label for="x" onclick="">Off</label>
 
-			  <input id="x1" name="switch-x" type="radio">
-			  <label for="x1" onclick="">On</label>
-
-			  <span></span>
-			</div>
 
 			<!-- Size Classes: [small medium large xlarge expand] -->
 			<div id="myModal" class="reveal-modal" data-reveal>
@@ -47,6 +39,19 @@
 			</div>	
 		</div>
 	</div>
+	<div class="row">
+		<div class="medium-5 columns">
+				<div class="switch">
+			  <input id="x" name="switch-x" type="radio" checked>
+			  <label for="x" onclick="">Off</label>
+
+			  <input id="x1" name="switch-x" type="radio">
+			  <label for="x1" onclick="">On</label>
+
+			  <span></span>
+			</div>
+			</div>
+			</div>
 @stop
 
 @section("scripts")
