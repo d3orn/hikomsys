@@ -15,14 +15,24 @@
 	<div class="row">
 		<div class="medium-12 columns">
 			<div id="menu">
-				<div id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand activatedIcon buttonlike"></div>
-				<div id="draw" aria-hidden="true" data-icon="&#xe602;" class="icon-loop gradientBG buttonlike"></div>
+				<div id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand button"></div>
+				<div id="draw" aria-hidden="true" data-icon="&#xe602;" class="icon-loop button"></div>
 				<div data-reveal-id="myModal" class="button" data-reveal>Help</div>
 				<div id="submit" class="gradientBG buttonlike">Submit dependencies</div>
 			</div>
 			<div id="container"></div>
 
 			<input id="quizId" type="hidden" value={{ $quizId }} >
+
+			<div class="switch">
+			  <input id="x" name="switch-x" type="radio" checked>
+			  <label for="x" onclick="">Off</label>
+
+			  <input id="x1" name="switch-x" type="radio">
+			  <label for="x1" onclick="">On</label>
+
+			  <span></span>
+			</div>
 
 			<!-- Size Classes: [small medium large xlarge expand] -->
 			<div id="myModal" class="reveal-modal" data-reveal>
@@ -32,7 +42,7 @@
 				<p>In moving mode you are able to move around your packages freely, if you did already draw some dependencies they will just move along.</p>
 				<p>Within drawing mode you can <b>click-and-drag</b> from one package to another to visualize the dependency between them.
 				An arrow starting on one packages signals that this packages depends on the other package at the end of the arrow.</p>
-				<p> As soon as you are satisfied with your dependencies please submit your solution by clicking on the submit dependencies button below.</p>
+				<p> As soon as you are satisfied with your dependencies please submit your solution by clicking on the submit dependencies button.</p>
 				<a class="close-reveal-modal">&#215;</a>
 			</div>	
 		</div>
