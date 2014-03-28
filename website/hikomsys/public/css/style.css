@@ -23,6 +23,11 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+#container{
+	width: 100%;
+	height: 100%;
+}
+
 .icon:before{
 }
 
