@@ -30,6 +30,7 @@
 		<div id="container"></div>
 
 		<input id="quizId" type="hidden" value={{ $quizId }} >
+		
 		<!-- Size Classes: [small medium large xlarge expand] -->
 		<div id="myModal" class="reveal-modal" data-reveal>
 			<h2>Awesome. I have it.</h2>
