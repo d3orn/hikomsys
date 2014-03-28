@@ -41,17 +41,17 @@
 	</div>
 	<div class="row">
 		<div class="medium-5 columns">
-				<div class="switch">
-			  <input id="x" name="switch-x" type="radio" checked>
-			  <label for="x" onclick="">Off</label>
+			<div class="small-3 switch small">
+			  <input id="b" name="switch-b" type="radio" checked="">
+			  <label for="b" onclick="">Off</label>
 
-			  <input id="x1" name="switch-x" type="radio">
-			  <label for="x1" onclick="">On</label>
+			  <input id="b1" name="switch-b" type="radio">
+			  <label for="b1" onclick="">On</label>
 
 			  <span></span>
 			</div>
-			</div>
-			</div>
+		</div>
+	</div>
 @stop
 
 @section("scripts")
