@@ -13,7 +13,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="medium-12 columns">
+		<div class="medium-6 columns">
 
 			<dl class="sub-nav">
 			  <dt>Functions:</dt>
@@ -21,8 +21,14 @@
 			  <dd id="draw"><a aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a></dd>
 			  <dd id="help"><a data-reveal-id="myModal" class="" data-reveal>Help</a></dd>
 			</dl>
-			<div  class="button success">Submit dependencies</div>
+		</div>
+		<div class="medium-6 columns right">
+			<div class="button tiny success">Submit dependencies</div>
+		</div>
+	</div>	
 
+	<div class="row">
+		<div class="medium-12 columns">
 			<div id="container"></div>
 
 			<input id="quizId" type="hidden" value={{ $quizId }} >
