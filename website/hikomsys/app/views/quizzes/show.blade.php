@@ -20,22 +20,19 @@
 				<div data-reveal-id="myModal" class="button" data-reveal>Help</div>
 				<div id="submit" class="gradientBG buttonlike">Submit dependencies</div>
 			</div>
-			<div id="help_container"><br>You are able to switch between moving mode <a aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a> and
-				
-				drawing mode <a aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a>. 
-				<br>In moving mode you are able to move around your packages freely, if you did already draw some dependencies they will just move along.
-				<br>Within drawing mode you can <b>click-and-drag</b> from one package to another to visualize the dependency between them.
-				An arrow starting on one packages signals that this packages depends on the other package at the end of the arrow.
-				<br> As soon as you are satisfied with your dependencies please submit your solution by clicking on the submit dependencies button below.</div>
 			<div id="container"></div>
 
 			<input id="quizId" type="hidden" value={{ $quizId }} >
 
 			<!-- Size Classes: [small medium large xlarge expand] -->
 			<div id="myModal" class="reveal-modal" data-reveal>
-				<h2>Awesome. I have it.</h2>
-				<p class="lead">Your couch.  It is mine.</p>
-				<p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
+				<h2>Help</h2>
+				<br>You are able to switch between moving mode <a aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a> and
+				drawing mode <a aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a>. 
+				<br>In moving mode you are able to move around your packages freely, if you did already draw some dependencies they will just move along.
+				<br>Within drawing mode you can <b>click-and-drag</b> from one package to another to visualize the dependency between them.
+				An arrow starting on one packages signals that this packages depends on the other package at the end of the arrow.
+				<br> As soon as you are satisfied with your dependencies please submit your solution by clicking on the submit dependencies button below.
 				<a class="close-reveal-modal">&#215;</a>
 			</div>	
 		</div>
