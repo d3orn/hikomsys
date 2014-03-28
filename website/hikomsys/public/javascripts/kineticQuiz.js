@@ -96,7 +96,7 @@ $('#draw').click(function(){
 });
 
 $('#move').click(function(){
-	clicked($('#draw'));
+	clicked($(this));
 	switchMode();
 });
 
@@ -111,11 +111,6 @@ $('#submit').click(function(){
 			window.location.href = '/hikomsys/quizzes/'+quizId
 		}
 	});
-});
-
-$('.buttonlike').click(function(){
-	var currentId = $(this).attr('id');
-	clicked($(this));
 });
 
 function createJSON(){
