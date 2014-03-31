@@ -9,6 +9,8 @@
 	<div class="row">
 		<div class="medium-12 columns">
 			<h2>Your Result</h2>
+			<p>You are able to see further details about your packages by clicking on Additional Information.</p>
+			<p>Doing so will enable a drop down menu if you hover over a package. You will find information about the classes and children of the given package and you will also see all the dependencies going out from this package</p>
 		</div>
 	</div>
 
