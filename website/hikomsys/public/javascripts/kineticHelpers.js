@@ -81,7 +81,7 @@ function isBellow(center1, center2, center1_height) {
 
 function normalClick(object) {
     if (object.parent().hasClass('active')) {
-        object.parent().remoceClass('active')
+        object.parent().removeClass('active')
     } else {
         object.parent().addClass("active")
     }

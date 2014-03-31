@@ -4,7 +4,7 @@ var WIDTHRED = 5;
 
 var allPackages = [];
 
-var moreInfosEnabled = true;
+var moreInfosEnabled = false;
 
 var moving, draggable = false;
 
@@ -92,10 +92,6 @@ $('#infosEnabled').click(function() {
     for (var i = 0; i < allPackages.length; i++) {
         allPackages[i].removeInfos();
     }
-});
-
-$('#help').click(function() {
-    $('#help_container').toggle();
 });
 
 $('.btn').click(function() {
