@@ -9,6 +9,7 @@ var moreInfosEnabled = false;
 var moving, draggable = false;
 
 
+//TODO refactor to package group
 
 function switchMode() {
     draggable = !draggable;
@@ -88,7 +89,6 @@ $('.arrowbtn').click(function() {
 });
 
 $('#infosEnabled').click(function() {
-    alert('test');
     moreInfosEnabled = !moreInfosEnabled;
     for (var i = 0; i < allPackages.length; i++) {
         allPackages[i].removeInfos();
@@ -101,7 +101,7 @@ $('.btn').click(function() {
 
 /* =============================================================== Prototype Methods ============================================================== */
 
-//REFACTORING NEEDED
+//REFACTORING NEEDED and should be moved to helper
 //save initial scale
 var initialScale = {
     x: 1,
