@@ -1,6 +1,5 @@
 @extends('layouts.default')
 @section('styles')
-	{{ HTML::style('css/kinetic.css') }}
 	{{ HTML::style('css/style.css') }}
 @stop
 
