@@ -88,6 +88,7 @@ $('.arrowbtn').click(function() {
 });
 
 $('#infosEnabled').click(function() {
+    alert('test');
     moreInfosEnabled = !moreInfosEnabled;
     for (var i = 0; i < allPackages.length; i++) {
         allPackages[i].removeInfos();
