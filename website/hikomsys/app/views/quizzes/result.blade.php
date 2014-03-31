@@ -17,11 +17,11 @@
 		<div class="medium-8 columns">
 			<dl class="sub-nav">
 			  <dt>Functions:</dt>
-			  <dd class=""><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a></dd>
-			  <dd class="active"><a id="greenArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right arrowbtn"></a></dd>
-			  <dd class="active"><a id="orangeArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right arrowbtn"></a></dd>
-			  <dd class="active"><a id="redArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right arrowbtn"></a></dd>
-			  <dd class=""><a id="infosEnabled"></a>Additional Information</dd>
+			  <dd class=""><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand btn"></a></dd>
+			  <dd class="active"><a id="greenArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right btn arrowbtn"></a></dd>
+			  <dd class="active"><a id="orangeArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right btn arrowbtn"></a></dd>
+			  <dd class="active"><a id="redArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right btn arrowbtn"></a></dd>
+			  <dd class=""><a id="infosEnabled" class="btn"></a>Additional Information</dd>
 			</dl>
 		</div>
 		<div class="medium-4 columns">	

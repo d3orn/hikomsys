@@ -98,8 +98,7 @@ $('#help').click(function() {
     $('#help_container').toggle();
 });
 
-$('.buttonlike').click(function() {
-    var currentId = $(this).attr('id');
+$('.btn').click(function() {
     normalClick($(this));
 });
 
