@@ -5,9 +5,12 @@
 @stop
 
 @section('content')
-
-	<h1>Your Result</h1>
-	<p id="result"></p>
+	
+	<div class="row">
+		<div class="medium-12 columns">
+			<h2>Your Result</h2>
+		</div>
+	</div>
 
 	<div class="row">
 		<div class="medium-8 columns">
