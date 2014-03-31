@@ -4,7 +4,7 @@ var WIDTHRED = 5;
 
 var allPackages = [];
 
-var moreInfosEnabled = false;
+var moreInfosEnabled = true;
 
 var moving, draggable = false;
 
@@ -75,6 +75,8 @@ $(document).ready(function() {
             writeMessage(data);
             stage.draw();
         });
+
+    moreInfosEnabled = false;
 });
 
 /* ------  Buttons ------*/
