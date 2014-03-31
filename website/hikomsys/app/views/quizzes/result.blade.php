@@ -26,8 +26,11 @@
 		</div>
 	</div>	
 
-
-	<div id="container"></div>
+	<div class="row">
+		<div class="medium-12 columns">
+			<div id="container"></div>
+		</div>
+	</div>
 
 	<input id="quizId" type="hidden" value={{ $quizId }} >
 @stop
