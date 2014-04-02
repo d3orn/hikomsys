@@ -47,3 +47,9 @@ header {
     width: 1px;
     background: #FFFFFF;
 }
+#info {
+    margin-top: 0.55rem;
+}
+#infosEnabled {
+    padding: 0.1rem 1rem;
+}
