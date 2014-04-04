@@ -1,5 +1,4 @@
 #scrollbox{
-	width: 35em; 
-	height: 50%;
+	height: 28rem;
 	overflow: auto;
 }
