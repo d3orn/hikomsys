@@ -5,7 +5,7 @@ class QuizzesController extends \BaseController {
 	public function index(){
 		$projectId =Input::get('project_id');
 
-		$projectName = Project::findOrFail($projectId)->name()." blabla".Project::findOrFail($projectId)->version();
+		$projectName = Project::findOrFail($projectId)->name." blabla".Project::findOrFail($projectId)->version;
 
 		$quizzes = Quiz::where('project_id', '=', $projectId)->get();
 
@@ -56,7 +56,7 @@ class QuizzesController extends \BaseController {
 		$quiz = Quiz::findOrFail($id);
 		$projectId = $quiz->project_id();
 
-		$projectName = Project::findOrFail($projectId)->name()." blabla".Project::findOrFail($projectId)->version();
+		$projectName = Project::findOrFail($projectId)->name." blabla".Project::findOrFail($projectId)->version;
 
 
 		return View::make('quizzes.result', compact($quiz))
