@@ -74,7 +74,7 @@ class UsersController extends BaseController {
 
 		$user->save();
 
-		return Redirect::route('users.index');
+		return Redirect::route('users.index')->with('message', 'Profile Successfully updated');
 	}
 
 	public function destroy($id){

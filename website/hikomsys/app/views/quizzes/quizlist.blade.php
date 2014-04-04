@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @section("styles")
+	{{ HTML::style('css/scrollableList.css') }}
 @stop
 
 @section("content")

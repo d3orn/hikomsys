@@ -99,7 +99,7 @@
 				<div class="row">
 
 					@if(Session::has('message'))
-						<div data-alert data-options="animation_speed:500;" class="alert-box warning large-12">
+						<div data-alert data-options="animation_speed:500;" class="alert-box success large-12 columns">
 							{{Session::get('message')}}
 							<a href="#" class="close">&times;</a>
 						</div>
