@@ -6,18 +6,24 @@
 
 @section("content")
 
-	<div id='scrollbox'>
+<div class="row">
+	<div class="medium-12 columns">
+		<div id='scrollbox'>
 
-		@if(count($quizzes) > 0 )
-			<ul>
-			@foreach($quizzes as $quiz)
-				<li>{{ HTML::linkRoute('quizzes.show', $quiz->id, [$quiz->id]) }}</li>
-			@endforeach
-			</ul>
-		@else
-			<p>You did not finish a quiz up to this point, go to your projects and start now!</p>
-		@endif
+			@if(count($quizzes) > 0 )
+				<ul>
+				@foreach($quizzes as $quiz)
+					<li>{{ HTML::linkRoute('quizzes.show', $quiz->id, [$quiz->id]) }}</li>
+				@endforeach
+				</ul>
+			@else
+				<p>You did not finish a quiz up to this point, go to your projects and start now!</p>
+			@endif
 
+		</div>
 	</div>
+</div>
+
+
 	
 @stop
