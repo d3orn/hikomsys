@@ -5,7 +5,7 @@
 
 @section("content")
 
-	<h1> Edit your profile </h1>
+	<h2> Edit your profile </h2>
 
      {{ Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) }}
 

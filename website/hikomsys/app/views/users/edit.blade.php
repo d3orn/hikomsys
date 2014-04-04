@@ -7,7 +7,7 @@
 
 	<div class="row">
 		<div class="medium-10 columns">
-			<h1> Edit your profile </h1>
+			<h2> Edit your profile </h2>
 		</div>
 	</div>
 

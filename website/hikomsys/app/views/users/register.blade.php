@@ -4,7 +4,7 @@
 
 	<div class="row">
 		<div class="large-12 columns">
-			<h1>Sign Up now!</h1>
+			<h2>Sign Up now!</h2>
 			<p>To find out how well you know your code just fill out the form below and you are ready to go!</p>
 		</div>
 	</div>
