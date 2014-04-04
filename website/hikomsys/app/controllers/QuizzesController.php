@@ -5,9 +5,11 @@ class QuizzesController extends \BaseController {
 	public function index(){
 		$projectId =Input::get('project_id');
 
+		$projectName = Project::findOrFail($projectId)->name()." blabla".Project::findOrFail($projectId)->version();
+
 		$quizzes = Quiz::where('project_id', '=', $projectId)->get();
 
-		return View::make('quizzes.quizlist', compact('quizzes'));
+		return View::make('quizzes.quizlist', compact('quizzes', 'projectName'));
 	}
 
 	/**
@@ -51,8 +53,15 @@ class QuizzesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return View::make('quizzes.result')
-			->with('quizId', $id);
+		$quiz = Quiz::findOrFail($id);
+		$projectId = $quiz->project_id();
+
+		$projectName = Project::findOrFail($projectId)->name()." blabla".Project::findOrFail($projectId)->version();
+
+
+		return View::make('quizzes.result', compact($quiz))
+			->with('quizId', $id)
+			.>with('projectName', $projectName);
 	}
 
 	/**

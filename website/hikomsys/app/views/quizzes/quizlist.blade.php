@@ -8,7 +8,7 @@
 
 <div class="row">
 	<div class="medium-12 columns">
-		<h2>Titel</h2>
+		<h2>{{ projectName }}</h2>
 	</div>
 </div>
 
@@ -19,7 +19,7 @@
 			@if(count($quizzes) > 0 )
 				<ul>
 				@foreach($quizzes as $quiz)
-					<li>{{ HTML::linkRoute('quizzes.show', $quiz->id." Date + Result", [$quiz->id]) }}</li>
+					<li>{{ HTML::linkRoute('quizzes.show',"Date + Result", [$quiz->id]) }}</li>
 				@endforeach
 				</ul>
 			@else
