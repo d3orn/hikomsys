@@ -54,7 +54,7 @@ class QuizzesController extends \BaseController {
 	public function show($id)
 	{
 		$quiz = Quiz::findOrFail($id);
-		$projectId = $quiz->project_id();
+		$projectId = $quiz->project_id;
 
 		$projectName = Project::findOrFail($projectId)->name." blabla".Project::findOrFail($projectId)->version;
 
