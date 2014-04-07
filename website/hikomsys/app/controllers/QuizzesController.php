@@ -3,10 +3,10 @@
 class QuizzesController extends \BaseController {
 
 	public function __construct() {
-		$this->beforeFilter(function(){
-			if(Auth::guest()) 
-				return Redirect::route('sessions.login');
-		});
+		// $this->beforeFilter(function(){
+		// 	if(Auth::guest()) 
+		// 		return Redirect::route('sessions.login');
+		// });
 	}
 
 	public function index(){
