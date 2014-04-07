@@ -4,6 +4,7 @@ class ProjectsController extends BaseController {
 
 	//I should just add this filter to the BaseController
 	public function __construct() {
+		parent::__construct()
 		// $this->beforeFilter(function(){
 		// 	if(Auth::guest()) 
 		// 		return Redirect::route('sessions.login');

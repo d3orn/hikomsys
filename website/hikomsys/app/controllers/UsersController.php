@@ -8,6 +8,7 @@ class UsersController extends BaseController {
 
 	public function __construct(UserInterface $users) {
 		$this->users = $users;
+		parent::__construct()
 		// $this->beforeFilter(function(){
 		// 	if(Auth::guest()) 
 		// 		return View::make('users.login');
