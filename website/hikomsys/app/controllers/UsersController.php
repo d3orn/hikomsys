@@ -10,11 +10,11 @@ class UsersController extends BaseController {
 		$this->users = $users;
 		$this->beforeFilter(function(){
 			if(Auth::guest()) 
-				Redirect::route('sessions.login');
+				return View::make('users.login');
 		}, array('except' => ['create','store']));
 		$this->beforeFilter(function(){
 			if(Auth::user()->username != 'd3orn') 
-				Redirect::route('sessions.login')->with('message', 'You do not have permission to delete users!');
+				return View::make('users.login')->with('message', 'You do not have permission to delete users!');
 		}, array('only' => ['destroy']));
 	}
 
