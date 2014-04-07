@@ -6,10 +6,6 @@ class BaseController extends Controller {
 
     public function __construct()
     {
-    	$this->beforeFilter(function(){
-			if(Auth::guest()) 
-				return Redirect::route('sessions.login');
-		});
 		//$this->beforeFilter('auth', ['except' => 'login']);
 		//$this->beforeFilter('csrf', ['on' => 'post']);
     }
