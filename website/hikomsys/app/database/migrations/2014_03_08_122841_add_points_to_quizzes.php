@@ -15,6 +15,7 @@ class AddPointsToQuizzes extends Migration {
         Schema::table('quizzes', function($table)
         {
             $table->float('points');
+            $table->timestamps();
         });
 	}
 
