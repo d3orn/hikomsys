@@ -6,8 +6,8 @@ class BaseController extends Controller {
 
     public function __construct()
     {
-		$this->beforeFilter('auth', ['except' => 'login']);
-		$this->beforeFilter('csrf', ['on' => 'post']);
+		//$this->beforeFilter('auth', ['except' => 'login']);
+		//$this->beforeFilter('csrf', ['on' => 'post']);
     }
 
 	/**
