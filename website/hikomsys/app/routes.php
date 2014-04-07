@@ -8,8 +8,8 @@ Route::get('users/showall' ,['as' => 'users.showall', 'uses' => 'UsersController
 Route::resource('users' , 'UsersController');
 
 //SessionController
-Route::get('login', ['as' => 'login', 'SessionsController@create']);
-Route::get('logout',['as' => 'logout', 'SessionsController@destroy']);
+Route::get('login', ['as' => 'sessions.login', 'SessionsController@create']);
+Route::get('logout',['as' => 'sessions.logout', 'SessionsController@destroy']);
 Route::resource('sessions' , 'SessionsController', ['only' => ['store']]);
 
 //ProjectsController
