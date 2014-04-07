@@ -5,7 +5,7 @@ class QuizzesController extends \BaseController {
 	public function __construct() {
 		$this->beforeFilter(function(){
 			if(Auth::guest()) 
-				return Redirect::route('login');
+				return Redirect::route('sessions.login');
 		});
 	}
 
