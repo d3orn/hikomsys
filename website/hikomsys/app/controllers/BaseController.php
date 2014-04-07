@@ -3,6 +3,13 @@
 class BaseController extends Controller {
 
 	private $db, $connection;
+
+    public function __construct()
+    {
+		$this->beforeFilter('auth', ['except' => 'login']);
+		$this->beforeFilter('csrf', ['on' => 'post']);
+    }
+
 	/**
 	 * Setup the layout used by the controller.
 	 *

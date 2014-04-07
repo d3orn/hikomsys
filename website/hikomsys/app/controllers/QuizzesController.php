@@ -2,6 +2,13 @@
 
 class QuizzesController extends \BaseController {
 
+	public function __construct() {
+		$this->beforeFilter(function(){
+			if(Auth::guest()) 
+				return Redirect::route('login');
+		});
+	}
+
 	public function index(){
 		$projectId =Input::get('project_id');
 
