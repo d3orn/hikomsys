@@ -13,7 +13,7 @@ class QuizzesController extends \BaseController {
 	public function index(){
 		$projectId =Input::get('project_id');
 
-		$projectName = Project::findOrFail($projectId)->name." blabla".Project::findOrFail($projectId)->version;
+		$projectName = "Your results for ".Project::findOrFail($projectId)->name." Version".Project::findOrFail($projectId)->version;
 
 		$quizzes = Quiz::where('project_id', '=', $projectId)->orderBy('points', 'desc')->get();
 
