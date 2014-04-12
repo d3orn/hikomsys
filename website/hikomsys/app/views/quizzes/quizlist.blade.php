@@ -17,11 +17,28 @@
 		<div id='scrollbox'>
 
 			@if(count($quizzes) > 0 )
-				<ul>
-				@foreach($quizzes as $quiz)
-					<li>{{ HTML::linkRoute('quizzes.show',"Date: ".$quiz->created_at." points: ".$quiz->points, [$quiz->id]) }}</li>
-				@endforeach
-				</ul>
+				<table>
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Time</th>
+							<th>Points</th>
+							<th>View</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($quizzes as $quiz)
+							<tr>
+								<td>{{ $quiz->date }}</td>
+								<td>bla</td>
+								<td>{{ $quiz->points }}</td>
+								<td>
+									{{ HTML::linkRoute('quizzes.show', "Inspect", [$quiz->id], ['class'=>'small button radius']) }}
+								</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
 			@else
 				<p>You did not finish a quiz up to this point, go to your projects and start now!</p>
 			@endif
