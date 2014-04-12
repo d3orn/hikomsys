@@ -154,8 +154,8 @@ class QuizzesController extends \BaseController {
 		$totalDependencies = $countOrange + $countGreen;
 		if($totalDependencies <= 0) {
 			$minusPoints = -100/$maxDependencies;
-			
-			$userPoints = 100 - $minusPoints * ($countRed + $countOrange);
+
+			$userPoints = 100 + $minusPoints * ($countRed + $countOrange);
 		}
 		else{
 			$plusPoints = 100/$totalDependencies;
