@@ -30,10 +30,7 @@
 					</tbody>
 				</table>
 			@else
-				<p> Sorry you did not uplade any projects yet, please do so by filling out the form below </p>
-				<p>Please enter a valid Github link</p>
-
-				<p>Please enter a valid Github link below</p>
+				<p> Sorry you did not upload any projects yet, please do so by filling out the form below </p>
 
 				{{ Form::open(['route'=>'projects.store']) }}
 
