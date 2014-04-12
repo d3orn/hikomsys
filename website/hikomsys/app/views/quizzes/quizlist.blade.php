@@ -29,7 +29,11 @@
 					<tbody>
 						@foreach($quizzes as $quiz)
 							<tr>
-								<td>{{ $quiz->created_at }}</td>
+								<td>{{ 
+									$date = $quiz->created_at
+									explode(' ', $date);
+									$date[0];
+								 }}</td>
 								<td>bla</td>
 								<td>{{ $quiz->points }}</td>
 								<td>
