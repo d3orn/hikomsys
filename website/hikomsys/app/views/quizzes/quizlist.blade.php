@@ -30,9 +30,7 @@
 						@foreach($quizzes as $quiz)
 							<tr>
 								<td>{{ 
-									$date = $quiz->created_at;
-									explode(' ', $date);
-									$date[0];
+									date("d m Y",strtotime($quiz->created_at))
 								 }}</td>
 								<td>bla</td>
 								<td>{{ $quiz->points }}</td>
