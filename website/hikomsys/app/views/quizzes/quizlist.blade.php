@@ -29,10 +29,8 @@
 					<tbody>
 						@foreach($quizzes as $quiz)
 							<tr>
-								<td>{{ 
-									date("d m Y",strtotime($quiz->created_at))
-								 }}</td>
-								<td>bla</td>
+								<td>{{ date("d-m-Y",strtotime($quiz->created_at)) }}</td>
+								<td>{{ date("H:i a",strtotime($quiz->created_at)) }}</td>
 								<td>{{ $quiz->points }}</td>
 								<td>
 									{{ HTML::linkRoute('quizzes.show', "Inspect", [$quiz->id], ['class'=>'small button radius']) }}
