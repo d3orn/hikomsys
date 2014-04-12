@@ -6,8 +6,8 @@
 @section("content")
 
 	<div class="row">
-		<div class="large-12 columns">
-			<h1>{{ $title }}</h1>
+		<div class="medium-8 columns">
+			<h2>{{ $title }}</h2>
 
 			@if($projects)
 				<table class="table table-striped">
@@ -33,27 +33,30 @@
 				<p> Sorry you did not uplade any projects yet, please do so by filling out the form below </p>
 				<p>Please enter a valid Github link</p>
 
-				<div class="row">
+				<p>Please enter a valid Github link below</p>
 
-					<div class="large-5 medium-5 columns">
+				{{ Form::open(['route'=>'projects.store']) }}
 
-						<p>Please enter a valid Github link below</p>
-
-						{{ Form::open(['route'=>'projects.store']) }}
-
-							{{ Form::label('url', 'Gitrepository URL:') }}
+					<div class="row">
+						<div class="medium-4 columns">   
+							{{ Form::label('url', 'URL to your Git Repository:', ['class' => 'left inline']) }}
+						</div>
+				 		<div class="medium-8 columns">
 							{{ Form::url('url')}}
-									
-							{{ Form::label('projectName', 'Project name:',['class' => 'form-label']) }}
-							{{ Form::text('projectName', null, ['class' => 'form-control']) }}
-
-							{{ Form::submit('Submit Repository', ['class'=>'submit button']) }}
-
-						{{ Form::close() }}
-
+						</div>
 					</div>
 
-				</div>
+					<div class="row">
+						<div class="medium-4 columns">							
+							{{ Form::label('projectName', 'Project name:', ['class' => 'left inline']) }}
+						</div>
+				 		<div class="medium-8 columns">
+							{{ Form::text('projectName') }}
+						</div>
+					</div>
+
+				{{ Form::submit('Upload my Project', ['class'=>'submit button']) }}
+
 			@endif
 		</div>
 	</div>
