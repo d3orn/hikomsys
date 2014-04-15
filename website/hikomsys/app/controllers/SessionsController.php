@@ -28,7 +28,7 @@ class SessionsController extends \BaseController {
 
 		if($attempt) return Redirect::route('users.index')->with('message', 'You are now logged in!');
 		return Redirect::back()
-			->with('message', 'Your username/password combination was incorrect')
+			->with('error', 'Your username/password combination was incorrect')
 			->withInput();
 	}
 

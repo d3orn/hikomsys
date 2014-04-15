@@ -96,15 +96,22 @@
 				</a>
 			</header>
 			<main>
-				<div class="row">
-
-					@if(Session::has('message'))
+				@if(Session::has('message'))
+					<div class="row">
 						<div data-alert data-options="animation_speed:500;" class="alert-box success large-12 columns">
 							{{Session::get('message')}}
 							<a href="#" class="close">&times;</a>
 						</div>
-					@endif
-				</div>
+					</div>
+				@endif
+				@if(Session::has('error'))
+					<div class="row">
+						<div data-alert data-options="animation_speed:500;" class="alert-box alert large-12 columns">
+							{{Session::get('error')}}
+							<a href="#" class="close">&times;</a>
+						</div>
+					</div>
+				@endif
 	
 				<section>
 					@yield('content')
@@ -113,34 +120,33 @@
 			<div class="push"></div>
 		</div>
 		<footer>
-			@if(!Auth::check())
-				<div class="row">
-					<div class="medium-12 columns">
-						<section id="links" class="row">
-							<div class="medium-4 columns">
-								<a href="http://www.pharo-project.org/home" target="_blank">
-									{{ HTML::image('foundation/img/pharo.fw.png', 'Smalltalk Pharo Logo') }}
-								</a>	
-								<p>a clean, innovative, free open-source Smalltalk-inspired environment</p>
-							</div>
-							<div class="medium-5 columns">
-								<div class="vertDivider"></div>
-								<p>a platform for software and data analysis</p>
-								<a href="http://www.moosetechnology.org/" target="_blank">	
-									{{ HTML::image('foundation/img/mooseTech.fw.png', 'Moose Technology Logo') }}
-								</a>
-							</div>	
-							<div class="medium-3 columns left">
-								<div class="vertDivider"></div>
-								<a href="http://www.d3orn.ch" target="_blank">
-									{{ HTML::image('foundation/img/d3orn.fw.png', 'd3orn Logo') }}
-								</a>	
-							</div>	
-						</section>
-					</div>
+			@yield('footer')
+			<div class="row">
+				<div class="medium-12 columns">
+					<section id="links" class="row">
+						<div class="medium-4 columns">
+							<a href="http://www.pharo-project.org/home" target="_blank">
+								{{ HTML::image('foundation/img/pharo.fw.png', 'Smalltalk Pharo Logo') }}
+							</a>	
+							<p>a clean, innovative, free open-source Smalltalk-inspired environment</p>
+						</div>
+						<div class="medium-5 columns">
+							<div class="vertDivider"></div>
+							<p>a platform for software and data analysis</p>
+							<a href="http://www.moosetechnology.org/" target="_blank">	
+								{{ HTML::image('foundation/img/mooseTech.fw.png', 'Moose Technology Logo') }}
+							</a>
+						</div>	
+						<div class="medium-3 columns left">
+							<div class="vertDivider"></div>
+							<a href="http://www.d3orn.ch" target="_blank">
+								{{ HTML::image('foundation/img/d3orn.fw.png', 'd3orn Logo') }}
+							</a>	
+						</div>	
+					</section>
 				</div>
-				<hr>
-			@endif
+			</div>
+			<hr>
 			<div class="row">
 				<div class="medium-12 columns">
 					<section class="footertext">
