@@ -16,7 +16,7 @@
         {{ Form::text('lastname', array('disabled')) }}
 
         {{ Form::label('email', 'E-Mail', array('class' => 'address')) }}
-        {{ Form::text('email', array('disabled') }}
+        {{ Form::text('email', array('disabled')) }}
 
         {{ Form::label('username', 'Username', array('class' => 'address')) }}
         {{ Form::text('username', array('disabled')) }}
