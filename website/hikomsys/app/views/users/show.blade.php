@@ -46,15 +46,6 @@
 
 			<div class="row">
 				<div class="medium-3 columns">  
-					{{ Form::label('username', 'Username', ['class' => 'left inline']) }}
-				</div>
-				<div class="medium-9 columns">
-					{{ Form::text('username', $value = null, ['disabled']) }}
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="medium-3 columns">  
 					{{ Form::label('description', 'Description', ['class' => 'left inline']) }}
 				</div>
 				<div class="medium-9 columns">
