@@ -9,7 +9,6 @@
 
      {{ Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) }}
 
-     	<fieldset>
             {{ Form::label('firstname', 'First Name:', array('class' => 'address')) }}
             {{ Form::text('firstname') }}
 
@@ -24,8 +23,7 @@
 
             {{ Form::label('description', 'Description', array('class' => 'address')) }}
             {{ Form::textarea('description') }}
-           
-        </fieldset>
+
 		{{ Form::submit('Update Profile') }}
     {{ Form::close() }}
 
