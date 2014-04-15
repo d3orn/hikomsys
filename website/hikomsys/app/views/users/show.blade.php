@@ -15,14 +15,14 @@
 
 		<div class="medium-9 columns">
 		
-		{{ Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]], ['disabled']) }}
+		{{ Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) }}
 
 			<div class="row">
 				<div class="medium-3 columns">   	
 					{{ Form::label('firstname', 'First Name:', ['class' => 'left inline']) }}
 				</div>
 			 	<div class="medium-9 columns">
-			   		{{ Form::text('firstname') }}
+			   		{{ Form::text('firstname', ['disabled']) }}
 				</div>
 			</div>
 
