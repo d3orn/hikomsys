@@ -112,7 +112,8 @@
 			</main>	
 			<div class="push"></div>
 		</div>
-		<footer>	
+		<footer>
+			@if(!Auth::check())
 			<div class="row">
 				<div class="medium-12 columns">
 					<section id="links" class="row">
@@ -139,6 +140,7 @@
 				</div>
 			</div>
 			<hr>
+			@endif
 			<div class="row">
 				<div class="medium-12 columns">
 					<section class="footertext">
