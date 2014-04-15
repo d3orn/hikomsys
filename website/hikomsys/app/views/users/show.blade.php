@@ -22,7 +22,7 @@
 					{{ Form::label('firstname', 'First Name:', ['class' => 'left inline']) }}
 				</div>
 			 	<div class="medium-9 columns">
-			   		{{ Form::text('firstname', ['disabled']) }}
+			   		{{ Form::text('firstname', $value = null, ['disabled']) }}
 				</div>
 			</div>
 
