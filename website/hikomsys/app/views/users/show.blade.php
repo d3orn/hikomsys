@@ -31,7 +31,7 @@
 			   		{{ Form::label('lastname', 'Last Name:', ['class' => 'left inline']) }}
 				</div>
 				<div class="medium-9 columns">
-					{{ Form::text('lastname') }}
+					{{ Form::text('lastname', $value = null, ['disabled']) }}
 				</div>
 			</div>
 
@@ -40,7 +40,7 @@
 					{{ Form::label('email', 'E-Mail', ['class' => 'left inline']) }}
 				</div>
 				<div class="medium-9 columns">
-					{{ Form::text('email') }}
+					{{ Form::text('email', $value = null, ['disabled']) }}
 				</div>
 			</div>
 
@@ -49,7 +49,7 @@
 					{{ Form::label('username', 'Username', ['class' => 'left inline']) }}
 				</div>
 				<div class="medium-9 columns">
-					{{ Form::text('username') }}
+					{{ Form::text('username', $value = null, ['disabled']) }}
 				</div>
 			</div>
 
@@ -58,7 +58,7 @@
 					{{ Form::label('description', 'Description', ['class' => 'left inline']) }}
 				</div>
 				<div class="medium-9 columns">
-			   		{{ Form::textarea('description') }}
+			   		{{ Form::textarea('description', $value = null, ['disabled']) }}
 				</div>
 			</div>
 
