@@ -10,19 +10,19 @@
      {{ Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) }}
 
         {{ Form::label('firstname', 'First Name:', array('class' => 'address')) }}
-        {{ Form::text('firstname', array('disabled')) }}
+        {{ Form::text('firstname') }}
 
         {{ Form::label('lastname', 'Last Name:', array('class' => 'address')) }}
-        {{ Form::text('lastname', array('disabled')) }}
+        {{ Form::text('lastname') }}
 
         {{ Form::label('email', 'E-Mail', array('class' => 'address')) }}
-        {{ Form::text('email', array('disabled')) }}
+        {{ Form::text('email') }}
 
         {{ Form::label('username', 'Username', array('class' => 'address')) }}
-        {{ Form::text('username', array('disabled')) }}
+        {{ Form::text('username') }}
 
         {{ Form::label('description', 'Description', array('class' => 'address')) }}
-        {{ Form::textarea('description', array('disabled')) }}
+        {{ Form::textarea('description') }}
 
     {{ Form::close() }}
 
