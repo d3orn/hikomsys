@@ -160,6 +160,10 @@
 		{{ HTML::script('http://code.jquery.com/jquery-migrate-1.2.1.min.js') }}
 		{{ HTML::script('foundation/js/foundation.min.js') }}	
 		{{ HTML::script('foundation/js/vendor/modernizr.js') }}
+
+		<!--[if lt IE 9]>
+			{{ HTML::script('javascript/html5shiv.min.js') }}
+		<![endif]-->
 		
 		@yield('scripts')
 
