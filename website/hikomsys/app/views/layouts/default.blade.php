@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<title>HIKOMSYS - How I KnOw My SYStem: Home</title>
 		
-		<meta name="keywords" content="Filler" />
+		<meta name="keywords" content="Filler">
 		<meta name="robots" content="all" />
 		<meta name="dcterms.rights" content="copyright by d3orn, CH-3072 Ostermundigen" />
 		<meta name="author" content="www.d3orn.ch" />
