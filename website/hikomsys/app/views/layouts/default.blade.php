@@ -11,6 +11,7 @@
 		<meta name="description" content="Learn how well YOU know your Java System!">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
+		<!-- Favions sind da aber apple icon fehlen noch  -->
 		<link rel="shortcut icon" href="pictures/magnifying_glass.png" type="image/x-icon" />
 		<link rel="shortcut icon" href="pictures/magnifying_glass.ico" type="image/x-icon" />
 		<link href="/apple-touch-icon.png" rel="apple-touch-icon" />
