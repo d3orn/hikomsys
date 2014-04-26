@@ -13,10 +13,10 @@
 		
 		<link rel="shortcut icon" href="pictures/magnifying_glass.png" type="image/x-icon" />
 		<link rel="shortcut icon" href="pictures/magnifying_glass.ico" type="image/x-icon" />
-		<link rel="apple-touch-icon" sizes="114×114" href="/touch-icon-114×114.png" />
-		<link rel="apple-touch-icon" sizes="72×72" href="/touch-icon-72×72.png" />
-		<link rel="apple-touch-icon" sizes="72×72" href="/touch-icon-72×72.png" />
-		<link rel="apple-touch-icon" href="/touch-icon-iphone.png" />
+		<link href="/apple-touch-icon.png" rel="apple-touch-icon" />
+		<link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
+		<link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
+		<link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
 		
 		{{ HTML::style('css/general.css') }}
 		{{ HTML::style('foundation/css/foundation.css') }}
@@ -150,7 +150,7 @@
 			<div class="row">
 				<div class="medium-12 columns">
 					<section class="footertext">
-						<address>Dominique Rahm &middot {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
+						<address>Dominique Rahm &middot; {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot; <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
 					</section>
 				</div>
 			</div>
