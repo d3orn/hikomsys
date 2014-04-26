@@ -6,7 +6,7 @@
 		
 		<meta name="keywords" content="Filler" />
 		<meta name="robots" content="all" />
-		<meta name="copyright" content="copyright by d3orn, CH-3072 Ostermundigen" />
+		<meta name="dcterms.rights" content="copyright by d3orn, CH-3072 Ostermundigen" />
 		<meta name="author" content="www.d3orn.ch" />
 		<meta name="description" content="Learn how well YOU know your Java System!">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
