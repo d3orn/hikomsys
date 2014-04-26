@@ -5,19 +5,19 @@
 		<title>HIKOMSYS - How I KnOw My SYStem: Home</title>
 		
 		<meta name="keywords" content="Filler">
-		<meta name="robots" content="all" />
-		<meta name="dcterms.rights" content="copyright by d3orn, CH-3072 Ostermundigen" />
-		<meta name="author" content="www.d3orn.ch" />
+		<meta name="robots" content="all">
+		<meta name="dcterms.rights" content="copyright by d3orn, CH-3072 Ostermundigen">
+		<meta name="author" content="www.d3orn.ch">
 		<meta name="description" content="Learn how well YOU know your Java System!">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<!-- Favions sind da aber apple icon fehlen noch  -->
-		<link rel="shortcut icon" href="pictures/magnifying_glass.png" type="image/x-icon" />
-		<link rel="shortcut icon" href="pictures/magnifying_glass.ico" type="image/x-icon" />
-		<link href="/apple-touch-icon.png" rel="apple-touch-icon" />
-		<link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
-		<link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
-		<link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+		<link rel="shortcut icon" href="pictures/magnifying_glass.png" type="image/x-icon">
+		<link rel="shortcut icon" href="pictures/magnifying_glass.ico" type="image/x-icon">
+		<link href="/apple-touch-icon.png" rel="apple-touch-icon">
+		<link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
+		<link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
+		<link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
 		
 		{{ HTML::style('css/general.css') }}
 		{{ HTML::style('foundation/css/foundation.css') }}
