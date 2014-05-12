@@ -20,7 +20,7 @@ $(document).ready(function(){
 	  	"plugins" : ["checkbox", "sort", "state", "wholerow"]
 	});
 
-	$("#package_list").jstree.clear_state();
+	$("#package_list").jstree(true).clear_state();
 
 });
 
