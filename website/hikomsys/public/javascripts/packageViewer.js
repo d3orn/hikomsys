@@ -48,7 +48,7 @@ function uncheckChilds(node){
 	var id = node[0].id;
 	$("#package_list").jstree("deselect_node",id);
 	var children = $("#package_list").jstree("get_children_dom", id); 
-	for(var i = 0, i < children.length, i++){
+	for(var i = 0; i < children.length; i++){
 		console.log(i);
 	}
 }
