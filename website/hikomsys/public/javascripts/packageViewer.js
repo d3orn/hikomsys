@@ -20,8 +20,6 @@ $(document).ready(function(){
 	  	"plugins" : ["checkbox", "sort", "state", "wholerow"]
 	});
 
-	$("#package_list").jstree("open_all","#etc");
-
 });
 
 $('form').submit(function (e) {
@@ -38,8 +36,6 @@ $('form').submit(function (e) {
 $("#package_list").bind("dblclick.jstree", function (event) {
    var node = $(event.target).closest("li");
    var data = node.data("jstree");
-   // console.log($(this));
-   console.log(node[0].id);
-   // console.log(data);
-   // Do my action
+   var id = node[0].id;
+   $("#package_list").jstree("open_all",id);
 });
