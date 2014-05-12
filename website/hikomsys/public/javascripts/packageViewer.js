@@ -22,13 +22,6 @@ $(document).ready(function(){
 
 	$("#package_list").jstree("open_all","#etc");
 
-
-    var rootChildren = $("#package_list").jstree._get_children(-1), 
-    rootNodes = [], 
-    i;
-    for(i = 0; i < rootChildren.length; i += 1){
-        rootNodes[i] = rootChildren[i];
-    }
 });
 
 $('form').submit(function (e) {
@@ -42,3 +35,6 @@ $('form').submit(function (e) {
     $(this).append($hidden);
 });
 
+$( "li" ).dblclick(function() {
+	console.log($(this).id);
+});
