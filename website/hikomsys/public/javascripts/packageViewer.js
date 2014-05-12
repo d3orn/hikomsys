@@ -13,7 +13,7 @@ $(document).ready(function(){
 			{
 				"three_state" : false
 			}
-		}
+		},
 		"plugins" : ["checkbox", "sort", "state", "wholerow", "contextmenu"]
 	});
 
