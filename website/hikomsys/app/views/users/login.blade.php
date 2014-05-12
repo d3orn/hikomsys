@@ -55,4 +55,4 @@
 		</div>
 	</div>
 	<hr>
-@end
+@stop
