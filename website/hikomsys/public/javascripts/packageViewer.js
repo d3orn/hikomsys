@@ -36,9 +36,9 @@ $("#package_list").bind("dblclick.jstree", function (event) {
 	var data = node.data("jstree");
 	var id = node[0].id;
 	if(node.hasClass('jstree-open')){
-		$("#package_list").jstree("close_all",id)
- 	};
+		$("#package_list").jstree("close_all",id);
+ 	}
 	else{
-		$("#package_list").jstree("open_all",id)
+		$("#package_list").jstree("open_all",id);
 	}
 });
