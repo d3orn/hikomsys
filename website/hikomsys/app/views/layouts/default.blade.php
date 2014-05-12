@@ -124,32 +124,6 @@
 			@yield('footer')
 			<div class="row">
 				<div class="medium-12 columns">
-					<section id="links" class="row">
-						<div class="medium-4 columns">
-							<a href="http://www.pharo-project.org/home" target="_blank">
-								{{ HTML::image('foundation/img/pharo.fw.png', 'Smalltalk Pharo Logo') }}
-							</a>	
-							<p>a clean, innovative, free open-source Smalltalk-inspired environment</p>
-						</div>
-						<div class="medium-5 columns">
-							<div class="vertDivider"></div>
-							<p>a platform for software and data analysis</p>
-							<a href="http://www.moosetechnology.org/" target="_blank">	
-								{{ HTML::image('foundation/img/mooseTech.fw.png', 'Moose Technology Logo') }}
-							</a>
-						</div>	
-						<div class="medium-3 columns left">
-							<div class="vertDivider"></div>
-							<a href="http://www.d3orn.ch" target="_blank">
-								{{ HTML::image('foundation/img/d3orn.fw.png', 'd3orn Logo') }}
-							</a>	
-						</div>	
-					</section>
-				</div>
-			</div>
-			<hr>
-			<div class="row">
-				<div class="medium-12 columns">
 					<section class="footertext">
 						<address>Dominique Rahm &middot; {{ HTML::mailto('d3orn@hikomsys.ch', 'Send me some Feedback')}} &middot; <a href="http://www.twitter.com/d3orn" target="blank">@deorn</a></address>
 					</section>
