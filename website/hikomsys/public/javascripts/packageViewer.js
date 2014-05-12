@@ -17,11 +17,13 @@ $(document).ready(function(){
 	 	{
 			"three_state" : false
 		},
-	  	"plugins" : ["checkbox", "sort", "state", "wholerow"]
+		"state" : 
+		{
+			"state" : false
+		},
+	  	"plugins" : ["checkbox", "sort", "state", "wholerow", "state"]
 	});
 
-	 $("#package_list").jstree("close_all", -1);
-	 $("#package_list").jstree("deselect_all", -1);
 
 });
 
