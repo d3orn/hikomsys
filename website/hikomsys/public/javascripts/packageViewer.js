@@ -39,6 +39,6 @@ $("#package_list").bind("dblclick.jstree", function (event) {
    var node = $(event.target).closest("li");
    var data = node.data("jstree");
    var id = node[0].id;
-   console.log(node);
+   console.log(node.hasClass('jstree-open'));
    $("#package_list").jstree("open_all",id);
 });
