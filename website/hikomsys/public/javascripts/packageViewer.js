@@ -15,13 +15,14 @@ $(document).ready(function(){
 			},
 		},
 		"contextmenu" : {
-			items : {
-				"create" : {
-					label: "Create Child", 
-					"action" : function(node) {this.create(node);}
+			items : function(node){
+				"expand" : {
+					label: "Expand", 
+					"action" : function(node) {console.log(node)}
 				},
-				"test" : {
-					
+				"close" : {
+					label: "Close", 
+					"action" : function(node) {console.log(node)}
 				}
 			}
 		},
