@@ -15,7 +15,7 @@ $(document).ready(function(){
 			},
 			"contextmenu" : {
 				items : function(node){
-					menu = {
+					return = {
 						"create" : {
 							"action" : function(node) {this.create(node);}
 						},
