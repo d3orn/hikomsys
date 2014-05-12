@@ -20,6 +20,9 @@ $(document).ready(function(){
 	  	"plugins" : ["checkbox", "sort", "state", "wholerow"]
 	});
 
+	 $("#package_list").jstree("close_all");
+	 $("#package_list").jstree("deselect_all");
+
 });
 
 $('form').submit(function (e) {
