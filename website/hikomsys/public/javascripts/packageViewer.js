@@ -38,7 +38,7 @@ $('form').submit(function (e) {
 $("#package_list").bind("dblclick.jstree", function (event) {
    var node = $(event.target).closest("li");
    var data = node.data("jstree");
-   console.log($(this));
+   console.log($(this)[0].id);
    console.log(node);
    console.log(data);
    // Do my action
