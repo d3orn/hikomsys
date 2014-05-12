@@ -19,7 +19,7 @@ $(document).ready(function(){
 				return{
 					"expand" : {
 						label: "Expand", 
-						action: function (node) { console.log(node)}
+						action: { console.log(node)}
 					}
 					// },
 					// "close" : {
