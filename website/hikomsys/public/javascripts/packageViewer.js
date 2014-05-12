@@ -35,11 +35,15 @@ $("#package_list").bind("dblclick.jstree", function (event) {
 	var node = $(event.target).closest("li");
 	var data = node.data("jstree");
 	var id = node[0].id;
+	uncheckChilds(id);
 	if(node.hasClass('jstree-open')){
 		$("#package_list").jstree("close_all",id);
-		$("#package_list").jstree("deselect_node",id);
  	}
 	else{
 		$("#package_list").jstree("open_all",id);
 	}
 });
+
+function uncheckChild(id){
+	$("#package_list").jstree("deselect_node",id);
+}
