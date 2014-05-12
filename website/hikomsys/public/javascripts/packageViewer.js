@@ -15,7 +15,7 @@ $(document).ready(function(){
 			},
 		},
 		"contextmenu" : {
-			items : function(node){
+			items : {
 				"expand" : {
 					label: "Expand", 
 					"action" : function(node) {console.log(node)}
