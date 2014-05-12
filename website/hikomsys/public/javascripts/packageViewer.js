@@ -44,6 +44,6 @@ $("#package_list").bind("dblclick.jstree", function (event) {
 	}
 });
 
-function uncheckChild(id){
+function uncheckChilds(id){
 	$("#package_list").jstree("deselect_node",id);
 }
