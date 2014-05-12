@@ -35,7 +35,9 @@ $('form').submit(function (e) {
     $(this).append($hidden);
 });
 
-$("li").dblclick(function() {
-	alert('test');
-	console.log($(this).id);
+jstree.bind("dblclick.jstree", function (event) {
+   var node = $(event.target).closest("li");
+   var data = node.data("jstree");
+   alert('test');
+   // Do my action
 });
