@@ -15,18 +15,19 @@ $(document).ready(function(){
 			},
 		},
 		"contextmenu" : {
-			items :  function (node) { 
-				return{
+			items : { 
+
 					"expand" : {
 						label: "Expand", 
-						"action" : console.log(node)
-					},
-					"close" : {
-						label: "Close", 
-						"action" : console.log(node)
+						"action" : action: function (obj) { console.log(node)}
 					}
+					// },
+					// "close" : {
+					// 	label: "Close", 
+					// 	"action" : console.log(node)
+					// }
 				}
-			}
+
 		},
 		"plugins" : ["checkbox", "sort", "state", "wholerow", "contextmenu"]
 	});
