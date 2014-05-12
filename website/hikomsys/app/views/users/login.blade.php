@@ -1,4 +1,9 @@
 @extends('layouts.default')
+
+@section('styles')
+	{{ HTML::style('css/add-footer.css') }}
+@stop
+
 @section("content")
 
 	<div class="row">
