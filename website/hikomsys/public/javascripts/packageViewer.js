@@ -22,6 +22,9 @@ $(document).ready(function(){
 					},
 					"test" : {
 						
+					},
+					"rename" : {
+						"_disabled" : true
 					}
 				}
 			}
