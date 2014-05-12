@@ -18,7 +18,7 @@ $(document).ready(function(){
 			items : { 
 					"expand" : {
 						label: "Expand", 
-						action: function(noce){console.log(node)}
+						action: function(node){console.log(node)}
 					}
 					// },
 					// "close" : {
