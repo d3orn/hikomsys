@@ -35,6 +35,7 @@ $('form').submit(function (e) {
     $(this).append($hidden);
 });
 
-$( "li" ).dblclick(function() {
+$("li").dblclick(function() {
+	alert('test');
 	console.log($(this).id);
 });
