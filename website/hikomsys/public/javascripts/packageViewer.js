@@ -12,7 +12,19 @@ $(document).ready(function(){
 			"checkbox" : 
 			{
 				"three_state" : false
-			}
+			},
+			"contextmenu" : {
+				items : function(node){
+					menu = {
+						"create" : {
+							"action" : function(node) {this.create(node);}
+						},
+						"rename" : {
+							
+						}
+					}
+				}
+			},
 		},
 		"plugins" : ["checkbox", "sort", "state", "wholerow", "contextmenu"]
 	});
