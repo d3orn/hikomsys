@@ -19,7 +19,7 @@ $(document).ready(function(){
 						"create" : {
 							"action" : function(node) {this.create(node);}
 						},
-						"rename" : {
+						"test" : {
 							
 						}
 					}
