@@ -47,5 +47,8 @@ $("#package_list").bind("dblclick.jstree", function (event) {
 function uncheckChilds(node){
 	var id = node[0].id;
 	$("#package_list").jstree("deselect_node",id);
-	console.log($("#package_list").jstree("get_children_dom", id)); 
+	var children = $("#package_list").jstree("get_children_dom", id)); 
+	for(var i = 0, i < children.length, i++){
+		console.log(i);
+	}
 }
