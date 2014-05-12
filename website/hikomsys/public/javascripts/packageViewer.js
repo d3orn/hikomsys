@@ -15,17 +15,13 @@ $(document).ready(function(){
 			},
 		},
 		"contextmenu" : {
-			items : function(node){
-				return {
-					"create" : {
-						"action" : function(node) {this.create(node);}
-					},
-					"test" : {
-						
-					},
-					"rename" : {
-						"_disabled" : true
-					}
+			items : {
+				"create" : {
+					label: "Create Child", 
+					"action" : function(node) {this.create(node);}
+				},
+				"test" : {
+					
 				}
 			}
 		},
