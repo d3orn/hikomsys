@@ -2,18 +2,19 @@ $(document).ready(function(){
 	$("#package_list").jstree({
 		"core" : 
 		{
-		"themes" : 
-		{ 
-			"stripes" : true,
-			"dots" : true,
-			"icons" : false
-		},
-		},
-		"checkbox" : 
-		{
-			"three_state" : false
-		},
-		"plugins" : ["checkbox", "sort", "state", "wholerow"]
+			"check_callback" : true,
+			"themes" : 
+			{ 
+				"stripes" : true,
+				"dots" : true,
+				"icons" : false
+			},
+			"checkbox" : 
+			{
+				"three_state" : false
+			}
+		}
+		"plugins" : ["checkbox", "sort", "state", "wholerow", "contextmenu"]
 	});
 
 	$("#package_list").jstree(true).clear_state();
