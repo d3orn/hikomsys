@@ -2,7 +2,6 @@ $(document).ready(function(){
 	$("#package_list").jstree({
 		"core" : 
 		{
-			"check_callback" : true,
 			"themes" : 
 			{ 
 				"stripes" : true,
