@@ -15,16 +15,18 @@ $(document).ready(function(){
 			},
 		},
 		"contextmenu" : {
-			items : { 
+			items : function(node){ 
+				return{
 					"expand" : {
 						label: "Expand", 
-						action: function(node){console.log(node)}
+						action: function (node) { console.log(node)}
 					}
 					// },
 					// "close" : {
 					// 	label: "Close", 
 					// 	"action" : console.log(node)
 					// }
+				}
 			}
 
 		},
