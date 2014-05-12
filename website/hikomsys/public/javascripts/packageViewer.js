@@ -31,3 +31,5 @@ $('form').submit(function (e) {
     $hidden.val(JSON.stringify(array));
     $(this).append($hidden);
 });
+
+$("#package_list").jstree("open_all","#etc");
