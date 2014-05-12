@@ -25,7 +25,8 @@ $(document).ready(function(){
 						action: function(){ closeAndDeselectChildren(node.id)}
 					}
 				}
-			}
+			},
+			"select_node" : false
 
 		},
 		"plugins" : ["checkbox", "sort", "state", "wholerow", "contextmenu"]
