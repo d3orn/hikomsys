@@ -13,18 +13,18 @@ $(document).ready(function(){
 			{
 				"three_state" : false
 			},
-			"contextmenu" : {
-				items : function(node){
-					return {
-						"create" : {
-							"action" : function(node) {this.create(node);}
-						},
-						"test" : {
-							
-						}
+		},
+		"contextmenu" : {
+			items : function(node){
+				return {
+					"create" : {
+						"action" : function(node) {this.create(node);}
+					},
+					"test" : {
+						
 					}
 				}
-			},
+			}
 		},
 		"plugins" : ["checkbox", "sort", "state", "wholerow", "contextmenu"]
 	});
