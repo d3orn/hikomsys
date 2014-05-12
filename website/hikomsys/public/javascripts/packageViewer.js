@@ -15,11 +15,11 @@ $(document).ready(function(){
 			},
 		},
 		"contextmenu" : {
-			items : { 
-
+			items : function(node){ 
+				return{
 					"expand" : {
 						label: "Expand", 
-						action: function (obj) { console.log(obj)}
+						action: console.log(node)
 					}
 					// },
 					// "close" : {
@@ -27,6 +27,7 @@ $(document).ready(function(){
 					// 	"action" : console.log(node)
 					// }
 				}
+			}
 
 		},
 		"plugins" : ["checkbox", "sort", "state", "wholerow", "contextmenu"]
