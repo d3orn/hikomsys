@@ -23,7 +23,7 @@ $(document).ready(function(){
 					},
 					"close" : {
 						label: "Close", 
-						"action" : 
+						"action" : console.log(node)
 					}
 				}
 			}
