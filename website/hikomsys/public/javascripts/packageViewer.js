@@ -13,21 +13,6 @@ $(document).ready(function(){
 				"three_state" : false
 			},
 		},
-		"contextmenu" : {
-			items : function(node){ 
-				return{
-					"expand" : {
-						label: "Expand all children", 
-						action: function(){ console.log(node)}
-					},
-					"close" : {
-						label: "Close and deselect all children", 
-						action: function(){ closeAndDeselectChildren(node.id)}
-					}
-				}
-			}
-
-		},
 		"plugins" : ["checkbox", "sort", "state", "wholerow", "contextmenu"]
 	});
 
