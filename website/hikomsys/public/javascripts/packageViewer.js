@@ -40,6 +40,6 @@ $("#package_list").bind("dblclick.jstree", function (event) {
    var data = node.data("jstree");
    console.log($(this));
    console.log(node);
-   console.log(date);
+   console.log(data);
    // Do my action
 });
