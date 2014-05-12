@@ -22,7 +22,10 @@ $(document).ready(function(){
 					},
 					"close" : {
 						label: "Close and deselect all children", 
-						action: function(){ closeAndDeselectChildren(node.id)}
+						action: function(){ 
+							$("#package_list").jstree("close_all",id);
+							closeAndDeselectChildren(node.id)
+						}
 					}
 				}
 			},
@@ -49,7 +52,6 @@ $('form').submit(function (e) {
 
 function closeAndDeselectChildren(id){
 	$("#package_list").jstree("deselect_node",id);
-	$("#package_list").jstree("close_all",id);
 	var children = $("#package_list").jstree("get_children_dom", id);
 	for(var i = 0; i < children.length;	 i++){
 		closeAndDeselectChildren(children[i].id);
