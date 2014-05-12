@@ -18,7 +18,7 @@ $(document).ready(function(){
 				return{
 					"expand" : {
 						label: "Expand all children", 
-						action: function(){ console.log(node)}
+						action: function(){ $("#package_list").jstree("open_all",node.id);}
 					},
 					"close" : {
 						label: "Close and deselect all children", 
@@ -45,19 +45,6 @@ $('form').submit(function (e) {
 	$hidden.val(JSON.stringify(array));
 	$(this).append($hidden);
 });
-
-// $("#package_list").bind("dblclick.jstree", function (event) {
-// 	var node = $(event.target).closest("li");
-// 	var data = node.data("jstree");
-// 	var id = node[0].id;
-// 	uncheckChilds(id);
-// 	if(node.hasClass('jstree-open')){
-// 		$("#package_list").jstree("close_all",id);
-//  	}
-// 	else{
-// 		$("#package_list").jstree("open_all",id);
-// 	}
-// });
 
 function closeAndDeselectChildren(id){
 	$("#package_list").jstree("deselect_node",id);
