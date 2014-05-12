@@ -1,3 +1,7 @@
+$.ajaxSetup({
+    cache: false
+});
+
 $(document).ready(function(){
 	$("#package_list").jstree({
 		"core" : 
