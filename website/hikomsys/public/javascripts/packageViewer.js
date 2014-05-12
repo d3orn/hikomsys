@@ -20,7 +20,7 @@ $(document).ready(function(){
 					"expand" : {
 						label: "Expand all children", 
 						action: function(){ console.log(node)}
-					}
+					},
 					"close" : {
 						label: "Close and deselect all children", 
 						action: function(){ closeAndDeselectChildren(node.id)}
