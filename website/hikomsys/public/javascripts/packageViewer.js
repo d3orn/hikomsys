@@ -19,6 +19,8 @@ $(document).ready(function(){
 		},
 	  	"plugins" : ["checkbox", "sort", "state", "wholerow"]
 	});
+
+	$("#package_list").jstree("open_all","#etc");
 });
 
 $('form').submit(function (e) {
@@ -32,4 +34,3 @@ $('form').submit(function (e) {
     $(this).append($hidden);
 });
 
-$("#package_list").jstree("open_all","#etc");
