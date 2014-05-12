@@ -35,7 +35,7 @@ $("#package_list").bind("dblclick.jstree", function (event) {
 	var node = $(event.target).closest("li");
 	var data = node.data("jstree");
 	var id = node[0].id;
-	uncheckChilds(id);
+	uncheckChilds(node);
 	if(node.hasClass('jstree-open')){
 		$("#package_list").jstree("close_all",id);
  	}
@@ -44,6 +44,8 @@ $("#package_list").bind("dblclick.jstree", function (event) {
 	}
 });
 
-function uncheckChilds(id){
+function uncheckChilds(node){
+	var id = node[0].id;
 	$("#package_list").jstree("deselect_node",id);
+	console.log($("#package_list").jstree("get_children_dom", id)); 
 }
