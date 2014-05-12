@@ -50,6 +50,7 @@ function uncheckChilds(node){
 	var children = $("#package_list").jstree("get_children_dom", id);
 	// console.log(children); 
 	for(var i = 0; i < children.length;	 i++){
-		console.log(children[i].id);
+		uncheckChilds(children[i]);
+		// console.log(children[i].id);
 	}
 }
