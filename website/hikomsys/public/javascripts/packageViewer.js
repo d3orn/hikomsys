@@ -38,6 +38,8 @@ $('form').submit(function (e) {
 $("#package_list").bind("dblclick.jstree", function (event) {
    var node = $(event.target).closest("li");
    var data = node.data("jstree");
-   alert(node.id);
+   console.log($(this));
+   console.log(node);
+   console.log(date);
    // Do my action
 });
