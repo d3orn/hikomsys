@@ -20,8 +20,8 @@ $(document).ready(function(){
 	  	"plugins" : ["checkbox", "sort", "state", "wholerow"]
 	});
 
-	 $("#package_list").jstree("close_all");
-	 $("#package_list").jstree("deselect_all");
+	 $("#package_list").jstree("close_all", -1);
+	 $("#package_list").jstree("deselect_all", -1);
 
 });
 
