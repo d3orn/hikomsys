@@ -93,10 +93,10 @@ $('#continue').click(function() {
 var clicks = $(this).data('clicks');
   if (clicks) {
      // odd clicks
-     console.log(clicks);
+     console.log('odd');
   } else {
      // even clicks
-     console.log(clicks);
+     console.log('even');
   }
   $(this).data("clicks", !clicks);
 });
