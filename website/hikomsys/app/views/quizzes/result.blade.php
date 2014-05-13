@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="medium-12 columns">
 			<h2>Your Result</h2>
-			<p class='Points'>You scored: </p>
+			<p class='points'>You scored: </p>
 		</div>
 	</div>
 
