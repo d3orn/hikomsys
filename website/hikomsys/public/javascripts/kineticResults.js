@@ -72,8 +72,7 @@ $(document).ready(function() {
         'quizId': quizId
     })
         .done(function(data) {
-            writeMessage(data);
-            stage.draw();
+            $('.points').append(data);
         });
 
     // moreInfosEnabled = false;
