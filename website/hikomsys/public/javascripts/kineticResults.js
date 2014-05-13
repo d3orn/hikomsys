@@ -93,12 +93,12 @@ $('#continue').click(function() {
 var clicks = $(this).data('clicks');
   if (clicks) {
      // odd clicks
-     console.log('odd');
+     console.log(clicks);
   } else {
      // even clicks
-     console.log('even');
+     console.log(clicks);
   }
-  $(this).data("clicks", !clicks);
+  $(this).data("clicks", clicks++);
 });
 
 //I can make those into 1 event
