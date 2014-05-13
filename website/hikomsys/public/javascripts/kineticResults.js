@@ -45,7 +45,8 @@ $(document).ready(function() {
                 infos['classes'] = data[i].classes;
                 infos['children'] = data[i].children;
                 infos['allDependencies'] = data[i].allDependencies;
-                var thisPackage = new PackageGroup(data[i].name, data[i].color, infos);
+                var color = data[i].color == 'green' ? 'green' : 'white';
+                var thisPackage = new PackageGroup(data[i].name, color, infos);
                 allPackages.push(thisPackage);
                 thisPackage.create();
                 thisPackage.group.setPosition(data[i].position.X, data[i].position.Y);
