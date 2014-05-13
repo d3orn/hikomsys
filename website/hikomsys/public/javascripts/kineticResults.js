@@ -89,16 +89,18 @@ $('#move').click(function() {
     switchMode();
 });
 
+var clicks = 0;
 $('#continue').click(function() {
-var clicks = $(this).data('clicks');
-  if (clicks) {
-     // odd clicks
-     console.log(clicks);
-  } else {
-     // even clicks
-     console.log(clicks);
-  }
-  $(this).data("clicks", clicks++);
+    if(clicks == 0){
+        // first click
+        console.log('first click');
+    }else if(clicks == 1){
+        // second click
+        console.log('second click');
+    }else{
+        console.log('and more clicks');
+    }
+    ++clicks;
 });
 
 //I can make those into 1 event
