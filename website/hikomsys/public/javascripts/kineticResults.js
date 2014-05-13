@@ -46,7 +46,7 @@ $(document).ready(function() {
                 infos['children'] = data[i].children;
                 infos['allDependencies'] = data[i].allDependencies;
                 console.log(data[i].color);
-                var color = data[i].color == 'green' ? 'green' : 'white';
+                var color = data[i].color == 'rgba(0,128,0,0.3)' ? 'rgba(0,128,0,0.3)' : 'white';
                 var thisPackage = new PackageGroup(data[i].name, color, infos);
                 allPackages.push(thisPackage);
                 thisPackage.create();
