@@ -23,7 +23,7 @@ $(document).ready(function(){
 					"close" : {
 						label: "Close and deselect all children", 
 						action: function(){ 
-							$("#package_list").jstree("close_all",id);
+							$("#package_list").jstree("close_all",node.id);
 							closeAndDeselectChildren(node.id)
 						}
 					}
