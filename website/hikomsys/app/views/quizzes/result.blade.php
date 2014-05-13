@@ -13,7 +13,13 @@
 	</div>
 
 	<div class="row">
-		<div class="medium-4 columns right">	
+		<div class="medium-8 columns">
+			<dl class="sub-nav">
+			  <dt>Functions:</dt>
+			  <dd class=""><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand btn"></a></dd>
+			</dl>
+		</div>
+		<div class="medium-4 columns">	
 			<div id="submit" class="button tiny radius success right">Continue</div>
 			<div id="help" data-reveal-id="myModal" class="button tiny radius alert right" data-reveal>Help</div>
 		</div>

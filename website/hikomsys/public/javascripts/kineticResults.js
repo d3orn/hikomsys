@@ -65,6 +65,11 @@ $(document).ready(function() {
                     }
                 }
             }
+            for (var i = 0; i < arrows.length; i++) {
+                if (arrows[i].color == 'red' || arrows[i].color == 'orange') {
+                    arrows[i].changeVisibility();
+                }
+            }
             stage.draw();
         });
 
