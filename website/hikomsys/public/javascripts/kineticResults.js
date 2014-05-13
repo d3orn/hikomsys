@@ -92,11 +92,17 @@ $('#move').click(function() {
 var clicks = 0;
 $('#continue').click(function() {
     if(clicks == 0){
-        // first click
-        console.log('first click');
+        for (var i = 0; i < arrows.length; i++) {
+            if (arrows[i].color == 'orange') {
+                arrows[i].changeVisibility();
+            }
+        }
     }else if(clicks == 1){
-        // second click
-        console.log('second click');
+        for (var i = 0; i < arrows.length; i++) {
+            if (arrows[i].color == 'red') {
+                arrows[i].changeVisibility();
+            }
+        }
     }else{
         console.log('and more clicks');
     }
