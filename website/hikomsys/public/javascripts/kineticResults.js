@@ -45,7 +45,6 @@ $(document).ready(function() {
                 infos['classes'] = data[i].classes;
                 infos['children'] = data[i].children;
                 infos['allDependencies'] = data[i].allDependencies;
-                console.log(data[i].color);
                 var color = data[i].color == 'rgba(0,128,0,0.3)' ? 'rgba(0,128,0,0.3)' : 'white';
                 var thisPackage = new PackageGroup(data[i].name, color, infos);
                 allPackages.push(thisPackage);
@@ -88,6 +87,18 @@ $(document).ready(function() {
 /* ------  Buttons ------*/
 $('#move').click(function() {
     switchMode();
+});
+
+$('#continue').click(function() {
+var clicks = $(this).data('clicks');
+  if (clicks) {
+     // odd clicks
+     console.log(clicks);
+  } else {
+     // even clicks
+     console.log(clicks);
+  }
+  $(this).data("clicks", !clicks);
 });
 
 //I can make those into 1 event
