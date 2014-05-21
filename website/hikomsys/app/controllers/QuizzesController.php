@@ -85,6 +85,10 @@ class QuizzesController extends \BaseController {
 			->with('selected', Session::get('selected'));
 	}
 
+	public function success(){
+		return Redirect::route('home')->with('message', 'test');
+	}
+
 	public function visualization(){
 		$quiz = Quiz::orderBy(DB::raw('RAND()'))->get()->first();
 		$id = $quiz->id;

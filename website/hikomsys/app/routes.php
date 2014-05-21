@@ -21,6 +21,7 @@ Route::resource('projects', 'ProjectsController', ['only' => ['index', 'store', 
 Route::get('quizzes/showall/{quizzes}', array('uses' => 'QuizzesController@showall'));
 Route::post('quizzes/sendJSON', array('uses' => 'QuizzesController@sendJSON'));
 Route::get('quizzes/visualization', array('uses' => 'QuizzesController@visualization'));
+Route::get('quizzes/success', array('uses' => 'QuizzesController@success'));
 
 //Probablly I can add the points to sendJSON
 Route::post('quizzes/getPoints', array('uses' => 'QuizzesController@getPoints'));
