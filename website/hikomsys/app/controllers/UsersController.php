@@ -20,7 +20,8 @@ class UsersController extends BaseController {
 	}
 
 	public function index(){
-		return View::make('users.dashboard');
+		$notification = Auth::user()->notification;
+		return View::make('users.dashboard', compact($notification));
 	}
 
 	public function create(){
