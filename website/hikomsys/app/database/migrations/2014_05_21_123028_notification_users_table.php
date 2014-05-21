@@ -15,7 +15,6 @@ class NotificationUsersTable extends Migration {
         Schema::table('users', function($table)
         {
             $table->text('notification');
-            $table->timestamps();
         });
 	}
 
