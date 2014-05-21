@@ -36,8 +36,6 @@ $(document).ready(function(){
 	});
 
 	$("#package_list").jstree(true).clear_state();
-	$("#package_list").jstree("open_all");
-
 });
 
 $('form').submit(function (e) {
