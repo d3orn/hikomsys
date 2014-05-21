@@ -85,6 +85,10 @@ class QuizzesController extends \BaseController {
 			->with('selected', Session::get('selected'));
 	}
 
+	public function visualization(){
+		return View::make('quizzes.visualization');	
+	}
+
 
 	//TODO refactor stuff below is so ugly..
 	public function createResults(){

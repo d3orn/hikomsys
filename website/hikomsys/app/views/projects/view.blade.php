@@ -11,7 +11,7 @@
 			<h1>{{ $project->name }}</h1>  
 
 			<p> Please select the packages you think are most important for your project. Your knowledge will be tested base on the selection you made. </p> 
-			<p> Double clicking a node will fully expand that node with all it's children and vice versa</p>
+			<p> Right click a node to show additional options for expanding and closing nodes</p>
 		</div>
 	</div>
 	<div class="row">
