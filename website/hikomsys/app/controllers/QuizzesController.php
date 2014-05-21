@@ -86,7 +86,7 @@ class QuizzesController extends \BaseController {
 	}
 
 	public function visualization(){
-		$quiz = Quizzes::orderBy(DB::raw('RAND()'))->get()->first();
+		$quiz = Quiz::orderBy(DB::raw('RAND()'))->get()->first();
 		$id = $quiz->id;
 		return View::make('quizzes.visualization')
 			->with('quizId' , $id);	
