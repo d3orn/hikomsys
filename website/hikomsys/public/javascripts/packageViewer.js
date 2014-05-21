@@ -58,6 +58,6 @@ function closeAndDeselectChildren(id){
 	console.log(children[0]);
 	// console.log($("#package_list").jstree("get_node", id));
 	for(var i = 0; i < children.length;	 i++){
-		closeAndDeselectChildren(children[i].id);
+		closeAndDeselectChildren(children[i]);
 	}
 }
