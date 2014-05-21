@@ -12,7 +12,11 @@ class NotificationUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+        Schema::table('users', function($table)
+        {
+            $table->text('notification');
+            $table->timestamps();
+        });
 	}
 
 	/**
@@ -22,7 +26,9 @@ class NotificationUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+        Schema::table('users', function($table)
+        {
+            $table->dropColumn('notification');
+        });
 	}
-
 }

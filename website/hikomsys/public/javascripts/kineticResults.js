@@ -103,7 +103,7 @@ $('#continue').click(function() {
             }
         }
     }else{
-        console.log('and more clicks');
+        window.location.href = '/hikomsys/quizzes/success';
     }
     ++clicks;
 });
