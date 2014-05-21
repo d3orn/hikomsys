@@ -52,9 +52,10 @@ $('form').submit(function (e) {
 
 function closeAndDeselectChildren(id){
 	$("#package_list").jstree("deselect_node",id);
-	var children = $("#package_list").jstree("get_children_dom", id);
+	var this_node = $("#package_list").jstree("get_node", id);
+	var children = this_node.children;
 	console.log(children);
-	console.log($("#package_list").jstree("get_node", id));
+	// console.log($("#package_list").jstree("get_node", id));
 	for(var i = 0; i < children.length;	 i++){
 		closeAndDeselectChildren(children[i].id);
 	}
