@@ -55,7 +55,7 @@ function closeAndDeselectChildren(id){
 	var this_node = $("#package_list").jstree("get_node", id);
 	var children = this_node.children;
 	console.log(children);
-	console.log(children.length);
+	console.log(children[0]);
 	// console.log($("#package_list").jstree("get_node", id));
 	for(var i = 0; i < children.length;	 i++){
 		closeAndDeselectChildren(children[i].id);
