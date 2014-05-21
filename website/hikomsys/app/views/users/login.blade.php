@@ -18,8 +18,8 @@
 
 			{{ Form::open(['route'=>'sessions.store']) }}
 			  
-						{{ Form::label('username', 'Username') }}
-					    {{ Form::text('username', null, ['placeholder'=>'Username']) }}
+						{{ Form::label('email', 'Email') }}
+					    {{ Form::email('email', null, ['placeholder'=>'Email']) }}
 
 					    {{ Form::label('password', 'Password') }}
 					    {{ Form::password('password', ['placeholder'=>'Password']) }}

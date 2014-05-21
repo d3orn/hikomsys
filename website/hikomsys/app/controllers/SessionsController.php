@@ -22,13 +22,13 @@ class SessionsController extends \BaseController {
 		$input = Input::all();
 		
 		$attempt = Auth::attempt([
-			'username' => $input['username'],
+			'email' => $input['email'],
 			'password' => $input['password']
 		]);
 
 		if($attempt) return Redirect::route('users.index')->with('message', 'You are now logged in!');
 		return Redirect::back()
-			->with('error', 'Your username/password combination was incorrect')
+			->with('error', 'Your email/password combination was incorrect')
 			->withInput();
 	}
 
