@@ -51,6 +51,7 @@ $('form').submit(function (e) {
 });
 
 function closeAndDeselectChildren(id){
+	console.log(id);
 	$("#package_list").jstree("deselect_node",id);
 	var children = $("#package_list").jstree("get_children_dom", id);
 	for(var i = 0; i < children.length;	 i++){
