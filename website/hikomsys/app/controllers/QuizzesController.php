@@ -176,6 +176,9 @@ class QuizzesController extends \BaseController {
 		$green_points = ($plusPoints * $countGreen + 50)/2;
 		$userPoints = $green_points + $red_points;
 
+		var_dump('- '.$minusPoints);
+		var_dump('+ '.$plusPoints);
+
 		$quiz = Quiz::find($quizId);
 		$quiz->red_points = round($red_points,2);
 		$quiz->green_points = round($green_points,2);
