@@ -134,7 +134,6 @@ class QuizzesController extends \BaseController {
 		return json_encode(iterator_to_array($cursor));
 	}
 
-	//It can happend that totelDependencies is 0 and then I divide by zero => BAD
 	// ornage = 0, red = -1 and green = 1
 	public function getPoints(){
 		$db = self::getDb('localhost', 'hikomsys');
@@ -170,14 +169,17 @@ class QuizzesController extends \BaseController {
 		}
 		else{
 			$plusPoints = 100/$totalDependencies;
-
 		}
+
+		$pPoints = 100/($totalDependencies <= 0 ? $countGreen : $totalDependencies);
+
+		var_dump('pp '.$plusPoints);
+		var_dump('p '.$pPoints);
+
+
 		$red_points = ($minusPoints * $countRed + 50)/2;
 		$green_points = ($plusPoints * $countGreen + 50)/2;
 		$userPoints = $green_points + $red_points;
-
-		var_dump('- '.$minusPoints);
-		var_dump('+ '.$plusPoints);
 
 		$quiz = Quiz::find($quizId);
 		$quiz->red_points = round($red_points,2);
@@ -185,7 +187,7 @@ class QuizzesController extends \BaseController {
 		$quiz->points = round($userPoints,2);
 		$quiz->save();;
 
-		return $userPoints;
+		return round($userPoints,2);
 	}
 
 	private function createUserSubmTable($packages, $id){
