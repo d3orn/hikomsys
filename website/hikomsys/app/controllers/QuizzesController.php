@@ -135,6 +135,7 @@ class QuizzesController extends \BaseController {
 	}
 
 	//It can happend that totelDependencies is 0 and then I divide by zero => BAD
+	// ornage = 0, red = -1 and green = 1
 	public function getPoints(){
 		$db = self::getDb('localhost', 'hikomsys');
 
@@ -163,16 +164,15 @@ class QuizzesController extends \BaseController {
 		}
 
 		$totalDependencies = $countOrange + $countGreen;
+		$minusPoints = -100/($maxDependencies-$totalDependencies);
+			dd($minusPoints);
 		if($totalDependencies <= 0) {
-			$minusPoints = -100/$maxDependencies;
-
-			$userPoints = 100 + $minusPoints * ($countRed + $countOrange);
+			$userPoints = 100 + $minusPoints * $countRed;
 		}
 		else{
 			$plusPoints = 100/$totalDependencies;
-			$minusPoints = -100/($maxDependencies-$totalDependencies);
 
-			$userPoints = $plusPoints * $countGreen + $minusPoints * ($countRed + $countOrange);
+			$userPoints = $plusPoints * $countGreen + $minusPoints * $countRed;
 		}
 		$userPoints = round($userPoints,2);
 
