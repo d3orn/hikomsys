@@ -166,21 +166,20 @@ class QuizzesController extends \BaseController {
 		$totalDependencies = $countOrange + $countGreen;
 		$minusPoints = -100/($maxDependencies-$totalDependencies);
 		if($totalDependencies <= 0) {
-			$userPoints = 100 + $minusPoints * $countRed;
-			var_dump('minus points'.$minusPoints);
+			$plusPoints = 100/$countGreen;
 		}
 		else{
 			$plusPoints = 100/$totalDependencies;
-			var_dump('minus points'.$minusPoints);
-			var_dump('plus points'.$plusPoints);
 
-			$userPoints = $plusPoints * $countGreen + $minusPoints * $countRed;
 		}
-		$userPoints = ($userPoints + 100)/2;
-		$userPoints = round($userPoints,2);
+		$red_points = ($minusPoints * $countRed + 50)/2;
+		$green_points = ($plusPoints * $countGreen + 50)/2;
+		$userPoints = $green_points + $red_points;
 
 		$quiz = Quiz::find($quizId);
-		$quiz->points = $userPoints;
+		$quiz->red_points = round($red_points,2);
+		$quiz->green_points = round($green_points,2);
+		$quiz->points = round($userPoints,2);
 		$quiz->save();;
 
 		return $userPoints;

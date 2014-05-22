@@ -15,7 +15,6 @@ class AddDifferentPointsQuizzesTable extends Migration {
         Schema::table('quizzes', function($table)
         {
             $table->float('red_points');
-            $table->float('orange_points');
             $table->float('green_points');
         });
 	}
@@ -30,7 +29,6 @@ class AddDifferentPointsQuizzesTable extends Migration {
         Schema::table('quizzes', function($table)
         {
             $table->dropColumn('red_points');
-            $table->dropColumn('orange_points');
             $table->dropColumn('green_points');
         });
 	}
