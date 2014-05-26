@@ -6,8 +6,11 @@
 @section("content")
 
 	<div class="row">
-		<div class="medium-10 columns">
+		<div class="medium-8 columns">
 			<h2> Edit your profile </h2>
+		</div>
+		<div class="medium-2 columns">
+			{{ HTML::image('img/'.$user->picturepath, 'Profile Picture') }}
 		</div>
 	</div>
 
