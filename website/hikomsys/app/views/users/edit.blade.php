@@ -38,8 +38,7 @@
 
 			<div class="row">
 				<div class="medium-12 columns">  
-			   		{{ Form::label('lastname', 'Last Name:', ['class' => 'left inline']) }}
-					{{ Form::text('lastname') }}
+					<label><input type="lastname" name="lastname" value="">Last Name:</label>
 				</div>
 			</div>
 
