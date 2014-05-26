@@ -172,7 +172,7 @@ class QuizzesController extends \BaseController {
 
 
 
-		$quiz = Quiz::find($quizId);
+		$quiz = Quiz::findOrFail($quizId);
 		$quiz->red_points = round($red_points,2);
 		$quiz->green_points = round($green_points,2);
 		$quiz->total_points = round($userPoints,2);
