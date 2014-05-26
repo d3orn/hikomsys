@@ -31,7 +31,7 @@
 							<tr>
 								<td>{{ date("d-m-Y",strtotime($quiz->created_at)) }}</td>
 								<td>{{ date("H:i a",strtotime($quiz->created_at)) }}</td>
-								<td>{{ $quiz->points }}</td>
+								<td>{{ $quiz->total_points }}</td>
 								<td>
 									{{ HTML::linkRoute('quizzes.show', "Inspect", [$quiz->id], ['class'=>'small button radius']) }}
 								</td>
