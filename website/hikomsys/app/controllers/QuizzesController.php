@@ -116,9 +116,7 @@ class QuizzesController extends \BaseController {
 		self::addAdditionalInformation();
 		self::cleanUp();
 
-		$quiz = Quiz::findOrFail($quizId);
-		$quiz->points = self::getPoints();
-		$quiz->save();
+		self::getPoints();
 	}
 
 	public function sendJSON(){
@@ -172,7 +170,7 @@ class QuizzesController extends \BaseController {
 		$green_points = ($plusPoints * $countGreen + 50)/2;
 		$userPoints = $green_points + $red_points;
 
-		
+
 
 		$quiz = Quiz::find($quizId);
 		$quiz->red_points = round($red_points,2);
