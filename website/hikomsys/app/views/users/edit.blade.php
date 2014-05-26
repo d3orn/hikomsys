@@ -18,11 +18,9 @@
 		{{ Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) }}
 
 			<div class="row">
-				<div class="medium-3 columns">
+				<div class="medium-12 columns">
 					{{ Form::label('picturepath', 'Profile Picture') }}
 					{{ HTML::image($user->picturepath, 'Profile Picture') }}
-				</div>
-				<div class="medium-9 columns">
 		   			{{ Form::file('picturepath') }}
 				</div>
 			</div>
