@@ -37,8 +37,11 @@
 			</div>
 
 			<div class="row">
-				<div class="medium-12 columns">  
-					<label>Last Name:<input type="lastname" name="lastname" id="lastname" value=""></label>
+				<div class="medium-3 columns">  
+			   		{{ Form::label('lastname', 'Last Name:', ['class' => 'left inline']) }}
+				</div>
+				<div class="medium-9 columns">
+					{{ Form::text('lastname') }}
 				</div>
 			</div>
 
