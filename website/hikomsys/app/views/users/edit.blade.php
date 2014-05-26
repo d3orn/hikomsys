@@ -38,7 +38,7 @@
 
 			<div class="row">
 				<div class="medium-12 columns">  
-					<label><input type="lastname" name="lastname" value="">Last Name:</label>
+					<label>Last Name:<input type="lastname" name="lastname" id="lastname" value=""></label>
 				</div>
 			</div>
 
