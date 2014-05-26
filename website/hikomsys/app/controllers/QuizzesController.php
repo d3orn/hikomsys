@@ -164,7 +164,7 @@ class QuizzesController extends \BaseController {
 		$minusPoints = -100/($maxDependencies-$totalDependencies);
 
 		/* Check if $totalDependencies is zero */
-		$plusPoints = 100/($totalDependencies == 0 ? $countGreen : $totalDependencies);
+		$plusPoints = 100/($totalDependencies == 0 ? 1 : $totalDependencies);
 
 		$red_points = ($minusPoints * $countRed + 50)/2;
 		$green_points = ($plusPoints * $countGreen + 50)/2;
@@ -178,7 +178,6 @@ class QuizzesController extends \BaseController {
 		$quiz->total_points = round($userPoints,2);
 		$quiz->save();
 
-		// return round($userPoints,2);
 		return $quiz->total_points;
 	}
 
