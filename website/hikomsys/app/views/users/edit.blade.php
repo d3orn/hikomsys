@@ -19,11 +19,11 @@
 
 			<div class="row">
 				<div class="medium-3 columns">
-					{{ Form::label('picturepath', 'Profile Picture', ['class' => 'left inline']) }}
-					{{ HTML::image($user->picturepath, 'Profile Picture',['class' => 'left inline']) }}
+					{{ Form::label('picturepath', 'Profile Picture') }}
+					{{ HTML::image($user->picturepath, 'Profile Picture') }}
 				</div>
 				<div class="medium-9 columns">
-		   			{{ Form::file('picturepath') }}
+		   			{{ Form::file('picturepath',['class' => 'left inline']) }}
 				</div>
 			</div>
 
