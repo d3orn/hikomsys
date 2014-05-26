@@ -170,15 +170,13 @@ class QuizzesController extends \BaseController {
 		$green_points = ($plusPoints * $countGreen + 50)/2;
 		$userPoints = $green_points + $red_points;
 
-
-
 		$quiz = Quiz::findOrFail($quizId);
 		$quiz->red_points = round($red_points,2);
 		$quiz->green_points = round($green_points,2);
 		$quiz->total_points = round($userPoints,2);
 		$quiz->save();
 
-		return $minusPoints;
+		return $quiz->total_points;
 	}
 
 	private function createUserSubmTable($packages, $id){
