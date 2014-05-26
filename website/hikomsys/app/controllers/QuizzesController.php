@@ -178,7 +178,7 @@ class QuizzesController extends \BaseController {
 		$quiz->total_points = round($userPoints,2);
 		$quiz->save();
 
-		return $quiz->total_points;
+		return $minusPoints;
 	}
 
 	private function createUserSubmTable($packages, $id){
