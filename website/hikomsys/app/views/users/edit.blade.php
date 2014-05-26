@@ -29,7 +29,7 @@
 
 			<div class="row">
 				<div class="medium-3 columns">   	
-					{{ Form::label('firstname', 'First Name:'.Form::text('firstname'), ['class' => 'left inline']) }}
+					{{ Form::label('firstname', 'First Name:', ['class' => 'left inline']) }}
 				</div>
 			 	<div class="medium-9 columns">
 			   		{{ Form::text('firstname') }}
@@ -37,10 +37,8 @@
 			</div>
 
 			<div class="row">
-				<div class="medium-3 columns">  
+				<div class="medium-12 columns">  
 			   		{{ Form::label('lastname', 'Last Name:', ['class' => 'left inline']) }}
-				</div>
-				<div class="medium-9 columns">
 					{{ Form::text('lastname') }}
 				</div>
 			</div>
