@@ -15,7 +15,7 @@ class QuizzesController extends \BaseController {
 
 		$projectName = "Your results for ".Project::findOrFail($projectId)->name." Version".Project::findOrFail($projectId)->version;
 
-		$quizzes = Quiz::where('project_id', '=', $projectId)->orderBy('points', 'desc')->get();
+		$quizzes = Quiz::where('project_id', '=', $projectId)->orderBy('total_points', 'desc')->get();
 
 		return View::make('quizzes.quizlist', compact('quizzes', 'projectName'));
 	}
