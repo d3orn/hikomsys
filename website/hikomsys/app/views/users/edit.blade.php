@@ -23,13 +23,13 @@
 					{{ HTML::image($user->picturepath, 'Profile Picture') }}
 				</div>
 				<div class="medium-9 columns">
-		   			{{ Form::file('picturepath',['class' => 'left inline']) }}
+		   			{{ Form::file('picturepath') }}
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="medium-3 columns">   	
-					{{ Form::label('firstname', 'First Name:', Form::text('firstname'), ['class' => 'left inline']) }}
+					{{ Form::label('firstname', 'First Name:'.Form::text('firstname'), ['class' => 'left inline']) }}
 				</div>
 			 	<div class="medium-9 columns">
 			   		{{ Form::text('firstname') }}
