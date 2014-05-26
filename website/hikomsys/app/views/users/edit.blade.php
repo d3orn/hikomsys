@@ -9,9 +9,6 @@
 		<div class="medium-8 columns">
 			<h2> Edit your profile </h2>
 		</div>
-		<div class="medium-2 columns">
-			{{ HTML::image($user->picturepath, 'Profile Picture') }}
-		</div>
 	</div>
 
 	<div class="row">
@@ -19,6 +16,9 @@
 		<div class="medium-9 columns">
 		
 		{{ Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) }}
+			<div class="medium-2 columns">
+				{{ HTML::image($user->picturepath, 'Profile Picture') }}
+			</div>
 
 			<div class="row">
 				<div class="medium-3 columns">   	
