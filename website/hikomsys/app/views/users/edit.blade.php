@@ -19,6 +19,15 @@
 
 			<div class="row">
 				<div class="medium-3 columns">   	
+					{{ Form::label('profile_picture', 'Profile Picture:', ['class' => 'left inline']) }}
+				</div>
+			 	<div class="medium-9 columns">
+			   		{{ Form::file('profile_picture') }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="medium-3 columns">   	
 					{{ Form::label('firstname', 'First Name:', ['class' => 'left inline']) }}
 				</div>
 			 	<div class="medium-9 columns">
