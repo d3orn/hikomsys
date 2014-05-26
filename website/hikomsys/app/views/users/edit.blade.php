@@ -18,12 +18,16 @@
 		{{ Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) }}
 
 			<div class="row">
-				<div class="medium-2 columns">
-					{{ HTML::image($user->picturepath, 'Profile Picture') }}
-					{{ Form::label('picturepath', 'Profile Picture', ['class' => 'left inline']) }}
-			   		{{ Form::file('picturepath') }}
+				<div class="row">
+					<div class="medium-12 columns">
+						{{ Form::label('picturepath', 'Profile Picture', ['class' => 'left inline']) }}
+					</div>
 				</div>
-			 	<div class="medium-8 columns">
+				<div class="row">
+					<div class="medium-12 columns">
+					{{ HTML::image($user->picturepath, 'Profile Picture') }}
+			   		{{ Form::file('picturepath') }}
+					</div>
 				</div>
 			</div>
 
