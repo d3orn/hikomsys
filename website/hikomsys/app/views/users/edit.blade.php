@@ -16,12 +16,10 @@
 		<div class="medium-9 columns">
 		
 		{{ Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) }}
-			<div class="medium-2 columns">
-				{{ HTML::image($user->picturepath, 'Profile Picture') }}
-			</div>
 
 			<div class="row">
-				<div class="medium-3 columns">   	
+				<div class="medium-2 columns">
+					{{ HTML::image($user->picturepath, 'Profile Picture') }}
 					{{ Form::label('picturepath', 'Profile Picture:', ['class' => 'left inline']) }}
 				</div>
 			 	<div class="medium-9 columns">
