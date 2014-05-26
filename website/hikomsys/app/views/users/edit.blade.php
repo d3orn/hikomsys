@@ -10,7 +10,7 @@
 			<h2> Edit your profile </h2>
 		</div>
 		<div class="medium-2 columns">
-			{{ HTML::image('img/'.$user->picturepath, 'Profile Picture') }}
+			{{ HTML::image($user->picturepath, 'Profile Picture') }}
 		</div>
 	</div>
 
