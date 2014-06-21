@@ -2,9 +2,9 @@
 
 class Project extends Eloquent {
 	
-	public static $rules = array(
+	private $rules = [
    		'name'=>'alpha_dash|between:3,50'
-    );
+    ];
 
 	/**
 	 * The database table used by the model.
