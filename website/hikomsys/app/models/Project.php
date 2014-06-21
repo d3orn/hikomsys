@@ -3,7 +3,7 @@
 class Project extends Eloquent {
 	
 	public static $rules = array(
-   		'name'=>'alpha_num|between:3,50'
+   		'name'=>'alpha_dash|between:3,50'
     );
 
 	/**
