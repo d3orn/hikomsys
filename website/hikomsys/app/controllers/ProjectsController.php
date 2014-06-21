@@ -69,7 +69,7 @@ class ProjectsController extends BaseController {
 				], Project::$rules);
 
 				if ($validator->fails()) {
-					$error => 'test'
+					$error = 'test';
 					return Redirect::back()->with($error)->withInput();
 				}
 
