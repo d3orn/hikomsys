@@ -69,7 +69,7 @@ class ProjectsController extends BaseController {
 				$project = new Project();
 
 				// attempt validation
-				if ($project->validate($input))
+				if ($project->validate($projectName))
 				{
 					$project->fill($input);
 				}
