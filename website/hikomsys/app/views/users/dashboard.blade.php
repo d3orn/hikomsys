@@ -19,6 +19,16 @@
 
 				<p>The first step you have to take is to upload one of your Opensource Java projects. To do so, please enter a valid link to a Git Repository below</p>
 
+				@if($errors->has())
+					<div id="errors">
+						<ul>
+							@foreach($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
+
 				{{ Form::open(['route'=>'projects.store']) }}
 
 					<div class="row">
