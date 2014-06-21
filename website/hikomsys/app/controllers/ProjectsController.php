@@ -59,16 +59,19 @@ class ProjectsController extends BaseController {
 				#I should delete the project folder and only keep the .mse file
 				exec(escapeshellcmd("pharo-vm-nox datagatherer/Hikomsys.image runDataGatherer --projectName=$folderName"));
 
+				$input = [
+					'path' => $url,
+					'version' => $version,
+					'name' => $projectName,
+					'sha' => $sha,
+				];
+
 				$project = new Project();
 
 				// attempt validation
-				if ($project->validate($new))
+				if ($project->validate($input))
 				{
-					$project->path = $url;
-					$project->version = $version;
-					$project->name = $projectName;
-					$project->sha = $sha;
-					$project->save();
+					$project->fill($input);
 				}
 				else
 				{
