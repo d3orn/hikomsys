@@ -19,7 +19,7 @@ class Project extends Eloquent {
     {
         // make a new validator object
         $v = Validator::make($data, $this->rules);
-
+        dd($data);
         // check for failure
         if ($v->fails())
         {
