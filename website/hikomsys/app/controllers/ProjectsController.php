@@ -59,13 +59,23 @@ class ProjectsController extends BaseController {
 				#I should delete the project folder and only keep the .mse file
 				exec(escapeshellcmd("pharo-vm-nox datagatherer/Hikomsys.image runDataGatherer --projectName=$folderName"));
 
-				//I could proably just work with create() see UserController for example
-				$project = new Project;
-				$project->path = $url;
-				$project->version = $version;
-				$project->name = $projectName;
-				$project->sha = $sha;
-				$project->save();
+				$project = new Project();
+
+				// attempt validation
+				if ($project->validate($new))
+				{
+					$project->path = $url;
+					$project->version = $version;
+					$project->name = $projectName;
+					$project->sha = $sha;
+					$project->save();
+				}
+				else
+				{
+				    // failure, get errors
+				    $errors = $project->errors();
+				    return Redirect::back()->withErrors($errors);
+				}
 
 				$usersprojects = new UsersProjects;
 				$usersprojects->user_id = Auth::user()->id;
