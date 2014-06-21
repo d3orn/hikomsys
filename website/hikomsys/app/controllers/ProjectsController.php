@@ -65,7 +65,7 @@ class ProjectsController extends BaseController {
 				$project->version = $version;
 				$project->name = $projectName;
 				$project->sha = $sha;
-				dd($project->save());
+				$project->save();
 
 				$usersprojects = new UsersProjects;
 				$usersprojects->user_id = Auth::user()->id;
