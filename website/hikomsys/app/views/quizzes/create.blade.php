@@ -15,8 +15,10 @@
 
 	{{Form::close()}}
 
+@stop
+
+@section("scripts")
 	{{ HTML::script('javascripts/jstree/jquery.jstree.js') }}
 	{{ HTML::script('javascripts/jstree/_lib/jquery.cookie.js') }}
 	{{ HTML::script('javascripts/packageViewer.js') }}
-
 @stop

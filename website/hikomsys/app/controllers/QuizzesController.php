@@ -2,8 +2,22 @@
 
 class QuizzesController extends \BaseController {
 
+	public function __construct() {
+		parent::__construct();
+		// $this->beforeFilter(function(){
+		// 	if(Auth::guest()) 
+		// 		return Redirect::route('sessions.login');
+		// });
+	}
+
 	public function index(){
-		return Input::get('project_id');
+		$projectId =Input::get('project_id');
+
+		$projectName = "Your results for ".Project::findOrFail($projectId)->name." Version".Project::findOrFail($projectId)->version;
+
+		$quizzes = Quiz::where('project_id', '=', $projectId)->orderBy('total_points', 'desc')->get();
+
+		return View::make('quizzes.quizlist', compact('quizzes', 'projectName'));
 	}
 
 	/**
@@ -13,40 +27,31 @@ class QuizzesController extends \BaseController {
 	 */
 	public function store()
 	{
-		global $db;
-
-		self::dbconnect();
+		$db = self::getDb('localhost', 'hikomsys');
 
 		$input = Input::all();
 
 		$userId = Auth::user()->id;
 		$projectId = $input['project_id'];
 
-		$quiz = new Quiz;
-		$quiz->user_id = $userId;
-		$quiz->project_id = $projectId;
-		$quiz->save();
-
+		$quiz = Quiz::create(['user_id' => $userId, 'project_id' => $projectId]); 
+		
 		$project = Project::find($projectId);
 		$projectName = $project->name.'V'.$project->version;
 
-		#Somehow MongoDB Namespace is limited I have to fiqure out how exactly to limit user input of the project name
+		//TODO Somehow MongoDB Namespace is limited I have to fiqure out how exactly to limit user input of the project name
 		$solutionName = $quiz->id.'_So';
 
-		$solution = $db->createCollection($solutionName);
-		$solution->ensureIndex(['name' => 1], ['unique' => 1]);
-
-		$collection = $db->$projectName;	
-
-		$cursor = $collection->find([],['parentPackages' => 0]);
-
-		foreach($cursor as $document){
-			$solution->insert($document);
-		};
+		$db->command([
+			"eval" => new MongoCode("function(){
+				db['".$projectName."'].copyTo('".$solutionName."')
+			};"
+			)
+		]);
 
 		return Redirect::route('quizzes.edit', [$quiz->id])
 			->with('selected', $input);
-	}
+	}	
 
 	/**
 	 * Display the specified resource.
@@ -56,8 +61,15 @@ class QuizzesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return View::make('quizzes.result')
-			->with('quizId', $id);
+		$quiz = Quiz::findOrFail($id);
+		$projectId = $quiz->project_id;
+
+		$projectName = Project::findOrFail($projectId)->name." blabla".Project::findOrFail($projectId)->version;
+
+
+		return View::make('quizzes.result', compact($quiz))
+			->with('quizId', $id)
+			->with('projectName', $projectName);
 	}
 
 	/**
@@ -73,12 +85,23 @@ class QuizzesController extends \BaseController {
 			->with('selected', Session::get('selected'));
 	}
 
+	public function success(){
+		return Redirect::route('home')->with('message', 'Thank you for participating!');
+	}
 
-	//REFACTOR stuff below is so ugly..
+	public function visualization(){
+		$quiz = Quiz::orderBy(DB::raw('RAND()'))->get()->first();
+		$id = $quiz->id;
+		return View::make('quizzes.visualization')
+			->with('quizId' , $id);	
+	}
+
+
+	//TODO refactor stuff below is so ugly..
 	public function createResults(){
-		global $db, $solution;
+		global $solution;
 
-		self::dbconnect();
+		$db = self::getDb('localhost', 'hikomsys');
 		$packages = Input::get('packages');
 		$quizId = Input::get('quizId');
 
@@ -93,31 +116,25 @@ class QuizzesController extends \BaseController {
 		self::addAdditionalInformation();
 		self::cleanUp();
 
-		$quiz = Quiz::findOrFail($quizId);
-		$quiz->points = self::getPoints();
-		$quiz->save();
+		self::getPoints();
 	}
 
 	public function sendJSON(){
-		global $db;
-
-		self::dbconnect();
+		$db = self::getDb('localhost', 'hikomsys');
 
 		$quizId = Input::get('quizId');
 
 		$resultsName = $quizId.'_RES';	
 		$results = $db->$resultsName;
 
-		$cursor = $results->find([],['_id' => 0]);
+		$cursor = $results->find([],['_id' => 0]);;
 
 		return json_encode(iterator_to_array($cursor));
 	}
 
-	//It can happend that totelDependencies is 0 and then I divide by zero => BAD
+	// ornage = 0, red = -1 and green = 1
 	public function getPoints(){
-		global $db;
-
-		self::dbconnect();
+		$db = self::getDb('localhost', 'hikomsys');
 
 		$quizId = Input::get('quizId');
 
@@ -144,22 +161,28 @@ class QuizzesController extends \BaseController {
 		}
 
 		$totalDependencies = $countOrange + $countGreen;
-		$plusPoints = 100/$totalDependencies;
 		$minusPoints = -100/($maxDependencies-$totalDependencies);
 
-		$userPoints = $plusPoints * $countGreen + $minusPoints * ($countRed + $countOrange);
+		/* Check if $totalDependencies is zero */
+		$plusPoints = 100/($totalDependencies == 0 ? 1 : $totalDependencies);
 
-		$userPoints = round($userPoints,2);
+		$red_points = ($minusPoints * $countRed + 50)/2;
+		$green_points = ($plusPoints * $countGreen + 50)/2;
+		$userPoints = $green_points + $red_points;
 
-		$quiz = Quiz::find($quizId);
-		$quiz->points = $userPoints;
+		$quiz = Quiz::findOrFail($quizId);
+		$quiz->red_points = round($red_points,2);
+		$quiz->green_points = round($green_points,2);
+		$quiz->total_points = round($userPoints,2);
 		$quiz->save();
 
-		return $userPoints;
+		return $quiz->total_points;
 	}
 
 	private function createUserSubmTable($packages, $id){
-		global $userSub, $db;
+		global $userSub;
+
+		$db = self::getDb('localhost', 'hikomsys');
 
 		$userSub = $db->createCollection($id.'_'.'US');
 
@@ -171,10 +194,13 @@ class QuizzesController extends \BaseController {
 	}
 
 	private function createResultTable($id){
-		global $results, $db, $userSub;
+		global $results, $userSub;
+
+		$db = self::getDb('localhost', 'hikomsys');
 
 		$results = $db->createCollection($id.'_RES');
 
+		//TODO use mongo CopyTo and also add the dependencies, classes and children
 		$cursor = $userSub->find([],['name' => 1, 'position' => 1]);
 		foreach($cursor as $document){
 			$results->insert($document);
@@ -186,8 +212,8 @@ class QuizzesController extends \BaseController {
 
 		$cursor = $userSub->find(['dependencies' => ['$exists' => true]]);
 		foreach ($cursor as $package => $value) {
-				$dependencies = $value['dependencies'];
-				$currentPackageName = $value['name'];
+			$dependencies = $value['dependencies'];
+			$currentPackageName = $value['name'];
 			self::checkDependencies($dependencies, $currentPackageName);
 		}
 	}
@@ -198,15 +224,11 @@ class QuizzesController extends \BaseController {
 		$results->update(['name' => $packageName], ['$set' => ['dependencies' => []]]);
 
 		foreach ($dependencies as $dep => $depName) {
-			$test = $solution->find(['name' => $packageName,'outgoingDependencies' => ['$elemMatch' => ['to' => ['$elemMatch' => ['package' => $depName['to']]]]]]);
+			$test = $solution->find(['name' => $packageName,'outgoingDependencies.to.package' => $depName['to']]);
+			
+			$color = $test->hasNext() ? 'green' : 'red';
 
-			if($test->hasNext()){
-				$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => 'green']]]);
-				$solution->update(['name' => $packageName], ['$pull' => ['outgoingDependencies' => ['to' => ['package' => $depName['to']]]]]);
-			}
-			else{
-				$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => 'red']]]);
-			}
+			$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => $color]]]);
 		}
 	}
 
@@ -215,21 +237,22 @@ class QuizzesController extends \BaseController {
 
 		$packages = $userSub->find([], ['_id' => 0, 'position' => 0, 'dependencies' => 0]);
 		foreach ($packages as $key => $value) {
-			$packageNames[] = ($value['name']);
+			$packageNames[] = $value['name'];
 		}
 
-		$packagesToCheck = $solution->find(['name' => ['$in' => $packageNames]], ['name' => 1,'outgoingDependencies' => 1, 'classes' => 1, 'children' => 1]);
+		$packagesToCheck = $solution->find(['name' => ['$in' => $packageNames]], ['name' => 1,'outgoingDependencies' => 1]);
 		foreach ($packagesToCheck as $key => $package) {
 			$remainingName = $package['name'];
 			if (array_key_exists('outgoingDependencies', $package)){
 				$dependencies = $package['outgoingDependencies'];
 				foreach ($dependencies as $otherKey => $dependency) {
 					$dependencyToCheck = $dependency['to']['package'];
-					
-					if(($remainingName != $dependencyToCheck) and (in_array($dependencyToCheck, $packageNames))){
+					$test = $results->find(['name' => $remainingName,'dependencies.to' => $dependencyToCheck]);
+
+					//TODO this if is not very nice and I should think about a better way
+					if(!$test->hasNext() and ($remainingName != $dependencyToCheck) and in_array($dependencyToCheck, $packageNames)){
 						$results->update(['name' => $remainingName], ['$push' => ['dependencies' => ['to' => $dependencyToCheck, 'color' => 'orange']]]);
 					}
-					$solution->update(['name' => $remainingName], ['$pull' => ['outgoingDependencies' => ['to' => ['package' => $dependencyToCheck]]]]);
 				}
 			}
 		}
@@ -289,4 +312,4 @@ class QuizzesController extends \BaseController {
 		$solution->drop();
 	}
 
-}
+}	

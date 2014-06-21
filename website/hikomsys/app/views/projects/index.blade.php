@@ -1,45 +1,61 @@
 @extends('layouts.default')
 
-@section("header")
+@section("styles")
 @stop
 
 @section("content")
 
-	<h1>{{ $title }}</h1>
+	<div class="row">
+		<div class="medium-8 columns">
+			<h2>{{ $title }}</h2>
 
-	@if($projects)
-		<ul>
-			@foreach($projects as $project)
-				<li>
-					<li>
-						{{ $project->name .' Version: '. $project->version }}
+			@if($projects)
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Project Name</th>
+							<th>Version</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($projects as $project)
+							<tr>
+								<td>{{ $project->name }}</td>
+								<td>{{ $project->version }}</td>
+								<td>{{ HTML::linkRoute('projects.show', 'Start new Quiz', [$project->project_id], ['class'=>'small button radius'])}}
+								{{ HTML::linkRoute('quizzes.index', 'Solutions', ['project_id' => $project->project_id], ['class'=>'success small button radius']) }}</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+			@else
+				<p> Sorry you did not upload any projects yet, please do so by filling out the form below </p>
 
-						{{ HTML::linkRoute('projects.show', 'Take the quiz!', [$project->project_id])}}
+				{{ Form::open(['route'=>'projects.store']) }}
 
-						{{ HTML::linkRoute('quizzes.index', 'Checkout your results', ['project_id' => $project->project_id])}}
-					</li>
-				</li>
-			@endforeach
-		</ul>
-	@else
-		<p> Sorry you did not uplade any projects yet, please do so by filling out the form below </p>
-		<p>Please enter a valid Github link</p>
+					<div class="row">
+						<div class="medium-4 columns">   
+							{{ Form::label('url', 'URL to your Git Repository:', ['class' => 'left inline']) }}
+						</div>
+				 		<div class="medium-8 columns">
+							{{ Form::url('url')}}
+						</div>
+					</div>
 
-			{{ Form::open(array('route'=>'projects.store')) }}
+					<div class="row">
+						<div class="medium-4 columns">							
+							{{ Form::label('projectName', 'Project name:', ['class' => 'left inline']) }}
+						</div>
+				 		<div class="medium-8 columns">
+							{{ Form::text('projectName') }}
+						</div>
+					</div>
 
-				<fieldset>
+				{{ Form::submit('Upload my Project', ['class'=>'submit button']) }}
 
-					{{Form::label('url', 'Gitrepository URL:')}}
-					{{Form::url('url')}}
-
-					{{Form::label('projectName', 'Project name:')}}
-					{{Form::text('projectName')}}
-
-				</fieldset>
-
-				{{Form::submit('Submit Repository', array('class'=>'submit'))}}
-
-			{{Form::close()}}
-	@endif
+			@endif
+		</div>
+	</div>
 
 @stop

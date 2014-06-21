@@ -1,30 +1,60 @@
 @extends('layouts.default')
 
-@section("header")
+@section("styles")
 @stop
 
 @section("content")
+	
+		<div class="row">
+			<div class="large-12 columns">
+				<h2>How do you know your system?</h2>
+				
+				<p>Welcome back {{ Auth::user()->firstname }} on How I KnOw My SYStem.</p>
+			</div>
+		</div>
 
-	<h1>How do you know your system?</h1>
-	 
-	<p>Welcome on How I KnOw My SYStem.</p>
+		<div class="row">
 
-	<p>Please enter a valid Github link below</p>
+			<div class="medium-8 columns">
 
-	{{ Form::open(array('route'=>'projects.store')) }}
+				<p>The first step you have to take is to upload one of your Opensource Java projects. To do so, please enter a valid link to a Git Repository below</p>
 
-		<fieldset>
+				@if($errors->has())
+					<div id="errors">
+						<ul>
+							@foreach($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
 
-			{{Form::label('url', 'Gitrepository URL:')}}
-			{{Form::url('url')}}
+				{{ Form::open(['route'=>'projects.store']) }}
 
-			{{Form::label('projectName', 'Project name:')}}
-			{{Form::text('projectName')}}
+					<div class="row">
+						<div class="medium-4 columns">   
+							{{ Form::label('url', 'URL to your Git Repository:', ['class' => 'left inline']) }}
+						</div>
+				 		<div class="medium-8 columns">
+							{{ Form::url('url')}}
+						</div>
+					</div>
 
-		</fieldset>
+					<div class="row">
+						<div class="medium-4 columns">							
+							{{ Form::label('projectName', 'Project name:', ['class' => 'left inline']) }}
+						</div>
+				 		<div class="medium-8 columns">
+							{{ Form::text('projectName') }}
+						</div>
+					</div>
 
-		{{Form::submit('Submit Repository', array('class'=>'submit'))}}
+					{{ Form::submit('Upload my Project', ['class'=>'submit button']) }}
 
-	{{Form::close()}}
+				{{ Form::close() }}
+
+			</div>
+
+		</div>
 
 @stop

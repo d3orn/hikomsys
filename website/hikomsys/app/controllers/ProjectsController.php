@@ -2,11 +2,13 @@
 
 class ProjectsController extends BaseController {
 
+	//I should just add this filter to the BaseController
 	public function __construct() {
-		$this->beforeFilter(function(){
-			if(Auth::guest()) 
-				return Redirect::route('login');
-		});
+		parent::__construct();
+		// $this->beforeFilter(function(){
+		// 	if(Auth::guest()) 
+		// 		return Redirect::route('sessions.login');
+		// });
 	}
 
 	public function index(){
@@ -24,6 +26,7 @@ class ProjectsController extends BaseController {
 	}
 
 	public function store(){
+		//maybe I have to manually add https://
 		$url = Input::get("url");
 		$parsedUrl = parse_url($url);
 
@@ -33,6 +36,7 @@ class ProjectsController extends BaseController {
 		}	
 
 		#Need some more github verifications like size and so on
+		// actually it should be possible to just use any gitrepo so I could just fetch the sha and if it exists it is legal
 		if (preg_match("/github.com/", $url)) 
 		{	
 			#I have to compare the shas of all the other versions and this one before doing anything
@@ -42,7 +46,7 @@ class ProjectsController extends BaseController {
 			$sha = $sha[0];
 
 			$projectExits = DB::table('projects')->where('sha', '=', $sha)->where('path' ,'=', $url);
-			$message = 'Sorry your project is already in our system and we just added it to your projects';
+			$message = 'Awesome your project is already in our system and you should be able to access it now!';
 
 			#only if there is not sha 
 			if(!$projectExits->first()){
@@ -52,21 +56,33 @@ class ProjectsController extends BaseController {
 				$folderName = $projectName.'V'.$version;
 
 				exec("./clone.sh ". escapeshellarg($url)." ". escapeshellarg($folderName));
-				#i should delete the project folder and only keep the .mse file
+				#I should delete the project folder and only keep the .mse file
 				exec(escapeshellcmd("pharo-vm-nox datagatherer/Hikomsys.image runDataGatherer --projectName=$folderName"));
 
-				$project = new Project;
-				$project->path = $url;
-				$project->version = $version;
-				$project->name = $projectName;
-				$project->sha = $sha;
-				$project->save();
+				$input = [
+					'path' => $url,
+					'version' => $version,
+					'name' => $projectName,
+					'sha' => $sha
+				];
+
+				$project = new Project();
+
+				if ($project->validate($input))
+				{
+					$project->fill($input);
+				}
+				else
+				{
+					$errors = $project->errors();
+					return Redirect::back()->withErrors($errors)->withInput();
+				}
 
 				$usersprojects = new UsersProjects;
 				$usersprojects->user_id = Auth::user()->id;
 				$usersprojects->project_id = $project->id;
 				$usersprojects->save();
-				$message = "Thank you! Your project has been added to our system";
+				$message = "Thank you for adding your project to our system";
 			}
 			else{
 				$userId = Auth::user()->id;
@@ -89,9 +105,7 @@ class ProjectsController extends BaseController {
 	}
 
 	public function show($id){
-		global $db;
-
-		self::dbconnect();
+		$db = self::getDb('localhost', 'hikomsys');
 
 		$project = Project::findOrFail($id);
 
@@ -100,7 +114,7 @@ class ProjectsController extends BaseController {
 		$collectionName = $collectionName.'V'.$project->version;
 
 		// select the collection  
-		$list = $db->listCollections();
+		$list = $db->listCollections(); //whaaat? probably not needed
 		$collection = $db->$collectionName;
 		$cursor = $collection->find(['parentPackage' => ['$exists' => false], 'name' => ['$ne' => 'Default Package']]);	
 
@@ -120,132 +134,9 @@ class ProjectsController extends BaseController {
 		return View::make('projects.index', compact('projects', 'title'));
 	}
 
-
-
-
-
-
-
-
-
-
-
-	//@Deprecated
-	/*
-	public function getClasses(){
-		global $db;
-
-		self::dbconnect();
-
-		set_time_limit(0);
-		ini_set("max-execution-time" , 600);
-		ini_set('memory_limit', '96M'); 
-
-		$name = Input::get('name');
-		$quizId = Input::get('quizId');
-		$quiz = Quiz::find($quizId);
-		$projectId = $quiz->project_id;
-
-		$project = Project::find($projectId);
-		$projectName = $project->name.'V'.$project->version;
-
-		$project = $db->$projectName;
-
-		$cursor = $project->find(['name' => $name], ['_id' => 0, 'outgoingDependencies' => 0, 'children' => 0, 'parentPackage' => 0, 'name' => 0]);
-
-		//$cursor = $project->find(['name' => $name], ['_id' => 0, 'outgoingDependencies' => 0,'children' => 0, 'parentPackage' => 0, 'name' => 0]);		
-		//$cursor = $project->find(['name' => $name]);		
-		
-
-		//$cursor = $project->find(['name' => $name]);
-
-		$cursor->next();
-		$obj = $cursor->current();
-		if(array_key_exists('classes', $obj)){
-			$classes = $obj['classes'];
-
-			foreach ($classes as $key => $value) {
-				if(strpos($value['name'], 'anonymous') === false){
-					$arr[] = $value;
-				}
-			}
-			return json_encode($arr);
-		}
-		else{
-			return;
-		}
+	public function random(){
+		$id = Project::all()->random(1)->id;
+		return Redirect::route('projects.show', $id);
 	}
 
-	public function getChildren(){
-		global $db;
-
-		self::dbconnect();
-
-		set_time_limit(0);
-		ini_set("max-execution-time" , 600);
-		ini_set('memory_limit', '96M'); 
-
-		$name = Input::get('name');
-		$quizId = Input::get('quizId');
-		$quiz = Quiz::find($quizId);
-		$projectId = $quiz->project_id;
-
-		$project = Project::find($projectId);
-		$projectName = $project->name.'V'.$project->version;
-		$project = $db->$projectName;
-
-		$cursor = $project->find(['name' => $name], ['_id' => 0, 'outgoingDependencies' => 0,'classes' => 0, 'parentPackage' => 0, 'name' => 0]);
-	
-		$cursor->next();
-		$obj = $cursor->current();
-		if(array_key_exists('children', $obj)){
-			$children = $obj['children'];
-
-			foreach ($children as $key => $value) {
-				$arr[] = $value;
-			}
-			return json_encode($arr);
-		}
-		else{
-			return;
-		}
-	}
-
-	public function getDependencies(){
-		global $db;
-
-		self::dbconnect();
-
-		set_time_limit(0);
-		ini_set("max-execution-time" , 600);
-		ini_set('memory_limit', '96M'); 
-		
-		$name = Input::get('name');
-		$quizId = Input::get('quizId');
-		$quiz = Quiz::find($quizId);
-		$projectId = $quiz->project_id;
-
-		$project = Project::find($projectId);
-		$projectName = $project->name.'V'.$project->version;
-		$project = $db->$projectName;
-
-		$cursor = $project->find(['name' => $name], ['_id' => 0, 'children' => 0,'classes' => 0, 'parentPackage' => 0, 'name' => 0]);
-	
-		$cursor->next();
-		$obj = $cursor->current();
-		if(array_key_exists('outgoingDependencies', $obj)){
-			$dependencies = $obj['outgoingDependencies'];
-
-			foreach ($dependencies as $key => $dependency) {
-				if($dependency['to']['package'] !== "Default Package"){
-					$arr[] = $dependency;
-				}
-			}
-			return json_encode($arr);
-		}
-		else{
-			return;
-		}
-	}	
-	*/
 }

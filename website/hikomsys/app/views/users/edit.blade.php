@@ -1,32 +1,79 @@
 @extends('layouts.default')
 
-@section("header")
+@section("styles")
 @stop
 
 @section("content")
 
-	<h1> Edit your profile </h1>
+	<div class="row">
+		<div class="medium-8 columns">
+			<h2> Edit your profile </h2>
+		</div>
+	</div>
 
-     {{ Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) }}
+	<div class="row">
 
-     	<fieldset>
-            {{ Form::label('firstname', 'First Name:', array('class' => 'address')) }}
-            {{ Form::text('firstname') }}
+		<div class="medium-9 columns">
+		
+		{{ Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) }}
 
-            {{ Form::label('lastname', 'Last Name:', array('class' => 'address')) }}
-            {{ Form::text('lastname') }}
+			<div class="row">
+				<div class="medium-12 columns">
+					{{ Form::label('picturepath', 'Profile Picture') }}
+					{{ HTML::image($user->picturepath, 'Profile Picture') }}
+		   			{{ Form::file('picturepath') }}
+				</div>
+			</div>
 
-            {{ Form::label('email', 'E-Mail', array('class' => 'address')) }}
-            {{ Form::text('email') }}
+			<div class="row">
+				<div class="medium-3 columns">   	
+					{{ Form::label('firstname', 'First Name:', ['class' => 'left inline']) }}
+				</div>
+			 	<div class="medium-9 columns">
+			   		{{ Form::text('firstname') }}
+				</div>
+			</div>
 
-            {{ Form::label('username', 'Username', array('class' => 'address')) }}
-            {{ Form::text('username') }}
+			<div class="row">
+				<div class="medium-3 columns">  
+			   		{{ Form::label('lastname', 'Last Name:', ['class' => 'left inline']) }}
+				</div>
+				<div class="medium-9 columns">
+					{{ Form::text('lastname') }}
+				</div>
+			</div>
 
-            {{ Form::label('description', 'Description', array('class' => 'address')) }}
-            {{ Form::textarea('description') }}
-           
-        </fieldset>
-		{{ Form::submit('Update Profile') }}
-    {{ Form::close() }}
+			<div class="row">
+				<div class="medium-3 columns">  
+					{{ Form::label('email', 'E-Mail', ['class' => 'left inline']) }}
+				</div>
+				<div class="medium-9 columns">
+					{{ Form::text('email') }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="medium-3 columns">  
+					{{ Form::label('username', 'Username', ['class' => 'left inline']) }}
+				</div>
+				<div class="medium-9 columns">
+					{{ Form::text('username') }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="medium-3 columns">  
+					{{ Form::label('description', 'Description', ['class' => 'left inline']) }}
+				</div>
+				<div class="medium-9 columns">
+			   		{{ Form::textarea('description') }}
+				</div>
+			</div>
+
+			{{ Form::submit('Update Profile', ['class'=>'submit button']) }}
+
+		{{ Form::close() }}
+		</div>
+	</div>
 
 @stop

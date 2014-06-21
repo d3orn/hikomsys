@@ -6,123 +6,133 @@ var allPackages = [];
 
 var moreInfosEnabled = true;
 
-var moving, draggable = false; 
+var moving, draggable = false;
 
 
+//TODO refactor to package group
 
-function switchMode(){
-	draggable = !draggable;
-	var groups = packageLayer.find('.packageGroup');
-	for (var i = 0; i < groups.length; i++){
-		groups[i].setDraggable(draggable);
-	}
+function switchMode() {
+    draggable = !draggable;
+    var groups = packageLayer.find('.packageGroup');
+    for (var i = 0; i < groups.length; i++) {
+        groups[i].setDraggable(draggable);
+    }
 }
 
-function switchDependencies(object, color){
-	//Hides/Shows arrows depending on theire color
-	if(object.hasClass("activatedIcon")){
-		for(var i = 0; i < arrows.length; i++){
-			if (arrows[i].color == color){ 
-				arrows[i].visible = false;
-				arrows[i].arrowGroup.hide();}
-		}
-	}
-	else{
-		for(var i = 0; i < arrows.length; i++){
-			if (arrows[i].color == color){ 
-				arrows[i].visible = true;
-				arrows[i].arrowGroup.show();}
-		}
-	}
-	arrowLayer.draw();
+/*
+	Hides or Shows all arrows with the given color
+ */
+
+function switchDependencies(color) {
+    for (var i = 0; i < arrows.length; i++) {
+        if (arrows[i].color == color) {
+            arrows[i].changeVisibility();
+        }
+    }
 }
 
 /* =============================================================== Eventhandler ============================================================== */
 // this requests gets all the information from the PROJECTNAMEResults table
-$(document).ready(function(){ 
-	quizId = document.getElementById('quizId').value;
-	$.post('sendJSON', {'quizId' : quizId})
-		.done(function(data){
-			data = $.parseJSON(data);
-			//console.log(data);
-			for(var i = 0; i < data.length; i++){
-				infos = [];
-				//console.log(data[i].classes);
-				infos['classes'] = data[i].classes;
-				infos['children'] = data[i].children;
-				infos['allDependencies'] = data[i].allDependencies;
-				var thisPackage = new PackageGroup(data[i].name, infos);
-				thisPackage.rect.setFill(data[i].color);
-				thisPackage.color = data[i].color;
-				allPackages.push(thisPackage);
-				console.log(thisPackage);
-				thisPackage.create();
-				thisPackage.group.setPosition(data[i].position.X ,data[i].position.Y);
-				thisPackage.group.setDraggable(draggable);
-			}
-			for(var i = 0; i < data.length; i++){
-				var thisPackage = findPackageById(data[i].name);
-				var dependencies = data[i].dependencies;
-				if(dependencies){
-					for(var j = 0; j < dependencies.length; j++){
-						var to = findPackageById(dependencies[j]['to']);
-						var id = thisPackage.text+'_'+to.text;
-						var arrow = new Arrow(thisPackage,to,id);
-						arrow.color = dependencies[j]['color'];
-						arrows.push(arrow);
-						arrow.draw();
-					}
-				}			
-			}
-			stage.draw();
-		});
-	
-	$.post('getPoints', {'quizId' : quizId})
-		.done(function(data){
-			writeMessage(data);
-			stage.draw();
-		});
+$(document).ready(function() {
+    quizId = document.getElementById('quizId').value;
+    $.post('sendJSON', {
+        'quizId': quizId
+    })
+        .done(function(data) {
+            data = $.parseJSON(data);
+            for (var i = 0; i < data.length; i++) {
+                infos = [];
+                infos['classes'] = data[i].classes;
+                infos['children'] = data[i].children;
+                infos['allDependencies'] = data[i].allDependencies;
+                var thisPackage = new PackageGroup(data[i].name, data[i].color, infos);
+                allPackages.push(thisPackage);
+                thisPackage.create();
+                thisPackage.group.setPosition(data[i].position.X, data[i].position.Y);
+                thisPackage.group.setDraggable(draggable);
+            }
+            for (var i = 0; i < data.length; i++) {
+                var thisPackage = findPackageById(data[i].name);
+                var dependencies = data[i].dependencies;
+                if (dependencies) {
+                    for (var j = 0; j < dependencies.length; j++) {
+                        var to = findPackageById(dependencies[j]['to']);
+                        var id = thisPackage.text + '_' + to.text;
+                        var arrow = new Arrow(thisPackage, to, id);
+                        arrow.color = dependencies[j]['color'];
+                        arrows.push(arrow);
+                        arrow.draw();
+                    }
+                }
+            }
+            for (var i = 0; i < arrows.length; i++) {
+                if (arrows[i].color == 'red' || arrows[i].color == 'orange') {
+                    arrows[i].changeVisibility();
+                }
+            }
+            stage.draw();
+        });
+
+    $.post('getPoints', {
+        'quizId': quizId
+    })
+        .done(function(data) {
+            $('.points').append(data);
+        });
+
+    moreInfosEnabled = false;
 });
 
 /* ------  Buttons ------*/
-$('#move').click(function(){
-	switchMode();
+$('#move').click(function() {
+    switchMode();
 });
 
-$('#greenArrow').click(function(){
-	switchDependencies($(this),'green')
+var clicks = 0;
+$('#continue').click(function() {
+    if(clicks == 0){
+        for (var i = 0; i < arrows.length; i++) {
+            if (arrows[i].color == 'orange') {
+                arrows[i].changeVisibility();
+            }
+        }
+    }else if(clicks == 1){
+        for (var i = 0; i < arrows.length; i++) {
+            if (arrows[i].color == 'red') {
+                arrows[i].changeVisibility();
+            }
+        }
+    }else{
+        window.location.href = '/hikomsys/quizzes/success';
+    }
+    ++clicks;
 });
 
-$('#redArrow').click(function(){
-	switchDependencies($(this),'red');
+//I can make those into 1 event
+$('.arrowbtn').click(function() {
+    color = $(this).attr('id').replace('Arrow', '');
+    switchDependencies(color);
 });
 
-$('#orangeArrow').click(function(){
-	switchDependencies($(this),'orange');
+$('#infosEnabled').click(function() {
+    moreInfosEnabled = !moreInfosEnabled;
+    for (var i = 0; i < allPackages.length; i++) {
+        allPackages[i].removeInfos();
+    }
 });
 
-$('#infosEnabled').click(function(){
-	moreInfosEnabled = !moreInfosEnabled;
-	for (var i = 0; i < allPackages.length; i++){
-		allPackages[i].removeInfos();
-	}
-});
-
-
-$('#help').click(function(){
-	$('#help_container').toggle();
-});
-
-$('.buttonlike').click(function(){
-	var currentId = $(this).attr('id');
-	clicked($(this));
+$('.btn').click(function() {
+    normalClick($(this));
 });
 
 /* =============================================================== Prototype Methods ============================================================== */
 
-//REFACTORING NEEDED
+//REFACTORING NEEDED and should be moved to helper
 //save initial scale
-var initialScale = {x: 1, y: 1};
+var initialScale = {
+    x: 1,
+    y: 1
+};
 var initialWidth = $("#container").innerWidth(); // initial width
 var initialHeight = $("#container").innerHeight(); // initial height
 
@@ -147,24 +157,24 @@ var initialHeight = $("#container").innerHeight(); // initial height
     stage.draw();
 }*/
 
-$(window).on('resize',function(){
-	if(this.resizeTO) clearTimeout(this.resizeTO);
-	this.resizeTO = setTimeout(function(){
-		$(this).trigger('resizeEnd');
-	},500);
+$(window).on('resize', function() {
+    if (this.resizeTO) clearTimeout(this.resizeTO);
+    this.resizeTO = setTimeout(function() {
+        $(this).trigger('resizeEnd');
+    }, 500);
 });
 
 
 //after resizing the draboundfunction fails need to update MaxX for every element
-$(window).on('resizeEnd orientationchange',function(){
-	var width = $("#container").innerWidth(); // new width of page
-	var height = $("#container").innerHeight(); // new height of page
-	background.setWidth(width);
-	background.setHeight(height);
-	stage.setWidth(width);
-	stage.setHeight(height);
-	var groups = layer.get('Group');
-	for (var i = 0; i < groups.length; i++){
-		//alert(groups[i].maxX);
-	}
+$(window).on('resizeEnd orientationchange', function() {
+    var width = $("#container").innerWidth(); // new width of page
+    var height = $("#container").innerHeight(); // new height of page
+    background.setWidth(width);
+    background.setHeight(height);
+    stage.setWidth(width);
+    stage.setHeight(height);
+    var groups = layer.get('Group');
+    for (var i = 0; i < groups.length; i++) {
+        //alert(groups[i].maxX);
+    }
 });

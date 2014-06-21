@@ -1,32 +1,44 @@
 @extends('layouts.default')
-@section('header')
-	{{ HTML::style('css/kinetic.css') }}
+@section('styles')
 	{{ HTML::style('css/style.css') }}
 @stop
 
 @section('content')
-
-	<h1>Your Result</h1>
-	<p id="result"></p>
-
-	<div id="menu">
-		<div id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand gradientBG buttonlike"></div>
-		<div id="greenArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right activatedIcon buttonlike"></div>
-		<div id="orangeArrow" aria-hidden="true" data-icon="&#xe600;" color="orange" class="icon-arrow-right activatedIcon buttonlike"></div>
-		<div id="redArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right activatedIcon buttonlike"></div>
-		<div id="infosEnabled" class="activatedIcon buttonlike">Additional information</div>
-		<div id="help" class="gradientBG buttonlike">Help</div>
-		<div id="continue" class="gradientBG buttonlike">Continue</div>
+	
+	<div class="row">
+		<div class="medium-12 columns">
+			<h2>Your Result</h2>
+			<p class='points'>You scored: </p>
+		</div>
 	</div>
-	<div id="help_container">THIS IS JUST A FILLER</div>
-	<div id="container"></div>
 
+	<div class="row">
+		<div class="medium-8 columns">
+			<dl class="sub-nav">
+			  <dt>Functions:</dt>
+			  <dd class=""><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand btn"></a></dd>
+			</dl>
+		</div>
+		<div class="medium-4 columns">	
+			<div id="continue" class="button tiny radius success right">Continue</div>
+			<div id="help" data-reveal-id="myModal" class="button tiny radius alert right" data-reveal>Help</div>
+		</div>
+	</div>	
+
+	<div class="row">
+		<div class="medium-12 columns">
+			<div id="container"></div>
+		</div>
+	</div>
+
+	<input id="quizId" type="hidden" value={{ $quizId }} >
+@stop
+
+@section("scripts")
 	{{ HTML::script('http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.4.min.js') }}
 	{{ HTML::script('javascripts/kineticSetup.js') }}
 	{{ HTML::script('javascripts/kineticHelpers.js') }}
 	{{ HTML::script('javascripts/arrow.js') }}
 	{{ HTML::script('javascripts/packageGroup.js') }}
 	{{ HTML::script('javascripts/kineticResults.js') }}
-
-	<input id="quizId" type="hidden" value={{ $quizId }} >
 @stop

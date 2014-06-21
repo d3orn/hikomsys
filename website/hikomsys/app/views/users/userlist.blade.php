@@ -1,20 +1,48 @@
 @extends('layouts.default')
 
-@section("header")
+@section("styles")
 @stop
 
 @section("content")
 
-	{{ count($users) }}
+	<div class="row">
+		<div class="large-12 medium-12 columns">
+			<table>
+				<thead>
+					<tr>
+						<th>Username</th>
+						<th>Email</th>
+						<th>Actions</th>
+						@if(Auth::user()->username == 'd3orn')
+							<th>Delete</th>
+						@endif
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($users as $user)
+						<tr>
+							<td>{{ $user->username }}</td>
+							<td>{{ $user->email }}</td>
+							<td>
+								{{ HTML::linkRoute('users.show', 'Inspect', [$user->id], ['class'=>'small button radius']) }}
 
-	@if(count($users) > 1 )
-		<ul>
-		@foreach($users as $user)
-			<li>{{ HTML::linkRoute('users.show', $user->username, [$user->id]) }}</li>
-		@endforeach
-		</ul>
-	@else
-		<p>You are currently the only user on HIKOMSYS</p>
-	@endif
-	
+								@if(Auth::user()->username == 'd3orn')
+									{{ HTML::linkRoute('users.edit', 'Edit', [$user->id], ['class'=>'small button success radius']) }}
+									</td>
+									<td>{{ Form::open(['route' => ['users.destroy' , $user->id]]) }}
+										{{ Form::hidden('_method', 'DELETE') }}
+										{{ Form::submit('Delete', ['class' => 'small button alert radius']) }}
+									{{ Form::close() }}
+								@endif
+							</td>
+						</tr>
+					@endforeach
+				</tbody>
+			</table>
+		</div>
+	</div>
+
 @stop
+
+
+

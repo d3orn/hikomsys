@@ -91,17 +91,13 @@ stage.on("mouseup", function (e) {
 
 /* ------  Buttons ------*/
 $('#draw').click(function(){
-	clicked($('#move'));
+	clicked($(this));
 	switchMode();
 });
 
 $('#move').click(function(){
-	clicked($('#draw'));
+	clicked($(this));
 	switchMode();
-});
-
-$('#help').click(function(){
-	$('#help_container').toggle();
 });
 
 $('#submit').click(function(){
@@ -111,15 +107,10 @@ $('#submit').click(function(){
 		url : '/hikomsys/quizzes/create_result',
 		type : 'post',
 		data : {"packages": output, "quizId" : quizId},
-		success : function(){
+		success : function(data){
 			window.location.href = '/hikomsys/quizzes/'+quizId
 		}
 	});
-});
-
-$('.buttonlike').click(function(){
-	var currentId = $(this).attr('id');
-	clicked($(this));
 });
 
 function createJSON(){

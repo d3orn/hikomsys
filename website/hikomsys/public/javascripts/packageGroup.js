@@ -1,10 +1,10 @@
 /* ------------------------------------------------------------ PackageGroup Class ----------------------------------------------------------- */
-function PackageGroup(text, infos){
+function PackageGroup(text, color, infos){
 	//this is a little hack to find out if one point of an arrow is a packageGroup or not
 	this.className = 'packageGroup';
 	this.text = text;
 	this.infos = infos;
-	this.color = 'white';
+	this.color = (color ? color : 'white');
 	this.isHighlightened = false;
 	this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false;
 
@@ -415,8 +415,10 @@ function PackageGroup(text, infos){
 				var pack = findPackageById(id);
 				var to = pack.dependenciesInfoBox[index]['to'];
 
-				to.remove();
-				stage.draw();
+				if(to){
+					to.remove();
+					stage.draw();
+				}
 			})
 		}
 
