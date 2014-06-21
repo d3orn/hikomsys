@@ -23,7 +23,7 @@ class Project extends Eloquent {
         if ($v->fails())
         {
             // set errors and return false
-            $this->errors = $v->errors;
+            $this->errors = $v->messages;
             return false;
         }
 
