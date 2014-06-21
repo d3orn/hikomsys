@@ -77,7 +77,7 @@ class ProjectsController extends BaseController {
 				{
 				    // failure, get errors
 				    $errors = $project->errors();
-				    return Redirect::back()->withErrors($errors);
+				    return Redirect::back()->withErrors($errors)->withInput();
 				}
 
 				$usersprojects = new UsersProjects;
