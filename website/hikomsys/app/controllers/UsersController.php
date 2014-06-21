@@ -30,7 +30,7 @@ class UsersController extends BaseController {
 
 	public function store(){
 		$input = Input::all();
-
+		
 		$validator = Validator::make($input, User::$rules);
 
 		if ($validator->fails()) {
