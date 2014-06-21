@@ -2,6 +2,7 @@
 
 class Project extends Eloquent {
 	
+	protected $fillable = array('path', 'version', 'name', 'sha');	
 	private $rules = [
    		'name'=>'alpha_dash|between:3,50'
     ];

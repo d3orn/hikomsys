@@ -68,16 +68,14 @@ class ProjectsController extends BaseController {
 
 				$project = new Project();
 
-				// attempt validation
 				if ($project->validate($input))
 				{
 					$project->fill($input);
 				}
 				else
 				{
-				    // failure, get errors
-				    $errors = $project->errors();
-				    return Redirect::back()->withErrors($errors)->withInput();
+					$errors = $project->errors();
+					return Redirect::back()->withErrors($errors)->withInput();
 				}
 
 				$usersprojects = new UsersProjects;
