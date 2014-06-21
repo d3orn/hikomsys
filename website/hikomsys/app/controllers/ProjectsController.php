@@ -63,13 +63,13 @@ class ProjectsController extends BaseController {
 					'path' => $url,
 					'version' => $version,
 					'name' => $projectName,
-					'sha' => $sha,
+					'sha' => $sha
 				];
 
 				$project = new Project();
 
 				// attempt validation
-				if ($project->validate($projectName))
+				if ($project->validate($input))
 				{
 					$project->fill($input);
 				}
