@@ -60,17 +60,12 @@ class ProjectsController extends BaseController {
 				exec(escapeshellcmd("pharo-vm-nox datagatherer/Hikomsys.image runDataGatherer --projectName=$folderName"));
 
 				//I could proably just work with create() see UserController for example
-				
-				$validator = Validator::make([
-					'path' => $url,
-					'version' => $version,
-					'name' => $projectName,
-					'sha' => $sha
-				], Project::$rules);
-
-				if ($validator->fails()) {
-					return Redirect::back()->withErrors($validator)->withInput();
-				}
+				$project = new Project;
+				$project->path = $url;
+				$project->version = $version;
+				$project->name = $projectName;
+				$project->sha = $sha;
+				dd($project->save());
 
 				$usersprojects = new UsersProjects;
 				$usersprojects->user_id = Auth::user()->id;
