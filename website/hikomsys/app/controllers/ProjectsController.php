@@ -70,6 +70,7 @@ class ProjectsController extends BaseController {
 				if ($project->validate($args))
 				{
 					$project->fill($args);
+					$project->save();
 				}
 				else
 				{
