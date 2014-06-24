@@ -61,6 +61,7 @@ class ProjectsController extends BaseController {
 			}
 			else{
 				$project_id = $projectExits->first()->id;
+				$message = 'Awesome your project is already in our system and you should be able to access it now!';
 			}
 
 			$userId = Auth::user()->id;
@@ -70,8 +71,7 @@ class ProjectsController extends BaseController {
 				$usersprojects = new UsersProjects;
 				$usersprojects->user_id = $userId;
 				$usersprojects->project_id = $project_id;
-				$usersprojects->save();	
-				$message = 'Awesome your project is already in our system and you should be able to access it now!';
+				$usersprojects->save();		
 			}
 			else{
 				$message = 'This project is already in your list of projects';
@@ -123,11 +123,9 @@ class ProjectsController extends BaseController {
 	private function parseProject($args){
 		$folderName = $args['name'].'V'.$args['version'];
 
+		//TODO those two exec call should get executed without the need for the user to wait
 		exec("./clone.sh ". escapeshellarg($args['path'])." ". escapeshellarg($folderName));
-		#I should delete the project folder and only keep the .mse file
 		exec(escapeshellcmd("pharo-vm-nox datagatherer/Hikomsys.image runDataGatherer --projectName=$folderName"));
-
-
 
 		$project = new Project();
 
@@ -142,8 +140,7 @@ class ProjectsController extends BaseController {
 			return Redirect::back()->withErrors($errors)->withInput();
 		}
 
-		$project_id = $project->id;
-		return $project_id;
+		return $project->id;
 	}
 
 }
