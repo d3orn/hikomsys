@@ -46,6 +46,8 @@ class ProjectsController extends BaseController {
 			
 			if(!Project::where('sha', '=', $sha)->first()){
 
+				$version = (DB::table('projects')->where('path', '=', $url)->count())+1;
+
 				$args = [
 					'path' => $url,
 					'version' => $version,
@@ -54,8 +56,7 @@ class ProjectsController extends BaseController {
 				];
 
 				//self->parseProject($args)
-				$version = (DB::table('projects')->where('path', '=', $url)->count())+1;
-
+				
 				$folderName = $projectName.'V'.$version;
 
 				exec("./clone.sh ". escapeshellarg($url)." ". escapeshellarg($folderName));
