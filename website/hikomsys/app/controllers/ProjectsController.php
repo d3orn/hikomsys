@@ -44,7 +44,7 @@ class ProjectsController extends BaseController {
 			$sha = explode("	", $output[0]);
 			$sha = $sha[0];
 			
-			if(!Project::where('sha', '=', $sha)->first(){
+			if(!Project::where('sha', '=', $sha)->first()){
 
 				$args = [
 					'path' => $url,
