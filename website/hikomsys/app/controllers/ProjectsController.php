@@ -123,7 +123,7 @@ class ProjectsController extends BaseController {
 	private function parseProject($args){
 		$folderName = $args['name'].'V'.$args['version'];
 
-		exec("./clone.sh ". escapeshellarg($args['url'])." ". escapeshellarg($folderName));
+		exec("./clone.sh ". escapeshellarg($args['path'])." ". escapeshellarg($folderName));
 		#I should delete the project folder and only keep the .mse file
 		exec(escapeshellcmd("pharo-vm-nox datagatherer/Hikomsys.image runDataGatherer --projectName=$folderName"));
 
