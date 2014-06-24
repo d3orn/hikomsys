@@ -55,30 +55,8 @@ class ProjectsController extends BaseController {
 					'sha' => $sha
 				];
 
-				//self->parseProject($args)
+				$project_id = self->parseProject($args)
 				
-				$folderName = $projectName.'V'.$version;
-
-				exec("./clone.sh ". escapeshellarg($url)." ". escapeshellarg($folderName));
-				#I should delete the project folder and only keep the .mse file
-				exec(escapeshellcmd("pharo-vm-nox datagatherer/Hikomsys.image runDataGatherer --projectName=$folderName"));
-
-
-
-				$project = new Project();
-
-				if ($project->validate($args))
-				{
-					$project->fill($args);
-					$project->save();
-				}
-				else
-				{
-					$errors = $project->errors();
-					return Redirect::back()->withErrors($errors)->withInput();
-				}
-
-				$project_id = $project->id;
 				$message = "Thank you for adding your project to our system";
 			}
 			else{
@@ -141,8 +119,6 @@ class ProjectsController extends BaseController {
 	}
 
 	private function parseProject($args){
-		$version = (DB::table('projects')->where('path', '=', $url)->count())+1;
-
 		$folderName = $projectName.'V'.$version;
 
 		exec("./clone.sh ". escapeshellarg($url)." ". escapeshellarg($folderName));
@@ -156,6 +132,7 @@ class ProjectsController extends BaseController {
 		if ($project->validate($args))
 		{
 			$project->fill($args);
+			$project->save();
 		}
 		else
 		{
@@ -164,7 +141,7 @@ class ProjectsController extends BaseController {
 		}
 
 		$project_id = $project->id;
-		$message = "Thank you for adding your project to our system";
+		return $project_id;
 	}
 
 }
