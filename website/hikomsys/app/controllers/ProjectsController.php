@@ -65,6 +65,7 @@ class ProjectsController extends BaseController {
 
 			$userId = Auth::user()->id;
 			$hasProject = DB::table('usersprojects')->where('user_id', '=', $userId)->where('project_id' ,'=', $project_id);
+			
 			if(!$hasProject->first()){
 				$usersprojects = new UsersProjects;
 				$usersprojects->user_id = $userId;
@@ -75,11 +76,12 @@ class ProjectsController extends BaseController {
 			else{
 				$message = 'This project is already in your list of projects';
 			}
+
 			return Redirect::back()
 				->with('message', $message);
 		}
 		else{
-			return Redirect::back()->with('message', 'not a valid github link');
+			return Redirect::back()->with('message', 'Not a valid github link');
 		}
 	}
 
@@ -119,9 +121,9 @@ class ProjectsController extends BaseController {
 	}
 
 	private function parseProject($args){
-		$folderName = $projectName.'V'.$version;
+		$folderName = $args['$projectName'].'V'.$args['$version'];
 
-		exec("./clone.sh ". escapeshellarg($url)." ". escapeshellarg($folderName));
+		exec("./clone.sh ". escapeshellarg($args['$url'])." ". escapeshellarg($folderName));
 		#I should delete the project folder and only keep the .mse file
 		exec(escapeshellcmd("pharo-vm-nox datagatherer/Hikomsys.image runDataGatherer --projectName=$folderName"));
 
