@@ -55,7 +55,7 @@ class ProjectsController extends BaseController {
 					'sha' => $sha
 				];
 
-				$project_id = self::parseProject($args)
+				$project_id = self::parseProject($args);
 				
 				$message = "Thank you for adding your project to our system";
 			}
