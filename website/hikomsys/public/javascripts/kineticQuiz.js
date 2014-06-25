@@ -3,39 +3,31 @@ var moving = false;
 var moreInfosEnabled = false;
 
 function mouseDownOnPackage(packageGroup, event){
-	clickCount++;
 	var pack = findPackageById(packageGroup.getId());
 	pack.highlightPackage("lightblue"); 
-	if(clickCount == 1){
-		packages.push(pack);
-	}
-	console.log('test');
+	packages.push(pack);
 }
 
 function mouseUpOnPackage(packageGroup, event) {
-	clickCount++;
-	if(clickCount == 2){
-		var firstPack = findPackageById(packages[0].text);
-		var pack = findPackageById(packageGroup.getId());
-		packages.push(pack);
-		firstPack.highlight.remove();
-		pack.highlight.remove();
-		var id = packages[0].text + "_" + packages[1].text;
-		if(packages[0].text == packages[1].text){
-			writeMessage("You cannot add a loop");
-		}
-		else if(findArrowById(id) === -1){
-			var arrow = new Arrow(packages[0],packages[1],id);
-			arrows.push(arrow);
-			arrow.draw();
-		}
-		else {
-			writeMessage("dependency already drawn");
-		}
-		packages = [];
-		clickCount = 0;
-
+	var firstPack = findPackageById(packages[0].text);
+	var pack = findPackageById(packageGroup.getId());
+	packages.push(pack);
+	firstPack.highlight.remove();
+	pack.highlight.remove();
+	var id = packages[0].text + "_" + packages[1].text;
+	if(packages[0].text == packages[1].text){
+		writeMessage("You cannot add a loop");
 	}
+	else if(findArrowById(id) === -1){
+		var arrow = new Arrow(packages[0],packages[1],id);
+		arrows.push(arrow);
+		arrow.draw();
+	}
+	else {
+		writeMessage("dependency already drawn");
+	}
+	packages = [];
+
 	stage.draw();
 }
 
@@ -43,7 +35,6 @@ function switchMode(){
 	if(packages.length > 0){
 		packages[0].highlight.remove();
 	}
-	clickCount = 0;
 	packages = [];
 
 	drawingEnabled = !drawingEnabled;
@@ -55,7 +46,7 @@ function switchMode(){
 
 /* =============================================================== Eventhandler ============================================================== */
 stage.on("mousedown", function (e) {
-	if(clickCount === 0) return;
+	// if(clickCount === 0) return;
 	if (moving) {
 		moving = false;
 		arrowLayer.drawScene();
@@ -82,7 +73,6 @@ stage.on("mouseup", function (e) {
 	moving = false;
 	if(drawingEnabled && packages.length > 0){
 		packages[0].highlight.remove();
-		clickCount = 0;
 		packages = [];
 	}
 	if(typeof tmpArrow !== "undefined") {tmpArrow.remove();} //remove only if there is one, if arrow exists dont let it be there twice or more check id
