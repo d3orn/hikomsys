@@ -69,7 +69,7 @@ function Arrow(from, to, id){
 			strokeWidth: 1,
 			fill: this.color,
 			name: 'arrowHead',
-			rotation: Math.PI-rotation
+			rotation: (Math.PI-rotation)*180/Math.PI
 		}));
 	};
 
