@@ -56,8 +56,10 @@ function PackageGroup(text, color, infos){
 		this.group.add(this.rect)
 			.add(this.textField)
 			//need to check if to packages are overlapping, would not be nice
-			.x = (1+Math.floor(Math.random() * (CONTAINER_WIDTH-this.rect.getWidth())))
-			.y = (1 + Math.floor(Math.random()*(480-this.rect.getHeight())));
+			.x = 100
+			.y = 200;
+			// .x = (1+Math.floor(Math.random() * (CONTAINER_WIDTH-this.rect.getWidth())))
+			// .y = (1 + Math.floor(Math.random()*(480-this.rect.getHeight())));
 
 		packageLayer.add(this.group);
 		return this;
