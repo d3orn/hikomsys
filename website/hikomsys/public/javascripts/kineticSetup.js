@@ -23,7 +23,7 @@ var layer = new Kinetic.Layer();
 
 var notification;
 
-var packages = [];
+var fromPackage;
 
 var stage;
 
