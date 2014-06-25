@@ -27,7 +27,7 @@ function mouseUpOnPackage(packageGroup, event) {
 
 	firstSelectedPackage.highlight.remove();
 	toPackage.highlight.remove();
-
+	firstSelectedPackage = undefined;
 	stage.draw();
 }
 
