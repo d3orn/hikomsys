@@ -43,8 +43,10 @@ class ProjectsController extends BaseController {
 
 			$sha = explode("	", $output[0]);
 			$sha = $sha[0];
+
+			$existingProject = Project::where('sha', '=', $sha)->first()
 			
-			if(!Project::where('sha', '=', $sha)->first()){
+			if(!$existingProject){
 
 				$version = (DB::table('projects')->where('path', '=', $url)->count())+1;
 
@@ -60,7 +62,7 @@ class ProjectsController extends BaseController {
 				$message = "Thank you for adding your project to our system";
 			}
 			else{
-				$project_id = $projectExits->first()->id;
+				$project_id = $existingProject->id;
 				$message = 'Awesome your project is already in our system and you should be able to access it now!';
 			}
 
