@@ -484,7 +484,8 @@ function PackageGroup(text, color, infos){
 			stroke: color,
 			strokeWidth:2
 		});
-		this.highlight.move(x,y);
+		this.highlight.setX(x)
+			.setY(y);
 		this.isHighlighted = true;
 		packageLayer.add(this.highlight);
 		this.highlight.setZIndex(0);
