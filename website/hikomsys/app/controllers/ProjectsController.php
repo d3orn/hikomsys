@@ -36,7 +36,6 @@ class ProjectsController extends BaseController {
 		}	
 
 		#Need some more github verifications like size and so on
-		// actually it should be possible to just use any gitrepo so I could just fetch the sha and if it exists it is legal
 		if (preg_match("/github.com/", $url)) 
 		{	
 			#I have to compare the shas of all the other versions and this one before doing anything
@@ -44,64 +43,46 @@ class ProjectsController extends BaseController {
 
 			$sha = explode("	", $output[0]);
 			$sha = $sha[0];
-
-			$projectExits = DB::table('projects')->where('sha', '=', $sha)->where('path' ,'=', $url);
-			$message = 'Awesome your project is already in our system and you should be able to access it now!';
-
-			#only if there is not sha 
-			if(!$projectExits->first()){
+			
+			if(!Project::where('sha', '=', $sha)->first()){
 
 				$version = (DB::table('projects')->where('path', '=', $url)->count())+1;
 
-				$folderName = $projectName.'V'.$version;
-
-				exec("./clone.sh ". escapeshellarg($url)." ". escapeshellarg($folderName));
-				#I should delete the project folder and only keep the .mse file
-				exec(escapeshellcmd("pharo-vm-nox datagatherer/Hikomsys.image runDataGatherer --projectName=$folderName"));
-
-				$input = [
+				$args = [
 					'path' => $url,
 					'version' => $version,
 					'name' => $projectName,
 					'sha' => $sha
 				];
 
-				$project = new Project();
-
-				if ($project->validate($input))
-				{
-					$project->fill($input);
-				}
-				else
-				{
-					$errors = $project->errors();
-					return Redirect::back()->withErrors($errors)->withInput();
-				}
-
-				$usersprojects = new UsersProjects;
-				$usersprojects->user_id = Auth::user()->id;
-				$usersprojects->project_id = $project->id;
-				$usersprojects->save();
+				$project_id = self::parseProject($args);
+				
 				$message = "Thank you for adding your project to our system";
 			}
 			else{
-				$userId = Auth::user()->id;
-				$projectId = $projectExits->first()->id;
-				$hasProject = DB::table('usersprojects')->where('user_id', '=', $userId)->where('project_id' ,'=', $projectId);
-				if(!$hasProject->first()){
-					$usersprojects = new UsersProjects;
-					$usersprojects->user_id = Auth::user()->id;
-					$usersprojects->project_id = $projectExits->first()->id;
-					$usersprojects->save();	
-				}
+				$project_id = $projectExits->first()->id;
+				$message = 'Awesome your project is already in our system and you should be able to access it now!';
 			}
+
+			$userId = Auth::user()->id;
+			$hasProject = DB::table('usersprojects')->where('user_id', '=', $userId)->where('project_id' ,'=', $project_id);
+			
+			if(!$hasProject->first()){
+				$usersprojects = new UsersProjects;
+				$usersprojects->user_id = $userId;
+				$usersprojects->project_id = $project_id;
+				$usersprojects->save();		
+			}
+			else{
+				$message = 'This project is already in your list of projects';
+			}
+
+			return Redirect::back()
+				->with('message', $message);
 		}
 		else{
-			return Redirect::back()->with('message', 'not a valid github link');
+			return Redirect::back()->with('message', 'Not a valid github link');
 		}
-		
-		return Redirect::back()
-			->with('message', $message);
 	}
 
 	public function show($id){
@@ -137,6 +118,29 @@ class ProjectsController extends BaseController {
 	public function random(){
 		$id = Project::all()->random(1)->id;
 		return Redirect::route('projects.show', $id);
+	}
+
+	private function parseProject($args){
+		$folderName = $args['name'].'V'.$args['version'];
+
+		//TODO those two exec call should get executed without the need for the user to wait
+		exec("./clone.sh ". escapeshellarg($args['path'])." ". escapeshellarg($folderName));
+		exec(escapeshellcmd("pharo-vm-nox datagatherer/Hikomsys.image runDataGatherer --projectName=$folderName"));
+
+		$project = new Project();
+
+		if ($project->validate($args))
+		{
+			$project->fill($args);
+			$project->save();
+		}
+		else
+		{
+			$errors = $project->errors();
+			return Redirect::back()->withErrors($errors)->withInput();
+		}
+
+		return $project->id;
 	}
 
 }

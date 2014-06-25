@@ -64,7 +64,7 @@ class UsersController extends BaseController {
 
 		//TODO
 		//this should not check if the user is 'd3orn' it should check if the user is an admin 
-		//=> I should add a field isAdmint to the userstable
+		//=> I should add a field isAdmin to the userstable
 		if($user == Auth::user() or Auth::user()->username == 'd3orn') return View::make('users.edit', compact('user'));
 		return Redirect::home()->with('message', $message);
 	}
