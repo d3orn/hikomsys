@@ -44,7 +44,7 @@ class ProjectsController extends BaseController {
 			$sha = explode("	", $output[0]);
 			$sha = $sha[0];
 
-			$existingProject = Project::where('sha', '=', $sha)->first()
+			$existingProject = Project::where('sha', '=', $sha)->first();
 			
 			if(!$existingProject){
 
