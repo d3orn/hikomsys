@@ -39,7 +39,7 @@ function switchMode(){
 	drawingEnabled = !drawingEnabled;
 	var groups = packageLayer.get('Group');
 	for (var i = 0; i < groups.length; i++){
-		groups[i].setDraggable(!drawingEnabled );
+		groups[i].setDraggable(!drawingEnabled);
 	}
 }
 
@@ -59,7 +59,7 @@ stage.on("mousemove", function (e) {
 		var mousePos = getRelativePointerPosition();
 		tmpArrow = new Arrow(firstSelectedPackage, mousePos, "tmpArrow");
 		tmpArrow.draw();
-		moving = true;
+		// moving = true;
 		stage.draw();
 	}
 });
