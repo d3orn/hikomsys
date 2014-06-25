@@ -46,11 +46,7 @@ function switchMode(){
 
 /* =============================================================== Eventhandler ============================================================== */
 stage.on("mousedown", function (e) {
-	// if(clickCount === 0) return;
-	if (moving) {
-		moving = false;
-		arrowLayer.drawScene();
-	} else {
+	if (typeof packages[0] !== 'undefined') {
 		var mousePos = getRelativePointerPosition;
 		tmpArrow = new Arrow(packages[0], mousePos, "tmpArrow");
 		tmpArrow.draw();

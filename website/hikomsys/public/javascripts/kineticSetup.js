@@ -17,8 +17,6 @@ var arrows = [];
 
 var background;
 
-var clickCount = 0; // suspicious :) 
-
 var drawingEnabled = false;
 
 var layer = new Kinetic.Layer();
