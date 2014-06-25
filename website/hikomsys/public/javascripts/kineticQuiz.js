@@ -9,23 +9,27 @@ function mouseDownOnPackage(packageGroup, event){
 }
 
 function mouseUpOnPackage(packageGroup, event) {
-	var firstPack = findPackageById(packages[0].text);
-	var pack = findPackageById(packageGroup.getId());
-	packages.push(pack);
-	firstPack.highlight.remove();
-	pack.highlight.remove();
-	var id = packages[0].text + "_" + packages[1].text;
-	if(packages[0].text == packages[1].text){
+	var toPackage = findPackageById(packageGroup.getId());
+	
+	if(packages[0].text == toPackage.text){
 		writeMessage("You cannot add a loop");
+		packages = [];
+		return;
 	}
-	else if(findArrowById(id) === -1){
-		var arrow = new Arrow(packages[0],packages[1],id);
+	var id = packages[0].text + "_" + toPackage[1].text;
+
+	if(findArrowById(id) === -1){
+		var arrow = new Arrow(packages[0],toPackage,id);
 		arrows.push(arrow);
 		arrow.draw();
 	}
 	else {
 		writeMessage("dependency already drawn");
 	}
+
+	packages[0].highlight.remove();
+	toPackage.highlight.remove();
+
 	packages = [];
 
 	stage.draw();
