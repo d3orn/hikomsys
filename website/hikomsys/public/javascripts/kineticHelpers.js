@@ -27,6 +27,18 @@ function getMousePosition(event) {
     };
 }
 
+function getRelativePointerPosition() {
+    var pointer = stage.getPointerPosition();
+    var pos = stage.getPosition();
+    var offset = stage.getOffset();
+    var scale = stage.getScale();
+    
+    return {
+        x : ((pointer.x / scale.x) - (pos.x / scale.x) + offset.x),
+        y : ((pointer.y / scale.y) - (pos.y / scale.y) + offset.y)
+    };
+}
+
 function kineticText(array) {
     return new Kinetic.Text({
         x: array.x,
