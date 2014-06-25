@@ -48,7 +48,7 @@
 @stop
 
 @section("scripts")
-	{{ HTML::script('hhttp://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v5.1.0.min.js') }}
+	{{ HTML::script('http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v5.1.0.min.js') }}
 	{{ HTML::script('javascripts/kineticSetup.js') }}
 	{{ HTML::script('javascripts/kineticHelpers.js') }}
 	{{ HTML::script('javascripts/arrow.js') }}
