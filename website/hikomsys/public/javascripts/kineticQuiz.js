@@ -59,17 +59,17 @@ stage.on("mousemove", function (e) {
 		var mousePos = getRelativePointerPosition();
 		tmpArrow = new Arrow(firstSelectedPackage, mousePos, "tmpArrow");
 		tmpArrow.draw();
-		// moving = true;
 		stage.draw();
 	}
 });
 
 stage.on("mouseup", function (e) {
 	moving = false;
-	if(drawingEnabled && typeof firstSelectedPackage !== 'undefined'){
+	if(typeof firstSelectedPackage !== 'undefined'){
 		firstSelectedPackage.highlight.remove();
+		firstSelectedPackage = undefined;
 	}
-	if(typeof tmpArrow !== "undefined") {tmpArrow.remove();} //remove only if there is one, if arrow exists dont let it be there twice or more check id
+	if(typeof tmpArrow !== "undefined") {tmpArrow.remove();} 
 	stage.draw();
 });
 
@@ -100,12 +100,12 @@ $('#submit').click(function(){
 
 function createJSON(){
 	var output = [];
-	for ( var i = 0; i < allPackages.length; i = i + 1 ) {
+	for(var i = 0; i < allPackages.length; i = i + 1 ) {
 		var p;
 		var position = {"X" : allPackages[i].position().x, "Y" : allPackages[i].position().y};
 		name = allPackages[i].text;
 		var dep =[];
-		for ( var j = 0; j < arrows.length; j++){
+		for(var j = 0; j < arrows.length; j++){
 			currentPackage = arrows[j];
 			if(currentPackage.from.text == name){
 				toName = currentPackage.to.text;
