@@ -34,6 +34,7 @@ function mouseUpOnPackage(packageGroup, event) {
 function switchMode(){
 	if(typeof firstSelectedPackage !== 'undefined'){
 		firstSelectedPackage.highlight.remove();
+		firstSelectedPackage = undefined;
 	}
 
 	drawingEnabled = !drawingEnabled;
@@ -46,9 +47,7 @@ function switchMode(){
 /* =============================================================== Eventhandler ============================================================== */
 stage.on("mousedown", function (e) {
 	if (typeof firstSelectedPackage !== 'undefined' && drawingEnabled) {
-		var mousePos = getRelativePointerPosition();
-		tmpArrow = new Arrow(firstSelectedPackage, mousePos, "tmpArrow");
-		tmpArrow.draw();
+		followMe();
 		moving = true;
 	}
 });
@@ -56,9 +55,7 @@ stage.on("mousedown", function (e) {
 stage.on("mousemove", function (e) {
 	if (moving) {
 		tmpArrow.remove();
-		var mousePos = getRelativePointerPosition();
-		tmpArrow = new Arrow(firstSelectedPackage, mousePos, "tmpArrow");
-		tmpArrow.draw();
+		followMe();
 		stage.draw();
 	}
 });
@@ -129,6 +126,12 @@ function createJSON(){
 function get_type(thing){
     if(thing===null)return "[object Null]"; // special case
     return Object.prototype.toString.call(thing);
+}
+
+function followMe(){
+	var mousePos = getRelativePointerPosition();
+	tmpArrow = new Arrow(firstSelectedPackage, mousePos, "tmpArrow");
+	tmpArrow.draw();
 }
 
 //ALT key soll temporär mode wechseln
