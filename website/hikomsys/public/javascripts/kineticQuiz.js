@@ -9,6 +9,7 @@ function mouseDownOnPackage(packageGroup, event){
 	if(clickCount == 1){
 		packages.push(pack);
 	}
+	console.log('test');
 }
 
 function mouseUpOnPackage(packageGroup, event) {
