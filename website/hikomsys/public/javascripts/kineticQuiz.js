@@ -69,7 +69,8 @@ stage.on("mousedown", function (e) {
 stage.on("mousemove", function (e) {
 	if (moving) {
 		tmpArrow.remove();
-		var mousePos = getPointerPosition(e);	
+		var mousePos = getRelativePointerPosition();
+
 		console.log(mousePos);
 		tmpArrow = new Arrow(packages[0], mousePos, "tmpArrow");
 		tmpArrow.draw();
