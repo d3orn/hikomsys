@@ -80,7 +80,7 @@ $(document).ready(function() {
             $('.points').append(data);
         });
 
-    moreInfosEnabled = false;
+    moreInfosEnabled = true;
 });
 
 /* ------  Buttons ------*/
