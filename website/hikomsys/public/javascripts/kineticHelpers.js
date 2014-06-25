@@ -101,7 +101,7 @@ function clicked(object) {
 }
 
 function removeIfExists(object){
-    if(typeof object !== "undefined") {object.remove();}  
+    if(typeof object !== "undefined") {object.remove();}
 }
 
 /* =============================================================== Prototype Methods ============================================================== */
