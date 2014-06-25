@@ -100,6 +100,10 @@ function clicked(object) {
 
 }
 
+function removeIfExists(object){
+    if(typeof object !== "undefined") {object.remove();} 
+}
+
 /* =============================================================== Prototype Methods ============================================================== */
 // Array Remove - By John Resig (MIT Licensed)
 //Do I still use this?

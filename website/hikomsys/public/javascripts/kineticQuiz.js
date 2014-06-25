@@ -1,5 +1,3 @@
-var moving = false; 
-
 var moreInfosEnabled = false;
 
 function mouseDownOnPackage(packageGroup, event){
@@ -45,15 +43,8 @@ function switchMode(){
 }
 
 /* =============================================================== Eventhandler ============================================================== */
-// stage.on("mousedown", function (e) {
-// 	if (typeof firstSelectedPackage !== 'undefined' && drawingEnabled) {
-// 		followMe();
-// 		moving = true;
-// 	}
-// });
-
 stage.on("mousemove", function (e) {
-	if(typeof tmpArrow !== "undefined") {tmpArrow.remove();}
+	removeIfExists(tmpArrow);
 	if(typeof firstSelectedPackage !== 'undefined' && drawingEnabled) {
 		followMe();
 		stage.draw();
@@ -61,13 +52,11 @@ stage.on("mousemove", function (e) {
 });
 
 stage.on("mouseup", function (e) {
-	moving = false;
+	removeIfExists(tmpArrow);
 	if(typeof firstSelectedPackage !== 'undefined'){
 		firstSelectedPackage.highlight.remove();
 		firstSelectedPackage = undefined;
 	}
-	// if(typeof tmpArrow !== "undefined") {tmpArrow.remove();} 
-	tmpArrow.remove()
 	stage.draw();
 });
 
