@@ -53,8 +53,8 @@ function switchMode(){
 // });
 
 stage.on("mousemove", function (e) {
-	if (typeof firstSelectedPackage !== 'undefined' && drawingEnabled) {
-		tmpArrow.remove();
+	if(typeof tmpArrow !== "undefined") {tmpArrow.remove();}
+	if(typeof firstSelectedPackage !== 'undefined' && drawingEnabled) {
 		followMe();
 		stage.draw();
 	}
