@@ -45,15 +45,15 @@ function switchMode(){
 }
 
 /* =============================================================== Eventhandler ============================================================== */
-stage.on("mousedown", function (e) {
-	if (typeof firstSelectedPackage !== 'undefined' && drawingEnabled) {
-		followMe();
-		moving = true;
-	}
-});
+// stage.on("mousedown", function (e) {
+// 	if (typeof firstSelectedPackage !== 'undefined' && drawingEnabled) {
+// 		followMe();
+// 		moving = true;
+// 	}
+// });
 
 stage.on("mousemove", function (e) {
-	if (moving) {
+	if (typeof firstSelectedPackage !== 'undefined' && drawingEnabled) {
 		tmpArrow.remove();
 		followMe();
 		stage.draw();
@@ -66,7 +66,8 @@ stage.on("mouseup", function (e) {
 		firstSelectedPackage.highlight.remove();
 		firstSelectedPackage = undefined;
 	}
-	if(typeof tmpArrow !== "undefined") {tmpArrow.remove();} 
+	// if(typeof tmpArrow !== "undefined") {tmpArrow.remove();} 
+	tmpArrow.remove()
 	stage.draw();
 });
 
