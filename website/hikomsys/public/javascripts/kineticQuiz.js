@@ -40,6 +40,8 @@ function switchMode(){
 	for (var i = 0; i < groups.length; i++){
 		groups[i].setDraggable(!drawingEnabled);
 	}
+	removeIfExists(tmpArrow);
+	stage.draw();
 }
 
 /* =============================================================== Eventhandler ============================================================== */
