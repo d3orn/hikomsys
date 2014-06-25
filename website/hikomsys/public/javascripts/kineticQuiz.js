@@ -12,7 +12,6 @@ function mouseUpOnPackage(packageGroup, event) {
 	
 	if(fromPackage.text == toPackage.text){
 		writeMessage("You cannot add a loop");
-		packages = [];
 		return;
 	}
 	var id = fromPackage.text + "_" + toPackage.text;
@@ -29,16 +28,13 @@ function mouseUpOnPackage(packageGroup, event) {
 	fromPackage.highlight.remove();
 	toPackage.highlight.remove();
 
-	packages = [];
-
 	stage.draw();
 }
 
 function switchMode(){
-	if(packages.length > 0){
+	if(typeof fromPackage !== 'undefined'){
 		fromPackage.highlight.remove();
 	}
-	packages = [];
 
 	drawingEnabled = !drawingEnabled;
 	var groups = packageLayer.get('Group');
