@@ -53,7 +53,19 @@ function switchMode(){
 }
 
 /* =============================================================== Eventhandler ============================================================== */
-
+// Deprecated?
+// stage.on("mousedown", function (e) {
+// 	if(clickCount === 0) return;
+// 	if (moving) {
+// 		moving = false;
+// 		arrowLayer.drawScene();
+// 	} else {
+// 		var mousePos = getMousePosition(e);
+// 		tmpArrow = new Arrow(packages[0], mousePos, "tmpArrow");
+// 		tmpArrow.draw();
+// 		moving = true;
+// 	}
+// });
 
 stage.on("mousemove", function (e) {
 	if (moving) {

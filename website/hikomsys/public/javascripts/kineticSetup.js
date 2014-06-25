@@ -31,6 +31,7 @@ var stage;
 
 var tmpArrow; //follows your mouse!
 
+Kinetic.angleDeg = false;
 
 var notification = new Kinetic.Text({
 	x: 10,
