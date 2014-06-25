@@ -60,7 +60,7 @@ stage.on("mousedown", function (e) {
 		moving = false;
 		arrowLayer.drawScene();
 	} else {
-		var mousePos = getMousePosition(e);
+		var mousePos = getRelativePointerPosition;
 		tmpArrow = new Arrow(packages[0], mousePos, "tmpArrow");
 		tmpArrow.draw();
 		moving = true;
