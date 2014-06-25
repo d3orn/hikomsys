@@ -189,7 +189,7 @@ function PackageGroup(text, color, infos){
 				stage.draw();
 			}
 			if(drawingEnabled){
-				if(packages.length > 0 && this.getId() === packages[0].text){return;}
+				if(typeof firstSelectedPackage !== 'undefined' && this.getId() === packages[0].text){return;}
 				var pack = findPackageById(this.getId());
 				pack.highlight.remove(); 
 				packageLayer.draw();
