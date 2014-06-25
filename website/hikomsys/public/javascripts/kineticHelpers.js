@@ -18,15 +18,6 @@ function findPackageById(id) {
     return -1;
 }
 
-function getMousePosition(event) {
-    var canvas = document.getElementById('container');
-    var rect = canvas.getBoundingClientRect();
-    return {
-        x: event.clientX - rect.left,
-        y: event.clientY - rect.top
-    };
-}
-
 function getRelativePointerPosition() {
     var pointer = stage.getPointerPosition();
     var pos = stage.getPosition();
