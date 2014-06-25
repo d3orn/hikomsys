@@ -66,7 +66,7 @@ stage.on("mousemove", function (e) {
 
 stage.on("mouseup", function (e) {
 	moving = false;
-	if(drawingEnabled && typeof firstSelectedPackage !== 'undefined'{
+	if(drawingEnabled && typeof firstSelectedPackage !== 'undefined'){
 		firstSelectedPackage.highlight.remove();
 	}
 	if(typeof tmpArrow !== "undefined") {tmpArrow.remove();} //remove only if there is one, if arrow exists dont let it be there twice or more check id
