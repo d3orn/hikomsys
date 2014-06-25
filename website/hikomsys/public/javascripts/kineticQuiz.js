@@ -46,7 +46,7 @@ function switchMode(){
 /* =============================================================== Eventhandler ============================================================== */
 stage.on("mousedown", function (e) {
 	if (typeof firstSelectedPackage !== 'undefined' && drawingEnabled) {
-		var mousePos = getRelativePointerPosition;
+		var mousePos = getRelativePointerPosition();
 		tmpArrow = new Arrow(firstSelectedPackage, mousePos, "tmpArrow");
 		tmpArrow.draw();
 		moving = true;
