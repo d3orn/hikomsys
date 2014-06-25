@@ -114,11 +114,6 @@ function createJSON(){
 	var packagesAsJson = JSON.stringify(output);
 	return packagesAsJson;
 }
-// Deprecated?
-// function get_type(thing){
-//     if(thing===null)return "[object Null]"; // special case
-//     return Object.prototype.toString.call(thing);
-// }
 
 function followMe(){
 	var mousePos = getRelativePointerPosition();
