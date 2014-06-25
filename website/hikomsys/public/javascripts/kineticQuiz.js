@@ -1,5 +1,3 @@
-var moreInfosEnabled = false;
-
 function mouseDownOnPackage(packageGroup, event){
 	firstSelectedPackage = findPackageById(packageGroup.getId());
 	firstSelectedPackage.highlightPackage("lightblue"); 
@@ -30,16 +28,12 @@ function mouseUpOnPackage(packageGroup, event) {
 }
 
 function switchMode(){
-	if(typeof firstSelectedPackage !== 'undefined'){
-		firstSelectedPackage.highlight.remove();
-		firstSelectedPackage = undefined;
-	}
-
 	drawingEnabled = !drawingEnabled;
 	var groups = packageLayer.get('Group');
 	for (var i = 0; i < groups.length; i++){
 		groups[i].setDraggable(!drawingEnabled);
 	}
+	resetFirstSelectedPackage();
 	removeIfExists(tmpArrow);
 	stage.draw();
 }
@@ -54,14 +48,10 @@ stage.on("mousemove", function (e) {
 });
 
 stage.on("mouseup", function (e) {
+	resetFirstSelectedPackage();
 	removeIfExists(tmpArrow);
-	if(typeof firstSelectedPackage !== 'undefined'){
-		firstSelectedPackage.highlight.remove();
-		firstSelectedPackage = undefined;
-	}
 	stage.draw();
 });
-
 
 /* ------  Buttons ------*/
 $('#draw').click(function(){
@@ -119,6 +109,13 @@ function followMe(){
 	var mousePos = getRelativePointerPosition();
 	tmpArrow = new Arrow(firstSelectedPackage, mousePos, "tmpArrow");
 	tmpArrow.draw();
+}
+
+function resetFirstSelectedPackage(){
+	if(typeof firstSelectedPackage !== 'undefined'){
+		firstSelectedPackage.highlight.remove();
+		firstSelectedPackage = undefined;
+	}
 }
 
 //ALT key soll temporär mode wechseln

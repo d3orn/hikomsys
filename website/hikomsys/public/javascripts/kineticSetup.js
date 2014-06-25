@@ -14,6 +14,7 @@ var packageLayer = new Kinetic.Layer();
 var infoLayer = new Kinetic.Layer();
 var altDown = false;
 var arrows = [];
+var moreInfosEnabled = false;
 
 var background;
 
