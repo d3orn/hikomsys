@@ -16,7 +16,7 @@ function mouseUpOnPackage(packageGroup, event) {
 		packages = [];
 		return;
 	}
-	var id = packages[0].text + "_" + toPackage[1].text;
+	var id = packages[0].text + "_" + toPackage.text;
 
 	if(findArrowById(id) === -1){
 		var arrow = new Arrow(packages[0],toPackage,id);
