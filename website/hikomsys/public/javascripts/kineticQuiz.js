@@ -122,7 +122,7 @@ function resetFirstSelectedPackage(){
 }
 
 function resetDependencies(){
-	for(var i = 0; i > arrows.length; i++){
+	for(var i = 0; i < arrows.length; i++){
 		arrows[i].deleteArrow();
 	}
 	arrows = [];
