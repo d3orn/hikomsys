@@ -122,7 +122,10 @@ function resetFirstSelectedPackage(){
 }
 
 function resetDependencies(){
-	console.log('hey there');
+	for(var i = 0; i > arrows.length; i++){
+		arrows[i].deleteArrow();
+	}
+	arrow = [];
 }
 
 $(document).ready(function(){
