@@ -42,6 +42,8 @@ function kineticText(array) {
     });
 }
 
+//some refactoring needed
+
 function xOffset(center1, center2, center1_width) {
     if (isRightOf(center1, center2, center1_width)) {
         return center1_width / 2;
@@ -80,6 +82,16 @@ function isBellowOf(center1, center2, center1_height) {
 
 function removeIfExists(object){
     if(typeof object !== "undefined") {object.remove();}
+}
+
+function clicked(object) {
+    if (object.attr('id') == 'move') {
+        $('#draw').parent().removeClass("active")
+    } else {
+        $('#move').parent().removeClass("active")
+    };
+    object.parent().addClass("active")
+
 }
 
 /* =============================================================== Prototype Methods ============================================================== */
