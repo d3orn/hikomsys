@@ -64,6 +64,10 @@ $('#move').click(function(){
 	switchMode();
 });
 
+$('#reset').click(function(){
+	resetDependencies();
+});
+
 $('#submit').click(function(){
 	output = createJSON();
 	quizId = document.getElementById('quizId').value;
@@ -115,6 +119,14 @@ function resetFirstSelectedPackage(){
 		firstSelectedPackage.highlight.remove();
 		firstSelectedPackage = undefined;
 	}
+}
+
+function resetDependencies(){
+	for(var i = 0; i < arrows.length; i++){
+		arrows[i].deleteArrow();
+	}
+	arrows = [];
+	stage.draw();
 }
 
 $(document).ready(function(){
