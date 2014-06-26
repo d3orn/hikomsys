@@ -118,13 +118,13 @@ function resetFirstSelectedPackage(){
 }
 
 //ALT key soll temporär mode wechseln
-/*$(window).on("keydown", function(event) {
+$(window).on("keydown", function(event) {
     if (event.which === 18) {
         switchMode();
     }
 }).on("keyup", function(event) {
 	switchMode();
-});*/
+});
 
 $(document).ready(function(){
 	for(var i = 0; i < allPackages.length; i++){
