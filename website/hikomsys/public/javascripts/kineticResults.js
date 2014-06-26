@@ -16,10 +16,6 @@ function switchMode() {
     }
 }
 
-/*
-	Hides or Shows all arrows with the given color
- */
-
 function switchDependencies(color) {
     for (var i = 0; i < arrows.length; i++) {
         if (arrows[i].color == color) {
