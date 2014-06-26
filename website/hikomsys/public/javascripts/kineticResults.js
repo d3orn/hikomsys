@@ -106,19 +106,20 @@ $('#continue').click(function() {
     ++clicks;
 });
 
-//I can make those into 1 event
+$('.btn').click(function() {
+    normalClick($(this));
+});
+
+//Currently not used
 $('.arrowbtn').click(function() {
     color = $(this).attr('id').replace('Arrow', '');
     switchDependencies(color);
 });
 
+//Currently not used
 $('#infosEnabled').click(function() {
     moreInfosEnabled = !moreInfosEnabled;
     for (var i = 0; i < allPackages.length; i++) {
         allPackages[i].removeInfos();
     }
-});
-
-$('.btn').click(function() {
-    normalClick($(this));
 });
