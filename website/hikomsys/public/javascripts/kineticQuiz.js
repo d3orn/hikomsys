@@ -65,7 +65,6 @@ $('#move').click(function(){
 });
 
 $('#reset').click(function(){
-	clicked($(this));
 	resetDependencies();
 });
 

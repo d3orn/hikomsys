@@ -18,10 +18,10 @@
 			  <dt>Functions:</dt>
 			  <dd class="active"><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a></dd>
 			  <dd class=""><a id="draw" aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a></dd>
-			  <dd class=""><a id="reset">Start over</a></dd>
 			</dl>
 		</div>
 		<div class="medium-4 columns">	
+			<div id="reset" class="button tiny radius right">Start over</div>
 			<div id="submit" class="button tiny radius success right">Submit dependencies</div>
 			<div id="help" data-reveal-id="myModal" class="button tiny radius alert right" data-reveal>Help</div>
 		</div>
