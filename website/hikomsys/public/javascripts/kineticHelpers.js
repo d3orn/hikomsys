@@ -80,26 +80,16 @@ function isBellow(center1, center2, center1_height) {
     return center2.y > (center1.y + center1_height / 2);
 }
 
-//depracted?
-function normalClick(object) {
-    if (object.parent().hasClass('active')) {
-        object.parent().removeClass('active')
-    } else {
-        object.parent().addClass("active")
-    }
-}
 
-function clicked(object) {
-    if (object.attr('id') == 'move') {
-        $('#draw').parent().removeClass("active")
-    } else {
-        $('#move').parent().removeClass("active")
-    };
-    object.parent().addClass("active")
-
-}
 
 function removeIfExists(object){
     if(typeof object !== "undefined") {object.remove();}
 }
 
+/* =============================================================== Prototype Methods ============================================================== */
+// Array Remove - By John Resig (MIT Licensed)
+Array.prototype.remove = function(from, to) {
+    var rest = this.slice((to || from) + 1 || this.length);
+    this.length = from < 0 ? this.length + from : from;
+    return this.push.apply(this, rest);
+};
