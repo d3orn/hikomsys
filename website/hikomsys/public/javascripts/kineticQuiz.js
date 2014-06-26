@@ -139,7 +139,7 @@ $(document).ready(function(){
 });
 
 $('.alert-box').click(function(){
-	$(this).fadeOut(500)
+	$('.alert-box').fadeOut(500)
 });
 //ALT key soll temporär mode wechseln still not that important but nice to have
 /*$(window).on("keydown", function(event) {
