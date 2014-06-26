@@ -142,19 +142,19 @@ function PackageGroup(text, color, infos){
 	};
 
 	this.addEventListener = function(){
-		this.group.on('click', function (event){
+		this.group.on('click', function(evt){
 			if(event.button == 2){console.log('right mouse button')}
 		})
 
 		this.group.on('mousedown', function (event) {
-			console.log(event);
+			console.log(event['button']);
 			if(drawingEnabled){
-				mouseDownOnPackage(this,event);
+				mouseDownOnPackage(this);
 			}
 		}, false);
 		this.group.on('mouseup', function (event) {
 			if(drawingEnabled){
-				mouseUpOnPackage(this, event);}
+				mouseUpOnPackage(this);}
 		}, false);
 
 		//redraw arrows whenever a package is dragged arround

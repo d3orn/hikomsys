@@ -1,9 +1,9 @@
-function mouseDownOnPackage(packageGroup, event){
+function mouseDownOnPackage(packageGroup){
 	firstSelectedPackage = findPackageById(packageGroup.getId());
 	firstSelectedPackage.highlightPackage("lightblue"); 
 }
 
-function mouseUpOnPackage(packageGroup, event) {
+function mouseUpOnPackage(packageGroup) {
 	var toPackage = findPackageById(packageGroup.getId());
 	
 	if(firstSelectedPackage.text == toPackage.text){
