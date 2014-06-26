@@ -7,7 +7,8 @@ function mouseUpOnPackage(packageGroup) {
 	var toPackage = findPackageById(packageGroup.getId());
 	
 	if(firstSelectedPackage.text == toPackage.text){
-		$('#loop-alert').fadeIn(500).delay(5000).fadeOut(500);
+		$('#repeat-alert').css('z-index', 0);
+		$('#loop-alert').css('z-index', 1).fadeIn(500);
 		return;
 	}
 	var id = firstSelectedPackage.text + "_" + toPackage.text;
@@ -18,7 +19,8 @@ function mouseUpOnPackage(packageGroup) {
 		arrow.draw();
 	}
 	else {
-		$('#repeat-alert').fadeIn(500).delay(5000).fadeOut(500);
+		$('#loop-alert').css('z-index', 0);
+		$('#repeat-alert').css('z-index', 1).fadeIn(500);
 	}
 
 	firstSelectedPackage.highlight.remove();
