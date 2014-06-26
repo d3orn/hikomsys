@@ -138,9 +138,9 @@ $(document).ready(function(){
 	stage.draw();
 });
 
-$('.close').on('click', function(){
-	$(this).parent().hide();
-})
+$('.alert-box').click(function(){
+	$(this).fadeOut(500)
+});
 //ALT key soll temporär mode wechseln still not that important but nice to have
 /*$(window).on("keydown", function(event) {
     if (event.which === 18) {
