@@ -52,7 +52,7 @@ function Arrow(from, to, id){
 
 	this.createLine = function(point1, point2) {
 		return new Kinetic.Line({
-			points: [{x: point1.x, y: point1.y},{x: point2.x, y: point2.y}],
+			points: [point1.x, point1.y, point2.x, point2.y],
 			stroke: this.color,
 			strokeWidth: this.width-1,
 			name: 'arrowLine'
@@ -69,7 +69,7 @@ function Arrow(from, to, id){
 			strokeWidth: 1,
 			fill: this.color,
 			name: 'arrowHead',
-			rotation: Math.PI-rotation
+			rotation: (Math.PI-rotation)*180/Math.PI
 		}));
 	};
 

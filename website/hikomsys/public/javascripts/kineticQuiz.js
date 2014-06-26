@@ -1,93 +1,57 @@
-var moving = false; 
-
-var moreInfosEnabled = false;
-
 function mouseDownOnPackage(packageGroup, event){
-	clickCount++;
-	var pack = findPackageById(packageGroup.getId());
-	pack.highlightPackage("lightblue"); 
-	if(clickCount == 1){
-		packages.push(pack);
-	}
+	firstSelectedPackage = findPackageById(packageGroup.getId());
+	firstSelectedPackage.highlightPackage("lightblue"); 
 }
 
 function mouseUpOnPackage(packageGroup, event) {
-	clickCount++;
-	if(clickCount == 2){
-		var firstPack = findPackageById(packages[0].text);
-		var pack = findPackageById(packageGroup.getId());
-		packages.push(pack);
-		firstPack.highlight.remove();
-		pack.highlight.remove();
-		var id = packages[0].text + "_" + packages[1].text;
-		if(packages[0].text == packages[1].text){
-			writeMessage("You cannot add a loop");
-		}
-		else if(findArrowById(id) === -1){
-			var arrow = new Arrow(packages[0],packages[1],id);
-			arrows.push(arrow);
-			arrow.draw();
-		}
-		else {
-			writeMessage("dependency already drawn");
-		}
-		packages = [];
-		clickCount = 0;
-
+	var toPackage = findPackageById(packageGroup.getId());
+	
+	if(firstSelectedPackage.text == toPackage.text){
+		writeMessage("You cannot add a loop");
+		return;
 	}
+	var id = firstSelectedPackage.text + "_" + toPackage.text;
+
+	if(findArrowById(id) === -1){
+		var arrow = new Arrow(firstSelectedPackage,toPackage,id);
+		arrows.push(arrow);
+		arrow.draw();
+	}
+	else {
+		writeMessage("dependency already drawn");
+	}
+
+	firstSelectedPackage.highlight.remove();
+	toPackage.highlight.remove();
+	firstSelectedPackage = undefined;
 	stage.draw();
 }
 
 function switchMode(){
-	if(packages.length > 0){
-		packages[0].highlight.remove();
-	}
-	clickCount = 0;
-	packages = [];
-
 	drawingEnabled = !drawingEnabled;
 	var groups = packageLayer.get('Group');
 	for (var i = 0; i < groups.length; i++){
-		groups[i].setDraggable(!drawingEnabled );
+		groups[i].setDraggable(!drawingEnabled);
 	}
+	resetFirstSelectedPackage();
+	removeIfExists(tmpArrow);
+	stage.draw();
 }
 
 /* =============================================================== Eventhandler ============================================================== */
-stage.on("mousedown", function (e) {
-	if(clickCount === 0) return;
-	if (moving) {
-		moving = false;
-		arrowLayer.drawScene();
-	} else {
-		var mousePos = getMousePosition(e);
-		tmpArrow = new Arrow(packages[0], mousePos, "tmpArrow");
-		tmpArrow.draw();
-		moving = true;
-	}
-});
-
 stage.on("mousemove", function (e) {
-	if (moving) {
-		tmpArrow.remove();
-		var mousePos = getMousePosition(e);
-		tmpArrow = new Arrow(packages[0], mousePos, "tmpArrow");
-		tmpArrow.draw();
-		moving = true;
+	removeIfExists(tmpArrow);
+	if(typeof firstSelectedPackage !== 'undefined' && drawingEnabled) {
+		followMe();
 		stage.draw();
 	}
 });
 
 stage.on("mouseup", function (e) {
-	moving = false;
-	if(drawingEnabled && packages.length > 0){
-		packages[0].highlight.remove();
-		clickCount = 0;
-		packages = [];
-	}
-	if(typeof tmpArrow !== "undefined") {tmpArrow.remove();} //remove only if there is one, if arrow exists dont let it be there twice or more check id
+	resetFirstSelectedPackage();
+	removeIfExists(tmpArrow);
 	stage.draw();
 });
-
 
 /* ------  Buttons ------*/
 $('#draw').click(function(){
@@ -115,12 +79,12 @@ $('#submit').click(function(){
 
 function createJSON(){
 	var output = [];
-	for ( var i = 0; i < allPackages.length; i = i + 1 ) {
+	for(var i = 0; i < allPackages.length; i = i + 1 ) {
 		var p;
 		var position = {"X" : allPackages[i].position().x, "Y" : allPackages[i].position().y};
 		name = allPackages[i].text;
 		var dep =[];
-		for ( var j = 0; j < arrows.length; j++){
+		for(var j = 0; j < arrows.length; j++){
 			currentPackage = arrows[j];
 			if(currentPackage.from.text == name){
 				toName = currentPackage.to.text;
@@ -137,23 +101,21 @@ function createJSON(){
 		}
 		output.push(p);
 	}
-	var packagesAsJson = JSON.stringify(output);
-	return packagesAsJson;
+	return JSON.stringify(output);
 }
 
-function get_type(thing){
-    if(thing===null)return "[object Null]"; // special case
-    return Object.prototype.toString.call(thing);
+function followMe(){
+	var mousePos = getRelativePointerPosition();
+	tmpArrow = new Arrow(firstSelectedPackage, mousePos, "tmpArrow");
+	tmpArrow.draw();
 }
 
-//ALT key soll temporär mode wechseln
-/*$(window).on("keydown", function(event) {
-    if (event.which === 18) {
-        switchMode();
-    }
-}).on("keyup", function(event) {
-	switchMode();
-});*/
+function resetFirstSelectedPackage(){
+	if(typeof firstSelectedPackage !== 'undefined'){
+		firstSelectedPackage.highlight.remove();
+		firstSelectedPackage = undefined;
+	}
+}
 
 $(document).ready(function(){
 	for(var i = 0; i < allPackages.length; i++){
@@ -162,53 +124,11 @@ $(document).ready(function(){
 	stage.draw();
 });
 
-/* =============================================================== Prototype Methods ============================================================== */
-
-//REFACTORING NEEDED
-//save initial scale
-var initialScale = {x: 1, y: 1};
-var initialWidth = $("#container").innerWidth(); // initial width
-var initialHeight = $("#container").innerHeight(); // initial height
-
-/*window.onresize = function(event) { // listen for change
-  var width = $("#container").innerWidth(); // new width of page
-    var height = $("#container").innerHeight(); // new height of page
-   console.log(width);
-    console.log(height);
-    var xScale =  (width  / initialWidth) * initialScale.x;  // percent change in width (Ex: 1000 - 400/1000 means the page scaled down 60%, you should play with this to get wanted results)
-    var yScale = (height / initialHeight) * initialScale.y;
-    var newScale = {x: xScale, y: yScale};
-        console.log(newScale);
-    stage.setAttr('width', width);
-    stage.setAttr('height', height);    
-    stage.setAttr('scale', newScale ); 
-    stage = new Kinetic.Stage({
-    	container: 'container',
-		width: width,
-		height: height
-	});
-    stage.add(layer);
-    stage.draw();
-}*/
-
-$(window).on('resize',function(){
-	if(this.resizeTO) clearTimeout(this.resizeTO);
-	this.resizeTO = setTimeout(function(){
-		$(this).trigger('resizeEnd');
-	},500);
-});
-
-
-//after resizing the draboundfunction fails need to update MaxX for every element
-$(window).on('resizeEnd orientationchange',function(){
-	var width = $("#container").innerWidth(); // new width of page
-	var height = $("#container").innerHeight(); // new height of page
-	background.setWidth(width);
-	background.setHeight(height);
-	stage.setWidth(width);
-	stage.setHeight(height);
-	var groups = layer.get('Group');
-	for (var i = 0; i < groups.length; i++){
-		//alert(groups[i].maxX);
-	}
-});
+//ALT key soll temporär mode wechseln still not that important but nice to have
+/*$(window).on("keydown", function(event) {
+    if (event.which === 18) {
+        switchMode();
+    }
+}).on("keyup", function(event) {
+	switchMode();
+});*/

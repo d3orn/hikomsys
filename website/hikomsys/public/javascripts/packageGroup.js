@@ -56,7 +56,8 @@ function PackageGroup(text, color, infos){
 		this.group.add(this.rect)
 			.add(this.textField)
 			//need to check if to packages are overlapping, would not be nice
-			.move(1+Math.floor(Math.random() * (CONTAINER_WIDTH-this.rect.getWidth())), 1 + Math.floor(Math.random()*(480-this.rect.getHeight())));
+			.move({x:1 + Math.floor(Math.random() * (CONTAINER_WIDTH-this.rect.getWidth())),
+				y:1 + Math.floor(Math.random() * (480-this.rect.getHeight()))});
 
 		packageLayer.add(this.group);
 		return this;
@@ -130,7 +131,7 @@ function PackageGroup(text, color, infos){
 					.add(toName)
 					.add(toPackage);
 
-				titleBox.move(0,-(PACKAGE_HEIGHT-4));
+				titleBox.move({x:0, y:-(PACKAGE_HEIGHT-4)});
 
 				this.dependenciesInfoBox.push({'from' : from, 'to' : toGroup});
 				
@@ -188,7 +189,7 @@ function PackageGroup(text, color, infos){
 				stage.draw();
 			}
 			if(drawingEnabled){
-				if(packages.length > 0 && this.getId() === packages[0].text){return;}
+				if(typeof firstSelectedPackage !== 'undefined' && this.getId() === firstSelectedPackage.text){return;}
 				var pack = findPackageById(this.getId());
 				pack.highlight.remove(); 
 				packageLayer.draw();
@@ -292,24 +293,24 @@ function PackageGroup(text, color, infos){
 		this.infoGroup.add(this.infoBox);
 
 		if(this.classesInfoBox.length > 0){
-			this.classesInfoText.move(5,5);
+			this.classesInfoText.move({x:5, y:5});
 			this.infoGroup.add(this.classesInfoText);
 		}
 		if(this.childrenInfoBox.length > 0){
 			var offset = this.classesInfoBox.length > 0 ? 1 : 0; 
-			this.childrenInfoBoxText.move(5,5+offset*(PACKAGE_HEIGHT-3));
+			this.childrenInfoBoxText.move({x:5, y:5+offset*(PACKAGE_HEIGHT-3)});
 			this.infoGroup.add(this.childrenInfoBoxText);
 		}
 		
 		if(this.dependenciesInfoBox.length > 0){
 			var offset = (this.classesInfoBox.length > 0 ? 1 : 0) + (this.childrenInfoBox.length > 0 ? 1 : 0);
-			this.dependenciesInfoBoxText.move(5,5+offset*(PACKAGE_HEIGHT-3));
+			this.dependenciesInfoBoxText.move({x:5, y:5+offset*(PACKAGE_HEIGHT-3)});
 			this.infoGroup.add(this.dependenciesInfoBoxText);
 		}
 		
 		this.infoGroup.add(this.closeButton)
-			.move(this.position().x+this.rect.getWidth()+1,this.position().y);
-		this.closeButton.move(0,-this.closeButton.getHeight());
+			.move({x:this.position().x+this.rect.getWidth()+1, y:this.position().y});
+		this.closeButton.move({x:0, y:-this.closeButton.getHeight()});
 		infoLayer.add(this.infoGroup);
 		this.show(this.infoGroup,2);
 	}
@@ -338,7 +339,7 @@ function PackageGroup(text, color, infos){
 			this.classGroup.add(this.classesInfoBox[i]);
 		}
 
-		this.classGroup.move(this.infoBox.getWidth()+1,0);
+		this.classGroup.move({x:this.infoBox.getWidth()+1, y:0});
 		this.infoGroup.add(this.classGroup);
 		this.show(this.classGroup,1);
 	}
@@ -367,7 +368,7 @@ function PackageGroup(text, color, infos){
 			this.childrenGroup.add(this.childrenInfoBox[i]);
 		}
 
-		this.childrenGroup.move(this.infoBox.getWidth()+1,0);
+		this.childrenGroup.move({x:this.infoBox.getWidth()+1, y:0});
 		this.infoGroup.add(this.childrenGroup);
 		this.show(this.childrenGroup,1);
 	}
@@ -440,10 +441,10 @@ function PackageGroup(text, color, infos){
 
 		this.dependenciesGroup.add(titleBox)
 			.add(title)
-			.move(this.infoBox.getWidth()+1,0)
+			.move({x:this.infoBox.getWidth()+1, y:0})
 		
-		titleBox.move(0,-(PACKAGE_HEIGHT-4));
-		title.move(4,-(PACKAGE_HEIGHT-8));
+		titleBox.move({x:0, y:-(PACKAGE_HEIGHT-4)});
+		title.move({x:4, y:-(PACKAGE_HEIGHT-8)});
 		this.infoGroup.add(this.dependenciesGroup);
 		this.show(this.dependenciesGroup,1);
 	}
@@ -483,7 +484,7 @@ function PackageGroup(text, color, infos){
 			stroke: color,
 			strokeWidth:2
 		});
-		this.highlight.move(x,y);
+		this.highlight.move({x:x,y:y});
 		this.isHighlighted = true;
 		packageLayer.add(this.highlight);
 		this.highlight.setZIndex(0);
