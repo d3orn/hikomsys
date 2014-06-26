@@ -42,8 +42,6 @@ function kineticText(array) {
     });
 }
 
-//some refactoring needed
-
 function xOffset(center1, center2, center1_width) {
     if (isRightOf(center1, center2, center1_width)) {
         return center1_width / 2;
@@ -55,10 +53,10 @@ function xOffset(center1, center2, center1_width) {
 }
 
 function yOffset(center1, center2, center1_height) {
-    if (isBellow(center1, center2, center1_height)) {
+    if (isBellowOf(center1, center2, center1_height)) {
         return center1_height / 2;
     }
-    if (isAbove(center1, center2, center1_height)) {
+    if (isAboveOf(center1, center2, center1_height)) {
         return -center1_height / 2;
     }
     return 0;
@@ -72,15 +70,13 @@ function isLeftOf(center1, center2, center1_width) {
     return center2.x < (center1.x - center1_width / 2);
 }
 
-function isAbove(center1, center2, center1_height) {
+function isAboveOf(center1, center2, center1_height) {
     return center2.y < (center1.y - center1_height / 2);
 }
 
-function isBellow(center1, center2, center1_height) {
+function isBellowOf(center1, center2, center1_height) {
     return center2.y > (center1.y + center1_height / 2);
 }
-
-
 
 function removeIfExists(object){
     if(typeof object !== "undefined") {object.remove();}
