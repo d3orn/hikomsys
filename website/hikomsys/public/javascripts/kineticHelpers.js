@@ -7,14 +7,9 @@ function findArrowById(id) {
     return -1;
 }
 
-//Kineticjs can search by id just set text = ID
-
 function findPackageById(id) {
-    var p = stage.find('#'+id)[0];
-    console.log(p);
     for (var i = 0; i < allPackages.length; i++) {
         if (allPackages[i].text === id) {
-            console.log(allPackages[i]);
             return allPackages[i];
         }
     }
@@ -56,7 +51,7 @@ function xOffset(center1, center2, center1_width) {
     if (isLeftOf(center1, center2, center1_width)) {
         return -center1_width / 2;
     }
-    return (0);
+    return 0;
 }
 
 function yOffset(center1, center2, center1_height) {
@@ -66,7 +61,7 @@ function yOffset(center1, center2, center1_height) {
     if (isAbove(center1, center2, center1_height)) {
         return -center1_height / 2;
     }
-    return (0);
+    return 0;
 }
 
 function isRightOf(center1, center2, center1_width) {
@@ -85,6 +80,7 @@ function isBellow(center1, center2, center1_height) {
     return center2.y > (center1.y + center1_height / 2);
 }
 
+//depracted?
 function normalClick(object) {
     if (object.parent().hasClass('active')) {
         object.parent().removeClass('active')
@@ -107,11 +103,3 @@ function removeIfExists(object){
     if(typeof object !== "undefined") {object.remove();}
 }
 
-/* =============================================================== Prototype Methods ============================================================== */
-// Array Remove - By John Resig (MIT Licensed)
-//Do I still use this?
-Array.prototype.remove = function(from, to) {
-    var rest = this.slice((to || from) + 1 || this.length);
-    this.length = from < 0 ? this.length + from : from;
-    return this.push.apply(this, rest);
-};
