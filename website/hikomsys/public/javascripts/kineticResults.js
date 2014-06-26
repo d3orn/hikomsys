@@ -27,6 +27,7 @@ function switchDependencies(color) {
 /* =============================================================== Eventhandler ============================================================== */
 // this requests gets all the information from the PROJECTNAMEResults table
 $(document).ready(function() {
+    document.oncontextmenu = function() {return false;};
     quizId = document.getElementById('quizId').value;
     $.post('sendJSON', {
         'quizId': quizId

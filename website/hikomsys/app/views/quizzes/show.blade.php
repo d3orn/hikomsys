@@ -46,6 +46,15 @@
 			</div>	
 		</div>
 	</div>
+
+	<div data-alert class="alert-box" id="repeat-alert">
+ 		You did already drawn this dependency.
+	</div>
+
+	<div data-alert class="alert-box" id="loop-alert">
+ 		You cannot add a dependenciy loop.
+	</div>
+
 @stop
 
 @section("scripts")

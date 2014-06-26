@@ -64,5 +64,13 @@ stage.add(packageLayer);
 stage.add(infoLayer);
 
 function writeMessage(message) {
+	var mousePos = getRelativePointerPosition();
 	notification.setText(message);
+	notification.setX(mousePos.x)
+		.setY(mousePos.y)
+	notification.show();
 }
+
+stage.on('mousemove', function(){
+	notification.hide();
+})

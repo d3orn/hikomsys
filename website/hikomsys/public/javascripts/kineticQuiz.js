@@ -1,13 +1,14 @@
-function mouseDownOnPackage(packageGroup, event){
+function mouseDownOnPackage(packageGroup){
 	firstSelectedPackage = findPackageById(packageGroup.getId());
 	firstSelectedPackage.highlightPackage("lightblue"); 
 }
 
-function mouseUpOnPackage(packageGroup, event) {
+function mouseUpOnPackage(packageGroup) {
 	var toPackage = findPackageById(packageGroup.getId());
 	
 	if(firstSelectedPackage.text == toPackage.text){
-		writeMessage("You cannot add a loop");
+		$('#repeat-alert').css('z-index', 0);
+		$('#loop-alert').css('z-index', 1).fadeIn(500);
 		return;
 	}
 	var id = firstSelectedPackage.text + "_" + toPackage.text;
@@ -18,7 +19,8 @@ function mouseUpOnPackage(packageGroup, event) {
 		arrow.draw();
 	}
 	else {
-		writeMessage("dependency already drawn");
+		$('#loop-alert').css('z-index', 0);
+		$('#repeat-alert').css('z-index', 1).fadeIn(500);
 	}
 
 	firstSelectedPackage.highlight.remove();
@@ -136,6 +138,9 @@ $(document).ready(function(){
 	stage.draw();
 });
 
+$('.alert-box').click(function(){
+	$('.alert-box').fadeOut(500)
+});
 //ALT key soll temporär mode wechseln still not that important but nice to have
 /*$(window).on("keydown", function(event) {
     if (event.which === 18) {
