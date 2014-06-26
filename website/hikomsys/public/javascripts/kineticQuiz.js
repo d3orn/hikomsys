@@ -7,6 +7,7 @@ function mouseUpOnPackage(packageGroup) {
 	var toPackage = findPackageById(packageGroup.getId());
 	
 	if(firstSelectedPackage.text == toPackage.text){
+		$('#repeat-alert').fadeOut();
 		$('#loop-alert').fadeIn(500);
 		return;
 	}
@@ -18,6 +19,7 @@ function mouseUpOnPackage(packageGroup) {
 		arrow.draw();
 	}
 	else {
+		$('#loop-alert').fadeOut();
 		$('#repeat-alert').fadeIn(500);
 	}
 
