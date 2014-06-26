@@ -18,6 +18,7 @@
 			  <dt>Functions:</dt>
 			  <dd class="active"><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a></dd>
 			  <dd class=""><a id="draw" aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a></dd>
+			  <dd class=""><a id="reset">Start over</a></dd>
 			</dl>
 		</div>
 		<div class="medium-4 columns">	

@@ -37,4 +37,3 @@ class Project extends Eloquent {
         return $this->errors;
     }
 }
-
