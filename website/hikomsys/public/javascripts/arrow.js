@@ -102,6 +102,12 @@ function Arrow(from, to, id){
 	};
 
 	this.addEventListener = function(){
+		this.arrowGroup.on('click', function(e){
+			if(e.button == 2){console.log('right mouse button')}
+		})
+	}
+
+	/*this.addEventListener = function(){
 		this.arrowGroup.on('click', function(){
 			var index = findArrowById(this.getId());
 			arrows[index].deleteArrow();
@@ -109,5 +115,5 @@ function Arrow(from, to, id){
 
 			arrowLayer.draw();
 		});
-	};
+	};*/
 }
