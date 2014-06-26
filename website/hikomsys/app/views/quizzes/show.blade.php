@@ -49,12 +49,12 @@
 
 	<div data-alert class="alert-box" id="repeat-alert">
  		You did already drawn this dependency.
-  		<a href="#" class="close">&times;</a>
+  		<a href="#" class="alert-close">&times;</a>
 	</div>
 
 	<div data-alert class="alert-box" id="loop-alert">
  		You cannot add a dependenciy loop.
-  		<a href="#" class="close">&times;</a>
+  		<a href="#" class="alert-close">&times;</a>
 	</div>
 
 @stop
