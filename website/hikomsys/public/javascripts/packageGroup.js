@@ -147,6 +147,7 @@ function PackageGroup(text, color, infos){
 		})
 
 		this.group.on('mousedown', function (event) {
+			console.log(event.button);
 			if(drawingEnabled){
 				mouseDownOnPackage(this,event);
 			}
