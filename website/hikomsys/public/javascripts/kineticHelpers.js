@@ -42,8 +42,6 @@ function kineticText(array) {
     });
 }
 
-//some refactoring needed
-
 function xOffset(center1, center2, center1_width) {
     if (isRightOf(center1, center2, center1_width)) {
         return center1_width / 2;
@@ -84,6 +82,15 @@ function removeIfExists(object){
     if(typeof object !== "undefined") {object.remove();}
 }
 
+//those two functions need some rethinking but probably not from here but from where they are needed
+function normalClick(object) {
+    if (object.parent().hasClass('active')) {
+        object.parent().removeClass('active')
+    } else {
+        object.parent().addClass("active")
+    }
+}
+
 function clicked(object) {
     if (object.attr('id') == 'move') {
         $('#draw').parent().removeClass("active")
@@ -91,7 +98,6 @@ function clicked(object) {
         $('#move').parent().removeClass("active")
     };
     object.parent().addClass("active")
-
 }
 
 /* =============================================================== Prototype Methods ============================================================== */
