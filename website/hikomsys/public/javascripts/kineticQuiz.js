@@ -64,6 +64,11 @@ $('#move').click(function(){
 	switchMode();
 });
 
+$('#reset').click(function(){
+	clicked($(this));
+	resetDependencies();
+});
+
 $('#submit').click(function(){
 	output = createJSON();
 	quizId = document.getElementById('quizId').value;
@@ -115,6 +120,10 @@ function resetFirstSelectedPackage(){
 		firstSelectedPackage.highlight.remove();
 		firstSelectedPackage = undefined;
 	}
+}
+
+function resetDependencies(){
+	console.log('hey there');
 }
 
 $(document).ready(function(){
