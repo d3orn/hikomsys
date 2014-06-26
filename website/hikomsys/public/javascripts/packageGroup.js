@@ -142,6 +142,10 @@ function PackageGroup(text, color, infos){
 	};
 
 	this.addEventListener = function(){
+		this.group.on('click', function(e){
+			if(e.button == 2){console.log('right mouse button')}
+		})
+
 		this.group.on('mousedown', function (event) {
 			if(drawingEnabled){
 				mouseDownOnPackage(this,event);
