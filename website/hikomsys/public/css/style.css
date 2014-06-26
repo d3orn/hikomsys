@@ -75,6 +75,7 @@ dt, dd{
 }
 
 #repaet-alert, #loop-alert{
+	display: none;
 	width: 11.875rem;
 	position: absolute;
 	top: 25rem;

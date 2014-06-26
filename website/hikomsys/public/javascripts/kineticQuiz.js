@@ -7,7 +7,7 @@ function mouseUpOnPackage(packageGroup) {
 	var toPackage = findPackageById(packageGroup.getId());
 	
 	if(firstSelectedPackage.text == toPackage.text){
-		writeMessage("You cannot add a loop");
+		$('#loop-alert').show();
 		return;
 	}
 	var id = firstSelectedPackage.text + "_" + toPackage.text;
