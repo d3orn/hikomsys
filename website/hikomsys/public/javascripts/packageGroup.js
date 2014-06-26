@@ -142,7 +142,7 @@ function PackageGroup(text, color, infos){
 	};
 
 	this.addEventListener = function(){
-		this.group.on('click', function(evt){
+		this.group.on('click', function(){
 			if(event.button == 2){console.log('right mouse button')}
 		})
 
