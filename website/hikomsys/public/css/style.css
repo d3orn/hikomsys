@@ -73,3 +73,10 @@ dt, dd{
 .icon-loop:before {
 	content: "\e602";
 }
+
+#repaet-alert, #loop-alert{
+	width: 11.875rem;
+	position: absolute;
+	top: 25rem;
+	left: 15.625rem;
+}
