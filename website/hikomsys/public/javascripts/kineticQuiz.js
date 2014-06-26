@@ -18,7 +18,7 @@ function mouseUpOnPackage(packageGroup) {
 		arrow.draw();
 	}
 	else {
-		$('#repeat-alert').zIndex(1).fadeIn(500).delay(5000).fadeOut(500).zIndex(0);
+		$('#repeat-alert').fadeIn(500).delay(5000).fadeOut(500);
 	}
 
 	firstSelectedPackage.highlight.remove();
