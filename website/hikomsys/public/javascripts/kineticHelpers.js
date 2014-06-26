@@ -10,7 +10,8 @@ function findArrowById(id) {
 //Kineticjs can search by id just set text = ID
 
 function findPackageById(id) {
-    console.log(stage.find('#'.id)[0]);
+    var p = stage.find('#'.id)[0];
+    console.log(p);
     for (var i = 0; i < allPackages.length; i++) {
         if (allPackages[i].text === id) {
             console.log(allPackages[i]);
