@@ -46,4 +46,5 @@
 	{{ HTML::script('javascripts/arrow.js') }}
 	{{ HTML::script('javascripts/packageGroup.js') }}
 	{{ HTML::script('javascripts/kineticResults.js') }}
+	{{ HTML::script('javascripts/kineticResize.js') }}
 @stop
