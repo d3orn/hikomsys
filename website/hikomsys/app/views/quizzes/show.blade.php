@@ -13,14 +13,14 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="medium-8 columns">
+		<div class="medium-7 columns">
 			<dl class="sub-nav">
 			  <dt>Functions:</dt>
 			  <dd class="active"><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a></dd>
 			  <dd class=""><a id="draw" aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a></dd>
 			</dl>
 		</div>
-		<div class="medium-4 columns">	
+		<div class="medium-5 columns">	
 			<div id="submit" class="button tiny radius success right">Submit dependencies</div>
 			<div id="help" data-reveal-id="myModal" class="button tiny radius alert right" data-reveal>Help</div>
 			<div id="reset" class="button tiny radius right">Start over</div>
