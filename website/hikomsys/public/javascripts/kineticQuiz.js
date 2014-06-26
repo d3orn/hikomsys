@@ -7,7 +7,7 @@ function mouseUpOnPackage(packageGroup) {
 	var toPackage = findPackageById(packageGroup.getId());
 	
 	if(firstSelectedPackage.text == toPackage.text){
-		$('#loop-alert').show();
+		$('#loop-alert').fadeIn(500);
 		return;
 	}
 	var id = firstSelectedPackage.text + "_" + toPackage.text;
@@ -18,7 +18,7 @@ function mouseUpOnPackage(packageGroup) {
 		arrow.draw();
 	}
 	else {
-		writeMessage("dependency already drawn");
+		$('#repeat-alert').fadeIn(500);
 	}
 
 	firstSelectedPackage.highlight.remove();
