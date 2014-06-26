@@ -117,18 +117,18 @@ function resetFirstSelectedPackage(){
 	}
 }
 
-//ALT key soll temporär mode wechseln
-$(window).on("keydown", function(event) {
-    if (event.which === 18) {
-        switchMode();
-    }
-}).on("keyup", function(event) {
-	switchMode();
-});
-
 $(document).ready(function(){
 	for(var i = 0; i < allPackages.length; i++){
 		allPackages[i].create();
 	}	
 	stage.draw();
 });
+
+//ALT key soll temporär mode wechseln still not that important but nice to have
+/*$(window).on("keydown", function(event) {
+    if (event.which === 18) {
+        switchMode();
+    }
+}).on("keyup", function(event) {
+	switchMode();
+});*/
