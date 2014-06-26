@@ -143,15 +143,15 @@ function PackageGroup(text, color, infos){
 
 	this.addEventListener = function(){
 		this.group.on('click', function(evt){
-			if(evt.button == 2){console.log('right mouse button')}
+			if(event.button == 2){console.log('right mouse button')}
 		})
 
-		this.group.on('mousedown', function(evt) {
+		this.group.on('mousedown', function() {
 			if(drawingEnabled){
 				mouseDownOnPackage(this);
 			}
 		}, false);
-		this.group.on('mouseup', function(evt) {
+		this.group.on('mouseup', function() {
 			if(drawingEnabled){
 				mouseUpOnPackage(this);}
 		}, false);
