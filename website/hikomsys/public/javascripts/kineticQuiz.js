@@ -125,7 +125,8 @@ function resetDependencies(){
 	for(var i = 0; i > arrows.length; i++){
 		arrows[i].deleteArrow();
 	}
-	arrow = [];
+	arrows = [];
+	stage.draw();
 }
 
 $(document).ready(function(){
