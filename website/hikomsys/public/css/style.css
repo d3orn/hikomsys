@@ -88,7 +88,7 @@ dt, dd{
 	text-transform: uppercase;
 }
 
-#flipbox .row{
+#flipbox .row, #flipbox .columns{
 	height: 100%;
 }
 
@@ -107,7 +107,7 @@ dt, dd{
 #flipbox li{
 	list-style: none;
 	font-size: 0.875rem;
-	
+
 }
 
 #flipbox #flipped{
