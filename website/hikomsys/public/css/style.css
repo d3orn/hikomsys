@@ -94,7 +94,6 @@ dt, dd{
 
 #flipbox #menu{
 	height: 100%;
-	font-size: 0.875rem;
 }
 
 #flipbox #menu ul{
@@ -103,7 +102,7 @@ dt, dd{
 
 #flipbox li{
 	list-style: none;
-
+	font-size: 0.875rem;
 }
 
 #flipbox #flipped{
