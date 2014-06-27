@@ -16,9 +16,9 @@
 				<div class="row collapse">
 					<div id="menu" class="medium-3 columns">
 						<ul>
-							<li id="green">Correct</li>
-							<li id="orange">Missing</li>
-							<li id="red">Wrong</li>
+							<li id="green"><a href="#">Correct</a></li>
+							<li id="orange"><a href="#">Missing</a></li>
+							<li id="red"><a href="#">Wrong</a></li>
 						</ul>
 					</div>
 					<div id="flipped" class="medium-9 columns"><p>Points: 0 (0)</p></div>
