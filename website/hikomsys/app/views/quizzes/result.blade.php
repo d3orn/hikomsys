@@ -21,8 +21,8 @@
 							<li id="red">Wrong</li>
 						</ul>
 					</div>
+					<div id="flipped" class="medium-6 columns">Points: 0 (0)</div>
 				</div>
-				<div id="flipped" class="medium-6 columns">Points: 0 (0)</div>
 			</div>
 		</div>
 	</div>
