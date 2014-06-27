@@ -125,6 +125,3 @@ $('#infosEnabled').click(function() {
 
 /* FLIPBOX */
 
-$("#flipbox").flip({
-    direction:'tb'
-})
