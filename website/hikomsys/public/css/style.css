@@ -83,5 +83,9 @@ dt, dd{
 }
 
 #flipbox{
-	height: 200px;
+	height: 100px;
+}
+
+#flipbox li{
+	list-style: none;
 }
