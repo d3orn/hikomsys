@@ -84,7 +84,11 @@ dt, dd{
 
 #flipbox{
 	height: 100px;
-	border: #000 solid 5px;
+	border: #000 solid 1px;
+}
+
+#flipbox menu{
+	border-right: #000 solid 0.5px;
 }
 
 #flipbox li{
