@@ -88,9 +88,13 @@ dt, dd{
 }
 
 #flipbox #menu{
-	border-right: #000 solid 0.5px;
+
 }
 
 #flipbox li{
 	list-style: none;
+}
+
+#flipbox #flipped{
+	background-color: #E8B217;
 }
