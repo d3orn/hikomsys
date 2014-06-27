@@ -14,14 +14,14 @@
 		<div class="medium-6 columns">
 			<div id="flipbox">
 				<div class="row">
-					<div id="menu" class="medium-6 columns">
+					<div id="menu" class="medium-3 columns">
 						<ul>
 							<li id="green">Correct</li>
 							<li id="orange">Missing</li>
 							<li id="red">Wrong</li>
 						</ul>
 					</div>
-					<div id="flipped" class="medium-6 columns"><p>Points: 0 (0)</p></div>
+					<div id="flipped" class="medium-9 columns"><p>Points: 0 (0)</p></div>
 				</div>
 			</div>
 		</div>
