@@ -92,11 +92,16 @@ dt, dd{
 }
 
 #flipbox #menu{
+	height: 100%;
+}
 
+#flipbox #menu ul{
+	margin: 0;
 }
 
 #flipbox li{
 	list-style: none;
+
 }
 
 #flipbox #flipped{
