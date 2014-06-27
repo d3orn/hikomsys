@@ -14,7 +14,7 @@
 		<div class="medium-6 columns">
 			<div id="flipbox">
 				<div class="row collapse">
-					<div class="medium-3 columns">
+					<div class="medium-3 columns" id="menu-list">
 						<div class="row">
 							<div class="medium-12 columns" id="menu">
 								<ul>
