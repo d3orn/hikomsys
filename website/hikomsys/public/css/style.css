@@ -83,8 +83,8 @@ dt, dd{
 }
 
 #flipbox{
-	height: 100px;
-	border: #000 solid 1px;
+	height: 6.25rem;
+	border: #000 solid 0.0625rem;
 	text-transform: uppercase;
 }
 
@@ -94,6 +94,7 @@ dt, dd{
 
 #flipbox #menu{
 	height: 100%;
+	font-size: 0.875rem;
 }
 
 #flipbox #menu ul{
@@ -113,7 +114,8 @@ dt, dd{
 #flipbox #flipped p{
 	vertical-align: middle;
 	text-align: center;
-	line-height: 100px;
+	line-height: 6.25rem;
 	margin: 0;
 	font-size: 1.5rem;
+	font-weight: 800;
 }
