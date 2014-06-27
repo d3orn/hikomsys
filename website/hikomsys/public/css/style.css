@@ -85,6 +85,7 @@ dt, dd{
 #flipbox{
 	height: 100px;
 	border: #000 solid 1px;
+	text-transform: uppercase;
 }
 
 #flipbox .row{
