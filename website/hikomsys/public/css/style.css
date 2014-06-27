@@ -110,6 +110,12 @@ dt, dd{
 	margin: 0 0 0.3125rem 0;
 }
 
+#flipbox li a{
+	text-decoration: none; 
+	color: #000;
+}
+
+
 #flipbox #flipped{
 	background-color: rgba(232,178,23, 0.6);
 }
