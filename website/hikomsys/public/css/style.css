@@ -101,4 +101,13 @@ dt, dd{
 
 #flipbox #flipped{
 	background-color: rgba(232,178,23, 0.6);
+	height: 100%;
+}
+
+#flipbox #flipped p{
+	vertical-align: middle;
+	text-align: center;
+	line-height: 100px;
+	margin: 0;
+	font-size: 1.5rem;
 }
