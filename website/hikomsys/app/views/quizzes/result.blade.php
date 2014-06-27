@@ -6,7 +6,7 @@
 @section('content')
 	
 	<div class="row">
-		<div class="medium-16 columns">
+		<div class="medium-6 columns">
 			<h2>Your Result</h2>
 			<p class='points'>You scored: </p>
 		</div>
