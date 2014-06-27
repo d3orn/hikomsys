@@ -14,9 +14,9 @@
 		<div class="medium-6 columns">
 			<div id="flipbox">
 				<div class="row collapse">
-					<div id="menu" class="medium-3 columns">
+					<div class="medium-3 columns">
 						<div class="row">
-							<div class="medium-12 columns">
+							<div class="medium-12 columns" id="menu">
 								<ul>
 									<li id="green"><a href="#">Correct</a></li>
 									<li id="orange"><a href="#">Missing</a></li>
