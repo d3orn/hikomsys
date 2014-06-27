@@ -120,3 +120,11 @@ $('#infosEnabled').click(function() {
         allPackages[i].removeInfos();
     }
 });
+
+
+
+/* FLIPBOX */
+
+$("#flipbox").flip({
+    direction:'tb'
+})
