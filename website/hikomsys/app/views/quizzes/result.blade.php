@@ -15,11 +15,15 @@
 			<div id="flipbox">
 				<div class="row collapse">
 					<div id="menu" class="medium-3 columns">
-						<ul>
-							<li id="green"><a href="#">Correct</a></li>
-							<li id="orange"><a href="#">Missing</a></li>
-							<li id="red"><a href="#">Wrong</a></li>
-						</ul>
+						<div class="row">
+							<div class="medium-12 columns">
+								<ul>
+									<li id="green"><a href="#">Correct</a></li>
+									<li id="orange"><a href="#">Missing</a></li>
+									<li id="red"><a href="#">Wrong</a></li>
+								</ul>
+							</div>
+						</div>
 					</div>
 					<div id="flipped" class="medium-9 columns"><p>Points: 0 (0)</p></div>
 				</div>
