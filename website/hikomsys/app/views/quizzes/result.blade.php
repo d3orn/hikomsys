@@ -13,14 +13,16 @@
 	<div class="row">
 		<div class="medium-6 columns">
 			<div id="flipbox">
-				<div id="menu">
-					<ul>
-						<li id="green">Correct</li>
-						<li id="orange">Missing</li>
-						<li id="red">Wrong</li>
-					</ul>
+				<div class="row">
+					<div id="menu" class="medium-6 columns">
+						<ul>
+							<li id="green">Correct</li>
+							<li id="orange">Missing</li>
+							<li id="red">Wrong</li>
+						</ul>
+					</div>
 				</div>
-				<div id="flipped">Points: 0 (0)</div>
+				<div id="flipped" class="medium-6 columns">Points: 0 (0)</div>
 			</div>
 		</div>
 	</div>
