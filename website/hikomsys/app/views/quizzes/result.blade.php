@@ -13,6 +13,14 @@
 	</div>
 
 	<div class="row">
+		<div class="medium-12 columns">
+			<div id="flipbox">
+				Test Flipbox
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
 		<div class="medium-8 columns">
 			<dl class="sub-nav">
 			  <dt>Functions:</dt>
@@ -28,14 +36,6 @@
 	<div class="row">
 		<div class="medium-12 columns">
 			<div id="container"></div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="medium-12 columns">
-			<div id="flipbox">
-				Test Flipbox
-			</div>
 		</div>
 	</div>
 
