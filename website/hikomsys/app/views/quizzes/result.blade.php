@@ -12,7 +12,14 @@
 		</div>
 		<div class="medium-4 columns">
 			<div id="flipbox">
-				Test Flipbox
+				<div id="menu">
+					<ul>
+						<li id="green">Correct Dependencies</li>
+						<li id="orange">Missing Dependencies</li>
+						<li id="red">Wrong Dependencies</li>
+					</ul>
+				</div>
+				<div id="flipped">Points: 0 (0)</div>
 			</div>
 		</div>
 	</div>
