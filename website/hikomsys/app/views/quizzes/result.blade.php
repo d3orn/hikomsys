@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class="medium-6 columns">
 			<div id="flipbox">
-				<div class="row">
+				<div class="row collapse">
 					<div id="menu" class="medium-3 columns">
 						<ul>
 							<li id="green">Correct</li>
