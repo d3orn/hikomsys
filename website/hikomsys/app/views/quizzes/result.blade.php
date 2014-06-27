@@ -6,17 +6,18 @@
 @section('content')
 	
 	<div class="row">
-		<div class="medium-8 columns">
+		<div class="medium-12 columns">
 			<h2>Your Result</h2>
-			<p class='points'>You scored: </p>
 		</div>
-		<div class="medium-4 columns">
+	</div>
+	<div class="row">
+		<div class="medium-6 columns">
 			<div id="flipbox">
 				<div id="menu">
 					<ul>
-						<li id="green">Correct Dependencies</li>
-						<li id="orange">Missing Dependencies</li>
-						<li id="red">Wrong Dependencies</li>
+						<li id="green">Correct</li>
+						<li id="orange">Missing</li>
+						<li id="red">Wrong</li>
 					</ul>
 				</div>
 				<div id="flipped">Points: 0 (0)</div>
