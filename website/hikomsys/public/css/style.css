@@ -81,3 +81,7 @@ dt, dd{
 	top: 25rem;
 	left: 15.625rem;
 }
+
+#flipbox{
+	height: 200px;
+}
