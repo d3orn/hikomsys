@@ -41,5 +41,8 @@
 	{{ HTML::script('javascripts/arrow.js') }}
 	{{ HTML::script('javascripts/packageGroup.js') }}
 	{{ HTML::script('javascripts/kineticResults.js') }}
-		{{ HTML::script('javascripts/kineticResize.js') }}
+	{{ HTML::script('javascripts/kineticResize.js') }}
+
+	{{ HTML::script('http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}
+	{{ HTML::script('javascripts/jquery.flip.min.js') }}
 @stop
