@@ -31,6 +31,14 @@
 		</div>
 	</div>
 
+	<div class="row">
+		<div class="medium-12 columns">
+			<div id="flipbox">
+				Test Flipbox
+			</div>
+		</div>
+	</div>
+
 	<input id="quizId" type="hidden" value={{ $quizId }} >
 @stop
 
