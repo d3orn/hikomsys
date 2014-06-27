@@ -87,6 +87,10 @@ dt, dd{
 	border: #000 solid 1px;
 }
 
+#flipbox .row{
+	height: 100%;
+}
+
 #flipbox #menu{
 
 }
@@ -97,4 +101,5 @@ dt, dd{
 
 #flipbox #flipped{
 	background-color: #E8B217;
+	opacity: 0.7;
 }
