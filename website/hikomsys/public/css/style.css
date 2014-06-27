@@ -87,8 +87,8 @@ dt, dd{
 	border: #000 solid 1px;
 }
 
-#flipbox menu{
-	border-right: #000 solid 0.5px !important;
+#flipbox #menu{
+	border-right: #000 solid 0.5px;
 }
 
 #flipbox li{
