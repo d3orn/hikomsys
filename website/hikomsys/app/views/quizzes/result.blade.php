@@ -19,9 +19,9 @@
 						<div class="row">
 							<div class="medium-12 columns" id="menu">
 								<ul>
-									<li id="green"><a>Show Correct</a></li>
-									<li id="orange"><a>Show Missing</a></li>
-									<li id="red"><a>Show Wrong</a></li>
+									<li id="green"><span>Show Correct</span></li>
+									<li id="orange"><span>Show Missing</span></li>
+									<li id="red"><span>Show Wrong</span></li>
 								</ul>
 							</div>
 						</div>
