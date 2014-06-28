@@ -137,7 +137,7 @@ $('#orange').click(function(){
     $("#flipped").flip({
         direction:'rl',
         color: '#FF8D2C',
-        content: 'orange'
+        content: '<p>orange</p>'
     })
 })
 
