@@ -150,7 +150,7 @@ $('#green').click(function(){
 })
 
 $('#orange').click(function(){
-    orange = !orange
+    orange = !orange;
 
     $("#flipped").flip({
         direction:'rl',
