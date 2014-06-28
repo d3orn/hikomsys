@@ -118,10 +118,14 @@ $('#infosEnabled').click(function() {
 
 /* FLIPBOX */
 var points = 0;
+boolean red, green = false;
 
 $('#green').click(function(){
-    greenPoints = document.getElementById('green-points').value;
-    points = parseFloat(points)+parseFloat(greenPoints);
+    green = !green;
+    greenPoints = (green ? document.getElementById('green-points').value : 0);
+    redPoints = (red ? document.getElementById('red-points').value : 0);
+    points = parseFloat(greenPoints)+parseFloat(redPoints);
+
     $("#flipped").flip({
         direction:'rl',
         color: '#FF8D2C',
@@ -132,18 +136,20 @@ $('#green').click(function(){
 
 $('#orange').click(function(){
     $("#flipped").flip({
-        direction:'rl',
+        direction:'tb',
         color: '#FF8D2C',
         content: '<p>Points: '+points+' (+0)</p>'
     })
 })
 
 $('#red').click(function(){
-    redPoints = document.getElementById('red-points').value;
-    points = parseFloat(points)+parseFloat(redPoints);
-  //  points = Math.round(points).toFixed(2);
+    red = !red;
+    greenPoints = (green ? document.getElementById('green-points').value : 0);
+    redPoints = (red ? document.getElementById('red-points').value : 0);
+    points = parseFloat(greenPoints)+parseFloat(redPoints);
+
     $("#flipped").flip({
-        direction:'rl',
+        direction:'lr',
         color: '#FF8D2C',
         content: '<p>Points: '+points+' (+'+redPoints+')</p>'
     })
