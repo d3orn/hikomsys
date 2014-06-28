@@ -127,10 +127,10 @@ $('#green').click(function(){
     points = parseFloat(greenPoints)+parseFloat(redPoints);
 
     if(green){
-         $('#green > a').replaceWith('Hide Correct');
+         $('#green > a >').replaceWith('Hide Correct');
     }
     else{
-         $('#green > a').replaceWith('Show Correct');
+         $('#green > a >').replaceWith('Show Correct');
     }
    
 
