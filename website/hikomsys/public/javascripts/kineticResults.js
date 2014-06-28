@@ -118,7 +118,7 @@ $('#infosEnabled').click(function() {
 
 /* FLIPBOX */
 var points = 0;
-var red, green = false;
+var red, orange, green = false;
 
 $('#green').click(function(){
     green = !green;
@@ -143,6 +143,15 @@ $('#green').click(function(){
 })
 
 $('#orange').click(function(){
+    orange = !orange
+
+    if(orange){
+         $('#green > span').text('Hide Missing');
+    }
+    else{
+         $('#green > span').text('Show Missing');
+    }
+
     $("#flipped").flip({
         direction:'rl',
         color: '#FF8D2C',
@@ -155,6 +164,13 @@ $('#red').click(function(){
     greenPoints = (green ? document.getElementById('green-points').value : 0);
     redPoints = (red ? document.getElementById('red-points').value : 0);
     points = parseFloat(greenPoints)+parseFloat(redPoints);
+
+    if(red){
+         $('#green > span').text('Hide Wrong');
+    }
+    else{
+         $('#green > span').text('Show Wrong');
+    }
 
     $("#flipped").flip({
         direction:'bt',
