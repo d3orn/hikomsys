@@ -140,8 +140,8 @@ $('#orange').click(function(){
 })
 
 $('#red').click(function(){
-    redPoints = parseFloat(document.getElementById('red-points').value);
-    points += redPoints;
+    redPoints = document.getElementById('red-points').value;
+    points = parseFloat(points)+parseFloat(redPoints);
   //  points = Math.round(points).toFixed(2);
     $("#flipped").flip({
         direction:'rl',
