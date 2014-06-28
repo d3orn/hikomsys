@@ -32,23 +32,6 @@
 	</div>
 
 	<div class="row">
-		<div class="medium-6 columns">
-			<div id="flipbox">
-				<div class="row collapse">
-					<div class="medium-3 columns" id="menu-list">
-						<ul>
-							<li id="green" class="button tiny"><a href="#">Correct</a></li>
-							<li id="orange" class="button tiny"><a href="#">Missing</a></li>
-							<li id="red" class="button tiny"><a href="#">Wrong</a></li>
-						</ul>
-					</div>
-					<div id="flipped" class="medium-9 columns"><p>Points: 0 (0)</p></div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
 		<div class="medium-8 columns">
 			<dl class="sub-nav">
 			  <dt>Functions:</dt>
