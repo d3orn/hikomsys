@@ -129,7 +129,7 @@ $('#green').click(function(){
     $("#flipped").flip({
         direction:'rl',
         color: '#FF8D2C',
-        content: 'green'
+        content: '<p>Points: X (green)</p>'
     })
 })
 
@@ -137,7 +137,7 @@ $('#orange').click(function(){
     $("#flipped").flip({
         direction:'rl',
         color: '#FF8D2C',
-        content: '<p>orange</p>'
+        content: '<p>Points: X (orange)</p>'
     })
 })
 
@@ -145,6 +145,6 @@ $('#red').click(function(){
     $("#flipped").flip({
         direction:'rl',
         color: '#FF8D2C',
-        content: 'red'
+        content: '<p>Points: X (red)</p>'
     })
 })
