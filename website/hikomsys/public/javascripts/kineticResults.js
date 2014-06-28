@@ -126,7 +126,7 @@ $('#green').click(function(){
     $("#flipped").flip({
         direction:'rl',
         color: '#FF8D2C',
-        content: '<p>Points:' +points+' (+'+greenPoints+')</p>'
+        content: '<p>Points: '+points+' (+'+greenPoints+')</p>'
     })
 
 })
@@ -142,10 +142,10 @@ $('#orange').click(function(){
 $('#red').click(function(){
     redPoints = parseFloat(document.getElementById('red-points').value);
     points += redPoints;
-    points = Math.round(points).toFixed(2);
+  //  points = Math.round(points).toFixed(2);
     $("#flipped").flip({
         direction:'rl',
         color: '#FF8D2C',
-        content: '<p>Points:' +points+' (+'+redPoints+')</p>'
+        content: '<p>Points: '+points+' (+'+redPoints+')</p>'
     })
 })
