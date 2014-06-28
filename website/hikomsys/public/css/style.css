@@ -81,3 +81,49 @@ dt, dd{
 	top: 25rem;
 	left: 15.625rem;
 }
+
+#flipbox{
+	height: 6.25rem;
+	text-transform: uppercase;
+}
+
+#flipbox .row, #flipbox #menu-list, #flipbox #flipped{
+	height: 100%;
+}
+
+#flipbox #menu{
+	position: relative;
+  	top: 50%;
+  	-webkit-transform: translateY(-50%);
+  	-ms-transform: translateY(-50%);
+  	transform: translateY(-50%);
+}
+
+#flipbox #menu ul{
+	margin: 0;
+}
+
+#flipbox li{
+	list-style: none;
+	font-size: 0.875rem;
+	margin: 0 0 0.3125rem 0;
+}
+
+#flipbox li a{
+	text-decoration: none; 
+	color: #000;
+}
+
+
+#flipbox #flipped{
+	background-color: rgba(232,178,23, 0.6);
+}
+
+#flipbox #flipped p{
+	vertical-align: middle;
+	text-align: center;
+	line-height: 6.25rem;
+	margin: 0;
+	font-size: 1.5rem;
+	font-weight: 800;
+}

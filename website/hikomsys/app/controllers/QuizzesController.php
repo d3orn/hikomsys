@@ -69,7 +69,9 @@ class QuizzesController extends \BaseController {
 
 		return View::make('quizzes.result', compact($quiz))
 			->with('quizId', $id)
-			->with('projectName', $projectName);
+			->with('projectName', $projectName)
+			->with('greenPoints', $quiz->green_points)
+			->with('redPoints', $quiz->red_points);
 	}
 
 	/**
