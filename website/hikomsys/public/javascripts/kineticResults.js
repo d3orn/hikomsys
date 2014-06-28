@@ -146,10 +146,10 @@ $('#orange').click(function(){
     orange = !orange
 
     if(orange){
-         $('#green > span').text('Hide Missing');
+         $('#orange > span').text('Hide Missing');
     }
     else{
-         $('#green > span').text('Show Missing');
+         $('#orange > span').text('Show Missing');
     }
 
     $("#flipped").flip({
@@ -166,10 +166,10 @@ $('#red').click(function(){
     points = parseFloat(greenPoints)+parseFloat(redPoints);
 
     if(red){
-         $('#green > span').text('Hide Wrong');
+         $('#red > span').text('Hide Wrong');
     }
     else{
-         $('#green > span').text('Show Wrong');
+         $('#red > span').text('Show Wrong');
     }
 
     $("#flipped").flip({
