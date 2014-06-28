@@ -127,7 +127,7 @@ $('#infosEnabled').click(function() {
 
 $('#green').click(function(){
     $("#flipped").flip({
-        direction:'tb',
+        direction:'rl',
         color: '#FF8D2C',
         content: 'green'
     })
@@ -135,7 +135,7 @@ $('#green').click(function(){
 
 $('#orange').click(function(){
     $("#flipped").flip({
-        direction:'tb',
+        direction:'rl',
         color: '#FF8D2C',
         content: 'orange'
     })
@@ -143,7 +143,7 @@ $('#orange').click(function(){
 
 $('#red').click(function(){
     $("#flipped").flip({
-        direction:'tb',
+        direction:'rl',
         color: '#FF8D2C',
         content: 'red'
     })
