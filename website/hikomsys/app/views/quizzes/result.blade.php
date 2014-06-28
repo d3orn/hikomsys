@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="medium-12 columns">
 			<h2>Your Result</h2>
-			<p>Click below to show/hide the dependencies you'd like to see and the points rewarded for those dependencies.</p>
+			<p>Click below to show/hide the dependencies you would like to see and the points rewarded for those dependencies.</p>
 		</div>
 	</div>
 	<div class="row">

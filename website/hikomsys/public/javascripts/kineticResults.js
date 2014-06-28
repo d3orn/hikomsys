@@ -78,22 +78,7 @@ $('#move').click(function() {
 
 var clicks = 0;
 $('#continue').click(function() {
-    if(clicks == 0){
-        for (var i = 0; i < arrows.length; i++) {
-            if (arrows[i].color == 'orange') {
-                arrows[i].changeVisibility();
-            }
-        }
-    }else if(clicks == 1){
-        for (var i = 0; i < arrows.length; i++) {
-            if (arrows[i].color == 'red') {
-                arrows[i].changeVisibility();
-            }
-        }
-    }else{
-        window.location.href = '/hikomsys/quizzes/success';
-    }
-    ++clicks;
+    window.location.href = '/hikomsys/quizzes/success';
 });
 
 $('.btn').click(function() {
@@ -115,7 +100,7 @@ $('#infosEnabled').click(function() {
 });
 
 
-
+//REFACTOR HARD
 /* FLIPBOX */
 var points = 0;
 var red, orange, green = false;
