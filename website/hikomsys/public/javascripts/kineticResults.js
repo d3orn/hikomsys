@@ -131,7 +131,7 @@ $('#green').click(function(){
 
         $("#flipped").flip({
             direction:'tb',
-            color: '#FF8D2C',
+            color: '#B3DAB3',
             content: '<p>Points: '+points+' (+'+greenPoints+')</p>',
             onAnimation: function(){
                 for (var i = 0; i < arrows.length; i++) {
@@ -160,7 +160,7 @@ $('#orange').click(function(){
 
         $("#flipped").flip({
             direction:'rl',
-            color: rgb(252,229,179),
+            color: '#FCE5B3',
             content: '<p>Points: '+points+' (+0)</p>',
             onAnimation: function(){
                 for (var i = 0; i < arrows.length; i++) {
@@ -192,7 +192,7 @@ $('#red').click(function(){
 
         $("#flipped").flip({
             direction:'bt',
-            color: '#FF8D2C',
+            color: '#FEB3B3',
             content: '<p>Points: '+points+' (+'+redPoints+')</p>',
             onAnimation: function(){
                 for (var i = 0; i < arrows.length; i++) {
