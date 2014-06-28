@@ -121,7 +121,7 @@ var points = 0;
 
 $('#green').click(function(){
     greenPoints = document.getElementById('green-points').value;
-    points = parseFloat(points)+parseFloat(redPoints);
+    points = parseFloat(points)+parseFloat(greenPoints);
     $("#flipped").flip({
         direction:'rl',
         color: '#FF8D2C',
