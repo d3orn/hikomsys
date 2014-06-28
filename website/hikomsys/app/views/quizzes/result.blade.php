@@ -15,18 +15,18 @@
 		<div class="medium-6 columns">
 			<div id="flipbox">
 				<div class="row collapse">
-					<div class="medium-3 columns" id="menu-list">
+					<div class="medium-4 columns" id="menu-list">
 						<div class="row">
 							<div class="medium-12 columns" id="menu">
 								<ul>
-									<li id="green"><a href="#">Show Correct</a></li>
-									<li id="orange"><a href="#">Show Missing</a></li>
-									<li id="red"><a href="#">Show Wrong</a></li>
+									<li id="green"><a>Show Correct</a></li>
+									<li id="orange"><a>Show Missing</a></li>
+									<li id="red"><a>Show Wrong</a></li>
 								</ul>
 							</div>
 						</div>
 					</div>
-					<div id="flipped" class="medium-9 columns"><p>Points: 0 (0)</p></div>
+					<div id="flipped" class="medium-8 columns"><p>Points: 0 (0)</p></div>
 				</div>
 			</div>
 		</div>
