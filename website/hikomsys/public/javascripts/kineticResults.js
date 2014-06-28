@@ -118,7 +118,8 @@ $('#infosEnabled').click(function() {
 
 /* FLIPBOX */
 var points = 0;
-var red, orange, green, animationComplete = false;
+var red, orange, green = false;
+var animationComplete = true;
 
 $('#green').click(function(){
     if(animationComplete){
