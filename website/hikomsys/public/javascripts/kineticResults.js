@@ -117,14 +117,17 @@ $('#infosEnabled').click(function() {
 
 
 /* FLIPBOX */
+var points = 0;
 
 $('#green').click(function(){
     greenPoints = document.getElementById('green-points').value;
+    points += greenPoints;
     $("#flipped").flip({
         direction:'rl',
         color: '#FF8D2C',
-        content: '<p>Points: X ('+greenPoints+')</p>'
+        content: '<p>Points:'+points+' ('+greenPoints+')</p>'
     })
+
 })
 
 $('#orange').click(function(){
@@ -136,9 +139,11 @@ $('#orange').click(function(){
 })
 
 $('#red').click(function(){
+    redPoints = document.getElementById('red-points').value;
+    points -= redPoints;
     $("#flipped").flip({
         direction:'rl',
         color: '#FF8D2C',
-        content: '<p>Points: X (red)</p>'
+        content: '<p>Points:'+points+' ('+redPoints+')</p>'
     })
 })
