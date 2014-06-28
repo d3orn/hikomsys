@@ -145,17 +145,18 @@ $('#green').click(function(){
 $('#orange').click(function(){
     orange = !orange
 
-    if(orange){
-         $('#orange > span').text('Hide Missing');
-    }
-    else{
-         $('#orange > span').text('Show Missing');
-    }
-
     $("#flipped").flip({
         direction:'rl',
         color: '#FF8D2C',
-        content: '<p>Points: '+points+' (+0)</p>'
+        content: '<p>Points: '+points+' (+0)</p>',
+        onEnd: function(){
+            if(green){
+                $('#orange > span').text('Hide Missing');
+            }
+            else{
+                $('#orange > span').text('Show Missing');
+            }
+        }
     })
 })
 
@@ -165,16 +166,17 @@ $('#red').click(function(){
     redPoints = (red ? document.getElementById('red-points').value : 0);
     points = parseFloat(greenPoints)+parseFloat(redPoints);
 
-    if(red){
-         $('#red > span').text('Hide Wrong');
-    }
-    else{
-         $('#red > span').text('Show Wrong');
-    }
-
     $("#flipped").flip({
         direction:'bt',
         color: '#FF8D2C',
-        content: '<p>Points: '+points+' (+'+redPoints+')</p>'
+        content: '<p>Points: '+points+' (+'+redPoints+')</p>',
+        onEnd: function(){
+            if(green){
+                $('#red > span').text('Hide Wrong');
+            }
+            else{
+                $('#red > span').text('Show Wrong');
+            }
+        }
     })
 })
