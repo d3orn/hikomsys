@@ -8,6 +8,7 @@
 	<div class="row">
 		<div class="medium-12 columns">
 			<h2>Your Result</h2>
+			<p>Click below to show/hide the dependencies you'd like to see and the points rewarded for those dependencies.</p>
 		</div>
 	</div>
 	<div class="row">
@@ -18,9 +19,9 @@
 						<div class="row">
 							<div class="medium-12 columns" id="menu">
 								<ul>
-									<li id="green"><a href="#">Correct</a></li>
-									<li id="orange"><a href="#">Missing</a></li>
-									<li id="red"><a href="#">Wrong</a></li>
+									<li id="green"><a href="#">Show Correct</a></li>
+									<li id="orange"><a href="#">Show Missing</a></li>
+									<li id="red"><a href="#">Show Wrong</a></li>
 								</ul>
 							</div>
 						</div>
