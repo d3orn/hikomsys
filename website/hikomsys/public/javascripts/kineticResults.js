@@ -126,18 +126,18 @@ $('#green').click(function(){
     redPoints = (red ? document.getElementById('red-points').value : 0);
     points = parseFloat(greenPoints)+parseFloat(redPoints);
 
-    if(green){
-         $('#green > span').text('Hide Correct');
-    }
-    else{
-         $('#green > span').text('Show Correct');
-    }
-   
-
     $("#flipped").flip({
         direction:'tb',
         color: '#FF8D2C',
-        content: '<p>Points: '+points+' (+'+greenPoints+')</p>'
+        content: '<p>Points: '+points+' (+'+greenPoints+')</p>',
+        onEnd: function(){
+            if(green){
+                $('#green > span').text('Hide Correct');
+            }
+            else{
+                $('#green > span').text('Show Correct');
+            }
+        }
     })
 
 })
