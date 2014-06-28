@@ -126,7 +126,7 @@ $('#green').click(function(){
     redPoints = (red ? document.getElementById('red-points').value : 0);
     points = parseFloat(greenPoints)+parseFloat(redPoints);
 
-    $('#green').replaceWith('test');
+    $('#green > a').replaceWith('test');
 
     $("#flipped").flip({
         direction:'tb',
