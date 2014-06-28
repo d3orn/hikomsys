@@ -118,35 +118,38 @@ $('#infosEnabled').click(function() {
 
 /* FLIPBOX */
 var points = 0;
-var red, orange, green = false;
+var red, orange, green, animationComplete = false;
 
 $('#green').click(function(){
-    green = !green;
-    greenPoints = (green ? document.getElementById('green-points').value : 0);
-    redPoints = (red ? document.getElementById('red-points').value : 0);
-    points = parseFloat(greenPoints)+parseFloat(redPoints);
+    if(animationComplete){
+        animationComplete = false;
+        green = !green;
+        greenPoints = (green ? document.getElementById('green-points').value : 0);
+        redPoints = (red ? document.getElementById('red-points').value : 0);
+        points = parseFloat(greenPoints)+parseFloat(redPoints);
 
-    $("#flipped").flip({
-        direction:'tb',
-        color: '#FF8D2C',
-        content: '<p>Points: '+points+' (+'+greenPoints+')</p>',
-        onAnimation: function(){
-            for (var i = 0; i < arrows.length; i++) {
-                if (arrows[i].color == 'green') {
-                    arrows[i].changeVisibility();
+        $("#flipped").flip({
+            direction:'tb',
+            color: '#FF8D2C',
+            content: '<p>Points: '+points+' (+'+greenPoints+')</p>',
+            onAnimation: function(){
+                for (var i = 0; i < arrows.length; i++) {
+                    if (arrows[i].color == 'green') {
+                        arrows[i].changeVisibility();
+                    }
+                }   
+            },
+            onEnd: function(){
+                animationComplete = true;
+                if(green){
+                    $('#green > span').text('Hide Correct');
                 }
-            }   
-        },
-        onEnd: function(){
-            if(green){
-                $('#green > span').text('Hide Correct');
+                else{
+                    $('#green > span').text('Show Correct');
+                }
             }
-            else{
-                $('#green > span').text('Show Correct');
-            }
-        }
-    })
-
+        })
+    }
 })
 
 $('#orange').click(function(){
