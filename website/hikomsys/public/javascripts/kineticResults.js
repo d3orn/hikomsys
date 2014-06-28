@@ -160,7 +160,7 @@ $('#orange').click(function(){
 
         $("#flipped").flip({
             direction:'rl',
-            color: '#FF8D2C',
+            color: rgb(252,229,179),
             content: '<p>Points: '+points+' (+0)</p>',
             onAnimation: function(){
                 for (var i = 0; i < arrows.length; i++) {
