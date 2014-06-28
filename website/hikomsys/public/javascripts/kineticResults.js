@@ -118,7 +118,8 @@ $('#infosEnabled').click(function() {
 
 /* FLIPBOX */
 var points = 0;
-boolean red, green = false;
+boolean red = false;
+boolean green = false;
 
 $('#green').click(function(){
     green = !green;
