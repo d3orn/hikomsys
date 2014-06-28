@@ -128,7 +128,7 @@ $('#infosEnabled').click(function() {
 $('#green').click(function(){
     $("#flipbox").flip({
         direction:'tb',
-        color: rgba(232,178,23, 0.6),
+        color: '#FF8D2C',
         content: 'green'
     })
 })
@@ -136,7 +136,7 @@ $('#green').click(function(){
 $('#orange').click(function(){
     $("#flipbox").flip({
         direction:'tb',
-        color: rgba(232,178,23, 0.6),
+        color: '#FF8D2C',
         content: 'orange'
     })
 })
@@ -144,7 +144,7 @@ $('#orange').click(function(){
 $('#red').click(function(){
     $("#flipbox").flip({
         direction:'tb',
-        color: rgba(232,178,23, 0.6),
+        color: '#FF8D2C',
         content: 'red'
     })
 })
