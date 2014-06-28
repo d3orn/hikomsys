@@ -125,8 +125,26 @@ $('#infosEnabled').click(function() {
 
 /* FLIPBOX */
 
-$('#continue').click(function(){
+$('#green').click(function(){
     $("#flipbox").flip({
-        direction:'tb'
+        direction:'tb',
+        color: rgba(232,178,23, 0.6),
+        content: 'green'
+    })
+})
+
+$('#orange').click(function(){
+    $("#flipbox").flip({
+        direction:'tb',
+        color: rgba(232,178,23, 0.6),
+        content: 'orange'
+    })
+})
+
+$('#red').click(function(){
+    $("#flipbox").flip({
+        direction:'tb',
+        color: rgba(232,178,23, 0.6),
+        content: 'red'
     })
 })
