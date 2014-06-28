@@ -154,54 +154,62 @@ $('#green').click(function(){
 })
 
 $('#orange').click(function(){
-    orange = !orange;
+    if(animationComplete){
+        animationComplete = false;
+        orange = !orange;
 
-    $("#flipped").flip({
-        direction:'rl',
-        color: '#FF8D2C',
-        content: '<p>Points: '+points+' (+0)</p>',
-        onAnimation: function(){
-            for (var i = 0; i < arrows.length; i++) {
-                if (arrows[i].color == 'orange') {
-                    arrows[i].changeVisibility();
+        $("#flipped").flip({
+            direction:'rl',
+            color: '#FF8D2C',
+            content: '<p>Points: '+points+' (+0)</p>',
+            onAnimation: function(){
+                for (var i = 0; i < arrows.length; i++) {
+                    if (arrows[i].color == 'orange') {
+                        arrows[i].changeVisibility();
+                    }
+                }   
+            },
+            onEnd: function(){
+                animationComplete = true;
+                if(orange){
+                    $('#orange > span').text('Hide Missing');
                 }
-            }   
-        },
-        onEnd: function(){
-            if(orange){
-                $('#orange > span').text('Hide Missing');
+                else{
+                    $('#orange > span').text('Show Missing');
+                }
             }
-            else{
-                $('#orange > span').text('Show Missing');
-            }
-        }
-    })
+        })
+    }
 })
 
 $('#red').click(function(){
-    red = !red;
-    greenPoints = (green ? document.getElementById('green-points').value : 0);
-    redPoints = (red ? document.getElementById('red-points').value : 0);
-    points = parseFloat(greenPoints)+parseFloat(redPoints);
+    if(animationComplete){
+        animationComplete = false;
+        red = !red;
+        greenPoints = (green ? document.getElementById('green-points').value : 0);
+        redPoints = (red ? document.getElementById('red-points').value : 0);
+        points = parseFloat(greenPoints)+parseFloat(redPoints);
 
-    $("#flipped").flip({
-        direction:'bt',
-        color: '#FF8D2C',
-        content: '<p>Points: '+points+' (+'+redPoints+')</p>',
-        onAnimation: function(){
-            for (var i = 0; i < arrows.length; i++) {
-                if (arrows[i].color == 'red') {
-                    arrows[i].changeVisibility();
+        $("#flipped").flip({
+            direction:'bt',
+            color: '#FF8D2C',
+            content: '<p>Points: '+points+' (+'+redPoints+')</p>',
+            onAnimation: function(){
+                for (var i = 0; i < arrows.length; i++) {
+                    if (arrows[i].color == 'red') {
+                        arrows[i].changeVisibility();
+                    }
+                }   
+            },
+            onEnd: function(){
+                animationComplete = true;
+                if(red){
+                    $('#red > span').text('Hide Wrong');
                 }
-            }   
-        },
-        onEnd: function(){
-            if(red){
-                $('#red > span').text('Hide Wrong');
+                else{
+                    $('#red > span').text('Show Wrong');
+                }
             }
-            else{
-                $('#red > span').text('Show Wrong');
-            }
-        }
-    })
+        })
+    }
 })
