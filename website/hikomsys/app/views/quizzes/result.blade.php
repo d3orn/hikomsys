@@ -51,6 +51,7 @@
 	</div>
 
 	<input id="quizId" type="hidden" value={{ $quizId }} >
+	<input id="points" type="hidden">
 @stop
 
 @section("scripts")

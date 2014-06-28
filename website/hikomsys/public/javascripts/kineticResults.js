@@ -137,7 +137,7 @@ $('#orange').click(function(){
     $("#flipped").flip({
         direction:'rl',
         color: '#FF8D2C',
-        content: '<p>Points: X (orange)</p>'
+        content: '<p>Points: X (+0)</p>'
     })
 })
 
