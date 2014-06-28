@@ -164,7 +164,7 @@ $('#orange').click(function(){
             }   
         },
         onEnd: function(){
-            if(green){
+            if(orange){
                 $('#orange > span').text('Hide Missing');
             }
             else{
@@ -192,7 +192,7 @@ $('#red').click(function(){
             }   
         },
         onEnd: function(){
-            if(green){
+            if(red){
                 $('#red > span').text('Hide Wrong');
             }
             else{
