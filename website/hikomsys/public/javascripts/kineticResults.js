@@ -126,7 +126,13 @@ $('#green').click(function(){
     redPoints = (red ? document.getElementById('red-points').value : 0);
     points = parseFloat(greenPoints)+parseFloat(redPoints);
 
-    $('#green > a').replaceWith((green ? 'Hide Correct' : 'Show Correct'));
+    if(green){
+         $('#green > a').replaceWith('Hide Correct');
+    }
+    else{
+         $('#green > a').replaceWith('Show Correct');
+    }
+   
 
     $("#flipped").flip({
         direction:'tb',
