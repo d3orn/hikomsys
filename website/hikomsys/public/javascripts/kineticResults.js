@@ -119,10 +119,11 @@ $('#infosEnabled').click(function() {
 /* FLIPBOX */
 
 $('#green').click(function(){
+    greenPoints = document.getElementById('green-points').value;
     $("#flipped").flip({
         direction:'rl',
         color: '#FF8D2C',
-        content: '<p>Points: X (green)</p>'
+        content: '<p>Points: X ('.greenPoints.')</p>'
     })
 })
 
