@@ -68,13 +68,6 @@ $(document).ready(function() {
             stage.draw();
         });
 
-    $.post('getPoints', {
-        'quizId': quizId
-    })
-        .done(function(data) {
-            $('#points').append(data);
-        });
-
     moreInfosEnabled = false;
 });
 

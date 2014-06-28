@@ -51,7 +51,8 @@
 	</div>
 
 	<input id="quizId" type="hidden" value={{ $quizId }} >
-	<input id="points" type="hidden">
+	<input id="green-points" type="hidden" value={{ $green-points }} >
+	<input id="red-points" type="hidden" value={{ $red-points }} >
 @stop
 
 @section("scripts")
