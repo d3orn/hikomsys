@@ -72,7 +72,7 @@ $(document).ready(function() {
         'quizId': quizId
     })
         .done(function(data) {
-            $('.points').append(data);
+            $('#points').append(data);
         });
 
     moreInfosEnabled = false;
