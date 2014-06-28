@@ -130,6 +130,13 @@ $('#green').click(function(){
         direction:'tb',
         color: '#FF8D2C',
         content: '<p>Points: '+points+' (+'+greenPoints+')</p>',
+        onAnimation: function(){
+            for (var i = 0; i < arrows.length; i++) {
+                if (arrows[i].color == 'green') {
+                    arrows[i].changeVisibility();
+                }
+            }   
+        },
         onEnd: function(){
             if(green){
                 $('#green > span').text('Hide Correct');
@@ -149,6 +156,13 @@ $('#orange').click(function(){
         direction:'rl',
         color: '#FF8D2C',
         content: '<p>Points: '+points+' (+0)</p>',
+        onAnimation: function(){
+            for (var i = 0; i < arrows.length; i++) {
+                if (arrows[i].color == 'orange') {
+                    arrows[i].changeVisibility();
+                }
+            }   
+        },
         onEnd: function(){
             if(green){
                 $('#orange > span').text('Hide Missing');
@@ -170,6 +184,13 @@ $('#red').click(function(){
         direction:'bt',
         color: '#FF8D2C',
         content: '<p>Points: '+points+' (+'+redPoints+')</p>',
+        onAnimation: function(){
+            for (var i = 0; i < arrows.length; i++) {
+                if (arrows[i].color == 'red') {
+                    arrows[i].changeVisibility();
+                }
+            }   
+        },
         onEnd: function(){
             if(green){
                 $('#red > span').text('Hide Wrong');
