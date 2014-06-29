@@ -346,7 +346,8 @@ function PackageGroup(text, color, infos) {
 			if(typeof pack.dependenciesGroup !== 'undefined'){pack.dependenciesGroup.remove(); pack.dependenciesEnabled = false;}
 			if(!pack.childrenEnabled){
 				pack.childrenEnabled = true;
-				pack.addchildrenInfoBox();
+				//pack.addchildrenInfoBox();
+				this.childrenGroup = pack.addInfo(pack.childrenInfoBox);
 			}	
 			infoLayer.draw();
 		});
@@ -447,7 +448,6 @@ function PackageGroup(text, color, infos) {
 
 
 	this.addInfo = function(infoBox){
-		console.log(infoBox);
 		var maxLength = 0;
 		var length = infoBox.length;
 		
