@@ -153,7 +153,7 @@ var randomSaveMove = function(packageGroup){
 		//var xCoordinate = 1 + Math.floor(Math.random() * (CONTAINER_WIDTH-this.rect.getWidth()));
 		//var yCoordinate = 1 + Math.floor(Math.random() * (480-this.rect.getHeight()))
 		for(var i = 0; i < allPackages.length; i++){
-			console.log(allPackages[i].rect.absolutePosition() );
+			console.log(allPackages[i].rect.getAbsolutePosition() );
 
 		}
 	}
