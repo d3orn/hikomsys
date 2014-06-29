@@ -10,6 +10,7 @@ var moving, draggable = false;
 
 function switchMode() {
     draggable = !draggable;
+    console.log(allPackages);
     //var groups = packageLayer.find('.packageGroup');
     for (var i = 0; i < allPackages.length; i++) {
         allPackages[i].setDraggable(draggable);
