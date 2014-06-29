@@ -360,7 +360,7 @@ function PackageGroup(text, color, infos) {
 			strokeWidth:2
 		});
 
-						this.closeButton = this.createCloseButton();
+						this.createCloseButton();
 
 		this.infoGroup = new Kinetic.Group({
 			opacity: 0,
@@ -400,7 +400,7 @@ function PackageGroup(text, color, infos) {
 
 
 this.createCloseButton = function(){
-	var closeBtn = new Kinetic.Rect({
+	this.closeButton = new Kinetic.Rect({
 		width: 13,
 		height: 13,
 		fill: 'red',
@@ -415,8 +415,6 @@ this.createCloseButton = function(){
 		pack.hide(pack.infoGroup);
 		pack.removeInfos();
 	});
-
-	return closeBtn;
 }
 
 
