@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------ PackageGroup Class ----------------------------------------------------------- */
-function PackageGroup(text, color, infos){
+function PackageGroup(text, color, infos) {
 									this.className = 'packageGroup';
 									this.text = text;
 	//this.infos = infos;
@@ -18,21 +18,21 @@ function PackageGroup(text, color, infos){
 									};
 
 									this.textField = kineticText({
-										"size" : 15, 
-										"x" : 5, 
-										"y" : 5, 
-										"text" : this.text, 
+										"size" : 15,
+										"x" : 5,
+										"y" : 5,
+										"text" : this.text,
 										"name" : 'textField'
 									});
 
 									this.rect = new Kinetic.Rect({
-										width: this.textField.getWidth()+10,
+										width: this.textField.getWidth() + 10,
 										height: PACKAGE_HEIGHT,
 										fill: this.color,
-										stroke: 'black',
+										stroke: 'black'
 									}); 
 
-									this.createGroup = function(){
+									this.createGroup = function() {
 										var maxX = stage.getWidth()-this.rect.getWidth();
 										this.group = new Kinetic.Group({
 											width: this.rect.getWidth(),
@@ -46,7 +46,7 @@ function PackageGroup(text, color, infos){
 												if(yCoordinate > MAX_Y) { yCoordinate = MAX_Y; }
 												return ({ x: xCoordinate, y: yCoordinate });
 											},
-											id: this.textField.getText(),
+											id: this.textField.getText()
 										});
 
 										this.group.add(this.rect)
@@ -105,7 +105,7 @@ function PackageGroup(text, color, infos){
 			}What the hell those this?*/
 			//TODO this if is really ugly - how could I improve it...
 											if(drawingEnabled && (typeof firstSelectedPackage == 'undefined' || this.getId() !== firstSelectedPackage.text)){
-												pack.highlightBox.remove(); 
+												pack.highlightBox.remove();
 												packageLayer.draw();		
 											}
 										});
@@ -116,10 +116,10 @@ function PackageGroup(text, color, infos){
 										removeIfExists(this.highlightBox);
 										var pos = this.rect.getAbsolutePosition();
 										this.highlightBox = new Kinetic.Rect({
-											x: pos.x-size,
-											y: pos.y-size,
-											width: this.rect.getWidth()+2*size,
-											height: this.rect.getHeight()+2*size,
+											x: pos.x - size,
+											y: pos.y - size,
+											width: this.rect.getWidth() + 2*size,
+											height: this.rect.getHeight() + 2*size,
 											fill: color
 										});
 										this.isHighlighted = true;

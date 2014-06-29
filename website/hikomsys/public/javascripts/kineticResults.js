@@ -55,13 +55,9 @@ $(document).ready(function() {
                         var arrow = new Arrow(thisPackage, to, id);
                         arrow.color = dependencies[j]['color'];
                         arrows.push(arrow);
+                        arrow.changeVisibility();
                         arrow.draw();
                     }
-                }
-            }
-            for (var i = 0; i < arrows.length; i++) {
-                if (arrows[i].color == 'red' || arrows[i].color == 'orange') {
-                    arrows[i].changeVisibility();
                 }
             }
             stage.draw();
