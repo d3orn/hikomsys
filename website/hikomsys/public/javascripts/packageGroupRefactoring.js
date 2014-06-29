@@ -155,6 +155,7 @@ function PackageGroup(text, color, infos) {
 
 	var createMenu = function(name){
 		temp = this.infos[name];
+		console.log(temp);
 		tempArray = [];
 		var i = 0;
 		for(key in temp){
@@ -169,7 +170,6 @@ function PackageGroup(text, color, infos) {
 				tempArray.push(text);
 				i++;
 		}
-		console.log(tempArray);
 		return tempArray;
 	}
 
