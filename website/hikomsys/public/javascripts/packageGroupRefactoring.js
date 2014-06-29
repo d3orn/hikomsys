@@ -8,38 +8,37 @@ function PackageGroup(text, color, infos){
 	this.isHighlightened = false;
 	//this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false;
 
-	this.create = function(){
-		this.createGroup();
-		/*if(moreInfosEnabled){
-			this.childrenInfoBox = createMenu('children');
-			this.classesInfoBox = createMenu('classes');
-			this.createDependencies();
-		}*/
-		this.addEventListener();
-	};
+									this.create = function(){
+										this.createGroup();
+										/*if(moreInfosEnabled){
+											this.childrenInfoBox = createMenu('children');
+											this.classesInfoBox = createMenu('classes');
+											this.createDependencies();
+										}*/
+										this.addEventListener();
+									};
 
-	this.textField = kineticText({
-		"size" : 15, 
-		"x" : 5, 
-		"y" : 5, 
-		"text" : this.text, 
-		"name" : 'textField'	
-	});
+									this.textField = kineticText({
+										"size" : 15, 
+										"x" : 5, 
+										"y" : 5, 
+										"text" : this.text, 
+										"name" : 'textField'	
+									});
 
-	this.rect = new Kinetic.Rect({
-		width: this.textField.getWidth()+10,
-		height: PACKAGE_HEIGHT,
-		fill: this.color,
-		stroke: 'black',
-		//name: 'packageRect'
-	}); 
+									this.rect = new Kinetic.Rect({
+										width: this.textField.getWidth()+10,
+										height: PACKAGE_HEIGHT,
+										fill: this.color,
+										stroke: 'black',
+									}); 
 
 	this.createGroup = function(){
 		var maxX = stage.getWidth()-this.rect.getWidth();
 		this.group = new Kinetic.Group({
 			width: this.rect.getWidth(),
 			draggable: true,
-			dragBoundFunc: function (pos) {
+			dragBoundFunc: function(pos) {
 				var X = pos.x;
 				var Y = pos.y;
 				if (X < MIN_X) { X = MIN_X; }
@@ -48,8 +47,8 @@ function PackageGroup(text, color, infos){
 				if (Y > MAX_Y) { Y = MAX_Y; }
 				return ({ x: X, y: Y });	
 			},
-			id: this.textField.getText(),
-			name: 'packageGroup'	
+			//id: this.textField.getText(),
+			//name: 'packageGroup'	
 		});
 
 		this.group.add(this.rect)
