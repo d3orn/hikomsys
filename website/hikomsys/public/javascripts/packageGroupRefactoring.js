@@ -6,7 +6,7 @@ function PackageGroup(text, color, infos) {
 									this.color = (color ? color : 'white');
 									this.isHighlightened = false;
 	
-	this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false;
+	this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false; 
 
 									this.create = function(){
 										this.createGroup();
@@ -130,27 +130,7 @@ function PackageGroup(text, color, infos) {
 										return this.group.getAbsolutePosition();
 									};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- /* CURRENT NOT REFACTORED */
-
-
-
-
-
-	/* Additional Information */
+/* ---------------------------------------------------- Additional Information ---------------------------------------------------- */
 
 									var createMenu = function(name){
 										temp = this.infos[name];
@@ -172,14 +152,27 @@ function PackageGroup(text, color, infos) {
 										return tempArray;
 									}
 
-	this.removeInfos = function(){
-		this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false;
-		removeIfExists(this.infoGroup);
-		removeIfExists(this.classGroup);
-		removeIfExists(this.childrenGroup);
-		removeIfExists(this.dependenciesGroup);
-		infoLayer.draw();
-	}
+									this.removeInfos = function(){
+										this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false;
+										removeIfExists(this.infoGroup);
+										removeIfExists(this.classGroup);
+										removeIfExists(this.childrenGroup);
+										removeIfExists(this.dependenciesGroup);
+										infoLayer.draw();
+									}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		this.createDependencies = function(){
 		var dependencies = this.infos['allDependencies'];
@@ -283,42 +276,12 @@ function PackageGroup(text, color, infos) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 	this.addInfoBox = function(){
 		this.infoCount = !(this.classesInfoBox.length === 0) + !(this.childrenInfoBox.length === 0 ) + !(this.dependenciesInfoBox.length === 0);
 		this.infoBoxEnabled = true;
 
-		this.classesInfoText = kineticText({
-			"size" : 12, 
-			"text" : 'CLASSES', 
-			"id" : 	this.text + 'Classes',
-		});
-
-		this.childrenInfoBoxText = kineticText({
-			"size" : 12, 
-			"text" : 'CHILDREN', 
-			"id" : 	this.text + 'Children',
-		}); 
-
-		this.dependenciesInfoBoxText = kineticText({
-			"size" : 12, 
-			"text" : 'DEPENDENCIES', 
-			"id" : 	this.text + 'Dependencies',
-		}); 
+		createInfoTexts();
 
 		this.classesInfoText.on('mouseenter', function(){
 			var id = this.getId().replace('Classes', '');
@@ -433,7 +396,25 @@ function PackageGroup(text, color, infos) {
 
 
 
+	var createInfoTexts = function(){
+		this.classesInfoText = kineticText({
+			"size" : 12, 
+			"text" : 'CLASSES', 
+			"id" : 	this.text + 'Classes',
+		});
 
+		this.childrenInfoBoxText = kineticText({
+			"size" : 12, 
+			"text" : 'CHILDREN', 
+			"id" : 	this.text + 'Children',
+		}); 
+
+		this.dependenciesInfoBoxText = kineticText({
+			"size" : 12, 
+			"text" : 'DEPENDENCIES', 
+			"id" : 	this.text + 'Dependencies',
+		}); 
+	}
 
 
 
