@@ -471,7 +471,7 @@ function PackageGroup(text, color, infos) {
 			group.add(infoBox[i]);
 		}
 
-		group.move({x:box.getWidth()+1, y:0});
+		group.move({x:this.infoBox.getWidth()+1, y:0});
 		this.infoGroup.add(group);
 		this.show(group,1);
 		
