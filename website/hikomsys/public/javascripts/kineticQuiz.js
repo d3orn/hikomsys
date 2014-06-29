@@ -1,6 +1,6 @@
 function mouseDownOnPackage(packageGroup){
 	firstSelectedPackage = findPackageById(packageGroup.getId());
-	firstSelectedPackage.highlightPackage("lightblue"); 
+	firstSelectedPackage.highlightPackage("lightblue",5); 
 }
 
 function mouseUpOnPackage(packageGroup) {
