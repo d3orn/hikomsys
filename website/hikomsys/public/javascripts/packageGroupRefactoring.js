@@ -70,33 +70,22 @@ function PackageGroup(text, color, infos){
 											if(drawingEnabled){ mouseUpOnPackage(this); }
 										}, false);
 
+										this.group.on('dragstart dragmove', function(){
+											//var pack = findPackageById(this.getId());
+											//pack.removeInfos();
 
-
-
-		//redraw arrows whenever a package is dragged arround
-		this.group.on('dragstart dragmove', function(){
-			var pack = findPackageById(this.getId());
-			//pack.removeInfos();
-
-			for (var i = 0; i < arrows.length; i++){
-				var packageIds = arrows[i].id.split("_");
-				//see the bug in Arrow.draw() - I don't see what bug..
-				/*packages = [packageLayer.find('#'+packageIds[0])[0], packageLayer.find('#'+packageIds[1])[0]];
-				if(packages[0].getId() == this.getId() || packages[1].getId() == this.getId()){
-					arrows[i].remove();
-					arrows[i].draw();
-				}*/
-
-				if(packageIds[0] == this.getId() || packageIds[1] == this.getId()){
-					arrows[i].remove();
-					arrows[i].draw();
-				}
-
-			}
-			packages = [];
-			infoLayer.draw();
-			arrowLayer.drawScene();
-		});
+											for (var i = 0; i < arrows.length; i++){
+												var packageIds = arrows[i].id.split("_");
+												//see the bug in Arrow.draw() - I don't see what bug..
+												if(packageIds[0] == this.getId() || packageIds[1] == this.getId()){
+													arrows[i].remove();
+													arrows[i].draw();
+												}
+											}
+											packages = [];
+											//infoLayer.drawScene();
+											arrowLayer.drawScene();
+										});
 
 										this.group.on('mouseenter', function(){
 											var pack = findPackageById(this.getId());
