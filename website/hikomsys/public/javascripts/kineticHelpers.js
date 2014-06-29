@@ -79,6 +79,7 @@ function isBellowOf(center1, center2, center1_height) {
 }
 
 function removeIfExists(object){
+    console.log('test');
     if(typeof object !== "undefined") {object.remove();}
 }
 
