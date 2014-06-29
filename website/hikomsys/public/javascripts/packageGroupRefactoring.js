@@ -80,7 +80,7 @@ function PackageGroup(text, color, infos){
 		//redraw arrows whenever a package is dragged arround
 		this.group.on('dragstart dragmove', function(){
 			var pack = findPackageById(this.getId());
-			pack.removeInfos();
+			//pack.removeInfos();
 
 			for (var i = 0; i < arrows.length; i++){
 				var packageIds = arrows[i].id.split("_");
