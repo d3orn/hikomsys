@@ -81,7 +81,6 @@ function PackageGroup(text, color, infos) {
 												}
 											}
 											packages = [];
-			//infoLayer.drawScene();
 											arrowLayer.drawScene();
 										});
 
@@ -259,9 +258,48 @@ function PackageGroup(text, color, infos) {
 		}
 		return this;
 	};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 	
 	this.addInfoBox = function(){
-		this.infoCount = (this.classesInfoBox.length === 0 ? 0 : 1) + (this.childrenInfoBox.length === 0 ? 0 : 1) + (this.dependenciesInfoBox.length === 0 ? 0 : 1);
+		this.infoCount = (this.classesInfoBox.length === 0) + (this.childrenInfoBox.length === 0 ) + (this.dependenciesInfoBox.length === 0);
 		this.infoBoxEnabled = true;
 
 		this.classesInfoText = kineticText({
@@ -377,6 +415,39 @@ function PackageGroup(text, color, infos) {
 		infoLayer.add(this.infoGroup);
 		this.show(this.infoGroup,2);
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	this.addClassesInfo = function(){
 		this.classesMaxLength = 0;
