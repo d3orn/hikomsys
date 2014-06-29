@@ -39,16 +39,16 @@ function PackageGroup(text, color, infos){
 			width: this.rect.getWidth(),
 			draggable: true,
 			dragBoundFunc: function(pos) {
-				var X = pos.x;
-				var Y = pos.y;
-				if (X < MIN_X) { X = MIN_X; }
-				if (X > maxX) { X = maxX; }
-				if (Y < MIN_Y) { Y = MIN_Y; }
-				if (Y > MAX_Y) { Y = MAX_Y; }
-				return ({ x: X, y: Y });	
+				var xCoordinate = pos.x;
+				var yCoordinate = pos.y;
+				if(xCoordinate < MIN_X) { xCoordinate = MIN_X; }
+				if(xCoordinate > maxX) { xCoordinate = maxX; }
+				if(yCoordinate < MIN_Y) { yCoordinate = MIN_Y; }
+				if(yCoordinate > MAX_Y) { yCoordinate = MAX_Y; }
+				return ({ x: xCoordinate, y: yCoordinate });	
 			},
-			id: this.textField.getText(),
-			name: 'packageGroup'	
+			id: this.textField.getText(),   //why?
+			name: 'packageGroup'			//Why?
 		});
 
 		this.group.add(this.rect)
@@ -58,7 +58,7 @@ function PackageGroup(text, color, infos){
 				y:1 + Math.floor(Math.random() * (480-this.rect.getHeight()))});
 
 		packageLayer.add(this.group);
-		return this;
+		//return this;
 	};
 
 	this.addEventListener = function(){
