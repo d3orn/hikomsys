@@ -161,7 +161,7 @@ var randomSaveMove = function(packageGroup){
 			}
 		}
 	}
-	this.move({x: xCoordinate , y: yCoordinate})
+	packageGroup.move({x: xCoordinate , y: yCoordinate})
 }
 
 $(document).ready(function(){
