@@ -92,61 +92,29 @@ function PackageGroup(text, color, infos){
 			arrowLayer.drawScene();
 		});
 
-		this.group.on('mouseenter', function(){
-			var pack = findPackageById(this.getId());
-			if(moreInfosEnabled && !pack.infoBoxEnabled){
-				pack.addInfoBox();
-				stage.draw();
-			}
-			if(drawingEnabled){
-				var pack = findPackageById(this.getId());
-				pack.highlightPackage("lightblue", 5); 
-			}
-		});
+										this.group.on('mouseenter', function(){
+											var pack = findPackageById(this.getId());
+											if(moreInfosEnabled && !pack.infoBoxEnabled){
+												pack.addInfoBox();
+												stage.draw();
+											}
+											if(drawingEnabled){
+												pack.highlightPackage("lightblue", 5); 
+											}
+										});
 
-		this.group.on('mouseleave', function(evt){
-			var pack = findPackageById(this.getId());
+										this.group.on('mouseleave', function(evt){
+											var pack = findPackageById(this.getId());
 			/*if(moreInfosEnabled){
 				stage.draw();
 			}What the hell those this?*/
 			//TODO this if is really ugly - how could I improve it...
-			if(drawingEnabled && (typeof firstSelectedPackage == 'undefined' || this.getId() !== firstSelectedPackage.text)){
-				pack.highlightBox.remove(); 
-				packageLayer.draw();		
-			}
-		});
-	};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+											if(drawingEnabled && (typeof firstSelectedPackage == 'undefined' || this.getId() !== firstSelectedPackage.text)){
+												pack.highlightBox.remove(); 
+												packageLayer.draw();		
+											}
+										});
+									};
 
 
 									this.highlightPackage = function(color, size){
