@@ -94,14 +94,6 @@ function PackageGroup(text, color, infos){
 
 
 
-
-		this.on('mousedown', function(){
-			console.log(this);
-		})
-
-
-
-
 		//redraw arrows whenever a package is dragged arround
 		this.group.on('dragstart dragmove', function(){
 			var pack = findPackageById(this.getId());
