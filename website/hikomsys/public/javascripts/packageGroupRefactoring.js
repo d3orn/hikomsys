@@ -74,7 +74,7 @@ function PackageGroup(text, color, infos) {
 
 											for (var i = 0; i < arrows.length; i++){
 												var packageIds = arrows[i].id.split("_");
-												//see the bug in Arrow.draw() - I don't see what bug..
+												//see the bug in Arrow.draw() - I don't see a bug..
 												if(packageIds[0] == this.getId() || packageIds[1] == this.getId()){
 													arrows[i].remove();
 													arrows[i].draw();
@@ -101,7 +101,7 @@ function PackageGroup(text, color, infos) {
 			/*if(moreInfosEnabled){
 				stage.draw();
 			}*///What the hell those this?
-			//TODO this if is really ugly - how could I improve it...
+											//TODO this if is really ugly - how could I improve it...
 											if(drawingEnabled && (typeof firstSelectedPackage == 'undefined' || this.getId() !== firstSelectedPackage.text)){
 												pack.highlightBox.remove();
 												packageLayer.draw();		
@@ -169,6 +169,7 @@ function PackageGroup(text, color, infos) {
 				tempArray.push(text);
 				i++;
 		}
+		console.log(tempArray);
 		return tempArray;
 	}
 
