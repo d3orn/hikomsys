@@ -289,7 +289,6 @@ class QuizzesController extends \BaseController {
 		$alpha = 0.3;
 		$packages = $results->find([], ['position' => 0, '_id' => 0]);
 
-
 		foreach ($packages as $key => $package) {
 			$color = "rgba(0,128,0,$alpha)"; 
 			if(array_key_exists('dependencies', $package)){
