@@ -1,10 +1,10 @@
 /* ------------------------------------------------------------ PackageGroup Class ----------------------------------------------------------- */
 function PackageGroup(text, color, infos){
-	this.className = 'packageGroup';
-	this.text = text;
+									this.className = 'packageGroup';
+									this.text = text;
 	//this.infos = infos;
-	this.color = (color ? color : 'white');
-	this.isHighlightened = false;
+									this.color = (color ? color : 'white');
+									this.isHighlightened = false;
 	//this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false;
 
 									this.create = function(){
@@ -46,8 +46,8 @@ function PackageGroup(text, color, infos){
 				if(yCoordinate > MAX_Y) { yCoordinate = MAX_Y; }
 				return ({ x: xCoordinate, y: yCoordinate });	
 			},
-			id: this.textField.getText(),   //why?
-			name: 'packageGroup'			//Why?
+			id: this.textField.getText(),
+			//name: 'packageGroup'			//Why?
 		});
 
 		this.group.add(this.rect)
@@ -59,6 +59,22 @@ function PackageGroup(text, color, infos){
 		packageLayer.add(this.group);
 		//return this;
 	};
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	this.addEventListener = function(){
 		/*this.group.on('click', function(){
@@ -74,6 +90,17 @@ function PackageGroup(text, color, infos){
 			if(drawingEnabled){
 				mouseUpOnPackage(this);}
 		}, false);
+
+
+
+
+
+		this.on('mousedown', function(){
+			console.log(this);
+		})
+
+
+
 
 		//redraw arrows whenever a package is dragged arround
 		this.group.on('dragstart dragmove', function(){

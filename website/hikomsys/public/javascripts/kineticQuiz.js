@@ -1,7 +1,5 @@
 function mouseDownOnPackage(packageGroup){
-	console.log(packageGroup);
 	firstSelectedPackage = findPackageById(packageGroup.getId());
-	console.log(firstSelectedPackage);
 	firstSelectedPackage.highlightPackage("lightblue",5); 
 }
 
