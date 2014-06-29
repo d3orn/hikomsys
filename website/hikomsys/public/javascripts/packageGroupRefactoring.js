@@ -321,7 +321,7 @@ function PackageGroup(text, color, infos) {
 
 			if(!pack.childrenEnabled){
 				pack.childrenEnabled = true;
-				this.childrenGroup = pack.addInfo(pack.childrenInfoBox);
+				pack.childrenGroup = pack.addInfo(pack.childrenInfoBox);
 			}	
 			infoLayer.draw();
 		});
