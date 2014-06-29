@@ -79,8 +79,9 @@ function isBellowOf(center1, center2, center1_height) {
 }
 
 function removeIfExists(object){
-    console.log('test');
+    console.log(object);
     if(typeof object !== "undefined") {object.remove();}
+    console.log(object);
 }
 
 //those two functions need some rethinking but probably not from here but from where they are needed
