@@ -1,157 +1,5 @@
 /* ------------------------------------------------------------ PackageGroup Class ----------------------------------------------------------- */
 function PackageGroup(text, color, infos) {
-									this.className = 'packageGroup';
-									this.text = text;
-									this.infos = infos;
-									this.color = (color ? color : 'white');
-									this.isHighlightened = false;
-	
-	this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false;
-
-									this.create = function(){
-										this.createGroup();
-	if(moreInfosEnabled){
-		this.childrenInfoBox = createMenu('children');
-		this.classesInfoBox = createMenu('classes');
-		this.createDependencies();
-	}
-										this.addEventListener();
-									};
-
-									this.textField = kineticText({
-										"size" : 15,
-										"x" : 5,
-										"y" : 5,
-										"text" : this.text,
-										"name" : 'textField'
-									});
-
-									this.rect = new Kinetic.Rect({
-										width: this.textField.getWidth() + 10,
-										height: PACKAGE_HEIGHT,
-										fill: this.color,
-										stroke: 'black'
-									}); 
-
-									this.createGroup = function() {
-										var maxX = stage.getWidth()-this.rect.getWidth();
-										this.group = new Kinetic.Group({
-											width: this.rect.getWidth(),
-											draggable: true,
-											dragBoundFunc: function(pos) {
-												var xCoordinate = pos.x;
-												var yCoordinate = pos.y;
-												if(xCoordinate < MIN_X) { xCoordinate = MIN_X; }
-												if(xCoordinate > maxX) { xCoordinate = maxX; }
-												if(yCoordinate < MIN_Y) { yCoordinate = MIN_Y; }
-												if(yCoordinate > MAX_Y) { yCoordinate = MAX_Y; }
-												return ({ x: xCoordinate, y: yCoordinate });
-											},
-											id: this.textField.getText()
-										});
-
-										this.group.add(this.rect)
-											.add(this.textField);
-
-										packageLayer.add(this.group);
-									};
-
-									this.addEventListener = function(){
-										/*this.group.on('click', function(){
-											if(event.button == 2){console.log('right mouse button')}
-										})*/
-
-										this.group.on('mousedown', function() {
-											if(drawingEnabled){ mouseDownOnPackage(this); }
-										}, false);
-										this.group.on('mouseup', function() {
-											if(drawingEnabled){ mouseUpOnPackage(this); }
-										}, false);
-
-										this.group.on('dragstart dragmove', function(){
-			var pack = findPackageById(this.getId());
-			pack.removeInfos();
-
-											for (var i = 0; i < arrows.length; i++){
-												var packageIds = arrows[i].id.split("_");
-												//see the bug in Arrow.draw() - I don't see a bug..
-												if(packageIds[0] == this.getId() || packageIds[1] == this.getId()){
-													arrows[i].remove();
-													arrows[i].draw();
-												}
-											}
-											packages = [];
-											arrowLayer.drawScene();
-										});
-
-										this.group.on('mouseenter', function(){
-											var pack = findPackageById(this.getId());
-			if(moreInfosEnabled && !pack.infoBoxEnabled){
-				pack.addInfoBox();
-				stage.draw();
-			}
-											if(drawingEnabled){
-												pack.highlightPackage("lightblue", 5); 
-											}
-										});
-
-										this.group.on('mouseleave', function(evt){
-											var pack = findPackageById(this.getId());
-			/*if(moreInfosEnabled){
-				stage.draw();
-			}*///What the hell those this?
-											//TODO this if is really ugly - how could I improve it...
-											if(drawingEnabled && (typeof firstSelectedPackage == 'undefined' || this.getId() !== firstSelectedPackage.text)){
-												pack.highlightBox.remove();
-												packageLayer.draw();		
-											}
-										});
-									};
-
-
-									this.highlightPackage = function(color, size){
-										removeIfExists(this.highlightBox);
-										var pos = this.rect.getAbsolutePosition();
-										this.highlightBox = new Kinetic.Rect({
-											x: pos.x - size,
-											y: pos.y - size,
-											width: this.rect.getWidth() + 2*size,
-											height: this.rect.getHeight() + 2*size,
-											fill: color
-										});
-										this.isHighlighted = true;
-										packageLayer.add(this.highlightBox);
-										this.highlightBox.setZIndex(0);
-										packageLayer.draw();
-									};	
-
-
-									this.position = function(){
-										return this.group.getAbsolutePosition();
-									};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- /* CURRENT NOT REFACTORED */
-
-
-
-
-
-	/* Additional Information */
-
 									var createMenu = function(name){
 										temp = this.infos[name];
 										tempArray = [];
@@ -330,8 +178,7 @@ function PackageGroup(text, color, infos) {
 			if(typeof pack.dependenciesGroup !== 'undefined'){pack.dependenciesGroup.remove(); pack.dependenciesEnabled = false;}
 			if(!pack.classesEnabled){
 				pack.classesEnabled = true;
-				//pack.addClassesInfo();
-				this.classGroup = pack.addInfo('classes');
+				pack.addClassesInfo();
 			}	
 			infoLayer.draw();
 		});
@@ -446,43 +293,14 @@ function PackageGroup(text, color, infos) {
 
 
 
-	this.addInfo = function(infoBox){
-		var maxLength = 0;
-		var length = infoBox.length;
-		
-		for (var i = 0; i < length; i++){
-			if(infoBox[i].getWidth() > maxLength){ maxLength = infoBox[i].getWidth()};
-		}
 
-		var box = new Kinetic.Rect({
-			width: maxLength+10,
-			height: (PACKAGE_HEIGHT-2)*length,
-			fill: 'white',
-			stroke: 'black',
-			strokeWidth:2
-		});
-		var group = new Kinetic.Group({
-			opacity: 0
-		});
-		group.add(box);
-
-		for (var i = 0; i < length; i++){
-			group.add(infoBox[i]);
-		}
-
-		group.move({x:box.getWidth()+1, y:0});
-		group.add(this.classGroup);
-		this.show(group,1);
-		
-		return group;
-	}
 
 
 
 	this.addClassesInfo = function(){
 		this.classesMaxLength = 0;
-		removeIfExists(this.classGroup);
-		
+		if(typeof this.classGroup !== 'undefined'){this.classGroup.remove();}
+
 		for (var i = 0; i < this.classesInfoBox.length; i++){
 			if(this.classesInfoBox[i].getWidth() > this.classesMaxLength){this.classesMaxLength = this.classesInfoBox[i].getWidth()};
 		}
@@ -506,14 +324,12 @@ function PackageGroup(text, color, infos) {
 		this.classGroup.move({x:this.infoBox.getWidth()+1, y:0});
 		this.infoGroup.add(this.classGroup);
 		this.show(this.classGroup,1);
-		
-		return classesBox;
 	}
 
 	this.addchildrenInfoBox = function(){
 		this.childrenMaxLength = 0;
-		removeIfExists(this.childrenGroup);
-		
+		if(typeof this.childrenGroup !== 'undefined'){this.childrenGroup.remove();}
+
 		for (var i = 0; i < this.childrenInfoBox.length; i++){
 			if(this.childrenInfoBox[i].getWidth() > this.childrenMaxLength){this.childrenMaxLength = this.childrenInfoBox[i].getWidth()};
 		}
@@ -537,32 +353,7 @@ function PackageGroup(text, color, infos) {
 		this.childrenGroup.move({x:this.infoBox.getWidth()+1, y:0});
 		this.infoGroup.add(this.childrenGroup);
 		this.show(this.childrenGroup,1);
-		
-		return childrenBox;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	this.adddependenciesInfoBox = function(){
 		this.dependenciesMaxLength = 0;
@@ -638,61 +429,5 @@ function PackageGroup(text, color, infos) {
 		title.move({x:4, y:-(PACKAGE_HEIGHT-8)});
 		this.infoGroup.add(this.dependenciesGroup);
 		this.show(this.dependenciesGroup,1);
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/* DEPRECATED */
-	this.hide = function(element, time){
-		var tween = new Kinetic.Tween({
-			node: element,
-			opacity: 0,
-			duration:time,
-		});
-		tween.play(function(){
-			element.removeChildren()
-				.remove();
-		});
-	}
-
-	this.show = function(element, time){
-		var tween = new Kinetic.Tween({
-			node: element,
-			opacity: 1,
-			duration:time,
-		});
-		tween.play();
 	}
 }
