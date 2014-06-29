@@ -9,11 +9,11 @@ function PackageGroup(text, color, infos){
 
 									this.create = function(){
 										this.createGroup();
-										/*if(moreInfosEnabled){
-											this.childrenInfoBox = createMenu('children');
-											this.classesInfoBox = createMenu('classes');
-											this.createDependencies();
-										}*/
+	/*if(moreInfosEnabled){
+		this.childrenInfoBox = createMenu('children');
+		this.classesInfoBox = createMenu('classes');
+		this.createDependencies();
+	}*/
 										this.addEventListener();
 									};
 
@@ -22,7 +22,7 @@ function PackageGroup(text, color, infos){
 										"x" : 5, 
 										"y" : 5, 
 										"text" : this.text, 
-										"name" : 'textField'	
+										"name" : 'textField'
 									});
 
 									this.rect = new Kinetic.Rect({
@@ -32,64 +32,43 @@ function PackageGroup(text, color, infos){
 										stroke: 'black',
 									}); 
 
-	this.createGroup = function(){
-		var maxX = stage.getWidth()-this.rect.getWidth();
-		this.group = new Kinetic.Group({
-			width: this.rect.getWidth(),
-			draggable: true,
-			dragBoundFunc: function(pos) {
-				var xCoordinate = pos.x;
-				var yCoordinate = pos.y;
-				if(xCoordinate < MIN_X) { xCoordinate = MIN_X; }
-				if(xCoordinate > maxX) { xCoordinate = maxX; }
-				if(yCoordinate < MIN_Y) { yCoordinate = MIN_Y; }
-				if(yCoordinate > MAX_Y) { yCoordinate = MAX_Y; }
-				return ({ x: xCoordinate, y: yCoordinate });	
-			},
-			id: this.textField.getText(),
-			//name: 'packageGroup'			//Why?
-		});
+									this.createGroup = function(){
+										var maxX = stage.getWidth()-this.rect.getWidth();
+										this.group = new Kinetic.Group({
+											width: this.rect.getWidth(),
+											draggable: true,
+											dragBoundFunc: function(pos) {
+												var xCoordinate = pos.x;
+												var yCoordinate = pos.y;
+												if(xCoordinate < MIN_X) { xCoordinate = MIN_X; }
+												if(xCoordinate > maxX) { xCoordinate = maxX; }
+												if(yCoordinate < MIN_Y) { yCoordinate = MIN_Y; }
+												if(yCoordinate > MAX_Y) { yCoordinate = MAX_Y; }
+												return ({ x: xCoordinate, y: yCoordinate });
+											},
+											id: this.textField.getText(),
+										});
 
-		this.group.add(this.rect)
-			.add(this.textField)
-			//need to check if to packages are overlapping, would not be nice
-			.move({x:1 + Math.floor(Math.random() * (CONTAINER_WIDTH-this.rect.getWidth())),
-				y:1 + Math.floor(Math.random() * (480-this.rect.getHeight()))});
+										this.group.add(this.rect)
+											.add(this.textField)
+											//need to check if to packages are overlapping, would be nice
+											.move({x:1 + Math.floor(Math.random() * (CONTAINER_WIDTH-this.rect.getWidth())),
+												y:1 + Math.floor(Math.random() * (480-this.rect.getHeight()))});
 
-		packageLayer.add(this.group);
-		//return this;
-	};
+										packageLayer.add(this.group);
+									};
 
-	
+									this.addEventListener = function(){
+										/*this.group.on('click', function(){
+											if(event.button == 2){console.log('right mouse button')}
+										})*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	this.addEventListener = function(){
-		/*this.group.on('click', function(){
-			if(event.button == 2){console.log('right mouse button')}
-		})*/
-
-		this.group.on('mousedown', function() {
-			if(drawingEnabled){
-				mouseDownOnPackage(this);
-			}
-		}, false);
-		this.group.on('mouseup', function() {
-			if(drawingEnabled){
-				mouseUpOnPackage(this);}
-		}, false);
+										this.group.on('mousedown', function() {
+											if(drawingEnabled){ mouseDownOnPackage(this); }
+										}, false);
+										this.group.on('mouseup', function() {
+											if(drawingEnabled){ mouseUpOnPackage(this); }
+										}, false);
 
 
 
@@ -126,41 +105,72 @@ function PackageGroup(text, color, infos){
 		});
 
 		this.group.on('mouseleave', function(evt){
+			var pack = findPackageById(this.getId());
 			if(moreInfosEnabled){
-				var pack = findPackageById(this.getId());
 				stage.draw();
-			}
-			if(drawingEnabled){
-				if(typeof firstSelectedPackage !== 'undefined' && this.getId() === firstSelectedPackage.text){return;}
-				var pack = findPackageById(this.getId());
+			}//What the hell those this?
+			if(drawingEnabled && (typeof firstSelectedPackage == 'undefined' || this.getId() !== firstSelectedPackage.text)){
+				//if(typeof firstSelectedPackage !== 'undefined' && this.getId() === firstSelectedPackage.text){return;}
 				pack.highlightBox.remove(); 
-				packageLayer.draw();
+				packageLayer.draw();		
 			}
 		});
 	};
 
-							this.highlightPackage = function(color, size){
-								removeIfExists(this.highlightBox);
-								var pos = this.rect.getAbsolutePosition();
-								this.highlightBox = new Kinetic.Rect({
-									x: pos.x-size,
-						       		y: pos.y-size,
-									width: this.rect.getWidth()+2*size,
-									height: this.rect.getHeight()+2*size,
-									fill: color
-								});
-								this.isHighlighted = true;
-								packageLayer.add(this.highlightBox);
-								this.highlightBox.setZIndex(0);
-								packageLayer.draw();
-							};	
 
 
-							this.position = function(){
-								return this.group.getAbsolutePosition();
-							};
 
 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+									this.highlightPackage = function(color, size){
+										removeIfExists(this.highlightBox);
+										var pos = this.rect.getAbsolutePosition();
+										this.highlightBox = new Kinetic.Rect({
+											x: pos.x-size,
+											y: pos.y-size,
+											width: this.rect.getWidth()+2*size,
+											height: this.rect.getHeight()+2*size,
+											fill: color
+										});
+										this.isHighlighted = true;
+										packageLayer.add(this.highlightBox);
+										this.highlightBox.setZIndex(0);
+										packageLayer.draw();
+									};	
+
+
+									this.position = function(){
+										return this.group.getAbsolutePosition();
+									};
+
+
+
 
 }
