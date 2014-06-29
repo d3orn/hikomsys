@@ -330,7 +330,6 @@ function PackageGroup(text, color, infos) {
 			if(typeof pack.dependenciesGroup !== 'undefined'){pack.dependenciesGroup.remove(); pack.dependenciesEnabled = false;}
 			if(!pack.classesEnabled){
 				pack.classesEnabled = true;
-				//pack.addClassesInfo();
 				this.classGroup = pack.addInfo(pack.classesInfoBox);
 			}	
 			infoLayer.draw();
@@ -346,7 +345,6 @@ function PackageGroup(text, color, infos) {
 			if(typeof pack.dependenciesGroup !== 'undefined'){pack.dependenciesGroup.remove(); pack.dependenciesEnabled = false;}
 			if(!pack.childrenEnabled){
 				pack.childrenEnabled = true;
-				//pack.addchildrenInfoBox();
 				this.childrenGroup = pack.addInfo(pack.childrenInfoBox);
 			}	
 			infoLayer.draw();
@@ -362,7 +360,7 @@ function PackageGroup(text, color, infos) {
 			if(typeof pack.childrenGroup !== 'undefined'){pack.childrenGroup.remove();pack.childrenEnabled = false;}
 			if(!pack.dependenciesEnabled){
 				pack.dependenciesEnabled = true;
-				pack.adddependenciesInfoBox();
+				pack.addDependenciesInfoBox();
 			}	
 			infoLayer.draw();
 		});
@@ -447,100 +445,36 @@ function PackageGroup(text, color, infos) {
 
 
 
-	this.addInfo = function(infoBox){
-		var maxLength = 0;
-		var length = infoBox.length;
-		
-		for (var i = 0; i < length; i++){
-			if(infoBox[i].getWidth() > maxLength){ maxLength = infoBox[i].getWidth()};
-		}
+									this.addInfo = function(infoBox){
+										var maxLength = 0;
+										var length = infoBox.length;
+										
+										for (var i = 0; i < length; i++){
+											if(infoBox[i].getWidth() > maxLength){ maxLength = infoBox[i].getWidth()};
+										}
 
-		var box = new Kinetic.Rect({
-			width: maxLength+10,
-			height: (PACKAGE_HEIGHT-2)*length,
-			fill: 'white',
-			stroke: 'black',
-			strokeWidth:2
-		});
-		var group = new Kinetic.Group({
-			opacity: 0
-		});
-		group.add(box);
+										var box = new Kinetic.Rect({
+											width: maxLength+10,
+											height: (PACKAGE_HEIGHT-2)*length,
+											fill: 'white',
+											stroke: 'black',
+											strokeWidth:2
+										});
+										var group = new Kinetic.Group({
+											opacity: 0
+										});
+										group.add(box);
 
-		for (var i = 0; i < length; i++){
-			group.add(infoBox[i]);
-		}
+										for (var i = 0; i < length; i++){
+											group.add(infoBox[i]);
+										}
 
-		group.move({x:this.infoBox.getWidth()+1, y:0});
-		this.infoGroup.add(group);
-		this.show(group,1);
-		
-		return group;
-	}
-
-
-
-	this.addClassesInfo = function(){
-		this.classesMaxLength = 0;
-		removeIfExists(this.classGroup);
-		
-		for (var i = 0; i < this.classesInfoBox.length; i++){
-			if(this.classesInfoBox[i].getWidth() > this.classesMaxLength){this.classesMaxLength = this.classesInfoBox[i].getWidth()};
-		}
-
-		this.classesBox = new Kinetic.Rect({
-			width: this.classesMaxLength+10,
-			height: (PACKAGE_HEIGHT-2)*this.classesInfoBox.length,
-			fill: 'white',
-			stroke: 'black',
-			strokeWidth:2
-		});
-		this.classGroup = new Kinetic.Group({
-			opacity: 0
-		});
-		this.classGroup.add(this.classesBox);
-
-		for (var i = 0; i < this.classesInfoBox.length; i++){
-			this.classGroup.add(this.classesInfoBox[i]);
-		}
-
-		this.classGroup.move({x:this.infoBox.getWidth()+1, y:0});
-		this.infoGroup.add(this.classGroup);
-		this.show(this.classGroup,1);
-		
-		return classesBox;
-	}
-
-	this.addchildrenInfoBox = function(){
-		this.childrenMaxLength = 0;
-		removeIfExists(this.childrenGroup);
-		
-		for (var i = 0; i < this.childrenInfoBox.length; i++){
-			if(this.childrenInfoBox[i].getWidth() > this.childrenMaxLength){this.childrenMaxLength = this.childrenInfoBox[i].getWidth()};
-		}
-
-		this.childrenBox = new Kinetic.Rect({
-			width: this.childrenMaxLength+10,
-			height: (PACKAGE_HEIGHT-2)*this.childrenInfoBox.length,
-			fill: 'white',
-			stroke: 'black',
-			strokeWidth:2
-		});
-		this.childrenGroup = new Kinetic.Group({
-			opacity: 0
-		});
-		this.childrenGroup.add(this.childrenBox);
-
-	 	for (var i = 0; i < this.childrenInfoBox.length; i++){
-			this.childrenGroup.add(this.childrenInfoBox[i]);
-		}
-
-		this.childrenGroup.move({x:this.infoBox.getWidth()+1, y:0});
-		this.infoGroup.add(this.childrenGroup);
-		this.show(this.childrenGroup,1);
-		
-		return childrenBox;
-	}
+										group.move({x:this.infoBox.getWidth()+1, y:0});
+										this.infoGroup.add(group);
+										this.show(group,1);
+										
+										return group;
+									}
 
 
 
@@ -565,9 +499,10 @@ function PackageGroup(text, color, infos) {
 
 
 
-	this.adddependenciesInfoBox = function(){
+
+	this.addDependenciesInfoBox = function(){
 		this.dependenciesMaxLength = 0;
-		if(typeof this.classGroup !== 'undefined'){this.classGroup.remove();}
+		removeIfExists(this.classGroup);
 
 		for (var i = 0; i < this.dependenciesInfoBox.length; i++){
 			if(this.dependenciesInfoBox[i]['from'].getWidth() > this.dependenciesMaxLength){this.dependenciesMaxLength = this.dependenciesInfoBox[i]['from'].getWidth()};
@@ -595,7 +530,7 @@ function PackageGroup(text, color, infos) {
 				var id = this.getId().replace('From', '');
 				var pack = findPackageById(id);
 				var to = pack.dependenciesInfoBox[index]['to'];
-				to.setPosition(pack.dependenciesBox.getWidth(),0);
+				to.setPosition({x:pack.dependenciesBox.getWidth(), y: 0});
 				pack.dependenciesGroup.add(to);
 
 				pack.show(to,1);
