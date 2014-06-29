@@ -281,7 +281,7 @@ function PackageGroup(text, color, infos) {
 		this.infoCount = !(this.classesInfoBox.length === 0) + !(this.childrenInfoBox.length === 0 ) + !(this.dependenciesInfoBox.length === 0);
 		this.infoBoxEnabled = true;
 
-		createInfoTexts();
+		this.createInfoTexts();
 
 		this.classesInfoText.on('mouseenter', function(){
 			var id = this.getId().replace('Classes', '');
