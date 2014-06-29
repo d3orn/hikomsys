@@ -104,7 +104,7 @@ function PackageGroup(text, color, infos){
 			}
 			if(drawingEnabled){
 				var pack = findPackageById(this.getId());
-				pack.highlightPackage("lightblue"); 
+				pack.highlightPackage("lightblue", 5); 
 			}
 		});
 
@@ -122,7 +122,7 @@ function PackageGroup(text, color, infos){
 		});
 	};
 
-							this.highlightPackage = function(color){
+							this.highlightPackage = function(color, size){
 								removeIfExists(this.highlight);
 								var pos = this.rect.getAbsolutePosition();
 						/*		var xCoordinate = pos.x-4;
@@ -130,10 +130,10 @@ function PackageGroup(text, color, infos){
 								var width = this.rect.getWidth()+8;
 								var height = this.rect.getHeight()+8; */
 								this.highlight = new Kinetic.Rect({
-									x: pos.x-6,
-						       		y: pos.y-6,
-									width: this.rect.getWidth()+12,
-									height: this.rect.getHeight()+12,
+									x: pos.x-size,
+						       		y: pos.y-size,
+									width: this.rect.getWidth()+2*size,
+									height: this.rect.getHeight()+2*size,
 									fill: color
 									//stroke: color,
 									//strokeWidth:2
