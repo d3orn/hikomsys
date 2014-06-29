@@ -360,7 +360,11 @@ function PackageGroup(text, color, infos) {
 			strokeWidth:2
 		});
 
-						this.createCloseButton();
+									this.createCloseButton();
+
+		
+
+
 
 		this.infoGroup = new Kinetic.Group({
 			opacity: 0,
@@ -386,7 +390,6 @@ function PackageGroup(text, color, infos) {
 
 		this.infoGroup.add(this.closeButton)
 			.move({x:this.position().x+this.rect.getWidth()+1, y:this.position().y});
-		this.closeButton.move({x:0, y:-this.closeButton.getHeight()});
 		infoLayer.add(this.infoGroup);
 		this.show(this.infoGroup,2);
 	}
@@ -399,48 +402,50 @@ function PackageGroup(text, color, infos) {
 
 
 
-this.createCloseButton = function(){
-	this.closeButton = new Kinetic.Rect({
-		width: 13,
-		height: 13,
-		fill: 'red',
-		stroke: 'black',
-		strokeWidth:2,
-		id: this.textField.getText()+'CloseButton'
-	});
-									
-	this.closeButton.on('click', function(){
-		var id = this.getId().replace('CloseButton', '');
-		var pack = findPackageById(id);
-		pack.hide(pack.infoGroup);
-		pack.removeInfos();
-	});
-}
-
-
-
-
-this.moveInfoTexts = function(){
-	if(this.classesInfoBox.length > 0){
-		this.classesInfoText.move({x:5, y:5});
-		this.infoGroup.add(this.classesInfoText);
-	}
-	if(this.childrenInfoBox.length > 0){
-		var offset = this.classesInfoBox.length > 0; 
-		this.childrenInfoBoxText.move({x:5, y:5+offset*(PACKAGE_HEIGHT-3)});
-		this.infoGroup.add(this.childrenInfoBoxText);
-	}
-	if(this.dependenciesInfoBox.length > 0){
-		var offset = (this.classesInfoBox.length > 0) + (this.childrenInfoBox.length > 0);
-		this.dependenciesInfoBoxText.move({x:5, y:5+offset*(PACKAGE_HEIGHT-3)});
-		this.infoGroup.add(this.dependenciesInfoBoxText);
-	}
-}
 
 
 
 
 
+
+
+
+									this.createCloseButton = function(){
+										this.closeButton = new Kinetic.Rect({
+											width: 13,
+											height: 13,
+											fill: 'red',
+											stroke: 'black',
+											strokeWidth:2,
+											id: this.textField.getText()+'CloseButton'
+										});
+
+										this.closeButton.move({x:0, y:-this.closeButton.getHeight()});
+																		
+										this.closeButton.on('click', function(){
+											var id = this.getId().replace('CloseButton', '');
+											var pack = findPackageById(id);
+											pack.hide(pack.infoGroup);
+											pack.removeInfos();
+										});
+									}
+
+									this.moveInfoTexts = function(){
+										if(this.classesInfoBox.length > 0){
+											this.classesInfoText.move({x:5, y:5});
+											this.infoGroup.add(this.classesInfoText);
+										}
+										if(this.childrenInfoBox.length > 0){
+											var offset = this.classesInfoBox.length > 0; 
+											this.childrenInfoBoxText.move({x:5, y:5+offset*(PACKAGE_HEIGHT-3)});
+											this.infoGroup.add(this.childrenInfoBoxText);
+										}
+										if(this.dependenciesInfoBox.length > 0){
+											var offset = (this.classesInfoBox.length > 0) + (this.childrenInfoBox.length > 0);
+											this.dependenciesInfoBoxText.move({x:5, y:5+offset*(PACKAGE_HEIGHT-3)});
+											this.infoGroup.add(this.dependenciesInfoBoxText);
+										}
+									}
 
 									this.createInfoTexts = function(){
 										texts = ['Classes' , 'Children', 'Dependencies'];
@@ -457,10 +462,6 @@ this.moveInfoTexts = function(){
 										this.childrenInfoBoxText = infoTexts[1];
 										this.dependenciesInfoBoxText = infoTexts[2];
 									}
-
-
-
-
 
 									this.addInfo = function(infoBox){
 										var maxLength = 0;
