@@ -169,35 +169,6 @@ function PackageGroup(text, color, infos){
 
 
 
-	/* DEPRECATED */
-
-
-	this.hide = function(element, time){
-		var tween = new Kinetic.Tween({
-			node: element,
-			opacity: 0,
-			duration:time,
-		});
-		tween.play(function(){
-			element.removeChildren()
-				.remove();
-		});
-	}
-
-	this.show = function(element, time){
-		var tween = new Kinetic.Tween({
-			node: element,
-			opacity: 1,
-			duration:time,
-		});
-		tween.play();
-	}
-
-
-
-
-
-
 
 
 
@@ -589,5 +560,67 @@ function PackageGroup(text, color, infos){
 		this.infoGroup.add(this.dependenciesGroup);
 		this.show(this.dependenciesGroup,1);
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/* DEPRECATED */
+
+
+	this.hide = function(element, time){
+		var tween = new Kinetic.Tween({
+			node: element,
+			opacity: 0,
+			duration:time,
+		});
+		tween.play(function(){
+			element.removeChildren()
+				.remove();
+		});
+	}
+
+	this.show = function(element, time){
+		var tween = new Kinetic.Tween({
+			node: element,
+			opacity: 1,
+			duration:time,
+		});
+		tween.play();
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
