@@ -472,7 +472,7 @@ function PackageGroup(text, color, infos) {
 		}
 
 		group.move({x:box.getWidth()+1, y:0});
-		group.add(this.classGroup);
+		this.infoGroup.add(group);
 		this.show(group,1);
 		
 		return group;
