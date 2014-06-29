@@ -397,23 +397,19 @@ function PackageGroup(text, color, infos) {
 
 
 	this.createInfoTexts = function(){
-		this.classesInfoText = kineticText({
-			"size" : 12, 
-			"text" : 'CLASSES', 
-			"id" : 	this.text + 'Classes',
-		});
-
-		this.childrenInfoBoxText = kineticText({
-			"size" : 12, 
-			"text" : 'CHILDREN', 
-			"id" : 	this.text + 'Children',
-		}); 
-
-		this.dependenciesInfoBoxText = kineticText({
-			"size" : 12, 
-			"text" : 'DEPENDENCIES', 
-			"id" : 	this.text + 'Dependencies',
-		}); 
+		texts = {'Classes' , 'Children', 'Dependencies'}
+		infoTexts = [];
+		for(var i = 0; i < texts.length; i++){
+			infoTexts.push(kineticText({
+				"size" : 12, 
+				"text" : texts[i].toUpperCase(), 
+				"id" : 	this.text + texts[i],
+				});
+			);
+		}
+		this.classesInfoText = infoTexts[0];
+		this.childrenInfoBoxText = infoTexts[1];
+		this.dependenciesInfoBoxText = infoTexts[2];
 	}
 
 
