@@ -80,12 +80,18 @@ function PackageGroup(text, color, infos){
 
 			for (var i = 0; i < arrows.length; i++){
 				var packageIds = arrows[i].id.split("_");
-				//see the bug in Arrow.draw()
-				packages = [packageLayer.find('#'+packageIds[0])[0], packageLayer.find('#'+packageIds[1])[0]];
+				//see the bug in Arrow.draw() - I don't see what bug..
+				/*packages = [packageLayer.find('#'+packageIds[0])[0], packageLayer.find('#'+packageIds[1])[0]];
 				if(packages[0].getId() == this.getId() || packages[1].getId() == this.getId()){
 					arrows[i].remove();
 					arrows[i].draw();
+				}*/
+
+				if(packageIds[0] == this.getId() || packageIds[1] == this.getId()){
+					arrows[i].remove();
+					arrows[i].draw();
 				}
+
 			}
 			packages = [];
 			infoLayer.draw();
