@@ -396,7 +396,7 @@ function PackageGroup(text, color, infos) {
 
 
 
-	var createInfoTexts = function(){
+	this.createInfoTexts = function(){
 		this.classesInfoText = kineticText({
 			"size" : 12, 
 			"text" : 'CLASSES', 
