@@ -447,6 +447,7 @@ function PackageGroup(text, color, infos) {
 
 
 	this.addInfo = function(infoBox){
+		console.log(infoBox);
 		var maxLength = 0;
 		var length = infoBox.length;
 		
