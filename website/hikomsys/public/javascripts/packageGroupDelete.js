@@ -130,10 +130,10 @@ function PackageGroup(text, color, infos){
 								var width = this.rect.getWidth()+8;
 								var height = this.rect.getHeight()+8; */
 								this.highlight = new Kinetic.Rect({
-									x: pos.x-4,
-						       		y: pos.y-4,
-									width: this.rect.getWidth()+8,
-									height: this.rect.getHeight()+8,
+									x: pos.x-6,
+						       		y: pos.y-6,
+									width: this.rect.getWidth()+12,
+									height: this.rect.getHeight()+12,
 									fill: color
 									//stroke: color,
 									//strokeWidth:2
