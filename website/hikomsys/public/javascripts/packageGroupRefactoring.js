@@ -106,11 +106,11 @@ function PackageGroup(text, color, infos){
 
 		this.group.on('mouseleave', function(evt){
 			var pack = findPackageById(this.getId());
-			if(moreInfosEnabled){
+			/*if(moreInfosEnabled){
 				stage.draw();
-			}//What the hell those this?
+			}*/What the hell those this?
+			//TODO this if is really ugly - how could I improve it...
 			if(drawingEnabled && (typeof firstSelectedPackage == 'undefined' || this.getId() !== firstSelectedPackage.text)){
-				//if(typeof firstSelectedPackage !== 'undefined' && this.getId() === firstSelectedPackage.text){return;}
 				pack.highlightBox.remove(); 
 				packageLayer.draw();		
 			}
