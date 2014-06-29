@@ -108,7 +108,7 @@ function PackageGroup(text, color, infos){
 			var pack = findPackageById(this.getId());
 			/*if(moreInfosEnabled){
 				stage.draw();
-			}*/What the hell those this?
+			}What the hell those this?*/
 			//TODO this if is really ugly - how could I improve it...
 			if(drawingEnabled && (typeof firstSelectedPackage == 'undefined' || this.getId() !== firstSelectedPackage.text)){
 				pack.highlightBox.remove(); 
