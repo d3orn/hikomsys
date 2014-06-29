@@ -404,7 +404,7 @@ function PackageGroup(text, color, infos) {
 				"size" : 12, 
 				"text" : texts[i].toUpperCase(), 
 				"id" : 	this.text + texts[i],
-				});
+				})
 			);
 		}
 		this.classesInfoText = infoTexts[0];
