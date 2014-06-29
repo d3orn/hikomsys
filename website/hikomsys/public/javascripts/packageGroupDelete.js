@@ -116,7 +116,7 @@ function PackageGroup(text, color, infos){
 			if(drawingEnabled){
 				if(typeof firstSelectedPackage !== 'undefined' && this.getId() === firstSelectedPackage.text){return;}
 				var pack = findPackageById(this.getId());
-				pack.highlight.remove(); 
+				pack.highlightBox.remove(); 
 				packageLayer.draw();
 			}
 		});
@@ -192,7 +192,6 @@ function PackageGroup(text, color, infos){
 		});
 		tween.play();
 	}
-
 
 
 
