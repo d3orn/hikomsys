@@ -147,11 +147,15 @@ $('.alert-box').click(function(){
 });*/
 
 var randomSaveMove = function(packageGroup){
-	var overlapping = true;
+	var xCoordinate = 1 + Math.floor(Math.random() * (CONTAINER_WIDTH-packageGroup.rect.getWidth()));
+	var yCoordinate = 1 + Math.floor(Math.random() * (480-packageGroup.rect.getHeight()))
+	packageGroup.group.move({x: xCoordinate , y: yCoordinate});
+	
+	//This is not working 
+	/*var overlapping = true;
 	while(overlapping){
 		overlapping = false;
-		var xCoordinate = 1 + Math.floor(Math.random() * (CONTAINER_WIDTH-packageGroup.rect.getWidth()));
-		var yCoordinate = 1 + Math.floor(Math.random() * (480-packageGroup.rect.getHeight()))
+
 		for(var i = 0; i < allPackages.length; i++){
 			//console.log(allPackages[i].rect.getAbsolutePosition() );
 			positionToCheck = allPackages[i].rect.getAbsolutePosition();
@@ -160,15 +164,14 @@ var randomSaveMove = function(packageGroup){
 				i = allPackages.length - 1;
 			}
 		}
-	}
-	packageGroup.group.move({x: xCoordinate , y: yCoordinate});
+	}*/
 }
 
-var isRectCollide = function(xCoordinate, yCoordinate, rect1, rect2) {
-	if (xCoordinate - rect1.width  >= rect2.x + rect2.width  &&
-		yCoordinate - rect1.height >= rect2.y + rect2.height &&
-		xCoordinate + rect1.width  <= rect2.x + rect2.width  &&
-		xCoordinate + rect1.height <= rect2.y - rect2.height )
+var isRectCollide = function(rect1, rect2) {
+	if (rect1.x - rect1.width  >= rect2.x + rect2.width  &&
+		rect1.y - rect1.height >= rect2.y + rect2.height &&
+		rect1.x + rect1.width  <= rect2.x + rect2.width  &&
+		rect1.x + rect1.height <= rect2.y - rect2.height )
 		return false;
 	else
 		return true;
