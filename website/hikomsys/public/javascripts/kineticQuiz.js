@@ -146,7 +146,7 @@ $('.alert-box').click(function(){
 	switchMode();
 });*/
 
-function randomSaveMove(){
+var randomSaveMove = function(packageGroup){
 	var overlapping = true;
 	while(overlapping){
 		overlapping = false;
@@ -163,7 +163,7 @@ function randomSaveMove(){
 $(document).ready(function(){
 	for(var i = 0; i < allPackages.length; i++){
 		allPackages[i].create();
-		allPackages[i].randomSaveMove();				
+		randomSaveMove(allPackages[i]);				
 	}	
 	stage.draw();
 });
