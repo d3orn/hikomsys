@@ -397,7 +397,7 @@ function PackageGroup(text, color, infos) {
 
 
 	this.createInfoTexts = function(){
-		texts = {'Classes' , 'Children', 'Dependencies'}
+		texts = ['Classes' , 'Children', 'Dependencies'];
 		infoTexts = [];
 		for(var i = 0; i < texts.length; i++){
 			infoTexts.push(kineticText({
