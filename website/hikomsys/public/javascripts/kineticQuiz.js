@@ -4,7 +4,7 @@ function mouseDownOnPackage(packageGroup){
 }
 
 function mouseUpOnPackage(packageGroup) {
-	var toPackage = packageGroup);
+	var toPackage = packageGroup;
 	
 	if(firstSelectedPackage.text == toPackage.text){
 		$('#repeat-alert').css('z-index', 0);
