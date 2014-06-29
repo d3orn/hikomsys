@@ -6,7 +6,7 @@ function mouseDownOnPackage(packageGroup){
 function mouseUpOnPackage(packageGroup) {
 	var toPackage = findPackageById(packageGroup.getId());
 	
-	if(firstSelectedPackage.text == toPackage.text){
+	if(typeof firstSelectedPackage !== 'undefined' && firstSelectedPackage.text == toPackage.text){
 		$('#repeat-alert').css('z-index', 0);
 		$('#loop-alert').css('z-index', 1).fadeIn(500);
 		return;
