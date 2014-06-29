@@ -23,8 +23,8 @@ function mouseUpOnPackage(packageGroup) {
 		$('#repeat-alert').css('z-index', 1).fadeIn(500);
 	}
 
-	firstSelectedPackage.highlight.remove();
-	toPackage.highlight.remove();
+	firstSelectedPackage.highlightBox.remove();
+	toPackage.highlightBox.remove();
 	firstSelectedPackage = undefined;
 	stage.draw();
 }
@@ -118,7 +118,7 @@ function followMe(){
 
 function resetFirstSelectedPackage(){
 	if(typeof firstSelectedPackage !== 'undefined'){
-		firstSelectedPackage.highlight.remove();
+		firstSelectedPackage.highlightBox.remove();
 		firstSelectedPackage = undefined;
 	}
 }
