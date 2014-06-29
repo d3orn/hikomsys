@@ -3,18 +3,18 @@ function PackageGroup(text, color, infos){
 	//this is a little hack to find out if one point of an arrow is a packageGroup or not
 	this.className = 'packageGroup';
 	this.text = text;
-	this.infos = infos;
+	//this.infos = infos;
 	this.color = (color ? color : 'white');
 	this.isHighlightened = false;
-	this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false;
+	//this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false;
 
 	this.create = function(){
 		this.createGroup();
-		if(moreInfosEnabled){
+		/*if(moreInfosEnabled){
 			this.childrenInfoBox = createMenu('children');
 			this.classesInfoBox = createMenu('classes');
 			this.createDependencies();
-		}
+		}*/
 		this.addEventListener();
 	};
 
@@ -31,7 +31,7 @@ function PackageGroup(text, color, infos){
 		height: PACKAGE_HEIGHT,
 		fill: this.color,
 		stroke: 'black',
-		name: 'packageRect'
+		//name: 'packageRect'
 	}); 
 
 	this.createGroup = function(){
