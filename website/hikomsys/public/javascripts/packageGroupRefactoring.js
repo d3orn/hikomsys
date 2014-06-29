@@ -313,6 +313,7 @@ function PackageGroup(text, color, infos) {
 			pack.classesInfoText.setFill('black');
 			pack.dependenciesInfoBoxText.setFill('black');
 
+			console.log(pack.classGroup);
 			removeIfExists(pack.classGroup);
 			removeIfExists(pack.dependenciesGroup);
 			pack.classesEnabled = false;
