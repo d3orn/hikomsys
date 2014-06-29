@@ -331,7 +331,7 @@ function PackageGroup(text, color, infos) {
 			if(!pack.classesEnabled){
 				pack.classesEnabled = true;
 				//pack.addClassesInfo();
-				this.classGroup = pack.addInfo('classes');
+				this.classGroup = pack.addInfo(this.classesInfoBox);
 			}	
 			infoLayer.draw();
 		});
