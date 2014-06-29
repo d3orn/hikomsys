@@ -155,11 +155,10 @@ function PackageGroup(text, color, infos) {
 
 	var createMenu = function(name){
 		temp = this.infos[name];
-		console.log(temp);
 		tempArray = [];
 		var i = 0;
 		for(key in temp){
-			if(temp[key].name)
+			if(temp[key].name){
 				name = temp[key].name;
 				text = kineticText({
 					"size" : 12, 
@@ -169,6 +168,7 @@ function PackageGroup(text, color, infos) {
 				});
 				tempArray.push(text);
 				i++;
+			}
 		}
 		return tempArray;
 	}
