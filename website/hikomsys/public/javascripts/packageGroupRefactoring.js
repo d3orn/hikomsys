@@ -520,7 +520,7 @@ function PackageGroup(text, color, infos) {
 
 	this.addDependenciesInfoBox = function(){
 		this.dependenciesMaxLength = 0;
-		removeIfExists(this.classGroup);
+		//removeIfExists(this.classGroup);
 
 		for (var i = 0; i < this.dependenciesInfoBox.length; i++){
 			if(this.dependenciesInfoBox[i]['from'].getWidth() > this.dependenciesMaxLength){this.dependenciesMaxLength = this.dependenciesInfoBox[i]['from'].getWidth()};
@@ -628,7 +628,7 @@ function PackageGroup(text, color, infos) {
 
 
 
-	/* DEPRECATED */
+	/*-------------------------------------------------------- DEPRECATED --------------------------------------------------------*/
 	this.hide = function(element, time){
 		var tween = new Kinetic.Tween({
 			node: element,
