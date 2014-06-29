@@ -134,14 +134,6 @@ function resetDependencies(){
 	stage.draw();
 }
 
-$(document).ready(function(){
-	for(var i = 0; i < allPackages.length; i++){
-		allPackages[i].create();
-		allPackages[i].randomSaveMove();				
-	}	
-	stage.draw();
-});
-
 $('.alert-box').click(function(){
 	$('.alert-box').fadeOut(500);
 });
@@ -167,3 +159,11 @@ var randomSaveMove = function(){
 	}
 	this.move({x: xCoordinate , y: yCoordinate})
 }
+
+$(document).ready(function(){
+	for(var i = 0; i < allPackages.length; i++){
+		allPackages[i].create();
+		allPackages[i].randomSaveMove();				
+	}	
+	stage.draw();
+});
