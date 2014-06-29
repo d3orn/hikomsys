@@ -326,8 +326,12 @@ function PackageGroup(text, color, infos) {
 			this.setFill('blue');
 			pack.childrenInfoBoxText.setFill('black');
 			pack.dependenciesInfoBoxText.setFill('black');
-			if(typeof pack.childrenGroup !== 'undefined'){pack.childrenGroup.remove(); pack.childrenEnabled = false;}
-			if(typeof pack.dependenciesGroup !== 'undefined'){pack.dependenciesGroup.remove(); pack.dependenciesEnabled = false;}
+
+			removeIfExists(pack.childrenGroup);
+			removeIfExists(pack.dependenciesGroup);
+			pack.childrenEnabled = false;
+			pack.dependenciesEnabled = false;
+
 			if(!pack.classesEnabled){
 				pack.classesEnabled = true;
 				this.classGroup = pack.addInfo(pack.classesInfoBox);
@@ -341,8 +345,12 @@ function PackageGroup(text, color, infos) {
 			this.setFill('blue');
 			pack.classesInfoText.setFill('black');
 			pack.dependenciesInfoBoxText.setFill('black');
-			if(typeof pack.classGroup !== 'undefined'){pack.classGroup.remove(); pack.classesEnabled = false;}
-			if(typeof pack.dependenciesGroup !== 'undefined'){pack.dependenciesGroup.remove(); pack.dependenciesEnabled = false;}
+
+			removeIfExists(pack.classGroup);
+			removeIfExists(pack.dependenciesGroup);
+			pack.classesEnabled = false;
+			pack.dependenciesEnabled = false;
+
 			if(!pack.childrenEnabled){
 				pack.childrenEnabled = true;
 				this.childrenGroup = pack.addInfo(pack.childrenInfoBox);
@@ -356,8 +364,12 @@ function PackageGroup(text, color, infos) {
 			this.setFill('blue');
 			pack.classesInfoText.setFill('black');
 			pack.childrenInfoBoxText.setFill('black');
-			if(typeof pack.classGroup !== 'undefined'){pack.classGroup.remove(); pack.classesEnabled = false;}
-			if(typeof pack.childrenGroup !== 'undefined'){pack.childrenGroup.remove();pack.childrenEnabled = false;}
+
+			removeIfExists(pack.classGroup);
+			removeIfExists(pack.childrenGroup);
+			pack.classesEnabled = false;
+			pack.childrenEnabled = false;
+
 			if(!pack.dependenciesEnabled){
 				pack.dependenciesEnabled = true;
 				pack.addDependenciesInfoBox();
