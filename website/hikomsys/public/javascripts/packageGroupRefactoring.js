@@ -299,7 +299,7 @@ function PackageGroup(text, color, infos) {
 
 	
 	this.addInfoBox = function(){
-		this.infoCount = (!this.classesInfoBox.length === 0) + (!this.childrenInfoBox.length === 0 ) + (!this.dependenciesInfoBox.length === 0);
+		this.infoCount = !(this.classesInfoBox.length === 0) + !(this.childrenInfoBox.length === 0 ) + !(this.dependenciesInfoBox.length === 0);
 		this.infoBoxEnabled = true;
 
 		this.classesInfoText = kineticText({
