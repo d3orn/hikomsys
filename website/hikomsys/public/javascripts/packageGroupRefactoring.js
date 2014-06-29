@@ -10,11 +10,11 @@ function PackageGroup(text, color, infos) {
 
 									this.create = function(){
 										this.createGroup();
-	/*if(moreInfosEnabled){
+	if(moreInfosEnabled){
 		this.childrenInfoBox = createMenu('children');
 		this.classesInfoBox = createMenu('classes');
 		this.createDependencies();
-	}*/
+	}
 										this.addEventListener();
 									};
 
@@ -69,8 +69,8 @@ function PackageGroup(text, color, infos) {
 										}, false);
 
 										this.group.on('dragstart dragmove', function(){
-											//var pack = findPackageById(this.getId());
-											//pack.removeInfos();
+			var pack = findPackageById(this.getId());
+			pack.removeInfos();
 
 											for (var i = 0; i < arrows.length; i++){
 												var packageIds = arrows[i].id.split("_");
@@ -81,7 +81,7 @@ function PackageGroup(text, color, infos) {
 												}
 											}
 											packages = [];
-											//infoLayer.drawScene();
+			infoLayer.drawScene();
 											arrowLayer.drawScene();
 										});
 
@@ -98,9 +98,9 @@ function PackageGroup(text, color, infos) {
 
 										this.group.on('mouseleave', function(evt){
 											var pack = findPackageById(this.getId());
-			/*if(moreInfosEnabled){
+			if(moreInfosEnabled){
 				stage.draw();
-			}What the hell those this?*/
+			}What the hell those this?
 			//TODO this if is really ugly - how could I improve it...
 											if(drawingEnabled && (typeof firstSelectedPackage == 'undefined' || this.getId() !== firstSelectedPackage.text)){
 												pack.highlightBox.remove();
@@ -145,7 +145,7 @@ function PackageGroup(text, color, infos) {
 
 
 
-
+ /* CURRENT NOT REFACTORED */
 
 
 
@@ -521,4 +521,49 @@ function PackageGroup(text, color, infos) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/* DEPRECATED */
+	this.hide = function(element, time){
+		var tween = new Kinetic.Tween({
+			node: element,
+			opacity: 0,
+			duration:time,
+		});
+		tween.play(function(){
+			element.removeChildren()
+				.remove();
+		});
+	}
+
+	this.show = function(element, time){
+		var tween = new Kinetic.Tween({
+			node: element,
+			opacity: 1,
+			duration:time,
+		});
+		tween.play();
+	}
 }
