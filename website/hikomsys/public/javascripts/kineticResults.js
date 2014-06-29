@@ -55,7 +55,7 @@ $(document).ready(function() {
                         var arrow = new Arrow(thisPackage, to, id);
                         arrow.color = dependencies[j]['color'];
                         arrows.push(arrow);
-                        arrow.changeVisibility();
+                        arrow.isVisible = false;
                         arrow.draw();
                     }
                 }
