@@ -150,11 +150,15 @@ var randomSaveMove = function(packageGroup){
 	var overlapping = true;
 	while(overlapping){
 		overlapping = false;
-		//var xCoordinate = 1 + Math.floor(Math.random() * (CONTAINER_WIDTH-this.rect.getWidth()));
-		//var yCoordinate = 1 + Math.floor(Math.random() * (480-this.rect.getHeight()))
+		var xCoordinate = 1 + Math.floor(Math.random() * (CONTAINER_WIDTH-packageGroup.rect.getWidth()));
+		var yCoordinate = 1 + Math.floor(Math.random() * (480-packageGroup.rect.getHeight()))
 		for(var i = 0; i < allPackages.length; i++){
-			console.log(allPackages[i].rect.getAbsolutePosition() );
-
+			//console.log(allPackages[i].rect.getAbsolutePosition() );
+			positionToCheck = allPackages[i].rect.getAbsolutePosition();
+			if(positionToCheck.x == xCoordinate || positionToCheck.y == yCoordinate){
+				overlapping = true;
+				i = allPackages.length - 1;
+			}
 		}
 	}
 	this.move({x: xCoordinate , y: yCoordinate})
