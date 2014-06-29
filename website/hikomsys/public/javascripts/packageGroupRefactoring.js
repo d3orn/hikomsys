@@ -81,16 +81,16 @@ function PackageGroup(text, color, infos) {
 												}
 											}
 											packages = [];
-			infoLayer.drawScene();
+			//infoLayer.drawScene();
 											arrowLayer.drawScene();
 										});
 
 										this.group.on('mouseenter', function(){
 											var pack = findPackageById(this.getId());
-											if(moreInfosEnabled && !pack.infoBoxEnabled){
-												pack.addInfoBox();
-												stage.draw();
-											}
+			if(moreInfosEnabled && !pack.infoBoxEnabled){
+				pack.addInfoBox();
+				stage.draw();
+			}
 											if(drawingEnabled){
 												pack.highlightPackage("lightblue", 5); 
 											}
@@ -153,25 +153,25 @@ function PackageGroup(text, color, infos) {
 
 	/* Additional Information */
 
-	var createMenu = function(name){
-		temp = this.infos[name];
-		tempArray = [];
-		var i = 0;
-		for(key in temp){
-			if(temp[key].name){
-				name = temp[key].name;
-				text = kineticText({
-					"size" : 12, 
-					"x" : 5, 
-					"y" : 5+i*(PACKAGE_HEIGHT-2), 
-					"text" : name, 	
-				});
-				tempArray.push(text);
-				i++;
-			}
-		}
-		return tempArray;
-	}
+									var createMenu = function(name){
+										temp = this.infos[name];
+										tempArray = [];
+										var i = 0;
+										for(key in temp){
+											if(temp[key].name){
+												name = temp[key].name;
+												text = kineticText({
+													"size" : 12, 
+													"x" : 5, 
+													"y" : 5+i*(PACKAGE_HEIGHT-2), 
+													"text" : name, 	
+												});
+												tempArray.push(text);
+												i++;
+											}
+										}
+										return tempArray;
+									}
 
 	this.removeInfos = function(){
 		this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false;
