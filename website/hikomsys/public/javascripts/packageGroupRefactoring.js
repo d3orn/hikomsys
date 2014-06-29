@@ -48,7 +48,7 @@ function PackageGroup(text, color, infos){
 				return ({ x: X, y: Y });	
 			},
 			id: this.textField.getText(),
-			//name: 'packageGroup'	
+			name: 'packageGroup'	
 		});
 
 		this.group.add(this.rect)
