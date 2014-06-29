@@ -47,7 +47,7 @@ function PackageGroup(text, color, infos){
 				if (Y > MAX_Y) { Y = MAX_Y; }
 				return ({ x: X, y: Y });	
 			},
-			//id: this.textField.getText(),
+			id: this.textField.getText(),
 			//name: 'packageGroup'	
 		});
 
