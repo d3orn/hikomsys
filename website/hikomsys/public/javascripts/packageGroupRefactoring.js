@@ -174,7 +174,7 @@ function PackageGroup(text, color, infos) {
 
 
 
-		this.createDependencies = function(){
+	this.createDependencies = function(){
 		var dependencies = this.infos['allDependencies'];
 		this.dependenciesInfoBox = [];
 		var i = 0;	
@@ -230,6 +230,8 @@ function PackageGroup(text, color, infos) {
 				titleBox = new Kinetic.Rect({
 					width: title.getWidth()+10,
 					height: (PACKAGE_HEIGHT-4),
+					x: 0,
+					y: -(PACKAGE_HEIGHT-4),
 					fill: 'white',
 					stroke: 'black',
 					strokeWidth:2
@@ -242,7 +244,7 @@ function PackageGroup(text, color, infos) {
 					.add(toName)
 					.add(toPackage);
 
-				titleBox.move({x:0, y:-(PACKAGE_HEIGHT-4)});
+				//titleBox.move({x:0, y:-(PACKAGE_HEIGHT-4)});
 
 				this.dependenciesInfoBox.push({'from' : from, 'to' : toGroup});
 				
@@ -520,7 +522,6 @@ function PackageGroup(text, color, infos) {
 
 	this.addDependenciesInfoBox = function(){
 		this.dependenciesMaxLength = 0;
-		//removeIfExists(this.classGroup);
 
 		for (var i = 0; i < this.dependenciesInfoBox.length; i++){
 			if(this.dependenciesInfoBox[i]['from'].getWidth() > this.dependenciesMaxLength){this.dependenciesMaxLength = this.dependenciesInfoBox[i]['from'].getWidth()};
