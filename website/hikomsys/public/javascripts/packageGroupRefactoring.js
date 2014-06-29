@@ -50,10 +50,7 @@ function PackageGroup(text, color, infos) {
 										});
 
 										this.group.add(this.rect)
-											.add(this.textField)
-											//need to check if to packages are overlapping, would be nice
-											.move({x:1 + Math.floor(Math.random() * (CONTAINER_WIDTH-this.rect.getWidth())),
-												y:1 + Math.floor(Math.random() * (480-this.rect.getHeight()))});
+											.add(this.textField);
 
 										packageLayer.add(this.group);
 									};
@@ -133,7 +130,15 @@ function PackageGroup(text, color, infos) {
 										return this.group.getAbsolutePosition();
 									};
 
-
+									var isRectCollide = function(rect1, rect2) {
+										if (rect1.x - rect1.width  >= rect2.x + rect2.width  &&
+											rect1.y - rect1.height >= rect2.y + rect2.height &&
+											rect1.x + rect1.width  <= rect2.x + rect2.width  &&
+											rect1.x + rect1.height <= rect2.y - rect2.height )
+											return false;
+										else
+											return true;
+									}
 
 
 }

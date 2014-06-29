@@ -137,6 +137,7 @@ function resetDependencies(){
 $(document).ready(function(){
 	for(var i = 0; i < allPackages.length; i++){
 		allPackages[i].create();
+		allPackages[i].randomSaveMove();				
 	}	
 	stage.draw();
 });
@@ -152,3 +153,17 @@ $('.alert-box').click(function(){
 }).on("keyup", function(event) {
 	switchMode();
 });*/
+
+var randomSaveMove = function(){
+	var overlapping = true;
+	while(overlapping){
+		overlapping = false;
+		var xCoordinate = 1 + Math.floor(Math.random() * (CONTAINER_WIDTH-this.rect.getWidth()));
+		var yCoordinate = 1 + Math.floor(Math.random() * (480-this.rect.getHeight()))
+		for(var i = 0; i < allPackages.length; i++){
+			console.log(allPackages[i].rect.absolutePosition() );
+
+		}
+	}
+	this.move({x: xCoordinate , y: yCoordinate})
+}
