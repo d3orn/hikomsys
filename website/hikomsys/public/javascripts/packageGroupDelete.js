@@ -123,25 +123,18 @@ function PackageGroup(text, color, infos){
 	};
 
 							this.highlightPackage = function(color, size){
-								removeIfExists(this.highlight);
+								removeIfExists(this.highlightBox);
 								var pos = this.rect.getAbsolutePosition();
-						/*		var xCoordinate = pos.x-4;
-								var yCoordinate = pos.y-4;
-								var width = this.rect.getWidth()+8;
-								var height = this.rect.getHeight()+8; */
-								this.highlight = new Kinetic.Rect({
+								this.highlightBox = new Kinetic.Rect({
 									x: pos.x-size,
 						       		y: pos.y-size,
 									width: this.rect.getWidth()+2*size,
 									height: this.rect.getHeight()+2*size,
 									fill: color
-									//stroke: color,
-									//strokeWidth:2
 								});
-								//this.highlight.move({x:x,y:y});
 								this.isHighlighted = true;
-								packageLayer.add(this.highlight);
-								this.highlight.setZIndex(0);
+								packageLayer.add(this.highlightBox);
+								this.highlightBox.setZIndex(0);
 								packageLayer.draw();
 							};	
 
