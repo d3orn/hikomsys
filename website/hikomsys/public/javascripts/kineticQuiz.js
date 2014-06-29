@@ -1,10 +1,12 @@
 function mouseDownOnPackage(packageGroup){
-	firstSelectedPackage = packageGroup;
+	console.log(packageGroup);
+	firstSelectedPackage = findPackageById(packageGroup.getId());
+	console.log(firstSelectedPackage);
 	firstSelectedPackage.highlightPackage("lightblue",5); 
 }
 
 function mouseUpOnPackage(packageGroup) {
-	var toPackage = packageGroup;
+	var toPackage = findPackageById(packageGroup.getId());
 	
 	if(firstSelectedPackage.text == toPackage.text){
 		$('#repeat-alert').css('z-index', 0);
