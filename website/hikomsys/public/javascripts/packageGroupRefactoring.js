@@ -384,22 +384,20 @@ function PackageGroup(text, color, infos) {
 
 
 
-		if(this.classesInfoBox.length > 0){
-			this.classesInfoText.move({x:5, y:5});
-			this.infoGroup.add(this.classesInfoText);
-		}
-		if(this.childrenInfoBox.length > 0){
-			var offset = this.classesInfoBox.length > 0; 
-			this.childrenInfoBoxText.move({x:5, y:5+offset*(PACKAGE_HEIGHT-3)});
-			this.infoGroup.add(this.childrenInfoBoxText);
-		}
+
+
+
+		this.moveInfoTexts()
+
+
+
 		
-		if(this.dependenciesInfoBox.length > 0){
-			var offset = (this.classesInfoBox.length > 0) + (this.childrenInfoBox.length > 0);
-			this.dependenciesInfoBoxText.move({x:5, y:5+offset*(PACKAGE_HEIGHT-3)});
-			this.infoGroup.add(this.dependenciesInfoBoxText);
-		}
-		
+
+
+
+
+
+
 
 
 
@@ -425,7 +423,22 @@ function PackageGroup(text, color, infos) {
 
 
 
-
+this.moveInfoTexts = function(){
+	if(this.classesInfoBox.length > 0){
+		this.classesInfoText.move({x:5, y:5});
+		this.infoGroup.add(this.classesInfoText);
+	}
+	if(this.childrenInfoBox.length > 0){
+		var offset = this.classesInfoBox.length > 0; 
+		this.childrenInfoBoxText.move({x:5, y:5+offset*(PACKAGE_HEIGHT-3)});
+		this.infoGroup.add(this.childrenInfoBoxText);
+	}
+	if(this.dependenciesInfoBox.length > 0){
+		var offset = (this.classesInfoBox.length > 0) + (this.childrenInfoBox.length > 0);
+		this.dependenciesInfoBoxText.move({x:5, y:5+offset*(PACKAGE_HEIGHT-3)});
+		this.infoGroup.add(this.dependenciesInfoBoxText);
+	}
+}
 
 
 
@@ -447,6 +460,10 @@ function PackageGroup(text, color, infos) {
 										this.childrenInfoBoxText = infoTexts[1];
 										this.dependenciesInfoBoxText = infoTexts[2];
 									}
+
+
+
+
 
 									this.addInfo = function(infoBox){
 										var maxLength = 0;
