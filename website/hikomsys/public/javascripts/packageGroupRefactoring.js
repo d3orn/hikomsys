@@ -360,7 +360,7 @@ function PackageGroup(text, color, infos) {
 			strokeWidth:2
 		});
 
-						this.closeButton = createCloseButton();
+						this.closeButton = this.createCloseButton();
 
 		this.infoGroup = new Kinetic.Group({
 			opacity: 0,
