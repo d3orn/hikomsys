@@ -4,29 +4,31 @@ function mouseDownOnPackage(packageGroup){
 }
 
 function mouseUpOnPackage(packageGroup) {
-	var toPackage = findPackageById(packageGroup.getId());
-	
-	if(typeof firstSelectedPackage !== 'undefined' && firstSelectedPackage.text == toPackage.text){
-		$('#repeat-alert').css('z-index', 0);
-		$('#loop-alert').css('z-index', 1).fadeIn(500);
-		return;
-	}
-	var id = firstSelectedPackage.text + "_" + toPackage.text;
+	if(typeof firstSelectedPackage !== 'undefined' ){
+		var toPackage = findPackageById(packageGroup.getId());
+		
+		if(firstSelectedPackage.text == toPackage.text){
+			$('#repeat-alert').css('z-index', 0);
+			$('#loop-alert').css('z-index', 1).fadeIn(500);
+			return;
+		}
+		var id = firstSelectedPackage.text + "_" + toPackage.text;
 
-	if(findArrowById(id) === -1){
-		var arrow = new Arrow(firstSelectedPackage,toPackage,id);
-		arrows.push(arrow);
-		arrow.draw();
-	}
-	else {
-		$('#loop-alert').css('z-index', 0);
-		$('#repeat-alert').css('z-index', 1).fadeIn(500);
-	}
+		if(findArrowById(id) === -1){
+			var arrow = new Arrow(firstSelectedPackage,toPackage,id);
+			arrows.push(arrow);
+			arrow.draw();
+		}
+		else {
+			$('#loop-alert').css('z-index', 0);
+			$('#repeat-alert').css('z-index', 1).fadeIn(500);
+		}
 
-	firstSelectedPackage.highlightBox.remove();
-	toPackage.highlightBox.remove();
-	firstSelectedPackage = undefined;
-	stage.draw();
+		firstSelectedPackage.highlightBox.remove();
+		toPackage.highlightBox.remove();
+		firstSelectedPackage = undefined;
+		stage.draw();
+	}
 }
 
 function switchMode(){
