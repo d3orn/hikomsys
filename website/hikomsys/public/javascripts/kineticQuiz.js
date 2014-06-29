@@ -146,7 +146,7 @@ $('.alert-box').click(function(){
 	switchMode();
 });*/
 
-var randomSaveMove = function(){
+function randomSaveMove(){
 	var overlapping = true;
 	while(overlapping){
 		overlapping = false;
