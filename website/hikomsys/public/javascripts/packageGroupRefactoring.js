@@ -359,20 +359,8 @@ function PackageGroup(text, color, infos) {
 			stroke: 'black',
 			strokeWidth:2
 		});
-		this.closeButton = new Kinetic.Rect({
-			width: 13,
-			height: 13,
-			fill: 'red',
-			stroke: 'black',
-			strokeWidth:2,
-			id: this.textField.getText()+'CloseButton'
-		});
-		this.closeButton.on('click', function(){
-			var id = this.getId().replace('CloseButton', '');
-			var pack = findPackageById(id);
-			pack.hide(pack.infoGroup);
-			pack.removeInfos();
-		});
+
+						this.closeButton = createCloseButton();
 
 		this.infoGroup = new Kinetic.Group({
 			opacity: 0,
@@ -387,18 +375,11 @@ function PackageGroup(text, color, infos) {
 
 
 
-		this.moveInfoTexts()
+									this.moveInfoTexts()
 
 
 
-		
-
-
-
-
-
-
-
+	
 
 
 
@@ -418,7 +399,25 @@ function PackageGroup(text, color, infos) {
 
 
 
+this.createCloseButton = function(){
+	var closeBtn = new Kinetic.Rect({
+		width: 13,
+		height: 13,
+		fill: 'red',
+		stroke: 'black',
+		strokeWidth:2,
+		id: this.textField.getText()+'CloseButton'
+	});
+									
+	this.closeButton.on('click', function(){
+		var id = this.getId().replace('CloseButton', '');
+		var pack = findPackageById(id);
+		pack.hide(pack.infoGroup);
+		pack.removeInfos();
+	});
 
+	return closeBtn;
+}
 
 
 
