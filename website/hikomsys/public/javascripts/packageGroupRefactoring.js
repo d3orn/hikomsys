@@ -525,24 +525,7 @@ var createTitle = function(){
 
 
 
-
-
-
-
-
-
-
-	this.addDependenciesInfoBox = function(){
-		this.dependenciesMaxLength = this.dependenciesInfoBox.reduce(function(a,b){
-			return a['from'].getWidth() > b['from'].getWidth() ? a : b
-		})['from'].getWidth();
-
-		console.log(this.dependenciesMaxLength);
-
-		/*for (var i = 0; i < this.dependenciesInfoBox.length; i++){
-			if(this.dependenciesInfoBox[i]['from'].getWidth() > this.dependenciesMaxLength){this.dependenciesMaxLength = this.dependenciesInfoBox[i]['from'].getWidth()};
-		}*/
-
+	this.createDependenciesGroup = function(){
 		this.dependenciesBox = new Kinetic.Rect({
 			width: this.dependenciesMaxLength+10,
 			height: (PACKAGE_HEIGHT-2)*this.dependenciesInfoBox.length,
@@ -554,6 +537,20 @@ var createTitle = function(){
 			opacity: 0
 		});
 		this.dependenciesGroup.add(this.dependenciesBox);
+	}
+
+
+
+
+
+
+	this.addDependenciesInfoBox = function(){
+									this.dependenciesMaxLength = this.dependenciesInfoBox.reduce(
+										function(a,b){
+											return a['from'].getWidth() > b['from'].getWidth() ? a : b
+										})['from'].getWidth();
+
+		this.createDependenciesGroup();
 
 	 	for (var i = 0; i < this.dependenciesInfoBox.length; i++){
 	 		from  = this.dependenciesInfoBox[i]['from'];
