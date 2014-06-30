@@ -549,13 +549,11 @@ function PackageGroup(text, color, infos) {
 
 	 	for (var i = 0; i < this.dependenciesInfoBox.length; i++){
 	 		from  = this.dependenciesInfoBox[i]['from'];
-
 			this.dependenciesGroup.add(from);
 			boxEventHandler(from);
 		}
 
-		this.dependenciesGroup.add(createTitle('from', 31))
-			.move({x:this.infoBox.getWidth()+1, y:0})
+		this.dependenciesGroup.add(createTitle('from', 31));
 
 		this.infoGroup.add(this.dependenciesGroup);
 		this.show(this.dependenciesGroup,1);
@@ -569,7 +567,7 @@ function PackageGroup(text, color, infos) {
 									var createTitle = function(title, width){
 										return new Kinetic.Group()
 											.add(new Kinetic.Rect({
-													width: width+10,
+													width: width + 8,
 													height: (PACKAGE_HEIGHT-4),
 													x: 0,
 													y: -(PACKAGE_HEIGHT-4),
@@ -633,7 +631,8 @@ function PackageGroup(text, color, infos) {
 										this.dependenciesGroup = new Kinetic.Group({
 											opacity: 0
 										});
-										this.dependenciesGroup.add(this.dependenciesBox);
+										this.dependenciesGroup.add(this.dependenciesBox)
+											.move({x:this.infoBox.getWidth()+1, y:0});
 									}
 
 /*-------------------------------------------------------- DEPRECATED --------------------------------------------------------*/
