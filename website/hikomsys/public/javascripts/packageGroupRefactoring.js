@@ -179,7 +179,7 @@ function PackageGroup(text, color, infos) {
 		this.dependenciesInfoBox = [];
 		var yOffset = 0;	
 		for(key in allDependencies){	
-			currentDependency = dependencies[key];
+			currentDependency = allDependencies[key];
 			currentDependencyFrom = currentDependency['from'];
 			if(currentDependencyFrom){
 
