@@ -589,7 +589,7 @@ function PackageGroup(text, color, infos) {
 								"x" : 4, 
 								"y" : -(PACKAGE_HEIGHT-8), 
 								"text" : 'FROM'
-							})).getWidth();
+							}).getWidth());
 
 
 		this.infoGroup.add(this.dependenciesGroup);
