@@ -190,7 +190,7 @@ function PackageGroup(text, color, infos) {
 				});
 
 
-				this.dependenciesInfoBox.push({'from' : from, 'to' : createToGroup()});
+				this.dependenciesInfoBox.push({'from' : from, 'to' : createToGroup(dependencies[key]['to'])});
 				
 				i++;
 			}
@@ -202,32 +202,32 @@ function PackageGroup(text, color, infos) {
 
 
 
-				var createToGroup = function(){
+				var createToGroup = function(array){
 					return new Kinetic.Group()
 						.add(createTitle())
-						.add(createToBox());
+						.add(createToBox(array));
 				}
 
-				var createToBox = function(){
+				var createToBox = function(array){
 					toClass = kineticText({
 						"size" : 12, 
 						"x" : 5, 
 						"y" : (5+0*(PACKAGE_HEIGHT-2)), 
-						"text" : 'Class: '+dependencies[key]['to']['class']
+						"text" : 'Class: '+array['class']
 					});
 
 					toName = kineticText({
 						"size" : 12, 
 						"x" : 5, 
 						"y" : (5+1*(PACKAGE_HEIGHT-2)), 
-						"text" : 'Name: '+dependencies[key]['to']['name']
+						"text" : 'Name: '+array['name']
 					});
 
 					toPackage = kineticText({
 						"size" : 12, 
 						"x" : 5, 
 						"y" : (5+2*(PACKAGE_HEIGHT-2)), 
-						"text" : 'Package: '+dependencies[key]['to']['package']
+						"text" : 'Package: '+array['package']
 					});
 					toBox = new Kinetic.Rect({
 						width: Math.max(toClass.getWidth(),toName.getWidth(),toPackage.getWidth())+10,
