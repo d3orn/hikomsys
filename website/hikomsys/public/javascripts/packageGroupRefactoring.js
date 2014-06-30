@@ -458,9 +458,8 @@ function PackageGroup(text, color, infos) {
 									var boxAddMouseEnter = function(box){
 										box.on('mouseenter', function(event){
 											this.setFill('blue');
-											to = getTo(this);
+											to = moveAndGetTo(this);
 
-											to.setPosition({x:pack.dependenciesBox.getWidth(), y: 0});
 											pack.dependenciesGroup.add(to);
 
 											pack.show(to,1);
@@ -468,11 +467,12 @@ function PackageGroup(text, color, infos) {
 										})
 									}
 
-											var getTo = function(box){
+											var moveAndGetTo = function(box){
 												var index = box.getName();
 												var id = box.getId().replace('From', '');
 												var pack = findPackageById(id);
-												return pack.dependenciesInfoBox[index]['to'];
+												return pack.dependenciesInfoBox[index]['to']
+													.setX({x:pack.dependenciesBox.getWidth()});;
 											}
 
 									var boxAddMouseLeave = function(box){
