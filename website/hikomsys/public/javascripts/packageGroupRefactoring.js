@@ -555,6 +555,11 @@ function PackageGroup(text, color, infos) {
 	}
 
 	var boxEventHandler = function(box){
+		boxAddMouseEnter(box);
+		boxAddMouseLeave(box);
+	}
+
+	var boxAddMouseEnter = function(box){
 		box.on('mouseenter', function(event){
 			this.setFill('blue');
 			var index = this.getName();
@@ -567,7 +572,9 @@ function PackageGroup(text, color, infos) {
 			pack.show(to,1);
 			stage.draw();
 		})
-		
+	}
+
+	var boxAddMouseLeave = function(box){
 		box.on('mouseleave', function(event){
 			this.setFill('black');
 			var index = this.getName();
@@ -579,74 +586,11 @@ function PackageGroup(text, color, infos) {
 				to.remove();
 				stage.draw();
 			}
-		})
+		})		
 	}
 
 
-	/*this.addDependenciesInfoBox = function(){
-									this.dependenciesMaxLength = this.dependenciesInfoBox.reduce(
-										function(a,b){
-											return a['from'].getWidth() > b['from'].getWidth() ? a : b
-										})['from'].getWidth();
-
-									this.createDependenciesGroup();
-
-	 	for (var i = 0; i < this.dependenciesInfoBox.length; i++){
-	 		from  = this.dependenciesInfoBox[i]['from'];
-
-			this.dependenciesGroup.add(from);
-			from.on('mouseenter', function(event){
-				this.setFill('blue');
-				var index = this.getName();
-				var id = this.getId().replace('From', '');
-				var pack = findPackageById(id);
-				var to = pack.dependenciesInfoBox[index]['to'];
-				to.setPosition({x:pack.dependenciesBox.getWidth(), y: 0});
-				pack.dependenciesGroup.add(to);
-
-				pack.show(to,1);
-				stage.draw();
-			})
-			from.on('mouseleave', function(event){
-				this.setFill('black');
-				var index = this.getName();
-				var id = this.getId().replace('From', '');
-				var pack = findPackageById(id);
-				var to = pack.dependenciesInfoBox[index]['to'];
-
-				if(to){
-					to.remove();
-					stage.draw();
-				}
-			})
-		}
-
-		title = new Kinetic.Text({
-			text: 'FROM',
-			fontSize: 12,
-			fontFamily: 'Calibri',
-			fill: 'black',
-			align: 'left',
-		})
-
-		titleBox = new Kinetic.Rect({
-			width: title.getWidth()+10,
-			height: (PACKAGE_HEIGHT-4),
-			fill: 'white',
-			stroke: 'black',
-			strokeWidth:2
-		})
-
-		this.dependenciesGroup.add(titleBox)
-			.add(title)
-			.move({x:this.infoBox.getWidth()+1, y:0})
-		
-		titleBox.move({x:0, y:-(PACKAGE_HEIGHT-4)});
-		title.move({x:4, y:-(PACKAGE_HEIGHT-8)});
-		this.infoGroup.add(this.dependenciesGroup);
-		this.show(this.dependenciesGroup,1);
-	}*/
-
+	
 
 
 
