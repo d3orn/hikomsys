@@ -286,7 +286,7 @@ function PackageGroup(text, color, infos) {
 		this.show(this.infoGroup,2);
 
 
-		infoAddEventHandler();
+		this.infoAddEventHandler();
 
 
 
@@ -305,7 +305,7 @@ function PackageGroup(text, color, infos) {
 
 
 
-		var infoAddEventHandler = function(){
+		this.infoAddEventHandler = function(){
 			this.classesInfoText.on('mouseenter', function(){
 				var id = this.getId().replace('Classes', '');
 				var pack = findPackageById(id);
