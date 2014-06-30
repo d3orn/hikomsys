@@ -153,15 +153,6 @@ function PackageGroup(text, color, infos) {
 										return tempArray;
 									}
 
-									this.removeInfos = function(){
-										this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false;
-										removeIfExists(this.infoGroup);
-										removeIfExists(this.classGroup);
-										removeIfExists(this.childrenGroup);
-										removeIfExists(this.dependenciesGroup);
-										infoLayer.draw();
-									}
-
 									this.createDependencies = function(){
 										var allDependencies = this.infos['allDependencies'];
 										var yOffset = 0;	
@@ -195,6 +186,27 @@ function PackageGroup(text, color, infos) {
 											.add(createToBox(array));
 									}
 
+									var createTitle = function(title, width){
+										return new Kinetic.Group()
+											.add(new Kinetic.Rect({
+													width: width + 8,
+													height: (PACKAGE_HEIGHT-4),
+													x: 0,
+													y: -(PACKAGE_HEIGHT-4),
+													fill: 'white',
+													stroke: 'black',
+													strokeWidth:2
+												})
+											)
+											.add(kineticText({
+													"size" : 12, 
+													"x" : 4, 
+													"y" : -(PACKAGE_HEIGHT-8), 
+													"text" : title.toUpperCase()
+												})
+											);
+									}
+
 									var createToBox = function(array){
 										toClass = createToContent('Class: ' + array['class'], 0);
 										toName = createToContent('Name: ' + array['name'], 1);
@@ -224,58 +236,37 @@ function PackageGroup(text, color, infos) {
 										});
 									}
 
+									this.addInfoBox = function(){
+										this.infoCount = !(this.classesInfoBox.length === 0) + !(this.childrenInfoBox.length === 0 ) + !(this.dependenciesInfoBox.length === 0);
+										this.infoBoxEnabled = true;
 
+										this.createInfoTexts();
+										this.createCloseButton();
+			
+										this.infoBox = new Kinetic.Rect({
+											width: this.dependenciesInfoBoxText.getWidth()+10,
+											height: (PACKAGE_HEIGHT-3)*this.infoCount,
+											fill: 'white',
+											stroke: 'black',
+											strokeWidth:2
+										});							
 
+										this.infoGroup = new Kinetic.Group({
+											x:this.position().x+this.rect.getWidth()+1,
+											y:this.position().y,
+											opacity: 0,
+											name: 'infoGroup'	
+										});
+										this.infoGroup.add(this.infoBox);
+										this.infoGroup.add(this.closeButton);
+																	//this is not really nice it also add the info to the infoGroup either use a better name or seperate functions
+																	this.moveInfoTexts();
+																	
+										infoLayer.add(this.infoGroup);
+										this.show(this.infoGroup,2);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	this.addInfoBox = function(){
-									this.infoCount = !(this.classesInfoBox.length === 0) + !(this.childrenInfoBox.length === 0 ) + !(this.dependenciesInfoBox.length === 0);
-									this.infoBoxEnabled = true;
-
-									this.createInfoTexts();
-									this.createCloseButton();
-		
-		this.infoBox = new Kinetic.Rect({
-			width: this.dependenciesInfoBoxText.getWidth()+10,
-			height: (PACKAGE_HEIGHT-3)*this.infoCount,
-			fill: 'white',
-			stroke: 'black',
-			strokeWidth:2
-		});							
-
-		this.infoGroup = new Kinetic.Group({
-			x:this.position().x+this.rect.getWidth()+1,
-			y:this.position().y,
-			opacity: 0,
-			name: 'infoGroup'	
-		});
-		this.infoGroup.add(this.infoBox);
-		this.infoGroup.add(this.closeButton);
-									//this is not really nice it also add the info to the infoGroup either use a better name or seperate functions
-									this.moveInfoTexts();
-									
-		infoLayer.add(this.infoGroup);
-		this.show(this.infoGroup,2);
-
-		this.infoAddEventHandler();
-
-	}
-
-
+										this.infoAddEventHandler();
+									}
 
 		this.infoAddEventHandler = function(){
 			this.classesInfoText.on('mouseenter', function(){
@@ -320,28 +311,6 @@ function PackageGroup(text, color, infos) {
 				infoLayer.draw();
 			});
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 									var resetOthers = function(packagegroup, name){
 										switch(name){
@@ -481,27 +450,6 @@ function PackageGroup(text, color, infos) {
 										this.show(this.dependenciesGroup,1);
 									}
 
-									var createTitle = function(title, width){
-										return new Kinetic.Group()
-											.add(new Kinetic.Rect({
-													width: width + 8,
-													height: (PACKAGE_HEIGHT-4),
-													x: 0,
-													y: -(PACKAGE_HEIGHT-4),
-													fill: 'white',
-													stroke: 'black',
-													strokeWidth:2
-												})
-											)
-											.add(kineticText({
-													"size" : 12, 
-													"x" : 4, 
-													"y" : -(PACKAGE_HEIGHT-8), 
-													"text" : title.toUpperCase()
-												})
-											);
-									}
-
 									var boxEventHandler = function(box){
 										boxAddMouseEnter(box);
 										boxAddMouseLeave(box);
@@ -510,10 +458,8 @@ function PackageGroup(text, color, infos) {
 									var boxAddMouseEnter = function(box){
 										box.on('mouseenter', function(event){
 											this.setFill('blue');
-											var index = this.getName();
-											var id = this.getId().replace('From', '');
-											var pack = findPackageById(id);
-											var to = pack.dependenciesInfoBox[index]['to'];
+											getTo(this);
+
 											to.setPosition({x:pack.dependenciesBox.getWidth(), y: 0});
 											pack.dependenciesGroup.add(to);
 
@@ -521,6 +467,13 @@ function PackageGroup(text, color, infos) {
 											stage.draw();
 										})
 									}
+
+											var getTo = function(box){
+												var index = box.getName();
+												var id = box.getId().replace('From', '');
+												var pack = findPackageById(id);
+												return pack.dependenciesInfoBox[index]['to'];
+											}
 
 									var boxAddMouseLeave = function(box){
 										box.on('mouseleave', function(event){
@@ -552,6 +505,14 @@ function PackageGroup(text, color, infos) {
 											.move({x:this.infoBox.getWidth()+1, y:0});
 									}
 
+									this.removeInfos = function(){
+										this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false;
+										removeIfExists(this.infoGroup);
+										removeIfExists(this.classGroup);
+										removeIfExists(this.childrenGroup);
+										removeIfExists(this.dependenciesGroup);
+										infoLayer.draw();
+									}
 /*-------------------------------------------------------- DEPRECATED --------------------------------------------------------*/
 	this.hide = function(element, time){
 		var tween = new Kinetic.Tween({
