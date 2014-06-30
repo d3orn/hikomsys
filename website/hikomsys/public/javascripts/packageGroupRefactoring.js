@@ -248,7 +248,42 @@ function PackageGroup(text, color, infos) {
 
 									this.createInfoTexts();
 
+		
+		this.infoBox = new Kinetic.Rect({
+			width: this.dependenciesInfoBoxText.getWidth()+10,
+			height: (PACKAGE_HEIGHT-3)*this.infoCount,
+			fill: 'white',
+			stroke: 'black',
+			strokeWidth:2
+		});							
 
+		this.infoGroup = new Kinetic.Group({
+			x:this.position().x+this.rect.getWidth()+1,
+			y:this.position().y,
+			opacity: 0,
+			name: 'infoGroup'	
+		});
+		this.infoGroup.add(this.infoBox);
+
+
+
+
+
+
+
+
+									this.moveInfoTexts()
+
+									this.createCloseButton();
+
+	
+
+
+
+
+		this.infoGroup.add(this.closeButton)
+		infoLayer.add(this.infoGroup);
+		this.show(this.infoGroup,2);
 
 
 
@@ -302,46 +337,7 @@ function PackageGroup(text, color, infos) {
 
 
 
-		this.infoBox = new Kinetic.Rect({
-			width: this.dependenciesInfoBoxText.getWidth()+10,
-			height: (PACKAGE_HEIGHT-3)*this.infoCount,
-			fill: 'white',
-			stroke: 'black',
-			strokeWidth:2
-		});
 
-									this.createCloseButton();
-
-		
-
-
-
-		this.infoGroup = new Kinetic.Group({
-			opacity: 0,
-			name: 'infoGroup'	
-		});
-		this.infoGroup.add(this.infoBox);
-
-
-
-
-
-
-
-
-									this.moveInfoTexts()
-
-
-
-	
-
-
-
-
-		this.infoGroup.add(this.closeButton)
-			.move({x:this.position().x+this.rect.getWidth()+1, y:this.position().y});
-		infoLayer.add(this.infoGroup);
-		this.show(this.infoGroup,2);
 	}
 
 
