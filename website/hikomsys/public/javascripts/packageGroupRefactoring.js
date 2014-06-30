@@ -247,7 +247,7 @@ function PackageGroup(text, color, infos) {
 									this.infoBoxEnabled = true;
 
 									this.createInfoTexts();
-
+									this.createCloseButton();
 		
 		this.infoBox = new Kinetic.Rect({
 			width: this.dependenciesInfoBoxText.getWidth()+10,
@@ -264,21 +264,10 @@ function PackageGroup(text, color, infos) {
 			name: 'infoGroup'	
 		});
 		this.infoGroup.add(this.infoBox);
-
-
-
-
-
-
-
-
-									this.moveInfoTexts()
-
-									this.createCloseButton();
-
-
-
-		this.infoGroup.add(this.closeButton)
+		this.infoGroup.add(this.closeButton);
+									//this is not really nice it also add the info to the infoGroup either use a better name or seperate functions
+									this.moveInfoTexts();
+									
 		infoLayer.add(this.infoGroup);
 		this.show(this.infoGroup,2);
 
