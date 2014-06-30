@@ -270,13 +270,8 @@ function PackageGroup(text, color, infos) {
 			var id = this.getId().replace('Children', '');
 			var pack = findPackageById(id);
 			this.setFill('blue');
-			pack.classesInfoText.setFill('black');
-			pack.dependenciesInfoBoxText.setFill('black');
 
-			removeIfExists(pack.classGroup);
-			removeIfExists(pack.dependenciesGroup);
-			pack.classesEnabled = false;
-			pack.dependenciesEnabled = false;
+			resetOthers(pack, 'children');
 
 			if(!pack.childrenEnabled){
 				pack.childrenEnabled = true;
@@ -289,13 +284,8 @@ function PackageGroup(text, color, infos) {
 			var id = this.getId().replace('Dependencies', '');
 			var pack = findPackageById(id);
 			this.setFill('blue');
-			pack.classesInfoText.setFill('black');
-			pack.childrenInfoBoxText.setFill('black');
 
-			removeIfExists(pack.classGroup);
-			removeIfExists(pack.childrenGroup);
-			pack.classesEnabled = false;
-			pack.childrenEnabled = false;
+			resetOthers(pack, 'dependencies');
 
 			if(!pack.dependenciesEnabled){
 				pack.dependenciesEnabled = true;
@@ -367,8 +357,12 @@ function PackageGroup(text, color, infos) {
 				resetDependencies(packagegroup);
 				break;
 			case 'children':
+				resetClasses(packagegroup);
+				resetDependencies(packagegroup);
 				break;
 			case 'dependencies':
+				resetClasses(packagegroup);
+				resetChildren(packagegroup);
 				break;
 		}
 	}
