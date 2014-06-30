@@ -182,7 +182,6 @@ function PackageGroup(text, color, infos) {
 			currentDependency = allDependencies[key];
 			currentDependencyFrom = currentDependency['from'];
 			if(currentDependencyFrom){
-
 				from = kineticText({
 					"size" : 12, 
 					"x" : 5, 
@@ -211,13 +210,6 @@ function PackageGroup(text, color, infos) {
 				}
 
 				var createTitle = function(){
-					title = kineticText({
-						"size" : 12, 
-						"x" : 4, 
-						"y" : -(PACKAGE_HEIGHT-8), 
-						"text" : 'TO'
-					});
-
 					titleBox = new Kinetic.Rect({
 						width: title.getWidth()+10,
 						height: (PACKAGE_HEIGHT-4),
@@ -228,7 +220,15 @@ function PackageGroup(text, color, infos) {
 						strokeWidth:2
 					});
 
-					return new Kinetic.Group().add(titleBox).add(title);
+					return new Kinetic.Group()
+						.add(kineticText({
+							"size" : 12, 
+							"x" : 4, 
+							"y" : -(PACKAGE_HEIGHT-8), 
+							"text" : 'TO'
+							});
+						)
+						.add(title);
 				}
 
 				var createToBox = function(array){
