@@ -231,7 +231,7 @@ function PackageGroup(text, color, infos) {
 					strokeWidth:2
 				})
 
-				var title = createTitle();
+								var title = createTitle();
 			
 				toGroup.add(title)
 					.add(toBox)
@@ -533,11 +533,13 @@ var createTitle = function(){
 
 
 	this.addDependenciesInfoBox = function(){
-		this.dependenciesMaxLength = 0;
+		this.dependenciesMaxLength = dependenciesInfoBox.reduce(function(a,b){
+			return a['from'].getWidth > b['from'].getWidth ? a : b
+		});
 
-		for (var i = 0; i < this.dependenciesInfoBox.length; i++){
+		/*for (var i = 0; i < this.dependenciesInfoBox.length; i++){
 			if(this.dependenciesInfoBox[i]['from'].getWidth() > this.dependenciesMaxLength){this.dependenciesMaxLength = this.dependenciesInfoBox[i]['from'].getWidth()};
-		}
+		}*/
 
 		this.dependenciesBox = new Kinetic.Rect({
 			width: this.dependenciesMaxLength+10,
