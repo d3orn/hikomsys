@@ -200,32 +200,6 @@ function PackageGroup(text, color, infos) {
 
 
 
-
-
-
-
-
-				var createTitle = function(){
-					return new Kinetic.Group()
-						.add(new Kinetic.Rect({
-								width: 24,  //'To' has a width of 14
-								height: (PACKAGE_HEIGHT-4),
-								x: 0,
-								y: -(PACKAGE_HEIGHT-4),
-								fill: 'white',
-								stroke: 'black',
-								strokeWidth:2
-							})
-						)
-						.add(kineticText({
-								"size" : 12, 
-								"x" : 4, 
-								"y" : -(PACKAGE_HEIGHT-8), 
-								"text" : 'TO'
-							})
-						);
-				}
-
 				var createToBox = function(array){
 					toClass = kineticText({
 						"size" : 12, 
@@ -580,17 +554,8 @@ function PackageGroup(text, color, infos) {
 			boxEventHandler(from);
 		}
 
-		this.dependenciesGroup.add(createTitle('from'))
+		this.dependenciesGroup.add(createTitle('from', 31))
 			.move({x:this.infoBox.getWidth()+1, y:0})
-		
-
-			console.log(kineticText({
-								"size" : 12, 
-								"x" : 4, 
-								"y" : -(PACKAGE_HEIGHT-8), 
-								"text" : 'FROM'
-							}).getWidth());
-
 
 		this.infoGroup.add(this.dependenciesGroup);
 		this.show(this.dependenciesGroup,1);
@@ -601,32 +566,26 @@ function PackageGroup(text, color, infos) {
 
 
 
-				var createTitle = function(title, width){
-					return new Kinetic.Group()
-						.add(new Kinetic.Rect({
-								width: width,
-								height: (PACKAGE_HEIGHT-4),
-								x: 0,
-								y: -(PACKAGE_HEIGHT-4),
-								fill: 'white',
-								stroke: 'black',
-								strokeWidth:2
-							})
-						)
-						.add(kineticText({
-								"size" : 12, 
-								"x" : 4, 
-								"y" : -(PACKAGE_HEIGHT-8), 
-								"text" : title.toUpperCase()
-							})
-						);
-				}
-
-
-
-
-
-
+									var createTitle = function(title, width){
+										return new Kinetic.Group()
+											.add(new Kinetic.Rect({
+													width: width,
+													height: (PACKAGE_HEIGHT-4),
+													x: 0,
+													y: -(PACKAGE_HEIGHT-4),
+													fill: 'white',
+													stroke: 'black',
+													strokeWidth:2
+												})
+											)
+											.add(kineticText({
+													"size" : 12, 
+													"x" : 4, 
+													"y" : -(PACKAGE_HEIGHT-8), 
+													"text" : title.toUpperCase()
+												})
+											);
+									}
 
 									var boxEventHandler = function(box){
 										boxAddMouseEnter(box);
