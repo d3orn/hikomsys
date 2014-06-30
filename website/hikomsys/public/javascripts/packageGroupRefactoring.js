@@ -180,8 +180,6 @@ function PackageGroup(text, color, infos) {
 		var i = 0;	
 		for(key in dependencies){	
 			if(dependencies[key]['from']){
-				toGroup = new Kinetic.Group();
-
 				from = kineticText({
 					"size" : 12, 
 					"x" : 5, 
@@ -191,61 +189,98 @@ function PackageGroup(text, color, infos) {
 					"name" : i	
 				});
 
-				toClass = kineticText({
-					"size" : 12, 
-					"x" : 5, 
-					"y" : (5+0*(PACKAGE_HEIGHT-2)), 
-					"text" : 'Class: '+dependencies[key]['to']['class']
-				});
 
-				toName = kineticText({
-					"size" : 12, 
-					"x" : 5, 
-					"y" : (5+1*(PACKAGE_HEIGHT-2)), 
-					"text" : 'Name: '+dependencies[key]['to']['name']
-				});
-
-				toPackage = kineticText({
-					"size" : 12, 
-					"x" : 5, 
-					"y" : (5+2*(PACKAGE_HEIGHT-2)), 
-					"text" : 'Package: '+dependencies[key]['to']['package']
-				});
-
-
-			/*	this.test = function(key, int)
-					texts = ['package' , 'name', 'class'];
-					capitalizeMe.charAt(0).toUpperCase() + capitalizeMe.substring(1);
-				return kineticText({
-					"size" : 12, 
-					"x" : 5, 
-					"y" : (5+int*(PACKAGE_HEIGHT-2)), 
-					"text" : texts[int] + ': ' + dependencies[key]['to']['package']
-				})*/
-
-				toBox = new Kinetic.Rect({
-					width: Math.max(toClass.getWidth(),toName.getWidth(),toPackage.getWidth())+10,
-					height: (PACKAGE_HEIGHT-2)*3,
-					fill: 'white',
-					stroke: 'black',
-					strokeWidth:2
-				})
-
-								var title = createTitle();
-			
-				toGroup.add(title)
-					.add(toBox)
-					.add(toClass)
-					.add(toName)
-					.add(toPackage);
-
-				this.dependenciesInfoBox.push({'from' : from, 'to' : toGroup});
+				this.dependenciesInfoBox.push({'from' : from, 'to' : createToGroup()});
 				
 				i++;
 			}
 		}
 		return this;
 	};
+
+
+
+
+
+				this.createToGroup = function(){
+					return new Kinetic.Group()
+						.add(createTitle())
+						.add(createToBox());
+				}
+
+				var createToBox = function(){
+					toBox = new Kinetic.Rect({
+						width: Math.max(toClass.getWidth(),toName.getWidth(),toPackage.getWidth())+10,
+						height: (PACKAGE_HEIGHT-2)*3,
+						fill: 'white',
+						stroke: 'black',
+						strokeWidth:2
+					})
+					toClass = kineticText({
+						"size" : 12, 
+						"x" : 5, 
+						"y" : (5+0*(PACKAGE_HEIGHT-2)), 
+						"text" : 'Class: '+dependencies[key]['to']['class']
+					});
+
+					toName = kineticText({
+						"size" : 12, 
+						"x" : 5, 
+						"y" : (5+1*(PACKAGE_HEIGHT-2)), 
+						"text" : 'Name: '+dependencies[key]['to']['name']
+					});
+
+					toPackage = kineticText({
+						"size" : 12, 
+						"x" : 5, 
+						"y" : (5+2*(PACKAGE_HEIGHT-2)), 
+						"text" : 'Package: '+dependencies[key]['to']['package']
+					});
+
+					return new Kinetic.Group()
+						.add(toBox)
+						.add(toClass)
+						.add(toName)
+						.add(toPackage)
+				}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -525,19 +560,6 @@ var createTitle = function(){
 
 
 
-	this.createDependenciesGroup = function(){
-		this.dependenciesBox = new Kinetic.Rect({
-			width: this.dependenciesMaxLength+10,
-			height: (PACKAGE_HEIGHT-2)*this.dependenciesInfoBox.length,
-			fill: 'white',
-			stroke: 'black',
-			strokeWidth:2
-		});
-		this.dependenciesGroup = new Kinetic.Group({
-			opacity: 0
-		});
-		this.dependenciesGroup.add(this.dependenciesBox);
-	}
 
 
 
@@ -550,7 +572,7 @@ var createTitle = function(){
 											return a['from'].getWidth() > b['from'].getWidth() ? a : b
 										})['from'].getWidth();
 
-		this.createDependenciesGroup();
+									this.createDependenciesGroup();
 
 	 	for (var i = 0; i < this.dependenciesInfoBox.length; i++){
 	 		from  = this.dependenciesInfoBox[i]['from'];
@@ -608,6 +630,23 @@ var createTitle = function(){
 		this.show(this.dependenciesGroup,1);
 	}
 
+
+
+
+
+									this.createDependenciesGroup = function(){
+										this.dependenciesBox = new Kinetic.Rect({
+											width: this.dependenciesMaxLength+10,
+											height: (PACKAGE_HEIGHT-2)*this.dependenciesInfoBox.length,
+											fill: 'white',
+											stroke: 'black',
+											strokeWidth:2
+										});
+										this.dependenciesGroup = new Kinetic.Group({
+											opacity: 0
+										});
+										this.dependenciesGroup.add(this.dependenciesBox);
+									}
 
 
 
