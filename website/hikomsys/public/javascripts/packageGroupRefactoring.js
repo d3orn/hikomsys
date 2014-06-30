@@ -246,6 +246,7 @@ function PackageGroup(text, color, infos) {
 									this.infoCount = !(this.classesInfoBox.length === 0) + !(this.childrenInfoBox.length === 0 ) + !(this.dependenciesInfoBox.length === 0);
 									this.infoBoxEnabled = true;
 
+
 									this.createInfoTexts();
 
 		
@@ -253,7 +254,7 @@ function PackageGroup(text, color, infos) {
 			width: this.dependenciesInfoBoxText.getWidth()+10,
 			height: (PACKAGE_HEIGHT-3)*this.infoCount,
 			fill: 'white',
-			stroke: 'black',
+			stroke: 'red',
 			strokeWidth:2
 		});							
 
@@ -346,45 +347,41 @@ function PackageGroup(text, color, infos) {
 
 
 
-	var resetOthers = function(packagegroup, name){
-		switch(name){
-			case 'classes':
-				resetChildren(packagegroup);
-				resetDependencies(packagegroup);
-				break;
-			case 'children':
-				resetClasses(packagegroup);
-				resetDependencies(packagegroup);
-				break;
-			case 'dependencies':
-				resetClasses(packagegroup);
-				resetChildren(packagegroup);
-				break;
-		}
-	}
+									var resetOthers = function(packagegroup, name){
+										switch(name){
+											case 'classes':
+												resetChildren(packagegroup);
+												resetDependencies(packagegroup);
+												break;
+											case 'children':
+												resetClasses(packagegroup);
+												resetDependencies(packagegroup);
+												break;
+											case 'dependencies':
+												resetClasses(packagegroup);
+												resetChildren(packagegroup);
+												break;
+										}
+									}
 
-	var resetClasses = function(packagegroup){
-			packagegroup.classesInfoText.setFill('black');
-			removeIfExists(packagegroup.classGroup);
-			packagegroup.classesEnabled = false;
-	}
+									var resetClasses = function(packagegroup){
+											packagegroup.classesInfoText.setFill('black');
+											removeIfExists(packagegroup.classGroup);
+											packagegroup.classesEnabled = false;
+									}
 
-	var resetChildren = function(packagegroup){
-		packagegroup.childrenInfoBoxText.setFill('black');
-		removeIfExists(packagegroup.childrenGroup);
-		packagegroup.childrenEnabled = false;
+									var resetChildren = function(packagegroup){
+										packagegroup.childrenInfoBoxText.setFill('black');
+										removeIfExists(packagegroup.childrenGroup);
+										packagegroup.childrenEnabled = false;
 
-	}
+									}
 
-	var resetDependencies = function(packagegroup){
-		packagegroup.dependenciesInfoBoxText.setFill('black');
-		removeIfExists(packagegroup.dependenciesGroup);
-		packagegroup.dependenciesEnabled = false;
-	}
-
-
-
-
+									var resetDependencies = function(packagegroup){
+										packagegroup.dependenciesInfoBoxText.setFill('black');
+										removeIfExists(packagegroup.dependenciesGroup);
+										packagegroup.dependenciesEnabled = false;
+									}
 
 									this.createCloseButton = function(){
 										this.closeButton = new Kinetic.Rect({
