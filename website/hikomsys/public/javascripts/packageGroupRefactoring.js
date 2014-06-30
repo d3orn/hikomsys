@@ -202,8 +202,8 @@ function PackageGroup(text, color, infos) {
 
 
 				var createToBox = function(array){
-					toClass = createToContent('Class: ' + array['class'], 2);
-					toName = createToContent('Name: ' + array['name'], 2);
+					toClass = createToContent('Class: ' + array['class'], 0);
+					toName = createToContent('Name: ' + array['name'], 1);
 					toPackage = createToContent('Package: ' + array['package'], 2);
 
 					toBox = new Kinetic.Rect({
