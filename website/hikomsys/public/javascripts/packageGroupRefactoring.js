@@ -272,7 +272,7 @@ var createTitle = function(){
 		strokeWidth:2
 	});
 
-	return new Kinetic.Group().add(title).add(titleBox);
+	return new Kinetic.Group().add(titleBox).add(title);
 }
 
 
