@@ -195,45 +195,34 @@ function PackageGroup(text, color, infos) {
 											.add(createToBox(array));
 									}
 
+									var createToBox = function(array){
+										toClass = createToContent('Class: ' + array['class'], 0);
+										toName = createToContent('Name: ' + array['name'], 1);
+										toPackage = createToContent('Package: ' + array['package'], 2);
 
+										toBox = new Kinetic.Rect({
+											width: Math.max(toClass.getWidth(),toName.getWidth(),toPackage.getWidth())+10,
+											height: (PACKAGE_HEIGHT-2)*3,
+											fill: 'white',
+											stroke: 'black',
+											strokeWidth:2
+										});
 
+										return new Kinetic.Group()
+											.add(toBox)
+											.add(toClass)
+											.add(toName)
+											.add(toPackage);
+									}
 
-
-
-
-				var createToBox = function(array){
-					toClass = createToContent('Class: ' + array['class'], 0);
-					toName = createToContent('Name: ' + array['name'], 1);
-					toPackage = createToContent('Package: ' + array['package'], 2);
-
-					toBox = new Kinetic.Rect({
-						width: Math.max(toClass.getWidth(),toName.getWidth(),toPackage.getWidth())+10,
-						height: (PACKAGE_HEIGHT-2)*3,
-						fill: 'white',
-						stroke: 'black',
-						strokeWidth:2
-					});
-
-					return new Kinetic.Group()
-						.add(toBox)
-						.add(toClass)
-						.add(toName)
-						.add(toPackage);
-				}
-
-
-
-
-
-
-var createToContent = function(content, offset){
-	return kineticText({
-		"size" : 12, 
-		"x" : 5, 
-		"y" : (5 + offset *(PACKAGE_HEIGHT-2)), 
-		"text" : content
-	});
-}
+									var createToContent = function(content, offset){
+										return kineticText({
+											"size" : 12, 
+											"x" : 5, 
+											"y" : (5 + offset *(PACKAGE_HEIGHT-2)), 
+											"text" : content
+										});
+									}
 
 
 
@@ -267,13 +256,8 @@ var createToContent = function(content, offset){
 			var id = this.getId().replace('Classes', '');
 			var pack = findPackageById(id);
 			this.setFill('blue');
-			pack.childrenInfoBoxText.setFill('black');
-			pack.dependenciesInfoBoxText.setFill('black');
 
-			removeIfExists(pack.childrenGroup);
-			removeIfExists(pack.dependenciesGroup);
-			pack.childrenEnabled = false;
-			pack.dependenciesEnabled = false;
+			resetOthers(pack, 'classes');
 
 			if(!pack.classesEnabled){
 				pack.classesEnabled = true;
@@ -376,11 +360,37 @@ var createToContent = function(content, offset){
 
 
 
+	var resetOthers(packagegroup, name){
+		switch(name){
+			case 'classes':
+				resetChildren(packagegroup);
+				resetDependencies(packagegroup);
+				break;
+			case 'children':
+				break;
+			case 'dependencies':
+				break;
+		}
+	}
 
+	var resetClasses = function(packagegroup){
+			packagegroup.classesInfoText.setFill('black');
+			removeIfExists(packagegroup.classGroup);
+			packagegroup.classesEnabled = false;
+	}
 
+	var resetChildren = function(packagegroup){
+		packagegroup.childrenInfoBoxText.setFill('black');
+		removeIfExists(packagegroup.childrenGroup);
+		packagegroup.childrenEnabled = false;
 
+	}
 
-
+	var resetDependencies = function(packagegroup){
+		packagegroup.dependenciesInfoBoxText.setFill('black');
+		removeIfExists(packagegroup.dependenciesGroup);
+		packagegroup.dependenciesEnabled = false;
+	}
 
 
 
