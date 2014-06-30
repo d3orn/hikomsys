@@ -202,23 +202,9 @@ function PackageGroup(text, color, infos) {
 
 
 				var createToBox = function(array){
-					toClass = kineticText({
-						"size" : 12, 
-						"x" : 5, 
-						"y" : (5+0*(PACKAGE_HEIGHT-2)), 
-						"text" : 'Class: '+array['class']
-					});
-
-					toName = kineticText({
-						"size" : 12, 
-						"x" : 5, 
-						"y" : (5+1*(PACKAGE_HEIGHT-2)), 
-						"text" : 'Name: '+array['name']
-					});
-
+					toClass = createToContent('Class: ' + array['class'], 2);
+					toName = createToContent('Name: ' + array['name'], 2);
 					toPackage = createToContent('Package: ' + array['package'], 2);
-
-
 
 					toBox = new Kinetic.Rect({
 						width: Math.max(toClass.getWidth(),toName.getWidth(),toPackage.getWidth())+10,
