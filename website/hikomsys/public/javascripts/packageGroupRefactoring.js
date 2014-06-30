@@ -458,7 +458,7 @@ function PackageGroup(text, color, infos) {
 									var boxAddMouseEnter = function(box){
 										box.on('mouseenter', function(event){
 											this.setFill('blue');
-											getTo(this);
+											to = getTo(this);
 
 											to.setPosition({x:pack.dependenciesBox.getWidth(), y: 0});
 											pack.dependenciesGroup.add(to);
