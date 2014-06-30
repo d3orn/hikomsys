@@ -535,7 +535,9 @@ var createTitle = function(){
 	this.addDependenciesInfoBox = function(){
 		this.dependenciesMaxLength = this.dependenciesInfoBox.reduce(function(a,b){
 			return a['from'].getWidth > b['from'].getWidth ? a : b
-		});
+		}).getWidth();
+
+		console.log(this.dependenciesMaxLength);
 
 		/*for (var i = 0; i < this.dependenciesInfoBox.length; i++){
 			if(this.dependenciesInfoBox[i]['from'].getWidth() > this.dependenciesMaxLength){this.dependenciesMaxLength = this.dependenciesInfoBox[i]['from'].getWidth()};
