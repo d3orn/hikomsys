@@ -465,7 +465,7 @@ function PackageGroup(text, color, infos) {
 											toBox.setPosition({x:pack.dependenciesBox.getWidth(), y: 0});
 											pack.dependenciesGroup.add(toBox);
 
-											pack.show(to,1);
+											pack.show(toBox,1);
 											stage.draw();
 										})
 									}
