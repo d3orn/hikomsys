@@ -267,38 +267,12 @@ function PackageGroup(text, color, infos) {
 	}
 
 	this.infoAddEventHandler = function(){
-		this.classInfoTextEventHandler();
-
-		this.childrenInfoBoxText.on('mouseenter', function(){
-			var id = this.getId().replace('Children', '');
-			var pack = findPackageById(id);
-			this.setFill('blue');
-
-			resetOthers(pack, 'children');
-
-			if(!pack.childrenEnabled){
-				pack.childrenEnabled = true;
-				pack.childrenGroup = pack.addInfo(pack.childrenInfoBox);
-			}	
-			infoLayer.draw();
-		});
-
-		this.dependenciesInfoBoxText.on('mouseenter', function(){
-			var id = this.getId().replace('Dependencies', '');
-			var pack = findPackageById(id);
-			this.setFill('blue');
-
-			resetOthers(pack, 'dependencies');
-
-			if(!pack.dependenciesEnabled){
-				pack.dependenciesEnabled = true;
-				pack.addDependenciesInfoBox();
-			}	
-			infoLayer.draw();
-		});
+		this.classInfoBoxTextEventHandler();
+		this.childrenInfoBoxTextEventHandler();
+		this.dependenciesInfoBoxTextEventHandler();
 	}
 
-	this.classInfoTextEventHandler = function(){		
+	this.classInfoBoxTextEventHandler = function(){		
 		this.classesInfoText.on('mouseenter', function(){
 			var id = this.getId().replace('Classes', '');
 			var pack = findPackageById(id);
@@ -313,6 +287,38 @@ function PackageGroup(text, color, infos) {
 			infoLayer.draw();
 		});
 	}
+
+	this.childrenInfoBoxTextEventHandler = function(){		
+		this.childrenInfoBoxText.on('mouseenter', function(){
+			var id = this.getId().replace('Children', '');
+			var pack = findPackageById(id);
+			this.setFill('blue');
+
+			resetOthers(pack, 'children');
+
+			if(!pack.childrenEnabled){
+				pack.childrenEnabled = true;
+				pack.childrenGroup = pack.addInfo(pack.childrenInfoBox);
+			}	
+			infoLayer.draw();
+		});
+	}
+
+	this.dependenciesInfoBoxTextEventHandler = function(){		
+		this.dependenciesInfoBoxText.on('mouseenter', function(){
+			var id = this.getId().replace('Dependencies', '');
+			var pack = findPackageById(id);
+			this.setFill('blue');
+
+			resetOthers(pack, 'dependencies');
+
+			if(!pack.dependenciesEnabled){
+				pack.dependenciesEnabled = true;
+				pack.addDependenciesInfoBox();
+			}	
+			infoLayer.draw();
+		});
+	}		
 
 	var resetOthers = function(packagegroup, name){
 		switch(name){
