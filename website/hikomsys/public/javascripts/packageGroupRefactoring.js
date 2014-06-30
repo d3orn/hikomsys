@@ -7,6 +7,7 @@ function PackageGroup(text, color, infos) {
 									this.isHighlightened = false;
 	
 	this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false; 
+	this.texts = ['Classes' , 'Children', 'Dependencies'];
 
 									this.create = function(){
 										this.createGroup();
@@ -215,12 +216,10 @@ function PackageGroup(text, color, infos) {
 						"text" : 'Name: '+array['name']
 					});
 
-					toPackage = kineticText({
-						"size" : 12, 
-						"x" : 5, 
-						"y" : (5+2*(PACKAGE_HEIGHT-2)), 
-						"text" : 'Package: '+array['package']
-					});
+					toPackage = createToConten('package', 2);
+
+
+
 					toBox = new Kinetic.Rect({
 						width: Math.max(toClass.getWidth(),toName.getWidth(),toPackage.getWidth())+10,
 						height: (PACKAGE_HEIGHT-2)*3,
@@ -241,7 +240,14 @@ function PackageGroup(text, color, infos) {
 
 
 
-
+var createToContent = function(content, offset){
+	return kineticText({
+		"size" : 12, 
+		"x" : 5, 
+		"y" : (5 + offset *(PACKAGE_HEIGHT-2)), 
+		"text" : content.charAt(0).toUpperCase() + content.substring(1) + ': ' + array[content]
+	});
+}
 
 
 
@@ -431,62 +437,20 @@ function PackageGroup(text, color, infos) {
 										}
 									}
 
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	this.createInfoTexts = function(){
-		texts = ['Classes' , 'Children', 'Dependencies'];
-		infoTexts = [];
-		for(var i = 0; i < texts.length; i++){
-			infoTexts.push(kineticText({
-				"size" : 12, 
-				"text" : texts[i].toUpperCase(), 
-				"id" : 	this.text + texts[i],
-				})
-			);
-		}
-		this.classesInfoText = infoTexts[0];
-		this.childrenInfoBoxText = infoTexts[1];
-		this.dependenciesInfoBoxText = infoTexts[2];
-	}
-
-									
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+									this.createInfoTexts = function(){
+										infoTexts = [];
+										for(var i = 0; i < this.texts.length; i++){
+											infoTexts.push(kineticText({
+												"size" : 12, 
+												"text" : this.texts[i].toUpperCase(),
+												"id" : 	this.text + this.texts[i],
+												})
+											);
+										}
+										this.classesInfoText = infoTexts[0];
+										this.childrenInfoBoxText = infoTexts[1];
+										this.dependenciesInfoBoxText = infoTexts[2];
+									}
 
 									this.addInfo = function(infoBox){
 										var maxLength = 0;
@@ -519,50 +483,24 @@ function PackageGroup(text, color, infos) {
 										return group;
 									}
 
+									this.addDependenciesInfoBox = function(){
+										this.dependenciesMaxLength = this.dependenciesInfoBox.reduce(
+											function(a,b){
+												return a['from'].getWidth() > b['from'].getWidth() ? a : b
+											})['from'].getWidth();
 
+										this.createDependenciesGroup();
 
+										for (var i = 0; i < this.dependenciesInfoBox.length; i++){
+											from  = this.dependenciesInfoBox[i]['from'];
+											this.dependenciesGroup.add(from);
+											boxEventHandler(from);
+										}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	this.addDependenciesInfoBox = function(){
-									this.dependenciesMaxLength = this.dependenciesInfoBox.reduce(
-										function(a,b){
-											return a['from'].getWidth() > b['from'].getWidth() ? a : b
-										})['from'].getWidth();
-
-									this.createDependenciesGroup();
-
-	 	for (var i = 0; i < this.dependenciesInfoBox.length; i++){
-	 		from  = this.dependenciesInfoBox[i]['from'];
-			this.dependenciesGroup.add(from);
-			boxEventHandler(from);
-		}
-
-		this.dependenciesGroup.add(createTitle('from', 31));
-
-		this.infoGroup.add(this.dependenciesGroup);
-		this.show(this.dependenciesGroup,1);
-	}
-
-
-
-
-
+										this.dependenciesGroup.add(createTitle('from', 31));
+										this.infoGroup.add(this.dependenciesGroup);
+										this.show(this.dependenciesGroup,1);
+									}
 
 									var createTitle = function(title, width){
 										return new Kinetic.Group()
