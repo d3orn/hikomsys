@@ -360,7 +360,7 @@ function PackageGroup(text, color, infos) {
 
 
 
-	var resetOthers(packagegroup, name){
+	var resetOthers = function(packagegroup, name){
 		switch(name){
 			case 'classes':
 				resetChildren(packagegroup);
