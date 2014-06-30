@@ -216,7 +216,7 @@ function PackageGroup(text, color, infos) {
 						"text" : 'Name: '+array['name']
 					});
 
-					toPackage = createToContent('package', 2);
+					toPackage = createToContent('Package: ' + array['package'], 2);
 
 
 
@@ -245,7 +245,7 @@ var createToContent = function(content, offset){
 		"size" : 12, 
 		"x" : 5, 
 		"y" : (5 + offset *(PACKAGE_HEIGHT-2)), 
-		"text" : content.charAt(0).toUpperCase() + content.substring(1) + ': ' + array[content]
+		"text" : content
 	});
 }
 
