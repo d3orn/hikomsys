@@ -534,8 +534,8 @@ var createTitle = function(){
 
 	this.addDependenciesInfoBox = function(){
 		this.dependenciesMaxLength = this.dependenciesInfoBox.reduce(function(a,b){
-			return a['from'].getWidth > b['from'].getWidth ? a : b
-		}).getWidth();
+			return a['from'].getWidth() > b['from'].getWidth() ? a : b
+		});
 
 		console.log(this.dependenciesMaxLength);
 
