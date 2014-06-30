@@ -210,25 +210,24 @@ function PackageGroup(text, color, infos) {
 				}
 
 				var createTitle = function(){
-					titleBox = new Kinetic.Rect({
-						width: title.getWidth()+10,
-						height: (PACKAGE_HEIGHT-4),
-						x: 0,
-						y: -(PACKAGE_HEIGHT-4),
-						fill: 'white',
-						stroke: 'black',
-						strokeWidth:2
-					});
-
 					return new Kinetic.Group()
-						.add(kineticText({
-							"size" : 12, 
-							"x" : 4, 
-							"y" : -(PACKAGE_HEIGHT-8), 
-							"text" : 'TO'
-							});
+						.add(new Kinetic.Rect({
+								width: title.getWidth()+10,
+								height: (PACKAGE_HEIGHT-4),
+								x: 0,
+								y: -(PACKAGE_HEIGHT-4),
+								fill: 'white',
+								stroke: 'black',
+								strokeWidth:2
+							})
 						)
-						.add(title);
+						.add(kineticText({
+								"size" : 12, 
+								"x" : 4, 
+								"y" : -(PACKAGE_HEIGHT-8), 
+								"text" : 'TO'
+							})
+						);
 				}
 
 				var createToBox = function(array){
