@@ -210,16 +210,9 @@ function PackageGroup(text, color, infos) {
 				}
 
 				var createTitle = function(){
-					var title = kineticText({
-								"size" : 12, 
-								"x" : 4, 
-								"y" : -(PACKAGE_HEIGHT-8), 
-								"text" : 'TO'
-							})
-					console.log(title.getWidth());
 					return new Kinetic.Group()
 						.add(new Kinetic.Rect({
-								width: title.getWidth()+10,
+								width: 24,  //'To' has a width of 14
 								height: (PACKAGE_HEIGHT-4),
 								x: 0,
 								y: -(PACKAGE_HEIGHT-4),
