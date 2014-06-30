@@ -216,7 +216,7 @@ function PackageGroup(text, color, infos) {
 						"text" : 'Name: '+array['name']
 					});
 
-					toPackage = createToConten('package', 2);
+					toPackage = createToContent('package', 2);
 
 
 
