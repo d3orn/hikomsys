@@ -209,13 +209,6 @@ function PackageGroup(text, color, infos) {
 				}
 
 				var createToBox = function(){
-					toBox = new Kinetic.Rect({
-						width: Math.max(toClass.getWidth(),toName.getWidth(),toPackage.getWidth())+10,
-						height: (PACKAGE_HEIGHT-2)*3,
-						fill: 'white',
-						stroke: 'black',
-						strokeWidth:2
-					})
 					toClass = kineticText({
 						"size" : 12, 
 						"x" : 5, 
@@ -236,6 +229,13 @@ function PackageGroup(text, color, infos) {
 						"y" : (5+2*(PACKAGE_HEIGHT-2)), 
 						"text" : 'Package: '+dependencies[key]['to']['package']
 					});
+					toBox = new Kinetic.Rect({
+						width: Math.max(toClass.getWidth(),toName.getWidth(),toPackage.getWidth())+10,
+						height: (PACKAGE_HEIGHT-2)*3,
+						fill: 'white',
+						stroke: 'black',
+						strokeWidth:2
+					})
 
 					return new Kinetic.Group()
 						.add(toBox)
