@@ -457,6 +457,7 @@ function PackageGroup(text, color, infos) {
 
 									var boxAddMouseEnter = function(box){
 										box.on('mouseenter', function(event){
+											var id = box.getId().replace('From', '');
 											var pack = findPackageById(id);
 											this.setFill('blue');
 											toBox = getToBox(this);
