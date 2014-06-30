@@ -595,7 +595,7 @@ function PackageGroup(text, color, infos) {
 				var createTitle = function(title){
 					return new Kinetic.Group()
 						.add(new Kinetic.Rect({
-								width: 24,  //'To' has a width of 14
+								width: title.length*7+10,
 								height: (PACKAGE_HEIGHT-4),
 								x: 0,
 								y: -(PACKAGE_HEIGHT-4),
