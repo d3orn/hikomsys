@@ -190,7 +190,7 @@ function PackageGroup(text, color, infos) {
 
 									var createToGroup = function(array){
 										return new Kinetic.Group()
-											.add(createTitle('to'))
+											.add(createTitle('to', 24))
 											.add(createToBox(array));
 									}
 
@@ -583,6 +583,15 @@ function PackageGroup(text, color, infos) {
 		this.dependenciesGroup.add(createTitle('from'))
 			.move({x:this.infoBox.getWidth()+1, y:0})
 		
+
+			console.log(kineticText({
+								"size" : 12, 
+								"x" : 4, 
+								"y" : -(PACKAGE_HEIGHT-8), 
+								"text" : 'FROM'
+							})).getWidth();
+
+
 		this.infoGroup.add(this.dependenciesGroup);
 		this.show(this.dependenciesGroup,1);
 	}
@@ -592,10 +601,10 @@ function PackageGroup(text, color, infos) {
 
 
 
-				var createTitle = function(title){
+				var createTitle = function(title, width){
 					return new Kinetic.Group()
 						.add(new Kinetic.Rect({
-								width: title.length*7+10,
+								width: width,
 								height: (PACKAGE_HEIGHT-4),
 								x: 0,
 								y: -(PACKAGE_HEIGHT-4),
