@@ -231,25 +231,9 @@ function PackageGroup(text, color, infos) {
 					strokeWidth:2
 				})
 
-				title = kineticText({
-					"size" : 12, 
-					"x" : 4, 
-					"y" : -(PACKAGE_HEIGHT-8), 
-					"text" : 'TO'
-				});
-
-				titleBox = new Kinetic.Rect({
-					width: title.getWidth()+10,
-					height: (PACKAGE_HEIGHT-4),
-					x: 0,
-					y: -(PACKAGE_HEIGHT-4),
-					fill: 'white',
-					stroke: 'black',
-					strokeWidth:2
-				})
+				var title = createTitle();
 			
-				toGroup.add(titleBox)
-					.add(title)
+				toGroup.add(title)
 					.add(toBox)
 					.add(toClass)
 					.add(toName)
@@ -270,7 +254,26 @@ function PackageGroup(text, color, infos) {
 
 
 
+var createTitle = function(){
+	title = kineticText({
+		"size" : 12, 
+		"x" : 4, 
+		"y" : -(PACKAGE_HEIGHT-8), 
+		"text" : 'TO'
+	});
 
+	titleBox = new Kinetic.Rect({
+		width: title.getWidth()+10,
+		height: (PACKAGE_HEIGHT-4),
+		x: 0,
+		y: -(PACKAGE_HEIGHT-4),
+		fill: 'white',
+		stroke: 'black',
+		strokeWidth:2
+	});
+
+	return new Kinetic.Group().add(title).add(titleBox);
+}
 
 
 
