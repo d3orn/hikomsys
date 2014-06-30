@@ -245,10 +245,6 @@ function PackageGroup(text, color, infos) {
 	this.addInfoBox = function(){
 									this.infoCount = !(this.classesInfoBox.length === 0) + !(this.childrenInfoBox.length === 0 ) + !(this.dependenciesInfoBox.length === 0);
 									this.infoBoxEnabled = true;
-
-									this.createInfoTexts();
-									this.moveInfoTexts();
-									this.createCloseButton();
 		
 		this.infoBox = new Kinetic.Rect({
 			width: this.dependenciesInfoBoxText.getWidth()+10,
@@ -264,6 +260,10 @@ function PackageGroup(text, color, infos) {
 			opacity: 0,
 			name: 'infoGroup'	
 		});
+
+		this.createInfoTexts();
+		this.moveInfoTexts();
+		this.createCloseButton();
 
 		this.infoGroup.add(this.infoBox);
 		this.infoGroup.add(this.closeButton)
