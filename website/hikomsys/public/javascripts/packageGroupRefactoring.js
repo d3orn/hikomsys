@@ -175,24 +175,26 @@ function PackageGroup(text, color, infos) {
 
 
 	this.createDependencies = function(){
-		var dependencies = this.infos['allDependencies'];
+		var allDependencies = this.infos['allDependencies'];
 		this.dependenciesInfoBox = [];
-		var i = 0;	
-		for(key in dependencies){	
-			if(dependencies[key]['from']){
+		var yOffset = 0;	
+		for(key in allDependencies){	
+			currentDependency = dependencies[key];
+			currentDependencyFrom = currentDependency['from'];
+			if(currentDependencyFrom){
+
 				from = kineticText({
 					"size" : 12, 
 					"x" : 5, 
-					"y" : (5+i*(PACKAGE_HEIGHT-2)), 
-					"text" : dependencies[key]['from']['class']+'.'+dependencies[key]['from']['name'], 
-					"id" : dependencies[key]['from']['package'] + 'From',
-					"name" : i	
+					"y" : (5+ yOffset *(PACKAGE_HEIGHT-2)), 
+					"text" : currentDependencyFrom['class']+'.'+currentDependencyFrom['name'], 
+					"id" : currentDependencyFrom['package'] + 'From',
+					"name" : yOffset	
 				});
 
-
-				this.dependenciesInfoBox.push({'from' : from, 'to' : createToGroup(dependencies[key]['to'])});
+				this.dependenciesInfoBox.push({'from' : from, 'to' : createToGroup(currentDependency['to'])});
 				
-				i++;
+				yOffset++;
 			}
 		}
 		return this;
@@ -206,6 +208,27 @@ function PackageGroup(text, color, infos) {
 					return new Kinetic.Group()
 						.add(createTitle())
 						.add(createToBox(array));
+				}
+
+				var createTitle = function(){
+					title = kineticText({
+						"size" : 12, 
+						"x" : 4, 
+						"y" : -(PACKAGE_HEIGHT-8), 
+						"text" : 'TO'
+					});
+
+					titleBox = new Kinetic.Rect({
+						width: title.getWidth()+10,
+						height: (PACKAGE_HEIGHT-4),
+						x: 0,
+						y: -(PACKAGE_HEIGHT-4),
+						fill: 'white',
+						stroke: 'black',
+						strokeWidth:2
+					});
+
+					return new Kinetic.Group().add(titleBox).add(title);
 				}
 
 				var createToBox = function(array){
@@ -235,13 +258,13 @@ function PackageGroup(text, color, infos) {
 						fill: 'white',
 						stroke: 'black',
 						strokeWidth:2
-					})
+					});
 
 					return new Kinetic.Group()
 						.add(toBox)
 						.add(toClass)
 						.add(toName)
-						.add(toPackage)
+						.add(toPackage);
 				}
 
 
@@ -252,63 +275,6 @@ function PackageGroup(text, color, infos) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var createTitle = function(){
-	title = kineticText({
-		"size" : 12, 
-		"x" : 4, 
-		"y" : -(PACKAGE_HEIGHT-8), 
-		"text" : 'TO'
-	});
-
-	titleBox = new Kinetic.Rect({
-		width: title.getWidth()+10,
-		height: (PACKAGE_HEIGHT-4),
-		x: 0,
-		y: -(PACKAGE_HEIGHT-4),
-		fill: 'white',
-		stroke: 'black',
-		strokeWidth:2
-	});
-
-	return new Kinetic.Group().add(titleBox).add(title);
-}
 
 
 
