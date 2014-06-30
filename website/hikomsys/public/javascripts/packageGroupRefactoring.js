@@ -3,7 +3,7 @@ function PackageGroup(text, color, infos) {
 									this.className = 'packageGroup';
 									this.text = text;
 									this.infos = infos;
-									this.color = (color ? color : 'white');
+									this.color = color || 'white';
 									this.isHighlightened = false;
 	
 	this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false; 
@@ -212,6 +212,17 @@ function PackageGroup(text, color, infos) {
 					"text" : 'Package: '+dependencies[key]['to']['package']
 				});
 
+
+			/*	this.test = function(key, int)
+					texts = ['package' , 'name', 'class'];
+					capitalizeMe.charAt(0).toUpperCase() + capitalizeMe.substring(1);
+				return kineticText({
+					"size" : 12, 
+					"x" : 5, 
+					"y" : (5+int*(PACKAGE_HEIGHT-2)), 
+					"text" : texts[int] + ': ' + dependencies[key]['to']['package']
+				})*/
+
 				toBox = new Kinetic.Rect({
 					width: Math.max(toClass.getWidth(),toName.getWidth(),toPackage.getWidth())+10,
 					height: (PACKAGE_HEIGHT-2)*3,
@@ -243,8 +254,6 @@ function PackageGroup(text, color, infos) {
 					.add(toClass)
 					.add(toName)
 					.add(toPackage);
-
-				//titleBox.move({x:0, y:-(PACKAGE_HEIGHT-4)});
 
 				this.dependenciesInfoBox.push({'from' : from, 'to' : toGroup});
 				
