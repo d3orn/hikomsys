@@ -246,7 +246,6 @@ function PackageGroup(text, color, infos) {
 									this.infoCount = !(this.classesInfoBox.length === 0) + !(this.childrenInfoBox.length === 0 ) + !(this.dependenciesInfoBox.length === 0);
 									this.infoBoxEnabled = true;
 
-
 									this.createInfoTexts();
 
 		
@@ -254,7 +253,7 @@ function PackageGroup(text, color, infos) {
 			width: this.dependenciesInfoBoxText.getWidth()+10,
 			height: (PACKAGE_HEIGHT-3)*this.infoCount,
 			fill: 'white',
-			stroke: 'red',
+			stroke: 'black',
 			strokeWidth:2
 		});							
 
@@ -287,48 +286,11 @@ function PackageGroup(text, color, infos) {
 		this.show(this.infoGroup,2);
 
 
+		infoAddEventHandler();
 
-		this.classesInfoText.on('mouseenter', function(){
-			var id = this.getId().replace('Classes', '');
-			var pack = findPackageById(id);
-			this.setFill('blue');
 
-			resetOthers(pack, 'classes');
 
-			if(!pack.classesEnabled){
-				pack.classesEnabled = true;
-				pack.classGroup = pack.addInfo(pack.classesInfoBox);
-			}	
-			infoLayer.draw();
-		});
 
-		this.childrenInfoBoxText.on('mouseenter', function(){
-			var id = this.getId().replace('Children', '');
-			var pack = findPackageById(id);
-			this.setFill('blue');
-
-			resetOthers(pack, 'children');
-
-			if(!pack.childrenEnabled){
-				pack.childrenEnabled = true;
-				pack.childrenGroup = pack.addInfo(pack.childrenInfoBox);
-			}	
-			infoLayer.draw();
-		});
-
-		this.dependenciesInfoBoxText.on('mouseenter', function(){
-			var id = this.getId().replace('Dependencies', '');
-			var pack = findPackageById(id);
-			this.setFill('blue');
-
-			resetOthers(pack, 'dependencies');
-
-			if(!pack.dependenciesEnabled){
-				pack.dependenciesEnabled = true;
-				pack.addDependenciesInfoBox();
-			}	
-			infoLayer.draw();
-		});
 
 
 
@@ -340,6 +302,68 @@ function PackageGroup(text, color, infos) {
 
 
 	}
+
+
+
+		var infoAddEventHandler = function(){
+			this.classesInfoText.on('mouseenter', function(){
+				var id = this.getId().replace('Classes', '');
+				var pack = findPackageById(id);
+				this.setFill('blue');
+
+				resetOthers(pack, 'classes');
+
+				if(!pack.classesEnabled){
+					pack.classesEnabled = true;
+					pack.classGroup = pack.addInfo(pack.classesInfoBox);
+				}	
+				infoLayer.draw();
+			});
+
+			this.childrenInfoBoxText.on('mouseenter', function(){
+				var id = this.getId().replace('Children', '');
+				var pack = findPackageById(id);
+				this.setFill('blue');
+
+				resetOthers(pack, 'children');
+
+				if(!pack.childrenEnabled){
+					pack.childrenEnabled = true;
+					pack.childrenGroup = pack.addInfo(pack.childrenInfoBox);
+				}	
+				infoLayer.draw();
+			});
+
+			this.dependenciesInfoBoxText.on('mouseenter', function(){
+				var id = this.getId().replace('Dependencies', '');
+				var pack = findPackageById(id);
+				this.setFill('blue');
+
+				resetOthers(pack, 'dependencies');
+
+				if(!pack.dependenciesEnabled){
+					pack.dependenciesEnabled = true;
+					pack.addDependenciesInfoBox();
+				}	
+				infoLayer.draw();
+			});
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
