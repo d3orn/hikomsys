@@ -190,7 +190,7 @@ function PackageGroup(text, color, infos) {
 
 									var createToGroup = function(array){
 										return new Kinetic.Group()
-											.add(createTitle())
+											.add(createTitle('to'))
 											.add(createToBox(array));
 									}
 
