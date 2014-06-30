@@ -194,6 +194,17 @@ function PackageGroup(text, color, infos) {
 											.add(createToBox(array));
 									}
 
+
+
+
+
+
+
+
+
+
+
+
 				var createTitle = function(){
 					return new Kinetic.Group()
 						.add(new Kinetic.Rect({
@@ -446,21 +457,62 @@ function PackageGroup(text, color, infos) {
 										}
 									}
 
-									this.createInfoTexts = function(){
-										texts = ['Classes' , 'Children', 'Dependencies'];
-										infoTexts = [];
-										for(var i = 0; i < texts.length; i++){
-											infoTexts.push(kineticText({
-												"size" : 12, 
-												"text" : texts[i].toUpperCase(), 
-												"id" : 	this.text + texts[i],
-												})
-											);
-										}
-										this.classesInfoText = infoTexts[0];
-										this.childrenInfoBoxText = infoTexts[1];
-										this.dependenciesInfoBoxText = infoTexts[2];
-									}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	this.createInfoTexts = function(){
+		texts = ['Classes' , 'Children', 'Dependencies'];
+		infoTexts = [];
+		for(var i = 0; i < texts.length; i++){
+			infoTexts.push(kineticText({
+				"size" : 12, 
+				"text" : texts[i].toUpperCase(), 
+				"id" : 	this.text + texts[i],
+				})
+			);
+		}
+		this.classesInfoText = infoTexts[0];
+		this.childrenInfoBoxText = infoTexts[1];
+		this.dependenciesInfoBoxText = infoTexts[2];
+	}
+
+									
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 									this.addInfo = function(infoBox){
 										var maxLength = 0;
@@ -528,13 +580,14 @@ function PackageGroup(text, color, infos) {
 			boxEventHandler(from);
 		}
 
-		title = new Kinetic.Text({
+		title = kineticText({
+			x: 4,
+			y: -(PACKAGE_HEIGHT-8),
 			text: 'FROM',
-			fontSize: 12,
-			fontFamily: 'Calibri',
 			fill: 'black',
-			align: 'left',
 		})
+
+		console.log('FROM'.length);
 
 		titleBox = new Kinetic.Rect({
 			width: title.getWidth()+10,
@@ -549,51 +602,76 @@ function PackageGroup(text, color, infos) {
 			.move({x:this.infoBox.getWidth()+1, y:0})
 		
 		titleBox.move({x:0, y:-(PACKAGE_HEIGHT-4)});
-		title.move({x:4, y:-(PACKAGE_HEIGHT-8)});
 		this.infoGroup.add(this.dependenciesGroup);
 		this.show(this.dependenciesGroup,1);
 	}
 
-	var boxEventHandler = function(box){
-		boxAddMouseEnter(box);
-		boxAddMouseLeave(box);
-	}
-
-	var boxAddMouseEnter = function(box){
-		box.on('mouseenter', function(event){
-			this.setFill('blue');
-			var index = this.getName();
-			var id = this.getId().replace('From', '');
-			var pack = findPackageById(id);
-			var to = pack.dependenciesInfoBox[index]['to'];
-			to.setPosition({x:pack.dependenciesBox.getWidth(), y: 0});
-			pack.dependenciesGroup.add(to);
-
-			pack.show(to,1);
-			stage.draw();
-		})
-	}
-
-	var boxAddMouseLeave = function(box){
-		box.on('mouseleave', function(event){
-			this.setFill('black');
-			var index = this.getName();
-			var id = this.getId().replace('From', '');
-			var pack = findPackageById(id);
-			var to = pack.dependenciesInfoBox[index]['to'];
-
-			if(to){
-				to.remove();
-				stage.draw();
-			}
-		})		
-	}
-
-
-	
 
 
 
+
+
+			/*	var createTitle = function(){
+					return new Kinetic.Group()
+						.add(new Kinetic.Rect({
+								width: 24,  //'To' has a width of 14
+								height: (PACKAGE_HEIGHT-4),
+								x: 0,
+								y: -(PACKAGE_HEIGHT-4),
+								fill: 'white',
+								stroke: 'black',
+								strokeWidth:2
+							})
+						)
+						.add(kineticText({
+								"size" : 12, 
+								"x" : 4, 
+								"y" : -(PACKAGE_HEIGHT-8), 
+								"text" : 'TO'
+							})
+						);
+				}*/
+
+
+
+
+
+
+
+									var boxEventHandler = function(box){
+										boxAddMouseEnter(box);
+										boxAddMouseLeave(box);
+									}
+
+									var boxAddMouseEnter = function(box){
+										box.on('mouseenter', function(event){
+											this.setFill('blue');
+											var index = this.getName();
+											var id = this.getId().replace('From', '');
+											var pack = findPackageById(id);
+											var to = pack.dependenciesInfoBox[index]['to'];
+											to.setPosition({x:pack.dependenciesBox.getWidth(), y: 0});
+											pack.dependenciesGroup.add(to);
+
+											pack.show(to,1);
+											stage.draw();
+										})
+									}
+
+									var boxAddMouseLeave = function(box){
+										box.on('mouseleave', function(event){
+											this.setFill('black');
+											var index = this.getName();
+											var id = this.getId().replace('From', '');
+											var pack = findPackageById(id);
+											var to = pack.dependenciesInfoBox[index]['to'];
+
+											if(to){
+												to.remove();
+												stage.draw();
+											}
+										})		
+									}
 
 									this.createDependenciesGroup = function(){
 										this.dependenciesBox = new Kinetic.Rect({
@@ -609,40 +687,7 @@ function PackageGroup(text, color, infos) {
 										this.dependenciesGroup.add(this.dependenciesBox);
 									}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/*-------------------------------------------------------- DEPRECATED --------------------------------------------------------*/
+/*-------------------------------------------------------- DEPRECATED --------------------------------------------------------*/
 	this.hide = function(element, time){
 		var tween = new Kinetic.Tween({
 			node: element,
