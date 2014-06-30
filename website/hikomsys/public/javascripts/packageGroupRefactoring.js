@@ -580,8 +580,7 @@ function PackageGroup(text, color, infos) {
 			boxEventHandler(from);
 		}
 
-		this.dependenciesGroup.add(createTitle('From'))
-			.add(title)
+		this.dependenciesGroup.add(createTitle('from'))
 			.move({x:this.infoBox.getWidth()+1, y:0})
 		
 		this.infoGroup.add(this.dependenciesGroup);
