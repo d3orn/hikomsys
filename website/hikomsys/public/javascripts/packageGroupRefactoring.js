@@ -580,28 +580,10 @@ function PackageGroup(text, color, infos) {
 			boxEventHandler(from);
 		}
 
-		title = kineticText({
-			x: 4,
-			y: -(PACKAGE_HEIGHT-8),
-			text: 'FROM',
-			fill: 'black',
-		})
-
-		console.log('FROM'.length);
-
-		titleBox = new Kinetic.Rect({
-			width: title.getWidth()+10,
-			height: (PACKAGE_HEIGHT-4),
-			fill: 'white',
-			stroke: 'black',
-			strokeWidth:2
-		})
-
-		this.dependenciesGroup.add(titleBox)
+		this.dependenciesGroup.add(createTitle('From'))
 			.add(title)
 			.move({x:this.infoBox.getWidth()+1, y:0})
 		
-		titleBox.move({x:0, y:-(PACKAGE_HEIGHT-4)});
 		this.infoGroup.add(this.dependenciesGroup);
 		this.show(this.dependenciesGroup,1);
 	}
@@ -611,7 +593,7 @@ function PackageGroup(text, color, infos) {
 
 
 
-			/*	var createTitle = function(){
+				var createTitle = function(title){
 					return new Kinetic.Group()
 						.add(new Kinetic.Rect({
 								width: 24,  //'To' has a width of 14
@@ -627,10 +609,10 @@ function PackageGroup(text, color, infos) {
 								"size" : 12, 
 								"x" : 4, 
 								"y" : -(PACKAGE_HEIGHT-8), 
-								"text" : 'TO'
+								"text" : title.toUpperCase()
 							})
 						);
-				}*/
+				}
 
 
 
