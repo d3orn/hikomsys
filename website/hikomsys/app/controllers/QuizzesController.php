@@ -33,33 +33,31 @@ class QuizzesController extends \BaseController {
 													->with('selected', $input);
 											}	
 
-	public function show($id)
+											public function edit($id)
+											{
+												return View::make('quizzes.show')
+													->with('quizId' , $id)
+													->with('selected', Session::get('selected'));
+											}
+
+
+											public function show($id)
+											{
+												$quiz = Quiz::findOrFail($id);
+
+												return View::make('quizzes.result', compact($quiz))
+													->with('quizId', $id)
+													->with('greenPoints', $quiz->green_points)
+													->with('redPoints', $quiz->red_points);
+											}
+
+											public function success()
+											{
+												return Redirect::home()->with('message', 'Thank you for participating!');
+											}
+
+	public function visualization()
 	{
-		$quiz = Quiz::findOrFail($id);
-		$projectId = $quiz->project_id;
-
-		$projectName = Project::findOrFail($projectId)->name." blabla".Project::findOrFail($projectId)->version;
-
-
-		return View::make('quizzes.result', compact($quiz))
-			->with('quizId', $id)
-			->with('projectName', $projectName)
-			->with('greenPoints', $quiz->green_points)
-			->with('redPoints', $quiz->red_points);
-	}
-
-	public function edit($id)
-	{
-		return View::make('quizzes.show')
-			->with('quizId' , $id)
-			->with('selected', Session::get('selected'));
-	}
-
-	public function success(){
-		return Redirect::home()->with('message', 'Thank you for participating!');
-	}
-
-	public function visualization(){
 		$quiz = Quiz::orderBy(DB::raw('RAND()'))->get()->first();
 		$id = $quiz->id;
 		return View::make('quizzes.visualization')
@@ -68,7 +66,8 @@ class QuizzesController extends \BaseController {
 
 
 	//TODO refactor stuff below is so ugly..
-	public function createResults(){
+	public function createResults()
+	{
 		global $solution;
 
 		$db = self::getDb('localhost', 'hikomsys');
@@ -90,7 +89,8 @@ class QuizzesController extends \BaseController {
 		self::getPoints();
 	}
 
-	public function sendJSON(){
+	public function sendJSON()
+	{
 		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
 		$quizId = Input::get('quizId');
@@ -104,7 +104,8 @@ class QuizzesController extends \BaseController {
 	}
 
 	// orange = 0, red = -1 and green = 1
-	public function getPoints(){
+	public function getPoints()
+	{
 		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
 		$quizId = Input::get('quizId');
@@ -219,7 +220,8 @@ class QuizzesController extends \BaseController {
 
 
 
-	private function createSolutionTable($quizId){
+	private function createSolutionTable($quizId)
+	{
 		$db = self::getDb('localhost', 'hikomsys');
 		
 		$quiz = Quiz::findOrFail($quizId);
@@ -238,7 +240,8 @@ class QuizzesController extends \BaseController {
 
 	}
 
-	private function createUserSubmTable($packages, $id){
+	private function createUserSubmTable($packages, $id)
+	{
 		global $userSub;
 
 		$db = self::getDb('localhost', 'hikomsysQuizzes');
@@ -252,7 +255,8 @@ class QuizzesController extends \BaseController {
 		}
 	}
 
-	private function createResultTable($id){
+	private function createResultTable($id)
+	{
 		global $results, $userSub;
 
 		$db = self::getDb('localhost', 'hikomsysQuizzes');
@@ -266,7 +270,8 @@ class QuizzesController extends \BaseController {
 		}
 	}	
 
-	private function crossCheck(){
+	private function crossCheck()
+	{
 		global $results, $userSub;
 
 		$cursor = $userSub->find(['dependencies' => ['$exists' => true]]);
@@ -277,7 +282,8 @@ class QuizzesController extends \BaseController {
 		}
 	}
 
-	private function checkDependencies($dependencies, $packageName){
+	private function checkDependencies($dependencies, $packageName)
+	{
 		global $solution, $results;
 
 		$results->update(['name' => $packageName], ['$set' => ['dependencies' => []]]);
@@ -291,7 +297,8 @@ class QuizzesController extends \BaseController {
 		}
 	}
 
-	private function addForgottenDependencies(){
+	private function addForgottenDependencies()
+	{
 		global $solution, $results, $userSub;
 
 		$packages = $userSub->find([], ['_id' => 0, 'position' => 0, 'dependencies' => 0]);
@@ -317,7 +324,8 @@ class QuizzesController extends \BaseController {
 		}
 	}
 
-	private function addAdditionalInformation(){
+	private function addAdditionalInformation()
+	{
 		global $solution, $results;
 
 		$packages = $results->find([], ['_id' => 0, 'position' => 0, 'dependencies' => 0]);
@@ -340,7 +348,8 @@ class QuizzesController extends \BaseController {
 		}
 	}
 
-	private function colorPackage(){
+	private function colorPackage()
+	{
 		global $results;
 
 		$alpha = 0.3;
@@ -364,7 +373,8 @@ class QuizzesController extends \BaseController {
 		}
 	}
 
-	private function cleanUp(){
+	private function cleanUp()
+	{
 		global $solution;
 
 		$solution->drop();
