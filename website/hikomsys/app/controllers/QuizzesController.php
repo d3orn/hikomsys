@@ -111,7 +111,7 @@ class QuizzesController extends \BaseController {
 
 												$cursor = $results->find([], ['_id' => 0, 'name' => 0,'position' => 0, 'color' => 0]);
 												
-												$counted = countColors($cursor);
+												$counted = self::countColors($cursor);
 												$countGreen = $counted[0];
 												$countOrange = $counted[1];
 												$countRed = $counted[2];
