@@ -27,7 +27,7 @@ class QuizzesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$db = self::getDb('localhost', 'hikomsys');
+		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
 		$input = Input::all();
 
@@ -36,19 +36,6 @@ class QuizzesController extends \BaseController {
 
 		$quiz = Quiz::create(['user_id' => $userId, 'project_id' => $projectId]); 
 		
-		$project = Project::find($projectId);
-		$projectName = $project->name.'V'.$project->version;
-
-		//TODO Somehow MongoDB Namespace is limited I have to fiqure out how exactly to limit user input of the project name
-		$solutionName = $quiz->id.'_So';
-
-		$db->command([
-			"eval" => new MongoCode("function(){
-				db['".$projectName."'].copyTo('".$solutionName."')
-			};"
-			)
-		]);
-
 		return Redirect::route('quizzes.edit', [$quiz->id])
 			->with('selected', $input);
 	}	
@@ -108,8 +95,9 @@ class QuizzesController extends \BaseController {
 		$quizId = Input::get('quizId');
 
 		$solutionName = $quizId.'_So';
+		self::createSolutionTable($quizId);
 		$solution = $db->$solutionName;
-
+		
 		self::createUserSubmTable($packages, $quizId);
 		self::createResultTable($quizId);
 		self::crossCheck();
@@ -122,7 +110,7 @@ class QuizzesController extends \BaseController {
 	}
 
 	public function sendJSON(){
-		$db = self::getDb('localhost', 'hikomsys');
+		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
 		$quizId = Input::get('quizId');
 
@@ -136,7 +124,7 @@ class QuizzesController extends \BaseController {
 
 	// ornage = 0, red = -1 and green = 1
 	public function getPoints(){
-		$db = self::getDb('localhost', 'hikomsys');
+		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
 		$quizId = Input::get('quizId');
 
@@ -181,10 +169,29 @@ class QuizzesController extends \BaseController {
 		return $quiz->total_points;
 	}
 
+	private function createSolutionTable($quizId){
+		$db = self::getDb('localhost', 'hikomsys');
+		
+		$quiz = Quiz::findOrFail($quizId);
+		$project = Project::find($quiz->project_id);
+		$projectName = $project->name.'V'.$project->version;
+
+		//TODO Somehow MongoDB Namespace is limited I have to fiqure out how exactly to limit user input of the project name
+		$solutionName = $quiz->id.'_So';
+
+		$db->command([
+			"eval" => new MongoCode("function(){
+				db['".$projectName."'].copyTo('".$solutionName."')
+			};"
+			)
+		]);
+
+	}
+
 	private function createUserSubmTable($packages, $id){
 		global $userSub;
 
-		$db = self::getDb('localhost', 'hikomsys');
+		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
 		$userSub = $db->createCollection($id.'_'.'US');
 
@@ -198,7 +205,7 @@ class QuizzesController extends \BaseController {
 	private function createResultTable($id){
 		global $results, $userSub;
 
-		$db = self::getDb('localhost', 'hikomsys');
+		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
 		$results = $db->createCollection($id.'_RES');
 
@@ -207,7 +214,7 @@ class QuizzesController extends \BaseController {
 		foreach($cursor as $document){
 			$results->insert($document);
 		}
-	}
+	}	
 
 	private function crossCheck(){
 		global $results, $userSub;
