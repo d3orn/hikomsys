@@ -56,14 +56,7 @@ class QuizzesController extends \BaseController {
 												return Redirect::home()->with('message', 'Thank you for participating!');
 											}
 
-	//Currently unused!
-	public function visualization()
-	{
-		$quiz = Quiz::orderBy(DB::raw('RAND()'))->get()->first();
-		$id = $quiz->id;
-		return View::make('quizzes.visualization')
-			->with('quizId' , $id);	
-	}
+
 
 
 	//TODO refactor stuff below is so ugly..
@@ -116,26 +109,13 @@ class QuizzesController extends \BaseController {
 		$nbrOfPackages = $results->count();
 		$maxDependencies = $nbrOfPackages * ($nbrOfPackages - 1);
 
-		$countGreen = $countOrange = $countRed = 0;
+		
 		$cursor = $results->find([], ['_id' => 0, 'name' => 0,'position' => 0, 'color' => 0]);
-		foreach ($cursor as $key => $value) {
-			if(array_key_exists('dependencies', $value)){
-				$dependencies = $value['dependencies'];
-				foreach ($dependencies as $k => $dependency) {
-					switch($dependency['color']){
-						case 'green':
-							$countGreen++;
-							break;
-						case 'orange':
-							$countOrange++;
-							break;
-						case 'red':
-							$countRed++;
-							break;
-					}
-				}
-			}
-		}
+		
+		$counted = count($cursor);
+		$countGreen = $counted[0];
+		$countOrange = $counted[1];
+		$countRed = $counted[2];
 
 		$totalDependencies = $countOrange + $countGreen;
 		$minusPoints = -100/($maxDependencies-$totalDependencies);
@@ -156,109 +136,98 @@ class QuizzesController extends \BaseController {
 		return $quiz->total_points;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	private function createSolutionTable($quizId)
+	//Currently unused!
+	public function visualization()
 	{
-		$db = self::getDb('localhost', 'hikomsys');
-		
-		$quiz = Quiz::findOrFail($quizId);
-		$project = Project::find($quiz->project_id);
-		$projectName = $project->name.'V'.$project->version;
-
-		//TODO Somehow MongoDB Namespace is limited I have to fiqure out how exactly to limit user input of the project name
-		$solutionName = $quiz->id.'_So';
-
-		$db->command([
-			"eval" => new MongoCode("function(){
-				db['".$projectName."'].copyTo('".$solutionName."')
-			};"
-			)
-		]);
-
+		$quiz = Quiz::orderBy(DB::raw('RAND()'))->get()->first();
+		$id = $quiz->id;
+		return View::make('quizzes.visualization')
+			->with('quizId' , $id);	
 	}
 
-	private function createUserSubmTable($packages, $id)
-	{
-		global $userSub;
 
-		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
-		$userSub = $db->createCollection($id.'_'.'US');
 
-		$userSub->ensureIndex(['name' => 1], ['unique' => 1]);
-		$packages = json_decode($packages);
-		foreach($packages as $entry){
-			$userSub->insert($entry);
+
+
+
+
+
+
+
+		private function count($cursor){
+			foreach ($cursor as $key => $value) {
+				if(array_key_exists('dependencies', $value)){
+					$dependencies = $value['dependencies'];
+					foreach ($dependencies as $k => $dependency) {
+						switch($dependency['color']){
+							case 'green':
+								$green++;
+								break;
+							case 'orange':
+								$orange++;
+								break;
+							case 'red':
+								$red++;
+								break;
+						}
+					}
+				}
+			}
+			return [$green, $orange, $red];
 		}
-	}
+
+
+
+
+
+
+
+
+/*----------------------------------------------------- Private Functions -----------------------------------------------------*/
+											private function createSolutionTable($quizId)
+											{
+												$db = self::getDb('localhost', 'hikomsys');
+												
+												$quiz = Quiz::findOrFail($quizId);
+												$project = Project::find($quiz->project_id);
+												$projectName = $project->name.'V'.$project->version;
+
+												//TODO Somehow MongoDB Namespace is limited I have to fiqure out how exactly to limit user input of the project name
+												$solutionName = $quiz->id.'_So';
+
+												$db->command([
+													"eval" => new MongoCode("function(){
+														db['".$projectName."'].copyTo('".$solutionName."')
+													};"
+													)
+												]);
+											}
+
+											private function createUserSubmTable($packages, $id)
+											{
+												global $userSub;
+
+												$db = self::getDb('localhost', 'hikomsysQuizzes');
+
+												$userSub = $db->createCollection($id.'_'.'US');
+
+												$userSub->ensureIndex(['name' => 1], ['unique' => 1]);
+												$packages = json_decode($packages);
+												foreach($packages as $entry){
+													$userSub->insert($entry);
+												}
+											}
+
+	
+
+
+
+
+
+
+
+
 
 	private function createResultTable($id)
 	{
@@ -329,56 +298,56 @@ class QuizzesController extends \BaseController {
 		}
 	}
 
-	private function addAdditionalInformation()
-	{
-		global $solution, $results;
+											private function addAdditionalInformation()
+											{
+												global $solution, $results;
 
-		$packages = $results->find([], ['_id' => 0, 'position' => 0, 'dependencies' => 0]);
-		foreach ($packages as $key => $value) {
-			$packageNames[] = ($value['name']);
-		}
+												$packages = $results->find([], ['_id' => 0, 'position' => 0, 'dependencies' => 0]);
+												foreach ($packages as $key => $value) {
+													$packageNames[] = ($value['name']);
+												}
 
-		$additonalInfos = $solution->find(['name' => ['$in' => $packageNames]], ['name' => 1, 'classes' => 1, 'children' => 1, 'outgoingDependencies' => 1]);
-		foreach ($additonalInfos as $key => $package) {
-			$name = $package['name'];
-			if(array_key_exists('children', $package)){
-				$results->update(['name' => $name], ['$set' => ['children' => $package['children']]]);
-			}
-			if(array_key_exists('classes', $package)){
-				$results->update(['name' => $name], ['$set' => ['classes' => $package['classes']]]);
-			}
-			if(array_key_exists('outgoingDependencies', $package)){
-				$results->update(['name' => $name], ['$set' => ['allDependencies' => $package['outgoingDependencies']]]);
-			}
-		}
-	}
+												$additonalInfos = $solution->find(['name' => ['$in' => $packageNames]], ['name' => 1, 'classes' => 1, 'children' => 1, 'outgoingDependencies' => 1]);
+												foreach ($additonalInfos as $key => $package) {
+													$name = $package['name'];
+													if(array_key_exists('children', $package)){
+														$results->update(['name' => $name], ['$set' => ['children' => $package['children']]]);
+													}
+													if(array_key_exists('classes', $package)){
+														$results->update(['name' => $name], ['$set' => ['classes' => $package['classes']]]);
+													}
+													if(array_key_exists('outgoingDependencies', $package)){
+														$results->update(['name' => $name], ['$set' => ['allDependencies' => $package['outgoingDependencies']]]);
+													}
+												}
+											}
 
-	private function colorPackage()
-	{
-		global $results;
+											private function colorPackage()
+											{
+												global $results;
 
-		$alpha = 0.3;
-		$packages = $results->find([], ['position' => 0, '_id' => 0]);
+												$alpha = 0.3;
+												$packages = $results->find([], ['position' => 0, '_id' => 0]);
 
-		foreach ($packages as $key => $package) {
-			$color = "rgba(0,128,0,$alpha)"; 
-			if(array_key_exists('dependencies', $package)){
-				$dependencies = $package['dependencies'];
-				foreach ($dependencies as $k => $dependency) {
-					switch ($dependency['color']) {
-						case 'orange':
-							$color = "rgba(242,165,0,$alpha)";
-							break;
-						
-						case 'red':
-							$color = "rgba(255,0,0,$alpha)"; 
-							break;
-					}
-				}
-			}
-		$results->update(['name' => $package['name']],['$set' => ['color' => $color]]);
-		}
-	}
+												foreach ($packages as $key => $package) {
+													$color = "rgba(0,128,0,$alpha)"; 
+													if(array_key_exists('dependencies', $package)){
+														$dependencies = $package['dependencies'];
+														foreach ($dependencies as $k => $dependency) {
+															switch ($dependency['color']) {
+																case 'orange':
+																	$color = "rgba(242,165,0,$alpha)";
+																	break;
+																
+																case 'red':
+																	$color = "rgba(255,0,0,$alpha)"; 
+																	break;
+															}
+														}
+													}
+												$results->update(['name' => $package['name']],['$set' => ['color' => $color]]);
+												}
+											}
 
 											private function cleanUp()
 											{
