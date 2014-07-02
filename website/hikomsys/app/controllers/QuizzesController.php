@@ -27,7 +27,7 @@ class QuizzesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$db = self::getDb('localhost', 'hikomsys');
+		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
 		$input = Input::all();
 
@@ -95,7 +95,6 @@ class QuizzesController extends \BaseController {
 		$quizId = Input::get('quizId');
 
 		$solutionName = $quizId.'_So';
-
 		self::createSolutionTable($quizId);
 		$solution = $db->$solutionName;
 		
@@ -111,7 +110,7 @@ class QuizzesController extends \BaseController {
 	}
 
 	public function sendJSON(){
-		$db = self::getDb('localhost', 'hikomsys');
+		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
 		$quizId = Input::get('quizId');
 
