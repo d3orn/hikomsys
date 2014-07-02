@@ -56,6 +56,7 @@ class QuizzesController extends \BaseController {
 												return Redirect::home()->with('message', 'Thank you for participating!');
 											}
 
+	//Currently unused!
 	public function visualization()
 	{
 		$quiz = Quiz::orderBy(DB::raw('RAND()'))->get()->first();
@@ -89,19 +90,18 @@ class QuizzesController extends \BaseController {
 		self::getPoints();
 	}
 
-	public function sendJSON()
-	{
-		$db = self::getDb('localhost', 'hikomsysQuizzes');
+											public function sendJSON()
+											{
+												$db = self::getDb('localhost', 'hikomsysQuizzes');
 
-		$quizId = Input::get('quizId');
+												$quizId = Input::get('quizId');
+												$resultsName = $quizId.'_RES';	
+												$results = $db->$resultsName;
 
-		$resultsName = $quizId.'_RES';	
-		$results = $db->$resultsName;
+												$cursor = $results->find([],['_id' => 0]);;
 
-		$cursor = $results->find([],['_id' => 0]);;
-
-		return json_encode(iterator_to_array($cursor));
-	}
+												return json_encode(iterator_to_array($cursor));
+											}
 
 	// orange = 0, red = -1 and green = 1
 	public function getPoints()
@@ -122,12 +122,17 @@ class QuizzesController extends \BaseController {
 			if(array_key_exists('dependencies', $value)){
 				$dependencies = $value['dependencies'];
 				foreach ($dependencies as $k => $dependency) {
-					if($dependency['color'] == 'green'){
-						$countGreen++;};
-					if($dependency['color'] == 'orange'){
-						$countOrange++;};
-					if($dependency['color'] == 'red'){
-						$countRed++;};
+					switch($dependency['color']){
+						case 'green':
+							$countGreen++;
+							break;
+						case 'orange':
+							$countOrange++;
+							break;
+						case 'red':
+							$countRed++;
+							break;
+					}
 				}
 			}
 		}
@@ -336,15 +341,24 @@ class QuizzesController extends \BaseController {
 		$additonalInfos = $solution->find(['name' => ['$in' => $packageNames]], ['name' => 1, 'classes' => 1, 'children' => 1, 'outgoingDependencies' => 1]);
 		foreach ($additonalInfos as $key => $package) {
 			$name = $package['name'];
-			if(array_key_exists('children', $package)){
+			self::updateIfExists('children', $package);
+			/*if(array_key_exists('children', $package)){
 				$results->update(['name' => $name], ['$set' => ['children' => $package['children']]]);
-			}
+			}*/
 			if(array_key_exists('classes', $package)){
 				$results->update(['name' => $name], ['$set' => ['classes' => $package['classes']]]);
 			}
 			if(array_key_exists('outgoingDependencies', $package)){
 				$results->update(['name' => $name], ['$set' => ['allDependencies' => $package['outgoingDependencies']]]);
 			}
+		}
+	}
+
+	private function updateIfExists($collectionName, $collection){
+		global $results;
+
+		if(array_key_exists($collectionName, $collection)){
+			$results->update(['name' => $name], ['$set' => [$collectionName => $collection[$collectionName]]]);
 		}
 	}
 
@@ -360,13 +374,15 @@ class QuizzesController extends \BaseController {
 			if(array_key_exists('dependencies', $package)){
 				$dependencies = $package['dependencies'];
 				foreach ($dependencies as $k => $dependency) {
-					if($dependency['color'] == 'orange'){ 
-						$color = "rgba(242,165,0,$alpha)";
-					};
-					if($dependency['color'] == 'red'){ 
-						$color = "rgba(255,0,0,$alpha)"; 
-						break;
-					};
+					switch ($dependency['color']) {
+						case 'orange':
+							$color = "rgba(242,165,0,$alpha)";
+							break;
+						
+						case 'red':
+							$color = "rgba(255,0,0,$alpha)"; 
+							break;
+					}
 				}
 			}
 		$results->update(['name' => $package['name']],['$set' => ['color' => $color]]);
