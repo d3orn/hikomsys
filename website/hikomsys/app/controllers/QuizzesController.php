@@ -125,7 +125,7 @@ class QuizzesController extends \BaseController {
 
 	// ornage = 0, red = -1 and green = 1
 	public function getPoints(){
-		$db = self::getDb('localhost', 'hikomsys');
+		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
 		$quizId = Input::get('quizId');
 
