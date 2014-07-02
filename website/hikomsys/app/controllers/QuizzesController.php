@@ -335,6 +335,7 @@ class QuizzesController extends \BaseController {
 											}
 
 											private function countColors($cursor){
+												$green = $orange = $red = 0;
 												foreach ($cursor as $key => $value) {
 													if(array_key_exists('dependencies', $value)){
 														$dependencies = $value['dependencies'];
