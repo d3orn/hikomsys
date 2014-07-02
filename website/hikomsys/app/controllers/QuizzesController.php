@@ -104,8 +104,8 @@ class QuizzesController extends \BaseController {
 		self::crossCheck();
 		self::addForgottenDependencies();
 		self::colorPackage();
-	/*	self::addAdditionalInformation();
-		self::cleanUp();
+		self::addAdditionalInformation();
+	/*	self::cleanUp();
 
 		self::getPoints();*/
 	}
