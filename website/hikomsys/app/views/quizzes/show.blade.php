@@ -62,8 +62,7 @@
 	{{ HTML::script('javascripts/kineticSetup.js') }}
 	{{ HTML::script('javascripts/kineticHelpers.js') }}
 	{{ HTML::script('javascripts/arrow.js') }}
-	<!-- {{ HTML::script('javascripts/packageGroup.js') }} -->
-	{{ HTML::script('javascripts/packageGroupRefactoring.js') }}
+	{{ HTML::script('javascripts/packageGroup.js') }}
 	{{ HTML::script('javascripts/kineticQuiz.js') }}
 	{{ HTML::script('javascripts/kineticResize.js') }}
 	{{ Helpers::addPackages($selected) }}
