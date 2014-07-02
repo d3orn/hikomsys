@@ -150,9 +150,6 @@ class QuizzesController extends \BaseController {
 		return $quiz->total_points;
 	}
 
-<<<<<<< HEAD
-=======
-	
 
 
 
@@ -222,7 +219,6 @@ class QuizzesController extends \BaseController {
 
 
 
->>>>>>> 4266df77f4bbf0308c99f54d7aa6981659ab33aa
 	private function createSolutionTable($quizId){
 		$db = self::getDb('localhost', 'hikomsys');
 		
