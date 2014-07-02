@@ -36,19 +36,6 @@ class QuizzesController extends \BaseController {
 
 		$quiz = Quiz::create(['user_id' => $userId, 'project_id' => $projectId]); 
 		
-		$project = Project::find($projectId);
-		$projectName = $project->name.'V'.$project->version;
-
-		//TODO Somehow MongoDB Namespace is limited I have to fiqure out how exactly to limit user input of the project name
-		$solutionName = $quiz->id.'_So';
-
-		$db->command([
-			"eval" => new MongoCode("function(){
-				db['".$projectName."'].copyTo('".$solutionName."')
-			};"
-			)
-		]);
-
 		return Redirect::route('quizzes.edit', [$quiz->id])
 			->with('selected', $input);
 	}	
@@ -110,6 +97,7 @@ class QuizzesController extends \BaseController {
 		$solutionName = $quizId.'_So';
 		$solution = $db->$solutionName;
 
+		self::createSolutionTable($quizId)
 		self::createUserSubmTable($packages, $quizId);
 		self::createResultTable($quizId);
 		self::crossCheck();
@@ -179,6 +167,24 @@ class QuizzesController extends \BaseController {
 		$quiz->save();
 
 		return $quiz->total_points;
+	}
+
+	private function createSolutionTable($quizId){
+		$db = self::getDb('localhost', 'hikomsys');
+		
+		$project = Project::find($quiz->project_id);
+		$projectName = $project->name.'V'.$project->version;
+
+		//TODO Somehow MongoDB Namespace is limited I have to fiqure out how exactly to limit user input of the project name
+		$solutionName = $quiz->id.'_So';
+
+		$db->command([
+			"eval" => new MongoCode("function(){
+				db['".$projectName."'].copyTo('".$solutionName."')
+			};"
+			)
+		]);
+
 	}
 
 	private function createUserSubmTable($packages, $id){
