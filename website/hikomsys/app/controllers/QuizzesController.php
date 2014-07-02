@@ -97,7 +97,7 @@ class QuizzesController extends \BaseController {
 											}
 
 											// orange = 0, red = -1 and green = 1
-											public function calculatePoints()
+											private function calculatePoints()
 											{
 												$db = self::getDb('localhost', 'hikomsysQuizzes');
 
@@ -198,57 +198,46 @@ class QuizzesController extends \BaseController {
 												}
 											}
 
-	
+											private function createResultTable($id)
+											{
+												global $results, $userSub;
 
+												$db = self::getDb('localhost', 'hikomsysQuizzes');
 
+												$results = $db->createCollection($id.'_RES');
 
+												$cursor = $userSub->find([],['name' => 1, 'position' => 1]);
+												foreach($cursor as $document){
+													$results->insert($document);
+												}
+											}	
 
+											private function crossCheck()
+											{
+												global $results, $userSub;
 
+												$cursor = $userSub->find(['dependencies' => ['$exists' => true]]);
+												foreach ($cursor as $package => $value) {
+													$dependencies = $value['dependencies'];
+													$currentPackageName = $value['name'];
+													self::checkDependencies($dependencies, $currentPackageName);
+												}
+											}
 
+											private function checkDependencies($dependencies, $packageName)
+											{
+												global $solution, $results;
 
+												$results->update(['name' => $packageName], ['$set' => ['dependencies' => []]]);
 
+												foreach ($dependencies as $dep => $depName) {
+													$isCorrect = $solution->find(['name' => $packageName,'outgoingDependencies.to.package' => $depName['to']]);
+													
+													$color = $isCorrect->hasNext() ? 'green' : 'red';
 
-	private function createResultTable($id)
-	{
-		global $results, $userSub;
-
-		$db = self::getDb('localhost', 'hikomsysQuizzes');
-
-		$results = $db->createCollection($id.'_RES');
-
-		//TODO use mongo CopyTo and also add the dependencies, classes and children
-		$cursor = $userSub->find([],['name' => 1, 'position' => 1]);
-		foreach($cursor as $document){
-			$results->insert($document);
-		}
-	}	
-
-	private function crossCheck()
-	{
-		global $results, $userSub;
-
-		$cursor = $userSub->find(['dependencies' => ['$exists' => true]]);
-		foreach ($cursor as $package => $value) {
-			$dependencies = $value['dependencies'];
-			$currentPackageName = $value['name'];
-			self::checkDependencies($dependencies, $currentPackageName);
-		}
-	}
-
-	private function checkDependencies($dependencies, $packageName)
-	{
-		global $solution, $results;
-
-		$results->update(['name' => $packageName], ['$set' => ['dependencies' => []]]);
-
-		foreach ($dependencies as $dep => $depName) {
-			$test = $solution->find(['name' => $packageName,'outgoingDependencies.to.package' => $depName['to']]);
-			
-			$color = $test->hasNext() ? 'green' : 'red';
-
-			$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => $color]]]);
-		}
-	}
+													$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => $color]]]);
+												}
+											}
 
 	private function addForgottenDependencies()
 	{
@@ -276,31 +265,6 @@ class QuizzesController extends \BaseController {
 			}
 		}
 	}
-
-											private function addAdditionalInformation()
-											{
-												global $solution, $results;
-
-												$packages = $results->find([], ['_id' => 0, 'position' => 0, 'dependencies' => 0]);
-												foreach ($packages as $key => $value) {
-													$packageNames[] = ($value['name']);
-												}
-
-												$additonalInfos = $solution->find(['name' => ['$in' => $packageNames]], ['name' => 1, 'classes' => 1, 'children' => 1, 'outgoingDependencies' => 1]);
-												foreach ($additonalInfos as $key => $package) {
-													$name = $package['name'];
-													if(array_key_exists('children', $package)){
-														$results->update(['name' => $name], ['$set' => ['children' => $package['children']]]);
-													}
-													if(array_key_exists('classes', $package)){
-														$results->update(['name' => $name], ['$set' => ['classes' => $package['classes']]]);
-													}
-													if(array_key_exists('outgoingDependencies', $package)){
-														$results->update(['name' => $name], ['$set' => ['allDependencies' => $package['outgoingDependencies']]]);
-													}
-												}
-											}
-
 											private function colorPackage()
 											{
 												global $results;
@@ -325,6 +289,30 @@ class QuizzesController extends \BaseController {
 														}
 													}
 												$results->update(['name' => $package['name']],['$set' => ['color' => $color]]);
+												}
+											}
+
+											private function addAdditionalInformation()
+											{
+												global $solution, $results;
+
+												$packages = $results->find([], ['_id' => 0, 'position' => 0, 'dependencies' => 0]);
+												foreach ($packages as $key => $value) {
+													$packageNames[] = ($value['name']);
+												}
+
+												$additonalInfos = $solution->find(['name' => ['$in' => $packageNames]], ['name' => 1, 'classes' => 1, 'children' => 1, 'outgoingDependencies' => 1]);
+												foreach ($additonalInfos as $key => $package) {
+													$name = $package['name'];
+													if(array_key_exists('children', $package)){
+														$results->update(['name' => $name], ['$set' => ['children' => $package['children']]]);
+													}
+													if(array_key_exists('classes', $package)){
+														$results->update(['name' => $name], ['$set' => ['classes' => $package['classes']]]);
+													}
+													if(array_key_exists('outgoingDependencies', $package)){
+														$results->update(['name' => $name], ['$set' => ['allDependencies' => $package['outgoingDependencies']]]);
+													}
 												}
 											}
 
@@ -356,4 +344,4 @@ class QuizzesController extends \BaseController {
 												}
 												return [$green, $orange, $red];
 											}
-}	
+}
