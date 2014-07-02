@@ -173,6 +173,7 @@ class QuizzesController extends \BaseController {
 	private function createSolutionTable($quizId){
 		$db = self::getDb('localhost', 'hikomsys');
 		
+		$quiz = Quiz::findOrFail($quizId);
 		$project = Project::find($quiz->project_id);
 		$projectName = $project->name.'V'.$project->version;
 
