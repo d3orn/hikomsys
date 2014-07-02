@@ -192,7 +192,7 @@ class QuizzesController extends \BaseController {
 	private function createUserSubmTable($packages, $id){
 		global $userSub;
 
-		$db = self::getDb('localhost', 'hikomsys');
+		$db = self::getDb('localhost', 'hikomsys_quizzes');
 
 		$userSub = $db->createCollection($id.'_'.'US');
 
