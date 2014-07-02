@@ -80,7 +80,7 @@ class QuizzesController extends \BaseController {
 		self::addAdditionalInformation();
 		self::cleanUp();
 
-		self::getPoints();
+		self::calculatePoints();
 	}
 
 											public function sendJSON()
@@ -96,45 +96,44 @@ class QuizzesController extends \BaseController {
 												return json_encode(iterator_to_array($cursor));
 											}
 
-	// orange = 0, red = -1 and green = 1
-	public function getPoints()
-	{
-		$db = self::getDb('localhost', 'hikomsysQuizzes');
+											// orange = 0, red = -1 and green = 1
+											public function calculatePoints()
+											{
+												$db = self::getDb('localhost', 'hikomsysQuizzes');
 
-		$quizId = Input::get('quizId');
+												$quizId = Input::get('quizId');
 
-		$resultsName = $quizId.'_RES';
-		$results = $db->$resultsName;
+												$resultsName = $quizId.'_RES';
+												$results = $db->$resultsName;
 
-		$nbrOfPackages = $results->count();
-		$maxDependencies = $nbrOfPackages * ($nbrOfPackages - 1);
+												$nbrOfPackages = $results->count();
+												$maxDependencies = $nbrOfPackages * ($nbrOfPackages - 1);
 
-		
-		$cursor = $results->find([], ['_id' => 0, 'name' => 0,'position' => 0, 'color' => 0]);
-		
-		$counted = count($cursor);
-		$countGreen = $counted[0];
-		$countOrange = $counted[1];
-		$countRed = $counted[2];
+												$cursor = $results->find([], ['_id' => 0, 'name' => 0,'position' => 0, 'color' => 0]);
+												
+												$counted = countColors($cursor);
+												$countGreen = $counted[0];
+												$countOrange = $counted[1];
+												$countRed = $counted[2];
 
-		$totalDependencies = $countOrange + $countGreen;
-		$minusPoints = -100/($maxDependencies-$totalDependencies);
+												$totalDependencies = $countOrange + $countGreen;
+												$minusPoints = -100/($maxDependencies-$totalDependencies);
 
-		/* Check if $totalDependencies is zero */
-		$plusPoints = 100/($totalDependencies == 0 ? 1 : $totalDependencies);
+												/* Check if $totalDependencies is zero */
+												$plusPoints = 100/($totalDependencies == 0 ? 1 : $totalDependencies);
 
-		$red_points = ($minusPoints * $countRed + 50)/2;
-		$green_points = ($plusPoints * $countGreen + 50)/2;
-		$userPoints = $green_points + $red_points;
+												$red_points = ($minusPoints * $countRed + 50)/2;
+												$green_points = ($plusPoints * $countGreen + 50)/2;
+												$userPoints = $green_points + $red_points;
 
-		$quiz = Quiz::findOrFail($quizId);
-		$quiz->red_points = round($red_points,2);
-		$quiz->green_points = round($green_points,2);
-		$quiz->total_points = round($userPoints,2);
-		$quiz->save();
+												$quiz = Quiz::findOrFail($quizId);
+												$quiz->red_points = round($red_points,2);
+												$quiz->green_points = round($green_points,2);
+												$quiz->total_points = round($userPoints,2);
+												$quiz->save();
 
-		return $quiz->total_points;
-	}
+												return $quiz->total_points;
+											}
 
 	//Currently unused!
 	public function visualization()
@@ -155,27 +154,7 @@ class QuizzesController extends \BaseController {
 
 
 
-		private function count($cursor){
-			foreach ($cursor as $key => $value) {
-				if(array_key_exists('dependencies', $value)){
-					$dependencies = $value['dependencies'];
-					foreach ($dependencies as $k => $dependency) {
-						switch($dependency['color']){
-							case 'green':
-								$green++;
-								break;
-							case 'orange':
-								$orange++;
-								break;
-							case 'red':
-								$red++;
-								break;
-						}
-					}
-				}
-			}
-			return [$green, $orange, $red];
-		}
+
 
 
 
@@ -355,4 +334,25 @@ class QuizzesController extends \BaseController {
 												$solution->drop();
 											}
 
+											private function countColors($cursor){
+												foreach ($cursor as $key => $value) {
+													if(array_key_exists('dependencies', $value)){
+														$dependencies = $value['dependencies'];
+														foreach ($dependencies as $k => $dependency) {
+															switch($dependency['color']){
+																case 'green':
+																	$green++;
+																	break;
+																case 'orange':
+																	$orange++;
+																	break;
+																case 'red':
+																	$red++;
+																	break;
+															}
+														}
+													}
+												}
+												return [$green, $orange, $red];
+											}
 }	
