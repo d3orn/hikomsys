@@ -101,13 +101,13 @@ class QuizzesController extends \BaseController {
 		
 		self::createUserSubmTable($packages, $quizId);
 		self::createResultTable($quizId);
-		self::crossCheck();
+	/*	self::crossCheck();
 		self::addForgottenDependencies();
 		self::colorPackage();
 		self::addAdditionalInformation();
 		self::cleanUp();
 
-		self::getPoints();
+		self::getPoints();*/
 	}
 
 	public function sendJSON(){
@@ -215,7 +215,7 @@ class QuizzesController extends \BaseController {
 		foreach($cursor as $document){
 			$results->insert($document);
 		}
-	}
+	}	
 
 	private function crossCheck(){
 		global $results, $userSub;
