@@ -192,7 +192,7 @@ class QuizzesController extends \BaseController {
 	private function createUserSubmTable($packages, $id){
 		global $userSub;
 
-		$db = self::getDb('localhost', 'hikomsys_quizzes');
+		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
 		$userSub = $db->createCollection($id.'_'.'US');
 
@@ -206,7 +206,7 @@ class QuizzesController extends \BaseController {
 	private function createResultTable($id){
 		global $results, $userSub;
 
-		$db = self::getDb('localhost', 'hikomsys');
+		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
 		$results = $db->createCollection($id.'_RES');
 
