@@ -382,9 +382,9 @@ class QuizzesController extends \BaseController {
 
 	private function cleanUp()
 	{
-		global $solution;
+		global $solution->drop();
 
-		$solution->drop();
+		//$solution->drop();
 	}
 
 }	
