@@ -95,9 +95,10 @@ class QuizzesController extends \BaseController {
 		$quizId = Input::get('quizId');
 
 		$solutionName = $quizId.'_So';
-		$solution = $db->$solutionName;
 
 		self::createSolutionTable($quizId);
+		$solution = $db->$solutionName;
+		
 		self::createUserSubmTable($packages, $quizId);
 		self::createResultTable($quizId);
 		self::crossCheck();
