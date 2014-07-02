@@ -341,24 +341,15 @@ class QuizzesController extends \BaseController {
 		$additonalInfos = $solution->find(['name' => ['$in' => $packageNames]], ['name' => 1, 'classes' => 1, 'children' => 1, 'outgoingDependencies' => 1]);
 		foreach ($additonalInfos as $key => $package) {
 			$name = $package['name'];
-			self::updateIfExists('children', $package);
-			/*if(array_key_exists('children', $package)){
+			if(array_key_exists('children', $package)){
 				$results->update(['name' => $name], ['$set' => ['children' => $package['children']]]);
-			}*/
+			}
 			if(array_key_exists('classes', $package)){
 				$results->update(['name' => $name], ['$set' => ['classes' => $package['classes']]]);
 			}
 			if(array_key_exists('outgoingDependencies', $package)){
 				$results->update(['name' => $name], ['$set' => ['allDependencies' => $package['outgoingDependencies']]]);
 			}
-		}
-	}
-
-	private function updateIfExists($collectionName, $collection){
-		global $results;
-
-		if(array_key_exists($collectionName, $collection)){
-			$results->update(['name' => $name], ['$set' => [$collectionName => $collection[$collectionName]]]);
 		}
 	}
 
