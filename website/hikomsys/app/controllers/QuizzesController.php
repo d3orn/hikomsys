@@ -10,42 +10,29 @@ class QuizzesController extends \BaseController {
 		// });
 	}
 
-	public function index(){
-		$projectId =Input::get('project_id');
+											public function index()
+											{
+												$projectId =Input::get('project_id');
+												$projectName = "Your results for ".Project::findOrFail($projectId)->name." version ".Project::findOrFail($projectId)->version;
+												$quizzes = Quiz::where('project_id', '=', $projectId)->orderBy('total_points', 'desc')->get();
 
-		$projectName = "Your results for ".Project::findOrFail($projectId)->name." Version".Project::findOrFail($projectId)->version;
+												return View::make('quizzes.quizlist', compact('quizzes', 'projectName'));
+											}
 
-		$quizzes = Quiz::where('project_id', '=', $projectId)->orderBy('total_points', 'desc')->get();
+											public function store()
+											{
+												$db = self::getDb('localhost', 'hikomsysQuizzes');
 
-		return View::make('quizzes.quizlist', compact('quizzes', 'projectName'));
-	}
+												$input = Input::all();
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$db = self::getDb('localhost', 'hikomsysQuizzes');
+												$userId = Auth::user()->id;
+												$projectId = $input['project_id'];
+												$quiz = Quiz::create(['user_id' => $userId, 'project_id' => $projectId]); 
+												
+												return Redirect::route('quizzes.edit', [$quiz->id])
+													->with('selected', $input);
+											}	
 
-		$input = Input::all();
-
-		$userId = Auth::user()->id;
-		$projectId = $input['project_id'];
-
-		$quiz = Quiz::create(['user_id' => $userId, 'project_id' => $projectId]); 
-		
-		return Redirect::route('quizzes.edit', [$quiz->id])
-			->with('selected', $input);
-	}	
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
 		$quiz = Quiz::findOrFail($id);
@@ -61,12 +48,6 @@ class QuizzesController extends \BaseController {
 			->with('redPoints', $quiz->red_points);
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
 		return View::make('quizzes.show')
@@ -75,7 +56,7 @@ class QuizzesController extends \BaseController {
 	}
 
 	public function success(){
-		return Redirect::route('home')->with('message', 'Thank you for participating!');
+		return Redirect::home()->with('message', 'Thank you for participating!');
 	}
 
 	public function visualization(){
@@ -122,7 +103,7 @@ class QuizzesController extends \BaseController {
 		return json_encode(iterator_to_array($cursor));
 	}
 
-	// ornage = 0, red = -1 and green = 1
+	// orange = 0, red = -1 and green = 1
 	public function getPoints(){
 		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
@@ -168,6 +149,76 @@ class QuizzesController extends \BaseController {
 
 		return $quiz->total_points;
 	}
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	private function createSolutionTable($quizId){
 		$db = self::getDb('localhost', 'hikomsys');
