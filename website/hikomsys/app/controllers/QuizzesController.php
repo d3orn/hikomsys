@@ -102,8 +102,8 @@ class QuizzesController extends \BaseController {
 		self::createUserSubmTable($packages, $quizId);
 		self::createResultTable($quizId);
 		self::crossCheck();
-	/*	self::addForgottenDependencies();
-		self::colorPackage();
+		self::addForgottenDependencies();
+	/*	self::colorPackage();
 		self::addAdditionalInformation();
 		self::cleanUp();
 
