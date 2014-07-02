@@ -103,8 +103,8 @@ class QuizzesController extends \BaseController {
 		self::createResultTable($quizId);
 		self::crossCheck();
 		self::addForgottenDependencies();
-	/*	self::colorPackage();
-		self::addAdditionalInformation();
+		self::colorPackage();
+	/*	self::addAdditionalInformation();
 		self::cleanUp();
 
 		self::getPoints();*/
