@@ -69,7 +69,9 @@ class QuizzesController extends \BaseController {
 
 		return View::make('quizzes.result', compact($quiz))
 			->with('quizId', $id)
-			->with('projectName', $projectName);
+			->with('projectName', $projectName)
+			->with('greenPoints', $quiz->green_points)
+			->with('redPoints', $quiz->red_points);
 	}
 
 	/**
@@ -286,7 +288,6 @@ class QuizzesController extends \BaseController {
 
 		$alpha = 0.3;
 		$packages = $results->find([], ['position' => 0, '_id' => 0]);
-
 
 		foreach ($packages as $key => $package) {
 			$color = "rgba(0,128,0,$alpha)"; 

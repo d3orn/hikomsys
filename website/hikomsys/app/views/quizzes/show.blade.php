@@ -13,16 +13,17 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="medium-8 columns">
+		<div class="medium-7 columns">
 			<dl class="sub-nav">
 			  <dt>Functions:</dt>
 			  <dd class="active"><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand"></a></dd>
 			  <dd class=""><a id="draw" aria-hidden="true" data-icon="&#xe602;" class="icon-loop"></a></dd>
 			</dl>
 		</div>
-		<div class="medium-4 columns">	
+		<div class="medium-5 columns">	
 			<div id="submit" class="button tiny radius success right">Submit dependencies</div>
 			<div id="help" data-reveal-id="myModal" class="button tiny radius alert right" data-reveal>Help</div>
+			<div id="reset" class="button tiny radius right">Start over</div>
 		</div>
 	</div>	
 
@@ -45,14 +46,24 @@
 			</div>	
 		</div>
 	</div>
+
+	<div data-alert class="alert-box" id="repeat-alert">
+ 		You did already drawn this dependency.
+	</div>
+
+	<div data-alert class="alert-box" id="loop-alert">
+ 		You cannot add a dependenciy loop.
+	</div>
+
 @stop
 
 @section("scripts")
-	{{ HTML::script('http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.4.min.js') }}
+	{{ HTML::script('http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v5.1.0.min.js') }}
 	{{ HTML::script('javascripts/kineticSetup.js') }}
 	{{ HTML::script('javascripts/kineticHelpers.js') }}
 	{{ HTML::script('javascripts/arrow.js') }}
 	{{ HTML::script('javascripts/packageGroup.js') }}
 	{{ HTML::script('javascripts/kineticQuiz.js') }}
+	{{ HTML::script('javascripts/kineticResize.js') }}
 	{{ Helpers::addPackages($selected) }}
 @stop

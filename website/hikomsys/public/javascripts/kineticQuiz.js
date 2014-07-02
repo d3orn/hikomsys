@@ -1,93 +1,61 @@
-var moving = false; 
-
-var moreInfosEnabled = false;
-
-function mouseDownOnPackage(packageGroup, event){
-	clickCount++;
-	var pack = findPackageById(packageGroup.getId());
-	pack.highlightPackage("lightblue"); 
-	if(clickCount == 1){
-		packages.push(pack);
-	}
+function mouseDownOnPackage(packageGroup){
+	firstSelectedPackage = findPackageById(packageGroup.getId());
+	firstSelectedPackage.highlightPackage("lightblue",5); 
 }
 
-function mouseUpOnPackage(packageGroup, event) {
-	clickCount++;
-	if(clickCount == 2){
-		var firstPack = findPackageById(packages[0].text);
-		var pack = findPackageById(packageGroup.getId());
-		packages.push(pack);
-		firstPack.highlight.remove();
-		pack.highlight.remove();
-		var id = packages[0].text + "_" + packages[1].text;
-		if(packages[0].text == packages[1].text){
-			writeMessage("You cannot add a loop");
+function mouseUpOnPackage(packageGroup) {
+	if(typeof firstSelectedPackage !== 'undefined' ){
+		var toPackage = findPackageById(packageGroup.getId());
+		
+		if(firstSelectedPackage.text == toPackage.text){
+			$('#repeat-alert').css('z-index', 0);
+			$('#loop-alert').css('z-index', 1).fadeIn(500);
+			return;
 		}
-		else if(findArrowById(id) === -1){
-			var arrow = new Arrow(packages[0],packages[1],id);
+		var id = firstSelectedPackage.text + "_" + toPackage.text;
+
+		if(findArrowById(id) === -1){
+			var arrow = new Arrow(firstSelectedPackage,toPackage,id);
 			arrows.push(arrow);
 			arrow.draw();
 		}
 		else {
-			writeMessage("dependency already drawn");
+			$('#loop-alert').css('z-index', 0);
+			$('#repeat-alert').css('z-index', 1).fadeIn(500);
 		}
-		packages = [];
-		clickCount = 0;
 
+		firstSelectedPackage.highlightBox.remove();
+		toPackage.highlightBox.remove();
+		firstSelectedPackage = undefined;
+		stage.draw();
 	}
-	stage.draw();
 }
 
 function switchMode(){
-	if(packages.length > 0){
-		packages[0].highlight.remove();
-	}
-	clickCount = 0;
-	packages = [];
-
 	drawingEnabled = !drawingEnabled;
 	var groups = packageLayer.get('Group');
 	for (var i = 0; i < groups.length; i++){
-		groups[i].setDraggable(!drawingEnabled );
+		groups[i].setDraggable(!drawingEnabled);
 	}
+	resetFirstSelectedPackage();
+	removeIfExists(tmpArrow);
+	stage.draw();
 }
 
 /* =============================================================== Eventhandler ============================================================== */
-stage.on("mousedown", function (e) {
-	if(clickCount === 0) return;
-	if (moving) {
-		moving = false;
-		arrowLayer.drawScene();
-	} else {
-		var mousePos = getMousePosition(e);
-		tmpArrow = new Arrow(packages[0], mousePos, "tmpArrow");
-		tmpArrow.draw();
-		moving = true;
-	}
-});
-
 stage.on("mousemove", function (e) {
-	if (moving) {
-		tmpArrow.remove();
-		var mousePos = getMousePosition(e);
-		tmpArrow = new Arrow(packages[0], mousePos, "tmpArrow");
-		tmpArrow.draw();
-		moving = true;
+	removeIfExists(tmpArrow);
+	if(typeof firstSelectedPackage !== 'undefined' && drawingEnabled) {
+		followMe();
 		stage.draw();
 	}
 });
 
 stage.on("mouseup", function (e) {
-	moving = false;
-	if(drawingEnabled && packages.length > 0){
-		packages[0].highlight.remove();
-		clickCount = 0;
-		packages = [];
-	}
-	if(typeof tmpArrow !== "undefined") {tmpArrow.remove();} //remove only if there is one, if arrow exists dont let it be there twice or more check id
+	resetFirstSelectedPackage();
+	removeIfExists(tmpArrow);
 	stage.draw();
 });
-
 
 /* ------  Buttons ------*/
 $('#draw').click(function(){
@@ -98,6 +66,11 @@ $('#draw').click(function(){
 $('#move').click(function(){
 	clicked($(this));
 	switchMode();
+});
+
+$('#reset').click(function(){
+	resetDependencies();
+	$('.alert-box').fadeOut(500);
 });
 
 $('#submit').click(function(){
@@ -115,12 +88,12 @@ $('#submit').click(function(){
 
 function createJSON(){
 	var output = [];
-	for ( var i = 0; i < allPackages.length; i = i + 1 ) {
+	for(var i = 0; i < allPackages.length; i = i + 1 ) {
 		var p;
 		var position = {"X" : allPackages[i].position().x, "Y" : allPackages[i].position().y};
 		name = allPackages[i].text;
 		var dep =[];
-		for ( var j = 0; j < arrows.length; j++){
+		for(var j = 0; j < arrows.length; j++){
 			currentPackage = arrows[j];
 			if(currentPackage.from.text == name){
 				toName = currentPackage.to.text;
@@ -137,16 +110,34 @@ function createJSON(){
 		}
 		output.push(p);
 	}
-	var packagesAsJson = JSON.stringify(output);
-	return packagesAsJson;
+	return JSON.stringify(output);
 }
 
-function get_type(thing){
-    if(thing===null)return "[object Null]"; // special case
-    return Object.prototype.toString.call(thing);
+function followMe(){
+	var mousePos = getRelativePointerPosition();
+	tmpArrow = new Arrow(firstSelectedPackage, mousePos, "tmpArrow");
+	tmpArrow.draw();
 }
 
-//ALT key soll temporär mode wechseln
+function resetFirstSelectedPackage(){
+	if(typeof firstSelectedPackage !== 'undefined'){
+		firstSelectedPackage.highlightBox.remove();
+		firstSelectedPackage = undefined;
+	}
+}
+
+function resetDependencies(){
+	for(var i = 0; i < arrows.length; i++){
+		arrows[i].deleteArrow();
+	}
+	arrows = [];
+	stage.draw();
+}
+
+$('.alert-box').click(function(){
+	$('.alert-box').fadeOut(500);
+});
+//ALT key soll temporär mode wechseln still not that important but nice to have
 /*$(window).on("keydown", function(event) {
     if (event.which === 18) {
         switchMode();
@@ -155,60 +146,41 @@ function get_type(thing){
 	switchMode();
 });*/
 
+var randomSaveMove = function(packageGroup){
+	var xCoordinate = 1 + Math.floor(Math.random() * (CONTAINER_WIDTH-packageGroup.rect.getWidth()));
+	var yCoordinate = 1 + Math.floor(Math.random() * (480-packageGroup.rect.getHeight()))
+	packageGroup.group.move({x: xCoordinate , y: yCoordinate});
+	
+	//This is not working 
+	/*var overlapping = true;
+	while(overlapping){
+		overlapping = false;
+
+		for(var i = 0; i < allPackages.length; i++){
+			//console.log(allPackages[i].rect.getAbsolutePosition() );
+			positionToCheck = allPackages[i].rect.getAbsolutePosition();
+			if(isRectCollide(xCoordinate, yCoordinate, packageGroup.rect, allPackages[i].rect)){
+				overlapping = true;
+				i = allPackages.length - 1;
+			}
+		}
+	}*/
+}
+
+var isRectCollide = function(rect1, rect2) {
+	if (rect1.x - rect1.width  >= rect2.x + rect2.width  &&
+		rect1.y - rect1.height >= rect2.y + rect2.height &&
+		rect1.x + rect1.width  <= rect2.x + rect2.width  &&
+		rect1.x + rect1.height <= rect2.y - rect2.height )
+		return false;
+	else
+		return true;
+}
+
 $(document).ready(function(){
 	for(var i = 0; i < allPackages.length; i++){
 		allPackages[i].create();
+		randomSaveMove(allPackages[i]);				
 	}	
 	stage.draw();
-});
-
-/* =============================================================== Prototype Methods ============================================================== */
-
-//REFACTORING NEEDED
-//save initial scale
-var initialScale = {x: 1, y: 1};
-var initialWidth = $("#container").innerWidth(); // initial width
-var initialHeight = $("#container").innerHeight(); // initial height
-
-/*window.onresize = function(event) { // listen for change
-  var width = $("#container").innerWidth(); // new width of page
-    var height = $("#container").innerHeight(); // new height of page
-   console.log(width);
-    console.log(height);
-    var xScale =  (width  / initialWidth) * initialScale.x;  // percent change in width (Ex: 1000 - 400/1000 means the page scaled down 60%, you should play with this to get wanted results)
-    var yScale = (height / initialHeight) * initialScale.y;
-    var newScale = {x: xScale, y: yScale};
-        console.log(newScale);
-    stage.setAttr('width', width);
-    stage.setAttr('height', height);    
-    stage.setAttr('scale', newScale ); 
-    stage = new Kinetic.Stage({
-    	container: 'container',
-		width: width,
-		height: height
-	});
-    stage.add(layer);
-    stage.draw();
-}*/
-
-$(window).on('resize',function(){
-	if(this.resizeTO) clearTimeout(this.resizeTO);
-	this.resizeTO = setTimeout(function(){
-		$(this).trigger('resizeEnd');
-	},500);
-});
-
-
-//after resizing the draboundfunction fails need to update MaxX for every element
-$(window).on('resizeEnd orientationchange',function(){
-	var width = $("#container").innerWidth(); // new width of page
-	var height = $("#container").innerHeight(); // new height of page
-	background.setWidth(width);
-	background.setHeight(height);
-	stage.setWidth(width);
-	stage.setHeight(height);
-	var groups = layer.get('Group');
-	for (var i = 0; i < groups.length; i++){
-		//alert(groups[i].maxX);
-	}
 });

@@ -14,10 +14,9 @@ var packageLayer = new Kinetic.Layer();
 var infoLayer = new Kinetic.Layer();
 var altDown = false;
 var arrows = [];
+var moreInfosEnabled = false;
 
 var background;
-
-var clickCount = 0; // suspicious :) 
 
 var drawingEnabled = false;
 
@@ -25,12 +24,11 @@ var layer = new Kinetic.Layer();
 
 var notification;
 
-var packages = [];
+var firstSelectedPackage;
 
 var stage;
 
 var tmpArrow; //follows your mouse!
-
 
 var notification = new Kinetic.Text({
 	x: 10,
@@ -64,7 +62,3 @@ stage.add(highlightLayer);
 stage.add(arrowLayer);
 stage.add(packageLayer);
 stage.add(infoLayer);
-
-function writeMessage(message) {
-	notification.setText(message);
-}
