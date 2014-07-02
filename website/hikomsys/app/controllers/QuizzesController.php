@@ -105,9 +105,9 @@ class QuizzesController extends \BaseController {
 		self::addForgottenDependencies();
 		self::colorPackage();
 		self::addAdditionalInformation();
-	/*	self::cleanUp();
+		self::cleanUp();
 
-		self::getPoints();*/
+	/*	self::getPoints();*/
 	}
 
 	public function sendJSON(){
