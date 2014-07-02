@@ -107,7 +107,7 @@ class QuizzesController extends \BaseController {
 		self::addAdditionalInformation();
 		self::cleanUp();
 
-	/*	self::getPoints();*/
+		self::getPoints();
 	}
 
 	public function sendJSON(){
