@@ -10,21 +10,15 @@ class QuizzesController extends \BaseController {
 		// });
 	}
 
-	public function index(){
+	public function index()
+	{
 		$projectId =Input::get('project_id');
-
-		$projectName = "Your results for ".Project::findOrFail($projectId)->name." Version".Project::findOrFail($projectId)->version;
-
+		$projectName = "Your results for ".Project::findOrFail($projectId)->name." version ".Project::findOrFail($projectId)->version;
 		$quizzes = Quiz::where('project_id', '=', $projectId)->orderBy('total_points', 'desc')->get();
 
 		return View::make('quizzes.quizlist', compact('quizzes', 'projectName'));
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
 		$db = self::getDb('localhost', 'hikomsysQuizzes');
@@ -33,40 +27,12 @@ class QuizzesController extends \BaseController {
 
 		$userId = Auth::user()->id;
 		$projectId = $input['project_id'];
-
 		$quiz = Quiz::create(['user_id' => $userId, 'project_id' => $projectId]); 
 		
 		return Redirect::route('quizzes.edit', [$quiz->id])
 			->with('selected', $input);
 	}	
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		$quiz = Quiz::findOrFail($id);
-		$projectId = $quiz->project_id;
-
-		$projectName = Project::findOrFail($projectId)->name." blabla".Project::findOrFail($projectId)->version;
-
-
-		return View::make('quizzes.result', compact($quiz))
-			->with('quizId', $id)
-			->with('projectName', $projectName)
-			->with('greenPoints', $quiz->green_points)
-			->with('redPoints', $quiz->red_points);
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
 		return View::make('quizzes.show')
@@ -74,20 +40,24 @@ class QuizzesController extends \BaseController {
 			->with('selected', Session::get('selected'));
 	}
 
-	public function success(){
-		return Redirect::route('home')->with('message', 'Thank you for participating!');
+
+	public function show($id)
+	{
+		$quiz = Quiz::findOrFail($id);
+
+		return View::make('quizzes.result', compact($quiz))
+			->with('quizId', $id)
+			->with('greenPoints', $quiz->green_points)
+			->with('redPoints', $quiz->red_points);
 	}
 
-	public function visualization(){
-		$quiz = Quiz::orderBy(DB::raw('RAND()'))->get()->first();
-		$id = $quiz->id;
-		return View::make('quizzes.visualization')
-			->with('quizId' , $id);	
+	public function success()
+	{
+		return Redirect::home()->with('message', 'Thank you for participating!');
 	}
 
-
-	//TODO refactor stuff below is so ugly..
-	public function createResults(){
+	public function createResults()
+	{
 		global $solution;
 
 		$db = self::getDb('localhost', 'hikomsys');
@@ -104,72 +74,35 @@ class QuizzesController extends \BaseController {
 		self::addForgottenDependencies();
 		self::colorPackage();
 		self::addAdditionalInformation();
+		self::calculatePoints();
 		self::cleanUp();
-
-		self::getPoints();
 	}
 
-	public function sendJSON(){
+	public function sendJSON()
+	{
 		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
 		$quizId = Input::get('quizId');
-
 		$resultsName = $quizId.'_RES';	
 		$results = $db->$resultsName;
 
 		$cursor = $results->find([],['_id' => 0]);;
 
 		return json_encode(iterator_to_array($cursor));
+	}								
+
+	//Currently unused!
+	public function visualization()
+	{
+		$quiz = Quiz::orderBy(DB::raw('RAND()'))->get()->first();
+		$id = $quiz->id;
+		return View::make('quizzes.visualization')
+			->with('quizId' , $id);	
 	}
 
-	// ornage = 0, red = -1 and green = 1
-	public function getPoints(){
-		$db = self::getDb('localhost', 'hikomsysQuizzes');
-
-		$quizId = Input::get('quizId');
-
-		$resultsName = $quizId.'_RES';
-		$results = $db->$resultsName;
-
-		$nbrOfPackages = $results->count();
-		$maxDependencies = $nbrOfPackages * ($nbrOfPackages - 1);
-
-		$countGreen = $countOrange = $countRed = 0;
-		$cursor = $results->find([], ['_id' => 0, 'name' => 0,'position' => 0, 'color' => 0]);
-		foreach ($cursor as $key => $value) {
-			if(array_key_exists('dependencies', $value)){
-				$dependencies = $value['dependencies'];
-				foreach ($dependencies as $k => $dependency) {
-					if($dependency['color'] == 'green'){
-						$countGreen++;};
-					if($dependency['color'] == 'orange'){
-						$countOrange++;};
-					if($dependency['color'] == 'red'){
-						$countRed++;};
-				}
-			}
-		}
-
-		$totalDependencies = $countOrange + $countGreen;
-		$minusPoints = -100/($maxDependencies-$totalDependencies);
-
-		/* Check if $totalDependencies is zero */
-		$plusPoints = 100/($totalDependencies == 0 ? 1 : $totalDependencies);
-
-		$red_points = ($minusPoints * $countRed + 50)/2;
-		$green_points = ($plusPoints * $countGreen + 50)/2;
-		$userPoints = $green_points + $red_points;
-
-		$quiz = Quiz::findOrFail($quizId);
-		$quiz->red_points = round($red_points,2);
-		$quiz->green_points = round($green_points,2);
-		$quiz->total_points = round($userPoints,2);
-		$quiz->save();
-
-		return $quiz->total_points;
-	}
-
-	private function createSolutionTable($quizId){
+/*----------------------------------------------------- Private Functions -----------------------------------------------------*/
+	private function createSolutionTable($quizId)
+	{
 		$db = self::getDb('localhost', 'hikomsys');
 		
 		$quiz = Quiz::findOrFail($quizId);
@@ -185,10 +118,10 @@ class QuizzesController extends \BaseController {
 			};"
 			)
 		]);
-
 	}
 
-	private function createUserSubmTable($packages, $id){
+	private function createUserSubmTable($packages, $id)
+	{
 		global $userSub;
 
 		$db = self::getDb('localhost', 'hikomsysQuizzes');
@@ -202,21 +135,22 @@ class QuizzesController extends \BaseController {
 		}
 	}
 
-	private function createResultTable($id){
+	private function createResultTable($id)
+	{
 		global $results, $userSub;
 
 		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
 		$results = $db->createCollection($id.'_RES');
 
-		//TODO use mongo CopyTo and also add the dependencies, classes and children
 		$cursor = $userSub->find([],['name' => 1, 'position' => 1]);
 		foreach($cursor as $document){
 			$results->insert($document);
 		}
 	}	
 
-	private function crossCheck(){
+	private function crossCheck()
+	{
 		global $results, $userSub;
 
 		$cursor = $userSub->find(['dependencies' => ['$exists' => true]]);
@@ -227,21 +161,23 @@ class QuizzesController extends \BaseController {
 		}
 	}
 
-	private function checkDependencies($dependencies, $packageName){
+	private function checkDependencies($dependencies, $packageName)
+	{
 		global $solution, $results;
 
 		$results->update(['name' => $packageName], ['$set' => ['dependencies' => []]]);
 
 		foreach ($dependencies as $dep => $depName) {
-			$test = $solution->find(['name' => $packageName,'outgoingDependencies.to.package' => $depName['to']]);
+			$isCorrect = $solution->find(['name' => $packageName,'outgoingDependencies.to.package' => $depName['to']]);
 			
-			$color = $test->hasNext() ? 'green' : 'red';
+			$color = $isCorrect->hasNext() ? 'green' : 'red';
 
 			$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => $color]]]);
 		}
 	}
 
-	private function addForgottenDependencies(){
+	private function addForgottenDependencies()
+	{
 		global $solution, $results, $userSub;
 
 		$packages = $userSub->find([], ['_id' => 0, 'position' => 0, 'dependencies' => 0]);
@@ -258,7 +194,6 @@ class QuizzesController extends \BaseController {
 					$dependencyToCheck = $dependency['to']['package'];
 					$test = $results->find(['name' => $remainingName,'dependencies.to' => $dependencyToCheck]);
 
-					//TODO this if is not very nice and I should think about a better way
 					if(!$test->hasNext() and ($remainingName != $dependencyToCheck) and in_array($dependencyToCheck, $packageNames)){
 						$results->update(['name' => $remainingName], ['$push' => ['dependencies' => ['to' => $dependencyToCheck, 'color' => 'orange']]]);
 					}
@@ -267,7 +202,35 @@ class QuizzesController extends \BaseController {
 		}
 	}
 
-	private function addAdditionalInformation(){
+	private function colorPackage()
+	{
+		global $results;
+
+		$alpha = 0.3;
+		$packages = $results->find([], ['position' => 0, '_id' => 0]);
+
+		foreach ($packages as $key => $package) {
+			$color = "rgba(0,128,0,$alpha)"; 
+			if(array_key_exists('dependencies', $package)){
+				$dependencies = $package['dependencies'];
+				foreach ($dependencies as $k => $dependency) {
+					switch ($dependency['color']) {
+						case 'orange':
+							$color = "rgba(242,165,0,$alpha)";
+							break;
+						
+						case 'red':
+							$color = "rgba(255,0,0,$alpha)"; 
+							break;
+					}
+				}
+			}
+		$results->update(['name' => $package['name']],['$set' => ['color' => $color]]);
+		}
+	}
+
+	private function addAdditionalInformation()
+	{
 		global $solution, $results;
 
 		$packages = $results->find([], ['_id' => 0, 'position' => 0, 'dependencies' => 0]);
@@ -290,34 +253,71 @@ class QuizzesController extends \BaseController {
 		}
 	}
 
-	private function colorPackage(){
-		global $results;
+	// orange = 0, red = -1 and green = 1
+	private function calculatePoints()
+	{
+		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
-		$alpha = 0.3;
-		$packages = $results->find([], ['position' => 0, '_id' => 0]);
+		$quizId = Input::get('quizId');
 
-		foreach ($packages as $key => $package) {
-			$color = "rgba(0,128,0,$alpha)"; 
-			if(array_key_exists('dependencies', $package)){
-				$dependencies = $package['dependencies'];
+		$resultsName = $quizId.'_RES';
+		$results = $db->$resultsName;
+
+		$nbrOfPackages = $results->count();
+		$maxDependencies = $nbrOfPackages * ($nbrOfPackages - 1);
+
+		$cursor = $results->find([], ['_id' => 0, 'name' => 0,'position' => 0, 'color' => 0]);
+		
+		$counted = self::countColors($cursor);
+		$countGreen = $counted[0];
+		$countOrange = $counted[1];
+		$countRed = $counted[2];
+
+		$totalDependencies = $countOrange + $countGreen;
+		$minusPoints = -100/($maxDependencies-$totalDependencies);
+
+		/* Check if $totalDependencies is zero */
+		$plusPoints = 100/($totalDependencies == 0 ? 1 : $totalDependencies);
+
+		$red_points = ($minusPoints * $countRed + 50)/2;
+		$green_points = ($plusPoints * $countGreen + 50)/2;
+		$userPoints = $green_points + $red_points;
+
+		$quiz = Quiz::findOrFail($quizId);
+		$quiz->red_points = round($red_points,2);
+		$quiz->green_points = round($green_points,2);
+		$quiz->total_points = round($userPoints,2);
+		$quiz->save();
+
+		return $quiz->total_points;
+	}
+
+	private function countColors($cursor){
+		$green = $orange = $red = 0;
+		foreach ($cursor as $key => $value) {
+			if(array_key_exists('dependencies', $value)){
+				$dependencies = $value['dependencies'];
 				foreach ($dependencies as $k => $dependency) {
-					if($dependency['color'] == 'orange'){ 
-						$color = "rgba(242,165,0,$alpha)";
-					};
-					if($dependency['color'] == 'red'){ 
-						$color = "rgba(255,0,0,$alpha)"; 
-						break;
-					};
+					switch($dependency['color']){
+						case 'green':
+							$green++;
+							break;
+						case 'orange':
+							$orange++;
+							break;
+						case 'red':
+							$red++;
+							break;
+					}
 				}
 			}
-		$results->update(['name' => $package['name']],['$set' => ['color' => $color]]);
 		}
+		return [$green, $orange, $red];
 	}
 
-	private function cleanUp(){
+	private function cleanUp()
+	{
 		global $solution;
-
 		$solution->drop();
 	}
-
-}	
+}

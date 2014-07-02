@@ -77,7 +77,7 @@ $('#submit').click(function(){
 	output = createJSON();
 	quizId = document.getElementById('quizId').value;
 	$.ajax({
-		url : '/hikomsys/quizzes/create_result',
+		url : '/hikomsys/quizzes/create-result',
 		type : 'post',
 		data : {"packages": output, "quizId" : quizId},
 		success : function(data){
