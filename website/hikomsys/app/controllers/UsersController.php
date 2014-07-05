@@ -55,7 +55,7 @@ class UsersController extends BaseController {
 		}
 		catch(ModelNotFoundException $e)
 		{
-			return Redirect::home('error', 'Sorry the user you are looking for does not exist.');
+			return Redirect::home()-with('error', 'Sorry the user you are looking for does not exist.');
 		}
 	}
 
