@@ -55,7 +55,7 @@ class UsersController extends BaseController {
 		}
 		catch(ModelNotFoundException $e)
 		{
-			return Redirect::home('message', 'Sorry the user you are looking for does not exist.');
+			return Redirect::home('error', 'Sorry the user you are looking for does not exist.');
 		}
 	}
 
@@ -77,7 +77,7 @@ class UsersController extends BaseController {
 			return Redirect::home()->with('message', $message);
 		} 
 		catch (ModelNotFoundException $e) {
-			return Redirect::home()-with('message', 'Somthing went wrong. Please try editing the profile again.');
+			return Redirect::home()-with('error', 'Somthing went wrong. Please try editing the profile again.');
 		}
 
 
@@ -92,7 +92,7 @@ class UsersController extends BaseController {
 			return Redirect::route('users.index')->with('message', 'Profile Successfully updated');
 		}
 		catch(ModelNotFoundException $e){
-			return Redirect::home()->with('message', 'Somthing went wrong. Please try updating the profile again.');
+			return Redirect::home()->with('error', 'Somthing went wrong. Please try updating the profile again.');
 		}
 	}
 
@@ -106,8 +106,8 @@ class UsersController extends BaseController {
 			Session::flash('message', 'Successfully deleted the nerd!');
 			return Redirect::route('users.showall');			
 		} 
-		catch (ModelNotFoundException $e) {
-			return Redirect::home()->with('message', 'Somthing went wrong. Please try deleting the user again.');
+		catch (ModelNotFoundException $e){
+			return Redirect::home()->with('error', 'Somthing went wrong. Please try deleting the user again.');
 		}
 
 	}
