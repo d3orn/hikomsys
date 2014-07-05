@@ -93,22 +93,21 @@ class ProjectsController extends BaseController {
 		try
 		{
 			$project = Project::findOrFail($id);
-
-			//REFACTOR into seperate file and add echo code to a div
-			$collectionName = $project->name;
-			$collectionName = $collectionName.'V'.$project->version;
-
-			// select the collection  
-			$list = $db->listCollections(); //whaaat? probably not needed
-			$collection = $db->$collectionName;
-			$cursor = $collection->find(['parentPackage' => ['$exists' => false], 'name' => ['$ne' => 'Default Package']]);	
-
-			return View::make('projects.view', compact('project', 'collection', 'cursor'));
 		}
 		catch(ModelNotFoundException $e)
 		{
 			return Redirect::home()->with('Sorry the project you are looking for does not exist.');
 		}
+		//REFACTOR into seperate file and add echo code to a div
+		$collectionName = $project->name;
+		$collectionName = $collectionName.'V'.$project->version;
+
+		// select the collection  
+		$list = $db->listCollections(); //whaaat? probably not needed
+		$collection = $db->$collectionName;
+		$cursor = $collection->find(['parentPackage' => ['$exists' => false], 'name' => ['$ne' => 'Default Package']]);	
+
+		return View::make('projects.view', compact('project', 'collection', 'cursor'));
 	}
 
 	public function showall(){
