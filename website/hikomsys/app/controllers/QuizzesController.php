@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 class QuizzesController extends \BaseController {
 
 	public function __construct() {
@@ -13,7 +15,14 @@ class QuizzesController extends \BaseController {
 	public function index()
 	{
 		$projectId =Input::get('project_id');
-		$projectName = "Your results for ".Project::findOrFail($projectId)->name." version ".Project::findOrFail($projectId)->version;
+		try {
+			$project = Project::findOrFail($projectId);
+		} 
+		catch (ModelNotFoundException $e) {
+			return Redirect::home()->with('error', 'Oops something went wrong, project was not found.');
+		}
+
+		$projectName = "Your results for ".$project->name." version ".$project->version;
 		$quizzes = Quiz::where('project_id', '=', $projectId)->orderBy('total_points', 'desc')->get();
 
 		return View::make('quizzes.quizlist', compact('quizzes', 'projectName'));
@@ -43,7 +52,12 @@ class QuizzesController extends \BaseController {
 
 	public function show($id)
 	{
-		$quiz = Quiz::findOrFail($id);
+		try {
+			$quiz = Quiz::findOrFail($id);
+		} 
+		catch (ModelNotFoundException $e) {
+			return Redirect::home()->with('error', 'Oops something went wrong, quiz was not found.');
+		}
 
 		return View::make('quizzes.result', compact($quiz))
 			->with('quizId', $id)
@@ -105,7 +119,13 @@ class QuizzesController extends \BaseController {
 	{
 		$db = self::getDb('localhost', 'hikomsys');
 		
-		$quiz = Quiz::findOrFail($quizId);
+		try {
+			$quiz = Quiz::findOrFail($id);
+		} 
+		catch (ModelNotFoundException $e) {
+			return Redirect::home()->with('error', 'Oops something went wrong, quiz was not found.');
+		}
+
 		$project = Project::find($quiz->project_id);
 		$projectName = $project->name.'V'.$project->version;
 
@@ -283,7 +303,13 @@ class QuizzesController extends \BaseController {
 		$green_points = ($plusPoints * $countGreen + 50)/2;
 		$userPoints = $green_points + $red_points;
 
-		$quiz = Quiz::findOrFail($quizId);
+		try {
+			$quiz = Quiz::findOrFail($id);
+		} 
+		catch (ModelNotFoundException $e) {
+			return Redirect::home()->with('error', 'Oops something went wrong, quiz was not found.');
+		}
+
 		$quiz->red_points = round($red_points,2);
 		$quiz->green_points = round($green_points,2);
 		$quiz->total_points = round($userPoints,2);

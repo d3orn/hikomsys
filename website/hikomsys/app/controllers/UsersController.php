@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Auth\UserInterface;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UsersController extends BaseController {
 
@@ -46,9 +47,16 @@ class UsersController extends BaseController {
 	}
 
 	public function show($id){
-		$user = $this->users->findOrFail($id);
+		try
+		{
+			$user = $this->users->findOrFail($id);
 
-		return View::make('users.show', compact('user'));
+			return View::make('users.show', compact('user'));
+		}
+		catch(ModelNotFoundException $e)
+		{
+			return Redirect::home()->with('error', 'Sorry the user you are looking for does not exist.');
+		}
 	}
 
 	public function showall(){
@@ -58,34 +66,49 @@ class UsersController extends BaseController {
 	}
 
 	public function edit($id){
-		$message = 'You do not have permission to edit other users!';
+		try {
+			$message = 'You do not have permission to edit other users!';
 
-		$user = $this->users->findOrFail($id);
+			$user = $this->users->findOrFail($id);
+			//TODO
+			//this should not check if the user is 'd3orn' it should check if the user is an admin 
+			//=> I should add a field isAdmin to the userstable
+			if($user == Auth::user() or Auth::user()->username == 'd3orn') return View::make('users.edit', compact('user'));
+			return Redirect::home()->with('message', $message);
+		} 
+		catch (ModelNotFoundException $e) {
+			return Redirect::home()->with('error', 'Somthing went wrong. Please try editing the profile again.');
+		}
 
-		//TODO
-		//this should not check if the user is 'd3orn' it should check if the user is an admin 
-		//=> I should add a field isAdmin to the userstable
-		if($user == Auth::user() or Auth::user()->username == 'd3orn') return View::make('users.edit', compact('user'));
-		return Redirect::home()->with('message', $message);
+
 	}
 
 	public function update($id){
-		$user = $this->users->findOrFail($id);
+		try{
+			$user = $this->users->findOrFail($id);
+			$user->fill(Input::all());
+			$user->save();
 
-		$user->fill(Input::all());
-
-		$user->save();
-
-		return Redirect::route('users.index')->with('message', 'Profile Successfully updated');
+			return Redirect::route('users.index')->with('message', 'Profile Successfully updated');
+		}
+		catch(ModelNotFoundException $e){
+			return Redirect::home()->with('error', 'Somthing went wrong. Please try updating the profile again.');
+		}
 	}
 
 	public function destroy($id){
-		// delete
-		$user = $this->users->findOrFail($id);
-		$user->delete();
+		try {
+			// delete
+			$user = $this->users->findOrFail($id);
+			$user->delete();
 
-		// redirect
-		Session::flash('message', 'Successfully deleted the nerd!');
-		return Redirect::route('users.showall');
+			// redirect
+			Session::flash('message', 'Successfully deleted the nerd!');
+			return Redirect::route('users.showall');			
+		} 
+		catch (ModelNotFoundException $e){
+			return Redirect::home()->with('error', 'Somthing went wrong. Please try deleting the user again.');
+		}
+
 	}
 }
