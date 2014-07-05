@@ -154,8 +154,8 @@ class ProjectsController extends BaseController {
 		return $project->id;
 	}
 
-	public function ranking($projectid){
-		return View::make('projects.ranking');
+	public function ranking($projectId){
+		return View::make('projects.ranking', compact($projectId));
 	}
 
 }

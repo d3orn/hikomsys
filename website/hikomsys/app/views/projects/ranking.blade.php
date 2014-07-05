@@ -5,5 +5,6 @@
 
 @section("content")
 
-	
+	{{ $projectId }}
+
 @stop
