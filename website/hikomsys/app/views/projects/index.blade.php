@@ -25,7 +25,7 @@
 								<td>{{ $project->version }}</td>
 								<td>
 									{{ HTML::linkRoute('projects.show', 'Start new Quiz', [$project->project_id], ['class'=>'small button radius'])}}
-									{{ HTML::linkRoute('home', 'Ranking', ['project_id' => $project->project_id], ['class'=>'secondary small button radius']) }}
+									{{ HTML::linkRoute('projects.ranking', 'Ranking', ['project_id' => $project->project_id], ['class'=>'secondary small button radius']) }}
 									{{ HTML::linkRoute('quizzes.index', 'Solutions', ['project_id' => $project->project_id], ['class'=>'success small button radius']) }}
 								</td>
 							</tr>
