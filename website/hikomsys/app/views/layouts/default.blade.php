@@ -34,6 +34,7 @@
 
 	</head>
 	<body>	
+	{{ phpinfo() }}
 		<div id="wrapper">
 			<div class="fixed">
 				<nav class="top-bar" data-topbar>

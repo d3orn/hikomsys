@@ -24,7 +24,6 @@ Route::get('quizzes/visualization', array('uses' => 'QuizzesController@visualiza
 Route::get('quizzes/success', array('uses' => 'QuizzesController@success'));
 
 //Probablly I can add the points to sendJSON
-//Route::post('quizzes/calculate-points', array('uses' => 'QuizzesController@calculatePoints'));
 Route::post('quizzes/green-points', array('uses' => 'QuizzesController@greenPoints'));
 Route::post('quizzes/red-points', array('uses' => 'QuizzesController@redPoints'));
 Route::post('quizzes/create-result', array('uses' => 'QuizzesController@createResults'));
