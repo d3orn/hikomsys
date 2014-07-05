@@ -107,7 +107,7 @@ class UsersController extends BaseController {
 			return Redirect::route('users.showall');			
 		} 
 		catch (ModelNotFoundException $e) {
-			return Redirect::home()->with('message', 'Somthing went wrong. Please try deleting the user again.')
+			return Redirect::home()->with('message', 'Somthing went wrong. Please try deleting the user again.');
 		}
 
 	}

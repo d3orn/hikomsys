@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 class QuizzesController extends \BaseController {
 
 	public function __construct() {
