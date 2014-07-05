@@ -109,7 +109,7 @@ class ProjectsController extends BaseController {
 		}
 		catch(ModelNotFoundException $e)
 		{
-			return Redirect::home()->with('message', 'Sorry the project you are looking for does not exist.');
+			return Redirect::home()->with('error', 'Sorry the project you are looking for does not exist.');
 		}
 	}
 
