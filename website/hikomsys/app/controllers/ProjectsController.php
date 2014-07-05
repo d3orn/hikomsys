@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 class ProjectsController extends BaseController {
 
 	//I should just add this filter to the BaseController
