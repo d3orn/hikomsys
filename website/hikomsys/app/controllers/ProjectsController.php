@@ -90,18 +90,25 @@ class ProjectsController extends BaseController {
 	public function show($id){
 		$db = self::getDb('localhost', 'hikomsys');
 
-		$project = Project::findOrFail($id);
+		try
+		{
+			$project = Project::findOrFail($id);
 
-		//REFACTOR into seperate file and add echo code to a div
-		$collectionName = $project->name;
-		$collectionName = $collectionName.'V'.$project->version;
+			//REFACTOR into seperate file and add echo code to a div
+			$collectionName = $project->name;
+			$collectionName = $collectionName.'V'.$project->version;
 
-		// select the collection  
-		$list = $db->listCollections(); //whaaat? probably not needed
-		$collection = $db->$collectionName;
-		$cursor = $collection->find(['parentPackage' => ['$exists' => false], 'name' => ['$ne' => 'Default Package']]);	
+			// select the collection  
+			$list = $db->listCollections(); //whaaat? probably not needed
+			$collection = $db->$collectionName;
+			$cursor = $collection->find(['parentPackage' => ['$exists' => false], 'name' => ['$ne' => 'Default Package']]);	
 
-		return View::make('projects.view', compact('project', 'collection', 'cursor'));
+			return View::make('projects.view', compact('project', 'collection', 'cursor'));
+		}
+		catch(ModelNotFoundException $e)
+		{
+			return Redirect::home()->with('Sorry the project you are looking for does not exist.');
+		}
 	}
 
 	public function showall(){
