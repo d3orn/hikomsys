@@ -19,7 +19,7 @@ class QuizzesController extends \BaseController {
 			$project = Project::findOrFail($projectId);
 		} 
 		catch (ModelNotFoundException $e) {
-			return Redirect::home()->with('message', 'Oops something went wrong, project was not found.');
+			return Redirect::home()->with('error', 'Oops something went wrong, project was not found.');
 		}
 
 		$projectName = "Your results for ".$project->name." version ".$project->version;
@@ -56,7 +56,7 @@ class QuizzesController extends \BaseController {
 			$quiz = Quiz::findOrFail($id);
 		} 
 		catch (ModelNotFoundException $e) {
-			return Redirect::home()->with('message', 'Oops something went wrong, quiz was not found.');
+			return Redirect::home()->with('error', 'Oops something went wrong, quiz was not found.');
 		}
 
 		return View::make('quizzes.result', compact($quiz))
@@ -123,7 +123,7 @@ class QuizzesController extends \BaseController {
 			$quiz = Quiz::findOrFail($id);
 		} 
 		catch (ModelNotFoundException $e) {
-			return Redirect::home()->with('message', 'Oops something went wrong, quiz was not found.');
+			return Redirect::home()->with('error', 'Oops something went wrong, quiz was not found.');
 		}
 
 		$project = Project::find($quiz->project_id);
@@ -307,7 +307,7 @@ class QuizzesController extends \BaseController {
 			$quiz = Quiz::findOrFail($id);
 		} 
 		catch (ModelNotFoundException $e) {
-			return Redirect::home()->with('message', 'Oops something went wrong, quiz was not found.');
+			return Redirect::home()->with('error', 'Oops something went wrong, quiz was not found.');
 		}
 
 		$quiz->red_points = round($red_points,2);
