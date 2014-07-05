@@ -120,7 +120,7 @@ class QuizzesController extends \BaseController {
 		$db = self::getDb('localhost', 'hikomsys');
 		
 		try {
-			$quiz = Quiz::findOrFail($id);
+			$quiz = Quiz::findOrFail($quizId);
 		} 
 		catch (ModelNotFoundException $e) {
 			return Redirect::home()->with('error', 'Oops something went wrong, quiz was not found.');
@@ -304,7 +304,7 @@ class QuizzesController extends \BaseController {
 		$userPoints = $green_points + $red_points;
 
 		try {
-			$quiz = Quiz::findOrFail($id);
+			$quiz = Quiz::findOrFail($quizId);
 		} 
 		catch (ModelNotFoundException $e) {
 			return Redirect::home()->with('error', 'Oops something went wrong, quiz was not found.');
