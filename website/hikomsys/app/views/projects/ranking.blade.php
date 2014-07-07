@@ -10,18 +10,19 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Project Name</th>
-					<th>Version</th>
-					<th>Actions</th>
+					<th>User</th>
+					<th>Result</th>
 				</tr>
 			</thead>
 			<tbody>
-				
+				<th>Testuser</th>
+				<th>
+					<div class="progress">
+						<span class="meter" style="width: 50%"></span>
+					</div>
+				</th>
 			</tbody>
 		</table>
 	@endif
-	<div class="progress">
-		<span class="meter" style="width: 50%"></span>
-	</div>
 
 @stop
