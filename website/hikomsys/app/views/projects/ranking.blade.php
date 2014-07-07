@@ -22,7 +22,7 @@
 									{{ "<span class=\"meter\" style=\"width: ".$userranking->result."%\"></span>" }}	
 								</li>
 								<li>
-									{{ HTML::linkRoute('quizzes.show', "Checkout!", [$quiz->id]) }}
+									{{ HTML::linkRoute('quizzes.show', "Checkout!", [$userranking->id]) }}
 								</li>
 							</ul>
 						</li>
