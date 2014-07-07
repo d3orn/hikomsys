@@ -15,13 +15,11 @@
 						<li>
 							<ul>
 								<li>{{ $userranking->username }}</li>
-								<li class="progress">
-									
-										{{ "<span class=\"meter\" style=\"width: ".$userranking->result."%\"></span>" }}	
-									
-								</li>
 								<li>	
 									{{ $userranking->result. "%"}}
+								</li>
+								<li class="progress">
+									{{ "<span class=\"meter\" style=\"width: ".$userranking->result."%\"></span>" }}	
 								</li>
 							</ul>
 						</li>
