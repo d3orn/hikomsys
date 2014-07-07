@@ -155,6 +155,7 @@ class ProjectsController extends BaseController {
 	}
 
 	public function ranking($projectid){
+		var_dump(type of $projectid);
 		/*	Select id, x.user_id, max From hikomsys.quizzes x 
 			Left outer join
 			(SELECT user_id, project_id, max(total_points) as max 
@@ -170,7 +171,8 @@ class ProjectsController extends BaseController {
 									ON x.total_points = y.max WHERE y.project_id is not null;');
 
 			return View::make('projects.ranking')
-				->with('ranking' , $ranking);
+				->with('ranking' , $ranking)
+				->with();
 		}
 	}
 
