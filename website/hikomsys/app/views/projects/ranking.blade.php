@@ -5,6 +5,6 @@
 
 @section("content")
 
-	{{ $projectid }}
+	{{ $ranking }}
 
 @stop
