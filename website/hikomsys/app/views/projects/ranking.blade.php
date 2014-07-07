@@ -19,7 +19,7 @@
 				
 			</tbody>
 		</table>
-
+	@endif
 	<div class="progress">
 		<span class="meter" style="width: 50%"></span>
 	</div>
