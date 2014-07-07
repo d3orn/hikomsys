@@ -164,7 +164,7 @@ class ProjectsController extends BaseController {
 								FROM quizzes x 
 								Left outer join
 								(SELECT user_id, project_id, max(total_points) as max 
-								FROM hikomsys.quizzes WHERE project_id = ' +intval($projectid)+ ' 
+								FROM hikomsys.quizzes WHERE project_id = ' . intval($projectid) . ' 
 								GROUP BY project_id, user_id) y
 								ON x.total_points = y.max WHERE y.project_id is not null;');
 
