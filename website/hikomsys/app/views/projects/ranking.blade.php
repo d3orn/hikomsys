@@ -5,6 +5,6 @@
 
 @section("content")
 
-	{{ $ranking }}
+	{{ var_dump($ranking) }}
 
 @stop
