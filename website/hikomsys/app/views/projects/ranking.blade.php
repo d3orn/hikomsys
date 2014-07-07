@@ -10,29 +10,24 @@
 		<div class="medium-8 columns">
 			@if($ranking)
 				<ol>
-					<li>
-						<ul>
-							<li>User1</li>
-							<li>
-								<div class="progress">
-									<span class="meter" style="width: 50%"></span>
-								</div>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<ul>
-							<li>User1</li>
-							<li>
-								<div class="progress">
-									<span class="meter" style="width: 50%"></span>
-								</div>
-							</li>
-						</ul>
-					</li>
+					
+					@foreach($ranking as $userranking)
+						<li>
+							<ul>
+								<li>{{ $userranking->username }}</li>
+								<li>
+									<div class="progress">
+										<span class="meter" style="width: 50%"></span>
+									</div>
+								</li>
+							</ul>
+						</li>
+					@endforeach
+
 				</ol>
 			@endif
 		</div>
 	</div>
 
 @stop
+
