@@ -7,7 +7,7 @@
 
 	{{ var_dump($ranking) }}
 	<div class="row">
-		<div class="medium-8 columns">
+		<div class="medium-8 columns" id="ranking">
 			@if($ranking)
 				<ol>
 					

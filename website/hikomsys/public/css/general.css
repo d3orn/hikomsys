@@ -52,3 +52,7 @@ header {
 #infosEnabled {
     padding: 0.1rem 1rem;
 }
+
+#ranking li {
+    list-style: none;
+}
