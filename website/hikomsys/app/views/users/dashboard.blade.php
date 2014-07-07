@@ -54,7 +54,13 @@
 				{{ Form::close() }}
 
 			</div>
-
+		
+			<div class="medium-4 columns">
+				<div class="panel callout radius">
+					<h3>This is a callout pannel.</h3>
+					<p>hello there!</p>
+				</div>
+			</div>
 		</div>
 
 @stop
