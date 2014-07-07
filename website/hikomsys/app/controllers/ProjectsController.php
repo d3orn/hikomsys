@@ -165,13 +165,11 @@ class ProjectsController extends BaseController {
 									hikomsys.quizzes quizzes,
 									hikomsys.users users
 								WHERE
-									quizzes.user_id = users.id
+									quizzes.user_id = users.id and
+									quizzes.project_id = '. $projectid .'
 								GROUP BY
 									quizzes.user_id,
 									quizzes.project_id');
-
-
-
 
 		return View::make('projects.ranking')
 			->with('ranking' , $ranking);
