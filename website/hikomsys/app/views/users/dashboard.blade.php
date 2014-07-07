@@ -60,7 +60,6 @@
 					<h3>Awesome!</h3>
 					<p>You don't want to upload a project yet? You just want to see what others submitted?</p>
 					<p>No Problem! {{ HTML::linkRoute('projects.showall', 'Check them out now!') }}</p>
-					
 				</div>
 			</div>
 		</div>
