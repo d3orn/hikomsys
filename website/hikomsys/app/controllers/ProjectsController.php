@@ -155,7 +155,7 @@ class ProjectsController extends BaseController {
 	}
 
 	public function ranking($projectid){
-		var_dump(type of $projectid);
+		var_dump(gettype($projectid));
 		/*	Select id, x.user_id, max From hikomsys.quizzes x 
 			Left outer join
 			(SELECT user_id, project_id, max(total_points) as max 
