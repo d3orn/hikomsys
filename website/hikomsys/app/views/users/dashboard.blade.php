@@ -57,8 +57,9 @@
 		
 			<div class="medium-4 columns">
 				<div class="panel callout radius">
-					<h3>This is a callout pannel.</h3>
-					<p>hello there!</p>
+					<h3>New here?</h3>
+					<p>Checkout all the awesome projects already submitted to Hikomsys.</p>
+					{{ HTML::linkRoute('projects.showall', 'Check them out!') }}
 				</div>
 			</div>
 		</div>
