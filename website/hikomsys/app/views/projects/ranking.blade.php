@@ -6,29 +6,33 @@
 @section("content")
 
 	{{ var_dump($ranking) }}
-	@if($ranking)
-		<ol>
-			<li>
-				<ul>
-					<li>User1</li>
+	<div class="row">
+		<div class="medium-8 columns">
+			@if($ranking)
+				<ol>
 					<li>
-						<div class="progress">
-							<span class="meter" style="width: 50%"></span>
-						</div>
+						<ul>
+							<li>User1</li>
+							<li>
+								<div class="progress">
+									<span class="meter" style="width: 50%"></span>
+								</div>
+							</li>
+						</ul>
 					</li>
-				</ul>
-			</li>
-			<li>
-				<ul>
-					<li>User1</li>
 					<li>
-						<div class="progress">
-							<span class="meter" style="width: 50%"></span>
-						</div>
+						<ul>
+							<li>User1</li>
+							<li>
+								<div class="progress">
+									<span class="meter" style="width: 50%"></span>
+								</div>
+							</li>
+						</ul>
 					</li>
-				</ul>
-			</li>
-		</ol>
-	@endif
+				</ol>
+			@endif
+		</div>
+	</div>
 
 @stop
