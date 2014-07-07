@@ -7,6 +7,20 @@
 
 	{{ var_dump($ranking) }}
 	@if($ranking)
+		<ol>
+			<li>
+				<ul>
+					<li>User1</li>
+					<li>Result</li>
+				</ul>
+			</li>
+			<li>
+				<ul>
+					<li>User1</li>
+					<li>Result</li>
+				</ul>
+			</li>
+		</ol>
 		<table class="table table-striped">
 			<thead>
 				<tr>
