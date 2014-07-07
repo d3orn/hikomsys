@@ -169,8 +169,7 @@ class ProjectsController extends BaseController {
 								ON x.total_points = y.max WHERE y.project_id is not null;');
 
 		return View::make('projects.ranking')
-			->with('ranking' , $ranking)
-			->with();
+			->with('ranking' , $ranking);
 		
 	}
 
