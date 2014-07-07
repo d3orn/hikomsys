@@ -155,11 +155,6 @@ class ProjectsController extends BaseController {
 	}
 
 	public function ranking($projectid){
-		/*	Select id, x.user_id, max From hikomsys.quizzes x 
-			Left outer join
-			(SELECT user_id, project_id, max(total_points) as max 
-			FROM hikomsys.quizzes Where project_id = 1 group by project_id, user_id) y
-			on x.total_points = y.max Where y.project_id is not null;*/
 		$ranking = DB::select('	SELECT id, x.user_id, max 
 								FROM quizzes x 
 								Left outer join
@@ -170,7 +165,6 @@ class ProjectsController extends BaseController {
 
 		return View::make('projects.ranking')
 			->with('ranking' , $ranking);
-		
 	}
 
 }
