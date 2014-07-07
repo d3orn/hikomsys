@@ -19,7 +19,6 @@
 				
 			</tbody>
 		</table>
-	@else
 
 	<div class="progress">
 		<span class="meter" style="width: 50%"></span>
