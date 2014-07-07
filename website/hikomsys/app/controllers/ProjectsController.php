@@ -159,7 +159,7 @@ class ProjectsController extends BaseController {
 									quizzes.id,
 									quizzes.user_id,
 									quizzes.project_id,
-									MAX(quizzes.total_points),
+									MAX(quizzes.total_points) as result,
 									users.username
 								FROM
 									hikomsys.quizzes quizzes,
