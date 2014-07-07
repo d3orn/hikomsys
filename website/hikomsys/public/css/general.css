@@ -55,4 +55,16 @@ header {
 
 #ranking li {
     list-style: none;
+    float:  left;
+}
+
+#ranking li .progress{
+    display: inline-block;
+    width: 80%;
+    margin: 0;
+}
+
+#ranking li span{
+    display: inline-block;
+    float: left;
 }
