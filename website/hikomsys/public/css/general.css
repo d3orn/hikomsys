@@ -53,7 +53,7 @@ header {
     padding: 0.1rem 1rem;
 }
 
-#ranking li {
+#ranking li ul li {
     list-style: none;
     float:  left;
 }
