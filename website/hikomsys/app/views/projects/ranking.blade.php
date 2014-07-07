@@ -5,7 +5,6 @@
 
 @section("content")
 
-	{{ var_dump($ranking) }}
 	<div class="row">
 		<div class="medium-10 columns" id="ranking">
 			@if($ranking)
