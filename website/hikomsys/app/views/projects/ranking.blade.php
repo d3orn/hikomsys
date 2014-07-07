@@ -7,7 +7,7 @@
 
 	{{ var_dump($ranking) }}
 	<div class="row">
-		<div class="medium-8 columns" id="ranking">
+		<div class="medium-10 columns" id="ranking">
 			@if($ranking)
 				<ol>
 					
@@ -20,6 +20,9 @@
 								</li>
 								<li class="progress">
 									{{ "<span class=\"meter\" style=\"width: ".$userranking->result."%\"></span>" }}	
+								</li>
+								<li>
+									{{ HTML::linkRoute('quizzes.show', "Checkout!", [$quiz->id]) }}
 								</li>
 							</ul>
 						</li>
