@@ -7,7 +7,7 @@ class Helpers {
 			$tmpName = $child['name'];
 			$strRepName = str_replace('::','\\:\\:',$tmpName);
 			$classCount = self::countClasses($child);
-			$html = $html."\n\t<li id=\"$strRepName\"><a>".$tmpName." (".classCount." Classes)</a>";
+			$html = $html."\n\t<li id=\"$strRepName\"><a>".$tmpName." (".$classCount." Classes)</a>";
 			if(self::hasChildren($tmpName, $collection)){
 				$html = $html.'<ul>';
 				$cursor = $collection->find(array('name' => $tmpName));
