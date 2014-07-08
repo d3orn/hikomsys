@@ -169,7 +169,9 @@ class ProjectsController extends BaseController {
 									quizzes.project_id = '. intval($projectid) .'
 								GROUP BY
 									quizzes.user_id,
-									quizzes.project_id');
+									quizzes.project_id
+								ORDER BY 
+									result DESC');
 
 		return View::make('projects.ranking')
 			->with('ranking' , $ranking);
