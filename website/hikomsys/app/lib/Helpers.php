@@ -4,7 +4,6 @@ class Helpers {
 	public static function recursiveTree($children, $collection){
 		$html = '';
 		foreach($children as $child){
-			$html = $html.print_r($child);
 
 			$tmpName = $child['name'];
 			$strRepName = str_replace('::','\\:\\:',$tmpName);
@@ -31,8 +30,12 @@ class Helpers {
 		return($tmpCursor->hasNext());
 	}
 
-	private static function countClasses($package){
-		return array_key_exists('classes', $package);
+	private static function countClasses($collection, $name){
+		$tmpCursor = $collection->find(array('name' => $name));
+
+		print_r($tmpCursor);
+
+		return array_key_exists('classes', $tmpCursor);
 		/*if(array_key_exists('classes', $package)){
 			return count($package['classes']);
 		}
