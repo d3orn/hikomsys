@@ -29,7 +29,7 @@ class Helpers {
 		return($tmpCursor->hasNext());
 	}
 
-	private static function countClasses(){
+	private static function countClasses($package){
 		return 5;
 	}
 
