@@ -103,7 +103,7 @@ class ProjectsController extends BaseController {
 			// select the collection  
 			$list = $db->listCollections(); //whaaat? probably not needed
 			$collection = $db->$collectionName;
-			$cursor = $collection->find(['parentPackage' => ['$exists' => false], 'name' => ['$ne' => 'Default Package']]);	
+			$cursor = $collection->find(['parentPackage' => ['$exists' => false], 'name' => ['$ne' => 'Default Package']],['name' => 1, 'classes' => 1]);	
 
 			return View::make('projects.view', compact('project', 'collection', 'cursor'));
 		}
