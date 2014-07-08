@@ -5,9 +5,9 @@ class Helpers {
 		$html = '';
 		foreach($children as $child){
 			$html = $html.print_r($child);
+			
 			$tmpName = $child['name'];
 			$strRepName = str_replace('::','\\:\\:',$tmpName);
-			error_log(print_r($child),3, '/var/tmp/hikomsys.log');
 			$classCount = self::countClasses($child);
 			$html = $html."\n\t<li id=\"$strRepName\"><a>".$tmpName." (".$classCount.")</a>";
 			if(self::hasChildren($tmpName, $collection)){
@@ -32,11 +32,10 @@ class Helpers {
 	}
 
 	private static function countClasses($package){
-		/*if(array_key_exists('classes', $package)){
+		if(array_key_exists('classes', $package)){
 			return count($package['classes']);
 		}
-		return '0 Classes';*/
-		return 0;
+		return '0 Classes';
 	}
 
 	public static function addPackages($array){
