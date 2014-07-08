@@ -35,7 +35,7 @@ class Helpers {
 		$thisthingy = $tmpCursor->getNext();
 
 
-		return var_dump($thisthingy).'<br>';
+		return var_dump($thisthingy['classes']).'<br>';
 
 		//return array_key_exists('classes', $tmpCursor);
 		/*if(array_key_exists('classes', $package)){
