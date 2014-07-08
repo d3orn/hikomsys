@@ -35,7 +35,7 @@ class Helpers {
 		$document = $tmpCursor->getNext();
 
 		if(array_key_exists('classes', $document)){
-			if(count($document['classes'] === 1)){
+			if(count($document['classes']) === 1){
 				return " (1 Class)";
 			}
 			return " (".count($document['classes'])." Classes)";
