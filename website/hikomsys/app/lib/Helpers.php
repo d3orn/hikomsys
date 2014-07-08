@@ -33,7 +33,7 @@ class Helpers {
 		if(array_key_exists('classes', $package)){
 			return count($package['classes']);
 		}
-		return '0 Classes'
+		return '0 Classes';
 		
 	}
 
