@@ -35,13 +35,13 @@ class Helpers {
 		$thisthingy = $tmpCursor->getNext();
 
 
-		return var_dump($thisthingy['classes']).'<br>';
+		//return var_dump($thisthingy['classes']).'<br>';
 
 		//return array_key_exists('classes', $tmpCursor);
-		/*if(array_key_exists('classes', $package)){
-			return count($package['classes']);
+		if(array_key_exists('classes', $thisthingy)){
+			return count($thisthingy['classes']);
 		}
-		return '0 Classes';*/
+		return '0 Classes';
 	}
 
 	public static function addPackages($array){
