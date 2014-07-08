@@ -6,6 +6,8 @@
 
 
 @section("content")
+{{ var_dump($cursor)}}
+{{ var_dump($collections)}}
 	<div class="row">
 		<div class="medium-12 columns">
 			<h1>{{ $project->name }}</h1>  
