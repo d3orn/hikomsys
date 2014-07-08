@@ -34,7 +34,7 @@ class Helpers {
 			return count($package['classes']);
 		}
 		return '0 Classes';*/
-		return print_r($package);
+		return printf($package);
 	}
 
 	public static function addPackages($array){
