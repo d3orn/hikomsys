@@ -32,10 +32,10 @@ class Helpers {
 
 	private static function countClasses($collection, $name){
 		$tmpCursor = $collection->find(array('name' => $name));
-		$thisthingy = $tmpCursor->next();
+		$thisthingy = $tmpCursor->getNext();
 
 
-		return var_dump(iterator_to_array($tmpCursor)).'<br>';
+		return var_dump($thisthingy).'<br>';
 
 		//return array_key_exists('classes', $tmpCursor);
 		/*if(array_key_exists('classes', $package)){
