@@ -5,7 +5,7 @@ class Helpers {
 		$html = '';
 		foreach($children as $child){
 			$html = $html.print_r($child);
-			
+
 			$tmpName = $child['name'];
 			$strRepName = str_replace('::','\\:\\:',$tmpName);
 			$classCount = self::countClasses($child);
@@ -32,10 +32,11 @@ class Helpers {
 	}
 
 	private static function countClasses($package){
-		if(array_key_exists('classes', $package)){
+		return array_key_exists('classes', $package);
+		/*if(array_key_exists('classes', $package)){
 			return count($package['classes']);
 		}
-		return '0 Classes';
+		return '0 Classes';*/
 	}
 
 	public static function addPackages($array){
