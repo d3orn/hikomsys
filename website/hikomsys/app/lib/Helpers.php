@@ -4,6 +4,7 @@ class Helpers {
 	public static function recursiveTree($children, $collection){
 		$html = '';
 		foreach($children as $child){
+			$html = $html.print_r($child);
 			$tmpName = $child['name'];
 			$strRepName = str_replace('::','\\:\\:',$tmpName);
 			error_log(print_r($child),3, '/var/tmp/hikomsys.log');
