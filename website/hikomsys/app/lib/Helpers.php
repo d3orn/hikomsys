@@ -6,7 +6,7 @@ class Helpers {
 		foreach($children as $child){
 			$tmpName = $child['name'];
 			$strRepName = str_replace('::','\\:\\:',$tmpName);
-			$html = $html."\n\t<li id=\"$strRepName\"><a>".$tmpName."</a>";
+			$html = $html."\n\t<li id=\"$strRepName\"><a>".$tmpName."(test)</a>";
 			if(self::hasChildren($tmpName, $collection)){
 				$html = $html.'<ul>';
 				$cursor = $collection->find(array('name' => $tmpName));
