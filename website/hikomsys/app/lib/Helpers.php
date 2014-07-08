@@ -30,7 +30,7 @@ class Helpers {
 	}
 
 	private static function countClasses($package){
-		if array_key_exists('classes', $package){
+		if(array_key_exists('classes', $package){
 			return count($package['classes']);
 		}
 		return '0 Classes'
