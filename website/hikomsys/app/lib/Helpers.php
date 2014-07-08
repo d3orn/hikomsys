@@ -30,11 +30,11 @@ class Helpers {
 	}
 
 	private static function countClasses($package){
-		if(array_key_exists('classes', $package)){
+		/*if(array_key_exists('classes', $package)){
 			return count($package['classes']);
 		}
-		return '0 Classes';
-		
+		return '0 Classes';*/
+		return print_r($package);
 	}
 
 	public static function addPackages($array){
