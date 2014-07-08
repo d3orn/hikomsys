@@ -6,6 +6,7 @@ class Helpers {
 		foreach($children as $child){
 			$tmpName = $child['name'];
 			$strRepName = str_replace('::','\\:\\:',$tmpName);
+			error_log(print_r($child));
 			$classCount = self::countClasses($child);
 			$html = $html."\n\t<li id=\"$strRepName\"><a>".$tmpName." (".$classCount.")</a>";
 			if(self::hasChildren($tmpName, $collection)){
@@ -34,7 +35,7 @@ class Helpers {
 			return count($package['classes']);
 		}
 		return '0 Classes';*/
-		return printf($package);
+		return 0;
 	}
 
 	public static function addPackages($array){
