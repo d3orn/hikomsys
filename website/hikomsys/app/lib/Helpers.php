@@ -30,8 +30,7 @@ class Helpers {
 	}
 
 	private static function countClasses($package){
-		var_dump($package);
-		//return sizeof($package['classes']);
+		return $package['classes'];
 		
 	}
 
