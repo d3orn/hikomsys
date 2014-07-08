@@ -6,7 +6,7 @@ class Helpers {
 		foreach($children as $child){
 			$tmpName = $child['name'];
 			$strRepName = str_replace('::','\\:\\:',$tmpName);
-			error_log(print_r($child));
+			error_log(print_r($child),3, '/var/tmp/hikomsys.log');
 			$classCount = self::countClasses($child);
 			$html = $html."\n\t<li id=\"$strRepName\"><a>".$tmpName." (".$classCount.")</a>";
 			if(self::hasChildren($tmpName, $collection)){
