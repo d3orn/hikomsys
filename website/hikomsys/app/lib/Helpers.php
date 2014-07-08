@@ -34,9 +34,10 @@ class Helpers {
 		$tmpCursor = $collection->find(array('name' => $name));
 		$thisthingy = $tmpCursor->next();
 
-		print_r($thisthingy);
 
-		return array_key_exists('classes', $tmpCursor);
+		return print_r($thisthingy);
+
+		//return array_key_exists('classes', $tmpCursor);
 		/*if(array_key_exists('classes', $package)){
 			return count($package['classes']);
 		}
