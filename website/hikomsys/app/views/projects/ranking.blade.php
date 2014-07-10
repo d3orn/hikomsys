@@ -14,9 +14,10 @@
 		<div class="medium-10 columns" id="ranking">
 			@if($ranking)
 				<ol>
-					<li>
 					@foreach($ranking as $userranking)
+						<li>
 						@if($userranking->username == $username)
+							{{ hello there }}
 							<ul class='current-user'>
 						@else	
 							<ul>
