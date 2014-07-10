@@ -16,7 +16,7 @@
 				<ol>
 					
 					@foreach($ranking as $userranking)
-						@if($ranking->username == $username)
+						@if($userranking->username == $username)
 							<li class='current-user'>
 						@else	
 							<li>
