@@ -17,7 +17,7 @@
 					@foreach($ranking as $userranking)
 						<li>
 						@if($userranking->username == $username)
-							{{ hello there }}
+							{{ 'hello there' }}
 							<ul class='current-user'>
 						@else	
 							<ul>
