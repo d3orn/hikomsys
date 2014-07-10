@@ -52,28 +52,3 @@ header {
 #infosEnabled {
     padding: 0.1rem 1rem;
 }
-
-#ranking ol{
-    list-style: none;
-    margin: 0;
-}
-
-#ranking li ul li {
-    list-style: none;
-    float:  left;
-    min-width: 10%;
-}
-
-#ranking li .progress{
-    display: inline-block;
-    width: 70%;
-    margin: 0;
-}
-
-#ranking li span{
-    display: inline-block;
-    float: left;
-}
-
-#ranking li ul{
-    margin-left: 0;
