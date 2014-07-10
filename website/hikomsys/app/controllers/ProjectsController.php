@@ -151,7 +151,7 @@ class ProjectsController extends BaseController {
 	public function ranking($projectid){
 		try
 		{
-			$projectName = Project::findOrFail($prjectid)->name;
+			$projectName = Project::findOrFail($projectid)->name;
 		} 
 		catch (ModelNotFoundException $e) 
 		{
