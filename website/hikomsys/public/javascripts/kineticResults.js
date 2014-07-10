@@ -95,15 +95,15 @@ $('#continue').click(function() {
     switch(clicks){
         case 0:
             color = 'green';
-            $('.meter').css('width', '33%', 'background', '#B3DAB3');
+            $('.meter').css({'width', '33%', 'background', '#B3DAB3'});
             break;
         case 1:
             color = 'orange';
-            $('.meter').css('width', '66%', 'background', '#FCE5B3');
+            $('.meter').css({'width', '66%', 'background', '#FCE5B3'});
             break;
         case 2:
             color = 'red';
-            $('.meter').css('width', '100%', 'background', '#FEB3B3');
+            $('.meter').css({'width', '100%', 'background', '#FEB3B3'});
             $('#continue').text('Finish');
             break;
         default:
