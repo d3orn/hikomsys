@@ -63,7 +63,7 @@ $(document).ready(function() {
             stage.draw();
         });
 
-    moreInfosEnabled = true;
+    moreInfosEnabled = false;
 });
 
 /* ------  Buttons ------*/
