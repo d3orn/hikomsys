@@ -177,8 +177,6 @@ class ProjectsController extends BaseController {
 								ORDER BY 
 									result DESC ');
 
-		$userranking = $ranking->where('quizzes.user_id', '=', $userId)
-
 		return View::make('projects.ranking', compact('ranking', 'projectName'));
 	}
 
