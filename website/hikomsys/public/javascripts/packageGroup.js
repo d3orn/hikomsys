@@ -360,9 +360,10 @@ function PackageGroup(text, color, infos) {
 			.add(new Kinetic.Rect({
 					width: 13,
 					height: 13,
-					fill: 'red',
+					fill: 'white',
 					stroke: 'black',
 					strokeWidth:2,
+					"y" : -(PACKAGE_HEIGHT-8), 
 					id: id + 'CloseButton'
 				})
 			)
