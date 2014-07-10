@@ -116,14 +116,7 @@ class ProjectsController extends BaseController {
 	public function showall(){
 		$title = 'All projects on HIKOMSYS';
 		$projects = Project::all();
-		/*$projects = DB::table('projects')
-			->join('usersprojects', 'projects.id', '=', 'usersprojects.project_id')
-			->get([
-				'projects.name', 
-				'projects.version',
-				'usersprojects.project_id', 
-				'usersprojects.user_id'
-			]);*/
+		
 		return View::make('projects.index', compact('projects', 'title'));
 	}
 

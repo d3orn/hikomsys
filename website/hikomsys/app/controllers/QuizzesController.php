@@ -22,8 +22,9 @@ class QuizzesController extends \BaseController {
 			return Redirect::home()->with('error', 'Oops something went wrong, project was not found.');
 		}
 
+		$userId = Auth::user()->id;
 		$projectName = "Your results for ".$project->name." version ".$project->version;
-		$quizzes = Quiz::where('project_id', '=', $projectId)->orderBy('total_points', 'desc')->get();
+		$quizzes = Quiz::where('project_id', '=', $projectId)->where('user_id', '=', $userId)->orderBy('total_points', 'desc')->get();
 
 		return View::make('quizzes.quizlist', compact('quizzes', 'projectName'));
 	}
