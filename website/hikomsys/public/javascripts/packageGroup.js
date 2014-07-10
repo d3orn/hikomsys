@@ -358,12 +358,12 @@ function PackageGroup(text, color, infos) {
 	this.createCloseGroup = function(id){
 		return new Kinetic.Group()
 			.add(new Kinetic.Rect({
-					width: 13,
-					height: 13,
+					width: 15,
+					height: 15,
 					fill: 'white',
 					stroke: 'black',
 					strokeWidth:2,
-					"y" : -(PACKAGE_HEIGHT-8), 
+					"y" : -(PACKAGE_HEIGHT), 
 					id: id + 'CloseButton'
 				})
 			)
