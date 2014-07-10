@@ -121,8 +121,9 @@ $('#continue').click(function() {
 
 
 function flip(color){
-    animationComplete = false;
+    animationComplete = true;
     if(animationComplete){
+        var animationComplete = false;
         var bgColor, direction, newPoints;
         greenPoints = document.getElementById('green-points').value;
         redPoints = document.getElementById('red-points').value;
