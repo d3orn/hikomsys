@@ -49,8 +49,8 @@
 
 	<div class="row">
 		<div class="medium-12 columns">
-			<div class="progress">
-				<span class="meter"></span>
+			<div class="progress radius">
+				<span class="meter" style="width: 0%"></span>
 			</div>
 		</div>
 	</div>
