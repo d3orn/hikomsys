@@ -142,11 +142,11 @@ function show(color){
                 newPoints = redPoints;
                 break;
         }
-        flip(bgColor, direction);
+        flip(color, bgColor, direction, poins, newPoints);
     }   
 }
 
-function flip(color, direction){
+function flip(color, bgColor, direction, points, newPoints){
     $("#flipped").flip({
         direction: direction,
         color: bgColor,
