@@ -96,33 +96,28 @@ $('#continue').click(function() {
         case 0:
             color = 'green';
             $('.meter').css({'width': '33%', 'background': '#B3DAB3'});
-            flip('green');
+            show('green');
             break;
         case 1:
             color = 'orange';
             $('.meter').css({'width': '66%', 'background': '#FCE5B3'});
-            flip('orange');
+            show('orange');
             break;
         case 2:
             color = 'red';
             $('.meter').css({'width': '100%', 'background': '#FEB3B3'});
             $('#continue').text('Finish');
-            flip('red');
+            show('red');
             break;
         default:
             window.location.href = '/hikomsys/quizzes/success';
             break;
     }
-    for (var i = 0; i < arrows.length; i++) {
-        if (arrows[i].color == color) {
-            arrows[i].changeVisibility();
-        }
-    }
     ++clicks;
 });
 
 
-function flip(color){
+function show(color){
     animationComplete = true;
     if(animationComplete){
         var animationComplete = false;
@@ -147,21 +142,24 @@ function flip(color){
                 newPoints = redPoints;
                 break;
         }
-
-        $("#flipped").flip({
-            direction: direction,
-            color: bgColor,
-            content: '<p>Points: ' + points + ' (+' + newPoints + ')</p>',
-            onAnimation: function(){
-                for (var i = 0; i < arrows.length; i++) {
-                    if (arrows[i].color == color) {
-                        arrows[i].changeVisibility();
-                    }
-                }   
-            },
-            onEnd: function(){
-                animationComplete = true;
-            }
-        })
+        flip(bgColor, direction);
     }   
+}
+
+function flip(color, direction){
+    $("#flipped").flip({
+        direction: direction,
+        color: bgColor,
+        content: '<p>Points: ' + points + ' (+' + newPoints + ')</p>',
+        onAnimation: function(){
+            for (var i = 0; i < arrows.length; i++) {
+                if (arrows[i].color == color) {
+                    arrows[i].changeVisibility();
+                }
+            }   
+        },
+        onEnd: function(){
+            animationComplete = true;
+        }
+    })
 }
