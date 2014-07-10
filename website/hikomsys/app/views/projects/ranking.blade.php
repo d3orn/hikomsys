@@ -7,7 +7,7 @@
 
 	<div class="row">
 		<div class="medium-12 column">
-			{{ $projectName }}
+			<h2>{{ $projectName }}</h2>
 		</div>
 	</div>
 	<div class="row">
