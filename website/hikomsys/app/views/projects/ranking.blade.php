@@ -21,7 +21,7 @@
 						@else	
 							<li>
 						@endif
-							<ul>
+							<ul class='test'>
 								<li>{{ $userranking->username }}</li>
 								<li>	
 									{{ $userranking->result. "%"}}
