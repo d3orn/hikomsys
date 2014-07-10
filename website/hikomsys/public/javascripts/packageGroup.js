@@ -373,7 +373,13 @@ function PackageGroup(text, color, infos) {
 					"y" : -(PACKAGE_HEIGHT-8), 
 					"text" : 'X'
 				})
-			);
+			)
+			.on('click', function(){
+				var id = this.getId().replace('CloseButton', '');
+				var pack = findPackageById(id);
+				pack.hide(pack.infoGroup);
+				pack.removeInfos();
+			});
 
 	};
 
