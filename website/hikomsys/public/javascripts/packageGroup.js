@@ -367,7 +367,7 @@ function PackageGroup(text, color, infos) {
 				})
 			)
 			.add(kineticText({
-					"size" : 12, 
+					"size" : 14, 
 					"x" : 4, 
 					"y" : -(PACKAGE_HEIGHT-9), 
 					"text" : 'X'
