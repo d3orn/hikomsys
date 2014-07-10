@@ -63,7 +63,7 @@ $(document).ready(function() {
             stage.draw();
         });
 
-    moreInfosEnabled = true;
+    moreInfosEnabled = false;
 });
 
 /* ------  Buttons ------*/
@@ -93,7 +93,6 @@ $('#infosEnabled').click(function() {
         allPackages[i].removeInfos();
     }
 });
-
 
 //REFACTOR HARD
 /* FLIPBOX */

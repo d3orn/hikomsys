@@ -43,6 +43,33 @@ class QuizzesController extends \BaseController {
 			->with('selected', $input);
 	}	
 
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		$quiz = Quiz::findOrFail($id);
+		$projectId = $quiz->project_id;
+
+		$projectName = Project::findOrFail($projectId)->name." blabla".Project::findOrFail($projectId)->version;
+
+
+		return View::make('quizzes.result', compact($quiz))
+			->with('quizId', $id)
+			->with('projectName', $projectName)
+			->with('greenPoints', $quiz->green_points)
+			->with('redPoints', $quiz->red_points);
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
 	public function edit($id)
 	{
 		return View::make('quizzes.show')

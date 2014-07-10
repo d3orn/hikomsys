@@ -178,5 +178,4 @@ class ProjectsController extends BaseController {
 
 		return View::make('projects.ranking', compact('ranking', 'projectName'));
 	}
-
 }

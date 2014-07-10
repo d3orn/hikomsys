@@ -7,8 +7,6 @@ function findArrowById(id) {
     return -1;
 }
 
-//Kineticjs can search by id just set text = ID
-
 function findPackageById(id) {
     for (var i = 0; i < allPackages.length; i++) {
         if (allPackages[i].text === id) {
@@ -44,8 +42,6 @@ function kineticText(array) {
     });
 }
 
-//some refactoring needed
-
 function xOffset(center1, center2, center1_width) {
     if (isRightOf(center1, center2, center1_width)) {
         return center1_width / 2;
@@ -57,10 +53,10 @@ function xOffset(center1, center2, center1_width) {
 }
 
 function yOffset(center1, center2, center1_height) {
-    if (isBellow(center1, center2, center1_height)) {
+    if (isBellowOf(center1, center2, center1_height)) {
         return center1_height / 2;
     }
-    if (isAbove(center1, center2, center1_height)) {
+    if (isAboveOf(center1, center2, center1_height)) {
         return -center1_height / 2;
     }
     return 0;
@@ -74,14 +70,19 @@ function isLeftOf(center1, center2, center1_width) {
     return center2.x < (center1.x - center1_width / 2);
 }
 
-function isAbove(center1, center2, center1_height) {
+function isAboveOf(center1, center2, center1_height) {
     return center2.y < (center1.y - center1_height / 2);
 }
 
-function isBellow(center1, center2, center1_height) {
+function isBellowOf(center1, center2, center1_height) {
     return center2.y > (center1.y + center1_height / 2);
 }
 
+function removeIfExists(object){
+    if(typeof object !== "undefined") {object.remove();}
+}
+
+//those two functions need some rethinking but probably not from here but from where they are needed
 function normalClick(object) {
     if (object.parent().hasClass('active')) {
         object.parent().removeClass('active')
@@ -105,7 +106,6 @@ function removeIfExists(object){
 
 /* =============================================================== Prototype Methods ============================================================== */
 // Array Remove - By John Resig (MIT Licensed)
-//Do I still use this?
 Array.prototype.remove = function(from, to) {
     var rest = this.slice((to || from) + 1 || this.length);
     this.length = from < 0 ? this.length + from : from;

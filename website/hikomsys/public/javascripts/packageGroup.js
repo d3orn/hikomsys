@@ -52,9 +52,97 @@ function PackageGroup(text, color, infos) {
 		});
 
 		this.group.add(this.rect)
+<<<<<<< HEAD
 			.add(this.textField);
 
 		packageLayer.add(this.group);
+=======
+			.add(this.textField)
+			//need to check if to packages are overlapping, would not be nice
+			.move({x:1 + Math.floor(Math.random() * (CONTAINER_WIDTH-this.rect.getWidth())),
+				y:1 + Math.floor(Math.random() * (480-this.rect.getHeight()))});
+
+		packageLayer.add(this.group);
+		return this;
+	};
+
+	this.createDependencies = function(){
+		var dependencies = this.infos['allDependencies'];
+		this.dependenciesInfoBox = [];
+		var i = 0;	
+		for(key in dependencies){	
+			if(dependencies[key]['from']){
+				toGroup = new Kinetic.Group();
+
+				from = kineticText({
+					"size" : 12, 
+					"x" : 5, 
+					"y" : (5+i*(PACKAGE_HEIGHT-2)), 
+					"text" : dependencies[key]['from']['class']+'.'+dependencies[key]['from']['name'], 
+					"id" : dependencies[key]['from']['package'] + 'From',
+					"name" : i	
+				});
+
+				toClass = kineticText({
+					"size" : 12, 
+					"x" : 5, 
+					"y" : (5+0*(PACKAGE_HEIGHT-2)), 
+					"text" : 'Class: '+dependencies[key]['to']['class']
+				});
+
+				toName = kineticText({
+					"size" : 12, 
+					"x" : 5, 
+					"y" : (5+1*(PACKAGE_HEIGHT-2)), 
+					"text" : 'Name: '+dependencies[key]['to']['name']
+				});
+
+				toPackage = kineticText({
+					"size" : 12, 
+					"x" : 5, 
+					"y" : (5+2*(PACKAGE_HEIGHT-2)), 
+					"text" : 'Package: '+dependencies[key]['to']['package']
+				});
+
+				toBox = new Kinetic.Rect({
+					width: Math.max(toClass.getWidth(),toName.getWidth(),toPackage.getWidth())+10,
+					height: (PACKAGE_HEIGHT-2)*3,
+					fill: 'white',
+					stroke: 'black',
+					strokeWidth:2
+				})
+
+				title = kineticText({
+					"size" : 12, 
+					"x" : 4, 
+					"y" : -(PACKAGE_HEIGHT-8), 
+					"text" : 'TO'
+				});
+
+				titleBox = new Kinetic.Rect({
+					width: title.getWidth()+10,
+					height: (PACKAGE_HEIGHT-4),
+					fill: 'white',
+					stroke: 'black',
+					strokeWidth:2
+				})
+			
+				toGroup.add(titleBox)
+					.add(title)
+					.add(toBox)
+					.add(toClass)
+					.add(toName)
+					.add(toPackage);
+
+				titleBox.move({x:0, y:-(PACKAGE_HEIGHT-4)});
+
+				this.dependenciesInfoBox.push({'from' : from, 'to' : toGroup});
+				
+				i++;
+			}
+		}
+		return this;
+>>>>>>> 3ef42a1a0dbb03d23c2d7b016a8d4c52544e2a01
 	};
 
 	this.addEventListener = function(){
@@ -63,10 +151,20 @@ function PackageGroup(text, color, infos) {
 		})*/
 
 		this.group.on('mousedown', function() {
+<<<<<<< HEAD
 			if(drawingEnabled){ mouseDownOnPackage(this); }
 		}, false);
 		this.group.on('mouseup', function() {
 			if(drawingEnabled){ mouseUpOnPackage(this); }
+=======
+			if(drawingEnabled){
+				mouseDownOnPackage(this);
+			}
+		}, false);
+		this.group.on('mouseup', function() {
+			if(drawingEnabled){
+				mouseUpOnPackage(this);}
+>>>>>>> 3ef42a1a0dbb03d23c2d7b016a8d4c52544e2a01
 		}, false);
 
 		this.group.on('dragstart dragmove', function(){
@@ -104,6 +202,7 @@ function PackageGroup(text, color, infos) {
 				pack.highlightBox.remove();
 				packageLayer.draw();		
 			}
+<<<<<<< HEAD
 		});
 	};
 
@@ -173,6 +272,13 @@ function PackageGroup(text, color, infos) {
 				this.dependenciesInfoBox.push({'from' : from, 'to' : createToGroup(currentDependency['to'])});
 				
 				yOffset++;
+=======
+			if(drawingEnabled){
+				if(typeof firstSelectedPackage !== 'undefined' && this.getId() === firstSelectedPackage.text){return;}
+				var pack = findPackageById(this.getId());
+				pack.highlight.remove(); 
+				packageLayer.draw();
+>>>>>>> 3ef42a1a0dbb03d23c2d7b016a8d4c52544e2a01
 			}
 		}
 		return this;
@@ -381,16 +487,34 @@ function PackageGroup(text, color, infos) {
 			this.infoGroup.add(this.classesInfoText);
 		}
 		if(this.childrenInfoBox.length > 0){
+<<<<<<< HEAD
 			var offset = this.classesInfoBox.length > 0; 
+=======
+			var offset = this.classesInfoBox.length > 0 ? 1 : 0; 
+>>>>>>> 3ef42a1a0dbb03d23c2d7b016a8d4c52544e2a01
 			this.childrenInfoBoxText.move({x:5, y:5+offset*(PACKAGE_HEIGHT-3)});
 			this.infoGroup.add(this.childrenInfoBoxText);
 		}
 		if(this.dependenciesInfoBox.length > 0){
+<<<<<<< HEAD
 			var offset = (this.classesInfoBox.length > 0) + (this.childrenInfoBox.length > 0);
 			this.dependenciesInfoBoxText.move({x:5, y:5+offset*(PACKAGE_HEIGHT-3)});
 			this.infoGroup.add(this.dependenciesInfoBoxText);
 		}
 	};
+=======
+			var offset = (this.classesInfoBox.length > 0 ? 1 : 0) + (this.childrenInfoBox.length > 0 ? 1 : 0);
+			this.dependenciesInfoBoxText.move({x:5, y:5+offset*(PACKAGE_HEIGHT-3)});
+			this.infoGroup.add(this.dependenciesInfoBoxText);
+		}
+		
+		this.infoGroup.add(this.closeButton)
+			.move({x:this.position().x+this.rect.getWidth()+1, y:this.position().y});
+		this.closeButton.move({x:0, y:-this.closeButton.getHeight()});
+		infoLayer.add(this.infoGroup);
+		this.show(this.infoGroup,2);
+	}
+>>>>>>> 3ef42a1a0dbb03d23c2d7b016a8d4c52544e2a01
 
 	this.createInfoTexts = function(){
 		infoTexts = [];
@@ -431,6 +555,7 @@ function PackageGroup(text, color, infos) {
 			group.add(infoBox[i]);
 		}
 
+<<<<<<< HEAD
 		group.move({x:this.infoBox.getWidth()+1, y:0});
 		this.infoGroup.add(group);
 		this.show(group,1);
@@ -443,6 +568,12 @@ function PackageGroup(text, color, infos) {
 			function(a,b){
 				return a['from'].getWidth() > b['from'].getWidth() ? a : b;
 			})['from'].getWidth();
+=======
+		this.classGroup.move({x:this.infoBox.getWidth()+1, y:0});
+		this.infoGroup.add(this.classGroup);
+		this.show(this.classGroup,1);
+	}
+>>>>>>> 3ef42a1a0dbb03d23c2d7b016a8d4c52544e2a01
 
 		this.createDependenciesGroup();
 
@@ -462,12 +593,19 @@ function PackageGroup(text, color, infos) {
 		boxAddMouseLeave(box);
 	};
 
+<<<<<<< HEAD
 	var boxAddMouseEnter = function(box){
 		box.on('mouseenter', function(event){
 			var id = box.getId().replace('From', '');
 			var pack = findPackageById(id);
 			this.setFill('blue');
 			toBox = getToBox(this);
+=======
+		this.childrenGroup.move({x:this.infoBox.getWidth()+1, y:0});
+		this.infoGroup.add(this.childrenGroup);
+		this.show(this.childrenGroup,1);
+	}
+>>>>>>> 3ef42a1a0dbb03d23c2d7b016a8d4c52544e2a01
 
 			toBox.setPosition({x:pack.dependenciesBox.getWidth(), y: 0});
 			pack.dependenciesGroup.add(toBox);
@@ -507,9 +645,69 @@ function PackageGroup(text, color, infos) {
 		this.dependenciesGroup = new Kinetic.Group({
 			opacity: 0
 		});
+<<<<<<< HEAD
 		this.dependenciesGroup.add(this.dependenciesBox)
 			.move({x:this.infoBox.getWidth()+1, y:0});
 	};
+=======
+		this.dependenciesGroup.add(this.dependenciesBox);
+
+	 	for (var i = 0; i < this.dependenciesInfoBox.length; i++){
+	 		from  = this.dependenciesInfoBox[i]['from'];
+
+			this.dependenciesGroup.add(from);
+			from.on('mouseenter', function(event){
+				this.setFill('blue');
+				var index = this.getName();
+				var id = this.getId().replace('From', '');
+				var pack = findPackageById(id);
+				var to = pack.dependenciesInfoBox[index]['to'];
+				to.setPosition(pack.dependenciesBox.getWidth(),0);
+				pack.dependenciesGroup.add(to);
+
+				pack.show(to,1);
+				stage.draw();
+			})
+			from.on('mouseleave', function(event){
+				this.setFill('black');
+				var index = this.getName();
+				var id = this.getId().replace('From', '');
+				var pack = findPackageById(id);
+				var to = pack.dependenciesInfoBox[index]['to'];
+
+				if(to){
+					to.remove();
+					stage.draw();
+				}
+			})
+		}
+
+		title = new Kinetic.Text({
+			text: 'FROM',
+			fontSize: 12,
+			fontFamily: 'Calibri',
+			fill: 'black',
+			align: 'left',
+		})
+
+		titleBox = new Kinetic.Rect({
+			width: title.getWidth()+10,
+			height: (PACKAGE_HEIGHT-4),
+			fill: 'white',
+			stroke: 'black',
+			strokeWidth:2
+		})
+
+		this.dependenciesGroup.add(titleBox)
+			.add(title)
+			.move({x:this.infoBox.getWidth()+1, y:0})
+		
+		titleBox.move({x:0, y:-(PACKAGE_HEIGHT-4)});
+		title.move({x:4, y:-(PACKAGE_HEIGHT-8)});
+		this.infoGroup.add(this.dependenciesGroup);
+		this.show(this.dependenciesGroup,1);
+	}
+>>>>>>> 3ef42a1a0dbb03d23c2d7b016a8d4c52544e2a01
 
 	this.removeInfos = function(){
 		this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false;
@@ -540,4 +738,61 @@ function PackageGroup(text, color, infos) {
 		});
 		tween.play();
 	}
+<<<<<<< HEAD
+=======
+
+	this.highlightPackage = function(color){
+		if(typeof this.highlight !== 'undefined'){this.highlight.remove();}
+		var pos = this.rect.getAbsolutePosition();
+		var x = pos.x-4;
+		var y = pos.y-4;
+		var width = this.rect.getWidth()+8;
+		var height = this.rect.getHeight()+8;
+		this.highlight = new Kinetic.Rect({
+			width: width,
+			height: height,
+			fill: color,
+			stroke: color,
+			strokeWidth:2
+		});
+		this.highlight.move({x:x,y:y});
+		this.isHighlighted = true;
+		packageLayer.add(this.highlight);
+		this.highlight.setZIndex(0);
+		packageLayer.draw();
+	};	
+
+	this.removeInfos = function(){
+		this.infoBoxEnabled = this.classesEnabled = this.childrenEnabled = this.dependenciesEnabled = false;
+		if(typeof this.infoGroup !== 'undefined'){this.infoGroup.remove();}
+		if(typeof this.classGroup !== 'undefined'){this.classGroup.remove();}
+		if(typeof this.childrenGroup !== 'undefined'){this.childrenGroup.remove();}
+		if(typeof this.dependenciesGroup !== 'undefined'){this.dependenciesGroup.remove();}
+		infoLayer.draw();
+	}
+
+	this.position = function(){
+		return this.group.getAbsolutePosition();
+	};
+
+	var createMenu = function(name){
+		temp = this.infos[name];
+		tempArray = [];
+		var i = 0;
+		for(key in temp){
+			if(temp[key].name)
+				name = temp[key].name;
+				text = kineticText({
+					"size" : 12, 
+					"x" : 5, 
+					"y" : 5+i*(PACKAGE_HEIGHT-2), 
+					"text" : name, 	
+				});
+				tempArray.push(text);
+				i++;
+		}
+		return tempArray;
+	}
+
+>>>>>>> 3ef42a1a0dbb03d23c2d7b016a8d4c52544e2a01
 }

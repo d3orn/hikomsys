@@ -16,11 +16,7 @@
 				<ol>
 					@foreach($ranking as $userranking)
 						<li>
-						@if($userranking->username == Auth::user()->username)
-							<ul class='current-user'>
-						@else	
 							<ul>
-						@endif
 								<li>{{ $userranking->username }}</li>
 								<li>	
 									{{ $userranking->result. "%"}}
