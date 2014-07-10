@@ -366,7 +366,6 @@ function PackageGroup(text, color, infos) {
 				})
 			);
 	};
-	}
 
 	this.createCloseButton = function(){
 		this.closeButton = new Kinetic.Rect({
