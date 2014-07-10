@@ -356,9 +356,16 @@ function PackageGroup(text, color, infos) {
 	};
 
 	this.createCloseGroup = function(id){
-		var cb = this.createCloseButton(id);
 		return new Kinetic.Group()
-			.add(cb)
+			.add(new Kinetic.Rect({
+					width: 13,
+					height: 13,
+					fill: 'red',
+					stroke: 'black',
+					strokeWidth:2,
+					id: id + 'CloseButton'
+				})
+			)
 			.add(kineticText({
 					"size" : 12, 
 					"x" : 4, 
@@ -366,6 +373,7 @@ function PackageGroup(text, color, infos) {
 					"text" : 'X'
 				})
 			);
+
 	};
 
 	this.createCloseButton = function(id){
