@@ -363,13 +363,13 @@ function PackageGroup(text, color, infos) {
 					fill: 'white',
 					stroke: 'black',
 					strokeWidth:2,
-					"y" : -(PACKAGE_HEIGHT), 
+					"y" : -(PACKAGE_HEIGHT-10), 
 					id: id + 'CloseButton'
 				})
 			)
 			.add(kineticText({
 					"size" : 12, 
-					"x" : 4, 
+					"x" : 5, 
 					"y" : -(PACKAGE_HEIGHT-8), 
 					"text" : 'X'
 				})
