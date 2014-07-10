@@ -25,7 +25,11 @@
 								<li>	
 									{{ $userranking->result. "%"}}
 								</li>
-								<li class="progress">
+								@if($userranking->username == Auth::user()->username)
+									<li class="progress success">
+								@else	
+									<li class="progress">
+								@endif
 									{{ "<span class=\"meter\" style=\"width: ".$userranking->result."%\"></span>" }}	
 								</li>
 								<li>
