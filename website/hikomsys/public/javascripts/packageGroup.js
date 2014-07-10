@@ -357,7 +357,7 @@ function PackageGroup(text, color, infos) {
 
 	this.createCloseGroup = function(){
 		return new Kinetic.Group()
-			.add(createCloseButton())
+			.add(this.createCloseButton())
 			.add(kineticText({
 					"size" : 12, 
 					"x" : 4, 
