@@ -135,14 +135,17 @@ function flip(color){
                 bgColor = '#B3DAB3';
                 direction = 'tb';
                 newPoints = greenPoints;
+                break;
             case 'orange':
                 bgColor = '#FCE5B3';
                 direction = 'rl';
                 newPoints = 0;
+                break;
             case 'red':
                 bgColor = '#FEB3B3';
                 direction = 'bt';
                 newPoints = redPoints;
+                break;
         }
 
         $("#flipped").flip({
