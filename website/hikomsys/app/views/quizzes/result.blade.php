@@ -49,6 +49,14 @@
 
 	<div class="row">
 		<div class="medium-12 columns">
+			<div class="progress">
+				<span class="meter"></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-12 columns">
 			<div id="container"></div>
 		</div>
 	</div>
