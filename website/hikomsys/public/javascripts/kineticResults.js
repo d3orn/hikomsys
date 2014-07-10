@@ -96,6 +96,7 @@ $('#continue').click(function() {
         case 0:
             color = 'green';
             $('.meter').css({'width': '33%', 'background': '#B3DAB3'});
+            flip('green');
             break;
         case 1:
             color = 'orange';
@@ -118,6 +119,46 @@ $('#continue').click(function() {
     ++clicks;
 });
 
+
+function flip(color){
+    animationComplete = false;
+    if(animationComplete){
+        var bgColor, direction, newPoints;
+        greenPoints = document.getElementById('green-points').value;
+        redPoints = document.getElementById('red-points').value;
+        points = parseFloat(greenPoints)+parseFloat(redPoints);
+        switch(color){
+            case 'green':
+                bgColor = '#B3DAB3';
+                direction = 'tb';
+                newPoints = greenPoints;
+            case 'orange':
+                bgColor = '#FCE5B3';
+                direction = 'rl';
+                newPoints = 0;
+            case 'red':
+                bgColor = '#FEB3B3';
+                direction = 'bt';
+                newPoints = redPoints;
+        }
+
+        $("#flipped").flip({
+            direction: direction,
+            color: bgColor,
+            content: '<p>Points: ' + points + ' (+' + newPoints + ')</p>',
+            onAnimation: function(){
+                for (var i = 0; i < arrows.length; i++) {
+                    if (arrows[i].color == color) {
+                        arrows[i].changeVisibility();
+                    }
+                }   
+            },
+            onEnd: function(){
+                animationComplete = true;
+            }
+        })
+    }   
+}
 
 //REFACTOR HARD
 /* FLIPBOX */
