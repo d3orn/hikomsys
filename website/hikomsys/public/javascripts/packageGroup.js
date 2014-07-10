@@ -239,7 +239,7 @@ function PackageGroup(text, color, infos) {
 		this.infoBoxEnabled = true;
 
 		this.createInfoTexts();
-		this.closeGroup = this.createCloseGroup(this.textField.getText());
+		this.closeGroup = createCloseGroup(this.textField.getText());
 
 		this.infoBox = new Kinetic.Rect({
 			width: this.dependenciesInfoBoxText.getWidth()+10,
@@ -355,21 +355,21 @@ function PackageGroup(text, color, infos) {
 		packagegroup.dependenciesEnabled = false;
 	};
 
-	this.createCloseGroup = function(id){
+	var createCloseGroup = function(id){
 		return new Kinetic.Group({id: id + 'CloseButton'})
 			.add(new Kinetic.Rect({
-					width: 15,
-					height: 15,
+					width: 16,
+					height: 16,
 					fill: 'white',
 					stroke: 'black',
 					strokeWidth:2,
-					"y" : -(PACKAGE_HEIGHT-10), 
+					"y" : -(PACKAGE_HEIGHT-9), 
 				})
 			)
 			.add(kineticText({
 					"size" : 12, 
-					"x" : 5, 
-					"y" : -(PACKAGE_HEIGHT-8), 
+					"x" : 4, 
+					"y" : -(PACKAGE_HEIGHT-9), 
 					"text" : 'X'
 				})
 			)
@@ -380,26 +380,6 @@ function PackageGroup(text, color, infos) {
 				pack.removeInfos();
 			});
 
-	};
-
-	this.createCloseButton = function(id){
-		this.closeButton = new Kinetic.Rect({
-			width: 13,
-			height: 13,
-			fill: 'red',
-			stroke: 'black',
-			strokeWidth:2,
-			id: id + 'CloseButton'
-		});
-
-		this.closeButton.move({x:0, y:-this.closeButton.getHeight()});
-										
-		this.closeButton.on('click', function(){
-			var id = this.getId().replace('CloseButton', '');
-			var pack = findPackageById(id);
-			pack.hide(pack.infoGroup);
-			pack.removeInfos();
-		});
 	};
 
 	this.moveInfoTexts = function(){
