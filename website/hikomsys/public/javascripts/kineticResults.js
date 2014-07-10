@@ -94,6 +94,32 @@ $('#infosEnabled').click(function() {
     }
 });
 
+var clicks = 0;
+$('#continue').click(function() {
+    var color;
+    switch(clicks){
+        case 0:
+            color = 'green';
+            break;
+        case 1:
+            color = 'orange';
+            break;
+        case 2:
+            color = 'red';
+            break;
+        default:
+            window.location.href = '/hikomsys/quizzes/success';
+            break;
+    }
+    for (var i = 0; i < arrows.length; i++) {
+        if (arrows[i].color == color) {
+            arrows[i].changeVisibility();
+        }
+    }
+
+    ++clicks;
+});
+
 
 //REFACTOR HARD
 /* FLIPBOX */
