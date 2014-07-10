@@ -17,7 +17,6 @@
 					@foreach($ranking as $userranking)
 						<li>
 						@if($userranking->username == Auth::user()->username)
-							{{ 'hello there' }}
 							<ul class='current-user'>
 						@else	
 							<ul>
