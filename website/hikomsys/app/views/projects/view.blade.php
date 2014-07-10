@@ -10,7 +10,9 @@
 		<div class="medium-12 columns">
 			<h1>{{ $project->name }}</h1>  
 
-			<p> Please select the packages you think are most important for your project. Your knowledge will be tested base on the selection you made. </p> 
+			<!-- make sure that this main message is vvisible  is visible...-->
+			<h3> Please select the packages you think are most important for your project</h3>
+			<p>Your knowledge will be tested based on the selection you made. </p> 
 			<p> Right click a node to show additional options for expanding and closing nodes</p>
 		</div>
 	</div>
