@@ -97,17 +97,20 @@ $('#continue').click(function() {
             color = 'green';
             $('.meter').css({'width': '33%', 'background': '#B3DAB3'});
             show('green');
+            normalClick($('#greenArrow'));
             break;
         case 1:
             color = 'orange';
             $('.meter').css({'width': '66%', 'background': '#FCE5B3'});
             show('orange');
+            normalClick($('#greenArrow'));
             break;
         case 2:
             color = 'red';
             $('.meter').css({'width': '100%', 'background': '#FEB3B3'});
             $('#continue').text('Finish');
             show('red');
+            normalClick($('#greenArrow'));
             break;
         default:
             window.location.href = '/hikomsys/quizzes/success';
