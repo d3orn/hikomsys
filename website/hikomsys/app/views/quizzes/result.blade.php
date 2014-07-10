@@ -26,7 +26,7 @@
 							</div>
 						</div>
 					</div>
-					<div id="flipped" class="medium-8 columns"><p>Points: 0 (0)</p></div>
+					<div id="flipped" class="medium-8 columns"><p>Points: {{ $redPoints + $greenPoints }} (0)</p></div>
 				</div>
 			</div>
 		</div>
