@@ -61,9 +61,9 @@ $(document).ready(function() {
                 }
             }
             stage.draw();
+            moreInfosEnabled = false;
         });
 
-    moreInfosEnabled = false;
 });
 
 /* ------  Buttons ------*/
