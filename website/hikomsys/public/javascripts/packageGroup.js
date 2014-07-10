@@ -239,7 +239,7 @@ function PackageGroup(text, color, infos) {
 		this.infoBoxEnabled = true;
 
 		this.createInfoTexts();
-		this.createCloseButton();
+		this.closeGroup = this.createCloseGroup();
 
 		this.infoBox = new Kinetic.Rect({
 			width: this.dependenciesInfoBoxText.getWidth()+10,
@@ -256,7 +256,7 @@ function PackageGroup(text, color, infos) {
 			name: 'infoGroup'	
 		});
 		this.infoGroup.add(this.infoBox);
-		this.infoGroup.add(this.closeButton);
+		this.infoGroup.add(this.closeGroup);
 		//this is not really nice it also add the info to the infoGroup either use a better name or seperate functions
 		this.moveInfoTexts();
 									
@@ -354,6 +354,20 @@ function PackageGroup(text, color, infos) {
 		removeIfExists(packagegroup.dependenciesGroup);
 		packagegroup.dependenciesEnabled = false;
 	};
+
+	this.createCloseGroup = function(){
+		return new Kinetic.Group()
+			.add(createCloseButton())
+			)
+			.add(kineticText({
+					"size" : 12, 
+					"x" : 4, 
+					"y" : -(PACKAGE_HEIGHT-8), 
+					"text" : 'X'
+				})
+			);
+	};
+	}
 
 	this.createCloseButton = function(){
 		this.closeButton = new Kinetic.Rect({
