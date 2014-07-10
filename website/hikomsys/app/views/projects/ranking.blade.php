@@ -16,7 +16,11 @@
 				<ol>
 					
 					@foreach($ranking as $userranking)
-						<li>
+						@if($ranking->username == $username)
+							<li class='current-user'>
+						@else	
+							<li>
+						@endif
 							<ul>
 								<li>{{ $userranking->username }}</li>
 								<li>	
