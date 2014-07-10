@@ -95,7 +95,7 @@ $('#continue').click(function() {
     switch(clicks){
         case 0:
             color = 'green';
-            $('meter').css('width', '33%');
+            $('.meter').css('width', '33%');
             break;
         case 1:
             color = 'orange';
