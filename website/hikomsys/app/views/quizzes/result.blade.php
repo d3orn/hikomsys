@@ -12,22 +12,10 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="medium-7 columns">
+		<div class="medium-8 columns">
 			<div id="flipbox">
-
 				<div class="row collapse">
 					<div id="flipped" class="medium-8 columns"><p>Points: {{ $redPoints + $greenPoints }} (0)</p>
-					</div>
-					<div class="medium-4 columns" id="menu-list">
-						<div class="row">
-							<div class="medium-12 columns" id="menu">
-								<ul>
-									<li id="green" class="button tiny"><span>Show Correct</span></li>
-									<li id="orange" class="button tiny"><span>Show Missing</span></li>
-									<li id="red" class="button tiny"><span>Show Wrong</span></li>
-								</ul>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
