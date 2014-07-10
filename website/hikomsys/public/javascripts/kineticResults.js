@@ -106,6 +106,7 @@ $('#continue').click(function() {
             break;
         case 2:
             color = 'red';
+            $('#continue').text('Finish');
             break;
         default:
             window.location.href = '/hikomsys/quizzes/success';
@@ -116,7 +117,6 @@ $('#continue').click(function() {
             arrows[i].changeVisibility();
         }
     }
-
     ++clicks;
 });
 
