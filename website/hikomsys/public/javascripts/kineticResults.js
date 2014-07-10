@@ -142,7 +142,7 @@ function show(color){
                 newPoints = redPoints;
                 break;
         }
-        flip(color, bgColor, direction, poins, newPoints);
+        flip(color, bgColor, direction, points, newPoints);
     }   
 }
 
