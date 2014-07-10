@@ -28,9 +28,9 @@
 			  <dt>Functions:</dt>
 			  <dd class=""><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand btn"></a></dd>
 			  <dd id="info" class=""><a id="infosEnabled" class="btn">Additional Information</a></dd>
-			  <dd class="active"><a id="greenArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right btn arrowbtn"></a></dd>
-			  <dd class="active"><a id="orangeArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right btn arrowbtn"></a></dd>
-			  <dd class="active"><a id="redArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right btn arrowbtn"></a></dd>
+			  <dd><a id="greenArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right btn arrowbtn"></a></dd>
+			  <dd><a id="orangeArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right btn arrowbtn"></a></dd>
+			  <dd><a id="redArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right btn arrowbtn"></a></dd>
 			</dl>
 		</div>
 		<div class="medium-4 columns">	
