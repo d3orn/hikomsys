@@ -68,7 +68,7 @@ class QuizzesController extends \BaseController {
 
 	public function success()
 	{
-		return Redirect::home()->with('message', 'Thank you for participating!');
+		return Redirect::route('users.index')->with('message', 'Thank you for participating!');
 	}
 
 	public function createResults()
