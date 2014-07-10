@@ -103,14 +103,14 @@ $('#continue').click(function() {
             color = 'orange';
             $('.meter').css({'width': '66%', 'background': '#FCE5B3'});
             show('orange');
-            normalClick($('#greenArrow'));
+            normalClick($('#orangeArrow'));
             break;
         case 2:
             color = 'red';
             $('.meter').css({'width': '100%', 'background': '#FEB3B3'});
             $('#continue').text('Finish');
             show('red');
-            normalClick($('#greenArrow'));
+            normalClick($('#redArrow'));
             break;
         default:
             window.location.href = '/hikomsys/quizzes/success';
