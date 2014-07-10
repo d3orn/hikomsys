@@ -116,7 +116,7 @@ class ProjectsController extends BaseController {
 	public function showall(){
 		$title = 'All projects on HIKOMSYS';
 		$projects = Project::all();
-		
+
 		return View::make('projects.index', compact('projects', 'title'));
 	}
 
@@ -149,6 +149,15 @@ class ProjectsController extends BaseController {
 	}
 
 	public function ranking($projectid){
+		try
+		{
+			$projectName = Project::findOrFail($prjectid)->name;
+		} 
+		catch (ModelNotFoundException $e) 
+		{
+			return Redirect::home()->with('error', 'Sorry currenlty no user has done a quiz on this project.');
+		}
+		
 		$ranking = DB::select('	SELECT
 									quizzes.id,
 									quizzes.user_id,
@@ -167,8 +176,7 @@ class ProjectsController extends BaseController {
 								ORDER BY 
 									result DESC ');
 
-		return View::make('projects.ranking')
-			->with('ranking' , $ranking);
+		return View::make('projects.ranking', compact('ranking', 'projectName'));
 	}
 
 }

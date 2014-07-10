@@ -6,6 +6,11 @@
 @section("content")
 
 	<div class="row">
+		<div class="medium-12 column">
+			{{ $projectName }}
+		</div>
+	</div>
+	<div class="row">
 		<div class="medium-10 columns" id="ranking">
 			@if($ranking)
 				<ol>
