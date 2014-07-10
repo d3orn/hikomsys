@@ -55,6 +55,7 @@ header {
 
 #ranking ol{
     list-style: none;
+    margin: 0;
 }
 
 #ranking li ul li {
@@ -73,3 +74,6 @@ header {
     display: inline-block;
     float: left;
 }
+
+#ranking li ul{
+    margin-left: 0;

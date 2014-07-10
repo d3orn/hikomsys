@@ -157,7 +157,8 @@ class ProjectsController extends BaseController {
 		{
 			return Redirect::home()->with('error', 'Sorry currenlty no user has done a quiz on this project.');
 		}
-		
+
+		$userId = Auth::user()->id;
 		$ranking = DB::select('	SELECT
 									quizzes.id,
 									quizzes.user_id,
@@ -175,6 +176,8 @@ class ProjectsController extends BaseController {
 									quizzes.project_id
 								ORDER BY 
 									result DESC ');
+
+		$userranking = $ranking->where('quizzes.user_id', '=', $userId)
 
 		return View::make('projects.ranking', compact('ranking', 'projectName'));
 	}
