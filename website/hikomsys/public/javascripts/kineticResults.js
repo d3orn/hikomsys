@@ -71,11 +71,6 @@ $('#move').click(function() {
     switchMode();
 });
 
-var clicks = 0;
-$('#continue').click(function() {
-    window.location.href = '/hikomsys/quizzes/success';
-});
-
 $('.btn').click(function() {
     normalClick($(this));
 });
@@ -108,7 +103,7 @@ $('#continue').click(function() {
             color = 'red';
             $('#continue').text('Finish');
             break;
-        case 3:
+        default:
             window.location.href = '/hikomsys/quizzes/success';
             break;
     }
