@@ -24,7 +24,7 @@
 								<td>{{ $project->name }}</td>
 								<td>{{ $project->version }}</td>
 								<td>
-									test
+									{{ $project->id }}
 								</td>
 							</tr>
 						@endforeach
