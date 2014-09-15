@@ -24,9 +24,7 @@
 								<td>{{ $project->name }}</td>
 								<td>{{ $project->version }}</td>
 								<td>
-									{{ HTML::linkRoute('projects.show', 'Start new Quiz', ['project_id' => $project->id], ['class'=>'small button radius'])}}
-									{{ HTML::linkRoute('projects.ranking', 'Ranking', ['project_id' => $project->id], ['class'=>'secondary small button radius']) }}
-									{{ HTML::linkRoute('quizzes.index', 'Solutions', ['project_id' => $project->id], ['class'=>'success small button radius']) }}
+									test
 								</td>
 							</tr>
 						@endforeach
