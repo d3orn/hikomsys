@@ -10,6 +10,7 @@
 			<h2>{{ $title }}</h2>
 
 			@if($projects)
+				{{ print_r $projects }}
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -24,7 +25,7 @@
 								<td>{{ $project->name }}</td>
 								<td>{{ $project->version }}</td>
 								<td>
-									{{ $project }}
+									Test
 								</td>
 							</tr>
 						@endforeach
