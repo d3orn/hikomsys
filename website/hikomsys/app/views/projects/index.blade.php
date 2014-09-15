@@ -24,10 +24,9 @@
 								<td>{{ $project->name }}</td>
 								<td>{{ $project->version }}</td>
 								<td>
-									<?php 
-										print_r($project->project_id);
-									 ?>
-
+									{{ HTML::linkRoute('projects.show', 'Start new Quiz', ['project_id' => $project->project_id], ['class'=>'small button radius'])}}
+									{{ HTML::linkRoute('projects.ranking', 'Ranking', ['project_id' => $project->project_id], ['class'=>'secondary small button radius']) }}
+									{{ HTML::linkRoute('quizzes.index', 'Solutions', ['project_id' => $project->project_id], ['class'=>'success small button radius']) }}
 								</td>
 							</tr>
 						@endforeach
