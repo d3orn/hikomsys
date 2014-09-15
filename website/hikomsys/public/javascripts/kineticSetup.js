@@ -51,7 +51,7 @@ var background = new Kinetic.Rect({
 	width: stage.getWidth(),
 	height: stage.getHeight(),
 	fill: 'white',
-	stroke: "red",
+	stroke: "black",
     strokeWidth: 1
 });
 
