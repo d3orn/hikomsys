@@ -11,7 +11,7 @@
 
 			@if($projects)
 				<?php 
-					print_r $projects
+					print_r($projects);
 				 ?>
 				<table class="table table-striped">
 					<thead>
