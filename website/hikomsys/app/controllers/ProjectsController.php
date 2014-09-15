@@ -21,7 +21,7 @@ class ProjectsController extends BaseController {
 			->get([
 				'projects.name', 
 				'projects.version',
-				'project_id', 
+				'projects.id', 
 				'usersprojects.user_id'
 			]);
 		return View::make('projects.index', compact('projects', 'title'));
