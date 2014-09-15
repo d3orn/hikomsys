@@ -25,7 +25,7 @@
 								<td>{{ $project->version }}</td>
 								<td>
 									<?php 
-										print_r($project);
+										print_r($project->project_id);
 									 ?>
 
 								</td>
