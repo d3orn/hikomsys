@@ -49,15 +49,12 @@ $(document).ready(function(){
 				console.log(this_node);
 				console.log(children);
 				
-				// console.log(data.instance.get_children($(this)));
 				data.instance.open_node($(this));
 
-
-
-
-	// for(var i = 0; i < children.length;	 i++){
-	// 	closeAndDeselectChildren(children[i]);
-	// }
+				for(var i = 0; i < children.length;	 i++){
+					data.instance.open_node(children[i]);
+					// closeAndDeselectChildren(children[i]);
+				}
 				
 			}
 		});
@@ -76,6 +73,10 @@ $('form').submit(function (e) {
 	$hidden.val(JSON.stringify(array));
 	$(this).append($hidden);
 });
+
+function openChildren(id){
+
+}
 
 function closeAndDeselectChildren(id){
 	$("#package_list").jstree("deselect_node",id);
