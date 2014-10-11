@@ -38,7 +38,7 @@ $(document).ready(function(){
 	$("#package_list").jstree(true).clear_state();
 	$("#package_list").bind('ready.jstree', function (e, data) {
 		var depth = 2;
-		console.log(data.instance);
+		console.log(data.instance.get_children());
 		data.instance.get_container().find('li').each(function (i) {
 			var counter = 1;
 			if (counter <= depth) {
