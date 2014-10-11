@@ -53,7 +53,7 @@
 									<ul class="dropdown">
 										<li>{{ HTML::linkRoute('users.edit', 'Edit My Profile', [Auth::user()->id]) }}</li>
 										<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
-										<li class="has-form">{{ HTML::link('logout', 'Logout', ['class'=>'button']) }}</li>
+										<li>{{ HTML::link('logout', 'Logout') }}</li>
 									</ul>
 								</li>	
 								<li class="divider"></li>
