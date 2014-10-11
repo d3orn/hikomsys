@@ -33,16 +33,19 @@ $(document).ready(function(){
 
 		},
 		"plugins" : ["checkbox", "sort", "state", "wholerow", "contextmenu"]
-	}).bind('loaded.jstree', function (e, data) {
-	var depth = 3;
-	data.inst.get_container().find('li').each(function (i) {
-		if (data.inst.get_path($(this)).length <= depth) {
-			data.inst.open_node($(this));
-		}
-	});
-});
+	})
 
 	$("#package_list").jstree(true).clear_state();
+	$("#package_list").bind('loaded.jstree', function (e, data) {
+		var depth = 3;
+		data.inst.get_container().find('li').each(function (i) {
+			if (data.inst.get_path($(this)).length <= depth) {
+				data.inst.open_node($(this));
+			}
+		});
+	});
+
+
 });
 
 $('form').submit(function (e) {
