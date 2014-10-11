@@ -52,7 +52,7 @@
 									<a href="#">{{ Auth::user()->username }}</a>
 									<ul class="dropdown">
 										<li>{{ HTML::linkRoute('users.edit', 'Edit My Profile', [Auth::user()->id]) }}</li>
-										<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
+										<li>{{ HTML::linkRoute('projects.index', 'My Projects') }}</li>
 										<li>{{ HTML::link('logout', 'Logout') }}</li>
 									</ul>
 								</li>	

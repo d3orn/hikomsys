@@ -21,9 +21,9 @@
 			</dl>
 		</div>
 		<div class="medium-5 columns">	
-			<div id="submit" class="button tiny radius success right">Submit dependencies</div>
+			<div id="submit" class="button tiny radius success right">Submit</div>
 			<div id="help" data-reveal-id="myModal" class="button tiny radius alert right" data-reveal>Help</div>
-			<div id="reset" class="button tiny radius right">Start over</div>
+			<div id="reset" class="button tiny radius right">Reset</div>
 		</div>
 	</div>	
 
