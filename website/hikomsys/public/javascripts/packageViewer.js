@@ -40,7 +40,7 @@ $(document).ready(function(){
 		alert("loaded");
 		var depth = 3;
 				console.log(data);
-		data.inst.get_container().find('li').each(function (i) {
+		data.instance.get_container().find('li').each(function (i) {
 			if (data.inst.get_path($(this)).length <= depth) {
 				data.inst.open_node($(this));
 			}
