@@ -49,6 +49,17 @@ $('form').submit(function (e) {
 	$(this).append($hidden);
 });
 
+$("#package_list").jstree({options}).bind('loaded.jstree', function (e, data) {
+    /** 
+     * Open nodes on load (until x'th level) 
+     */
+    var depth = 3;
+    data.inst.get_container().find('li').each(function (i) {
+        if (data.inst.get_path($(this)).length <= depth) {
+            data.inst.open_node($(this));
+        }
+    });
+
 function closeAndDeselectChildren(id){
 	$("#package_list").jstree("deselect_node",id);
 	var this_node = $("#package_list").jstree("get_node", id);
