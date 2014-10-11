@@ -37,25 +37,17 @@ $(document).ready(function(){
 
 	$("#package_list").jstree(true).clear_state();
 	$("#package_list").bind('ready.jstree', function (e, data) {
-		var depth = 2;
 		console.log(data.instance);
 		data.instance.get_container().find('li').each(function() {
-			var counter = 1;
-			if (counter <= depth) {
-				var id = $(this)[0].id
-				var this_node = $("#package_list").jstree("get_node", id);
-				var children = this_node.children;
-				console.log($(this));
-				console.log(this_node);
-				console.log(children);
-				
-				data.instance.open_node($(this));
+			var id = $(this)[0].id
+			var this_node = $("#package_list").jstree("get_node", id);
+			var children = this_node.children;
+			
+			data.instance.open_node($(this));
 
-				for(var i = 0; i < children.length;	 i++){
-					data.instance.open_node(children[i]);
-					// closeAndDeselectChildren(children[i]);
-				}
-				
+			for(var i = 0; i < children.length;	 i++){
+				data.instance.open_node(children[i]);
+
 			}
 		});
 	});
