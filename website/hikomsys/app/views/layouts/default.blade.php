@@ -53,6 +53,7 @@
 									<ul class="dropdown">
 										<li>{{ HTML::linkRoute('users.edit', 'Edit My Profile', [Auth::user()->id]) }}</li>
 										<li>{{ HTML::linkRoute('projects.index', 'Projects') }}</li>
+										<li class="has-form">{{ HTML::link('logout', 'Logout', ['class'=>'button']) }}</li>
 									</ul>
 								</li>	
 								<li class="divider"></li>
@@ -60,24 +61,9 @@
 								<li class="divider"></li>
 								<li id="navAllProjects">{{ HTML::linkRoute('projects.showall', 'All Projects') }}</li>
 								<li class="divider"></li>
-								
-								<li class="has-form">
-									<form>
-										<div class="row collapse">
-											<div class="large-8 small-9 columns">
-												<input type="text" placeholder="Find Stuff">
-											</div>
-											<div class="large-4 small-3 columns">
-												<a href="#" class="alert button expand">Search</a>
-											</div>
-										</div>
-									</form>
-								</li>
-								<li class="divider"></li>
 								<li class="has-form">{{ HTML::linkRoute('projects.random', 'Random Quiz', null, ['class'=>'button success']) }}</li>
-								<li class="divider"></li>
-								<li class="has-form">{{ HTML::link('logout', 'Logout', ['class'=>'button']) }}</li>
 							@else
+								<li class="divider"></li>
 								<li class="has-form">{{ HTML::link('login', 'Login', ['class'=>'button']) }}</li>
 								{{-- TODO need a login directly in nav --}}
 							@endif
