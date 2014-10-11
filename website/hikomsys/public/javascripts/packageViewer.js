@@ -43,11 +43,17 @@ $(document).ready(function(){
 			var counter = 1;
 			if (counter <= depth) {
 				console.log($(this));
-				console.log($(data.rslt.obj).find("li"));
+				console.log($(this).id);
 				
 				// console.log(data.instance.get_children($(this)));
 				data.instance.open_node($(this));
 
+
+	// var this_node = $("#package_list").jstree("get_node", id);
+	// var children = this_node.children;
+	// for(var i = 0; i < children.length;	 i++){
+	// 	closeAndDeselectChildren(children[i]);
+	// }
 				
 			}
 		});
