@@ -58,7 +58,8 @@ $("#package_list").jstree({options}).bind('loaded.jstree', function (e, data) {
         if (data.inst.get_path($(this)).length <= depth) {
             data.inst.open_node($(this));
         }
-    }
+    
+    });
     });
 
 function closeAndDeselectChildren(id){
