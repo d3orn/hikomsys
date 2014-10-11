@@ -43,6 +43,7 @@ $(document).ready(function(){
 				data.instance.open_node($(this));
 				console.log(data.instance.get_path($(this)).length);
 				console.log(data.instance.get_path($(this)));
+				console.log($(this));
 			}
 		});
 	});
