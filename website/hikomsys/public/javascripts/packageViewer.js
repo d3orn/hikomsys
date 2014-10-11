@@ -38,12 +38,11 @@ $(document).ready(function(){
 	$("#package_list").jstree(true).clear_state();
 	$("#package_list").bind('ready.jstree', function (e, data) {
 		var depth = 2;
-		console.log(data.instance.get_container().find('li'));
-		console.log(data.instance);
-		console.log(data);
 		data.instance.get_container().find('li').each(function (i) {
 			if (data.instance.get_path($(this)).length <= depth) {
 				data.instance.open_node($(this));
+				console.log(data.instance.get_path($(this)).length);
+				console.log(data.instance.get_path($(this)));
 			}
 		});
 	});
