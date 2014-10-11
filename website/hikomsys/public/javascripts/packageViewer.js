@@ -43,7 +43,8 @@ $(document).ready(function(){
 			var counter = 1;
 			if (counter <= depth) {
 				console.log($(this));
-				console.log($(this).0.id);
+				console.log(i);
+				// console.log($(this).0.id);
 				
 				// console.log(data.instance.get_children($(this)));
 				data.instance.open_node($(this));
