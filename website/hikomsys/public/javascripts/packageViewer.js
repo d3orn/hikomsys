@@ -43,7 +43,7 @@ $(document).ready(function(){
 			var counter = 1;
 			if (counter <= depth) {
 				console.log($(this));
-				console.log($(data.rslt.obj).find("li");
+				console.log($(data.rslt.obj).find("li"));
 				
 				// console.log(data.instance.get_children($(this)));
 				data.instance.open_node($(this));
