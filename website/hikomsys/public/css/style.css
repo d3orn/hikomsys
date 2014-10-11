@@ -34,8 +34,12 @@ dt, dd{
 	margin-top: 0.625rem;
 }
 
-#help, #reset{
+#reset{
 	margin-right: 0.625rem;
+}
+
+#help{
+	font-size: 0.79rem;
 }
 
 #help, #submit, .sub-nav{
