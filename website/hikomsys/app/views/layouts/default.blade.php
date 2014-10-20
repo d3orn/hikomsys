@@ -35,11 +35,19 @@
 	</head>
 	<body>	
 		<div id="wrapper">
+
 			<div class="fixed">
 				<nav class="top-bar" data-topbar>
 					<ul class="title-area">
 						<li class="name">
-							<h1>{{ HTML::linkRoute('home', 'Hikomsys') }}</h1>
+							<header class="panel">
+								<a href="{{ route('home') }}">
+									<h1>
+										{{ HTML::image('foundation/img/logo.fw.png', 'Hikomsys Logo') }}
+										How I KnOw My SYStem
+									</h1>
+								</a>
+							</header>
 						</li>
 						<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 					</ul>
@@ -73,8 +81,6 @@
 					</section>
 				</nav>
 			</div>
-
-			@yield('header')
 
 			<main>
 				@if(Session::has('message'))
