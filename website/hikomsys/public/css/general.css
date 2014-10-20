@@ -29,7 +29,7 @@ footer {
 .footertext {
     top:50%;
 }
-header {
+header h1{
     color: rgb(255,255,255);
 }
 #links .columns {

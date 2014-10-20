@@ -40,7 +40,7 @@
 				<nav class="top-bar" data-topbar>
 					<ul class="title-area">
 						<li class="name">
-							<header class="panel">
+							<header>
 								<a href="{{ route('home') }}">
 									<h1>
 										{{ HTML::image('foundation/img/logo.fw.png', 'Hikomsys Logo') }}
