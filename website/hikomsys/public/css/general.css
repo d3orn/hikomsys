@@ -29,6 +29,11 @@ footer {
 .footertext {
     top:50%;
 }
+
+main{
+    margin-top: 2%;
+}
+
 header h1{
     color: rgb(255,255,255);
 }
