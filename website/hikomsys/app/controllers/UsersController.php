@@ -11,18 +11,20 @@ class UsersController extends BaseController {
 		$this->users = $users;
 		parent::__construct();
 		// $this->beforeFilter(function(){
-		// 	if(Auth::guest()) 
+		// 	if(Auth::guest())
 		// 		return View::make('users.login');
 		// }, array('except' => ['create','store']));
 		// $this->beforeFilter(function(){
-		// 	if(Auth::user()->username != 'd3orn') 
+		// 	if(Auth::user()->username != 'd3orn')
 		// 		return View::make('users.login')->with('message', 'You do not have permission to delete users!');
 		// }, array('only' => ['destroy']));
 	}
 
 	public function index(){
 		$message = Auth::user()->notification;
-		return View::make('users.dashboard', compact($message));
+		$projects = Project::all();
+
+		return View::make('users.dashboard', compact($message, $projects));
 	}
 
 	public function create(){
@@ -31,7 +33,7 @@ class UsersController extends BaseController {
 
 	public function store(){
 		$input = Input::all();
-		
+
 		$validator = Validator::make($input, User::$rules);
 
 		if ($validator->fails()) {
@@ -42,7 +44,7 @@ class UsersController extends BaseController {
 		$input['password'] = Hash::make($input['password']);
 
 		$this->users->create($input);
-		
+
 		return Redirect::route('users.index')->with('message', 'Thanks for signing up!');
 	}
 
@@ -71,11 +73,11 @@ class UsersController extends BaseController {
 
 			$user = $this->users->findOrFail($id);
 			//TODO
-			//this should not check if the user is 'd3orn' it should check if the user is an admin 
+			//this should not check if the user is 'd3orn' it should check if the user is an admin
 			//=> I should add a field isAdmin to the userstable
 			if($user == Auth::user() or Auth::user()->username == 'd3orn') return View::make('users.edit', compact('user'));
 			return Redirect::home()->with('message', $message);
-		} 
+		}
 		catch (ModelNotFoundException $e) {
 			return Redirect::home()->with('error', 'Somthing went wrong. Please try editing the profile again.');
 		}
@@ -104,8 +106,8 @@ class UsersController extends BaseController {
 
 			// redirect
 			Session::flash('message', 'Successfully deleted the nerd!');
-			return Redirect::route('users.showall');			
-		} 
+			return Redirect::route('users.showall');
+		}
 		catch (ModelNotFoundException $e){
 			return Redirect::home()->with('error', 'Somthing went wrong. Please try deleting the user again.');
 		}
