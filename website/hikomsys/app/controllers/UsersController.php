@@ -24,7 +24,7 @@ class UsersController extends BaseController {
 		$message = Auth::user()->notification;
 		$projects = Project::all();
 
-		return View::make('users.dashboard', compact($message, $projects));
+		return View::make('users.dashboard', compact($message, 'projects'));
 	}
 
 	public function create(){
