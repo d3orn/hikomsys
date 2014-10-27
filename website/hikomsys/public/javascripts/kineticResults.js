@@ -95,7 +95,7 @@ $('#continue').click(function() {
     var color;
     switch(clicks){
         case 0:
-            $('.infotext').html("klick 1");
+            $('.infotext').text("klick 1");
             show('green');
             
             break;
