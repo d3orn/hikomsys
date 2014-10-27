@@ -15,7 +15,7 @@
 @stop
 
 @section('content')
-	
+
 	<div class="row">
 		<div class="medium-12 columns">
 			<h2>Your Result</h2>
@@ -44,17 +44,9 @@
 			  <dd><a id="redArrow" aria-hidden="true" data-icon="&#xe600;" class="icon-arrow-right btn arrowbtn"></a></dd>
 			</dl>
 		</div>
-		<div class="medium-4 columns">	
+		<div class="medium-4 columns">
 			<div id="continue" class="button tiny radius success right">Continue</div>
 			<div id="help" data-reveal-id="myModal" class="button tiny radius alert right" data-reveal>Help</div>
-		</div>
-	</div>	
-
-	<div class="row">
-		<div class="medium-12 columns">
-			<div class="progress radius">
-				<span class="meter" style="width: 0%"></span>
-			</div>
 		</div>
 	</div>
 
@@ -62,6 +54,14 @@
 		<div class="medium-12 columns">
 			<div id="container"></div>
 		</div>
+	</div>
+
+	<div class="panel" id="finalscore">
+		<h2>Summary</h2>
+		<div id="correct-count"></div>
+		<div id="missing-count"></div>
+		<div id="wrong-count"></div>
+		<div id="score"></div>
 	</div>
 
 	<input id="quizId" type="hidden" value={{ $quizId }} >
