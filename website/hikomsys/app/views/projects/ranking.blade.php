@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @section("styles")
+ {{ HTML::style('css/style.css') }}
 @stop
 
 @section("header")
@@ -29,19 +30,19 @@
 						<li>
 						@if($userranking->username == Auth::user()->username)
 							<ul class='current-user'>
-						@else	
+						@else
 							<ul>
 						@endif
 								<li>{{ $userranking->username }}</li>
-								<li>	
+								<li>
 									{{ $userranking->result. "%"}}
 								</li>
 								@if($userranking->username == Auth::user()->username)
 									<li class="progress success">
-								@else	
+								@else
 									<li class="progress">
 								@endif
-									{{ "<span class=\"meter\" style=\"width: ".$userranking->result."%\"></span>" }}	
+									{{ "<span class=\"meter\" style=\"width: ".$userranking->result."%\"></span>" }}
 								</li>
 								<li>
 									{{ HTML::linkRoute('quizzes.show', "Checkout!", [$userranking->id]) }}
