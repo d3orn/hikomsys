@@ -145,3 +145,7 @@ dt, dd{
 	height: 150px;
 	right: -200px;
 }
+
+.functions{
+	display: none;
+}

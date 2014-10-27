@@ -51,8 +51,6 @@ $(document).ready(function(){
 			}
 		});
 	});
-
-
 });
 
 $('form').submit(function (e) {
@@ -65,10 +63,6 @@ $('form').submit(function (e) {
 	$hidden.val(JSON.stringify(array));
 	$(this).append($hidden);
 });
-
-function openChildren(id){
-
-}
 
 function closeAndDeselectChildren(id){
 	$("#package_list").jstree("deselect_node",id);

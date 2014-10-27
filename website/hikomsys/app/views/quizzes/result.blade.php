@@ -23,18 +23,13 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="medium-8 columns">
-			<div id="flipbox">
-				<div class="row collapse">
-					<div id="flipped" class="medium-8 columns"><p>Points: {{ $redPoints + $greenPoints }} (0)</p>
-					</div>
-				</div>
-			</div>
+		<div class="medium-12 columns">
+			<p>Well done! The dependencies highlighted in <span class="color">green</span> are correct.</p>
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="medium-8 columns">
+		<div class="medium-8 columns functions">
 			<dl class="sub-nav">
 			  <dt>Functions:</dt>
 			  <dd class=""><a id="move" aria-hidden="true" data-icon="&#xe601;" class="icon-expand btn"></a></dd>
