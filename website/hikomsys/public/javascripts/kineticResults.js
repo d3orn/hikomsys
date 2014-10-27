@@ -60,7 +60,7 @@ $(document).ready(function() {
                     }
                 }
             }
-            normalClick($('#greenArrow'));
+            switchDependencies('green');
             stage.draw();
             moreInfosEnabled = false;
         });
