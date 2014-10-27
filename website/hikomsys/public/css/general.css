@@ -34,6 +34,14 @@ main{
     margin-top: 2%;
 }
 
+header{
+    min-width: 325px;
+}
+
+header img{
+    float: left;
+}
+
 header h1{
     color: rgb(255,255,255);
 }
