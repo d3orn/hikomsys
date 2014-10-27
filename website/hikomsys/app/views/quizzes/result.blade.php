@@ -24,7 +24,7 @@
 	</div>
 	<div class="row">
 		<div class="medium-12 columns infotext">
-			<h3>Well done! The dependencies highlighted in <span class="color">green</span> are correct.</h3>
+			<h3>Well done! The dependencies highlighted in <span style="color: #B3DAB3">green</span> are correct.</h3>
 		</div>
 	</div>
 
