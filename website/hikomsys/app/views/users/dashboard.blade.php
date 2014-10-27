@@ -26,7 +26,6 @@
 
 	<div class="row">
 		<div class="medium-8 columns">
-			<h2>All projects on Hikomsys</h2>
 
 			@if($projects)
 				<table class="table table-striped">

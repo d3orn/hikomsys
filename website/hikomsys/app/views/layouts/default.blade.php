@@ -3,14 +3,14 @@
 	<head>
 		<meta charset="utf-8">
 		<title>HIKOMSYS - How I KnOw My SYStem: Home</title>
-		
+
 		<meta name="keywords" content="Filler">
 		<meta name="robots" content="all">
 		<meta name="dcterms.rights" content="copyright by d3orn, CH-3072 Ostermundigen">
 		<meta name="author" content="www.d3orn.ch">
 		<meta name="description" content="Learn how well YOU know your Java System!">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
+
 		<!-- Favions sind da aber apple icon fehlen noch  -->
 		<link rel="shortcut icon" href="pictures/magnifying_glass.png" type="image/x-icon">
 		<link rel="shortcut icon" href="pictures/magnifying_glass.ico" type="image/x-icon">
@@ -18,22 +18,22 @@
 		<link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
 		<link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
 		<link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
-		
+
 		{{ HTML::style('css/general.css') }}
 		{{ HTML::style('foundation/css/foundation.css') }}
-		
+
 		@yield('styles')
 
-		<!-- 
+		<!--
 			Thank you for looking at the sources
-			
-				Concept and realisation by 
+
+				Concept and realisation by
 				Dominique Rahm www.d3orn.ch
 				Copyright © 2014 - All rights reserved
 		-->
 
 	</head>
-	<body>	
+	<body>
 		<div id="wrapper">
 
 			<div class="fixed">
@@ -42,8 +42,8 @@
 						<li class="name">
 							<header>
 								<a href="{{ route('home') }}">
+									{{ HTML::image('foundation/img/logo.fw.png', 'Hikomsys Logo') }}
 									<h1>
-										{{ HTML::image('foundation/img/logo.fw.png', 'Hikomsys Logo') }}
 										How I KnOw My SYStem
 									</h1>
 								</a>
@@ -63,7 +63,7 @@
 										<li>{{ HTML::linkRoute('projects.index', 'My Projects') }}</li>
 										<li>{{ HTML::link('logout', 'Logout') }}</li>
 									</ul>
-								</li>	
+								</li>
 								<li class="divider"></li>
 								<li id="navUsers">{{ HTML::linkRoute('users.showall', 'Users') }}</li>
 								<li class="divider"></li>
@@ -99,11 +99,11 @@
 						</div>
 					</div>
 				@endif
-	
+
 				<section>
 					@yield('content')
 				</section>
-			</main>	
+			</main>
 			<div class="push"></div>
 		</div>
 		<footer>
@@ -119,13 +119,13 @@
 
 		{{ HTML::script('http://code.jquery.com/jquery-1.10.1.min.js') }}
 		{{ HTML::script('http://code.jquery.com/jquery-migrate-1.2.1.min.js') }}
-		{{ HTML::script('foundation/js/foundation.min.js') }}	
+		{{ HTML::script('foundation/js/foundation.min.js') }}
 		{{ HTML::script('foundation/js/vendor/modernizr.js') }}
 
 		<!--[if lt IE 9]>
 			{{ HTML::script('javascript/html5shiv.min.js') }}
 		<![endif]-->
-		
+
 		@yield('scripts')
 
 		<script>
