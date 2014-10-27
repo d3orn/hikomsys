@@ -41,7 +41,6 @@
 		</div>
 		<div class="medium-4 columns">
 			<div id="continue" class="button tiny radius success right">Continue</div>
-			<div id="help" data-reveal-id="myModal" class="button tiny radius alert right" data-reveal>Help</div>
 		</div>
 	</div>
 
