@@ -149,6 +149,10 @@ dt, dd{
 	right: -200px;
 }
 
+#finalscore p{
+	margin-bottom: 10px;
+}
+
 .functions{
 	display: none;
 }
