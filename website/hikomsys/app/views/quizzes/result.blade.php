@@ -50,7 +50,7 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row canvas">
 		<div class="medium-12 columns">
 			<div id="container"></div>
 		</div>

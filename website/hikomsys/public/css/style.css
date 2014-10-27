@@ -134,6 +134,10 @@ dt, dd{
     margin-left: 0;
 }
 
+.canvas{
+	position: relative;
+}
+
 #finalscore{
 	position: absolute;
 	top: 0;
