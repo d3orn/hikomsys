@@ -102,12 +102,12 @@ $('#continue').click(function() {
             normalClick($('#orangeArrow'));
             break;
         case 1:
-            $('.infotext h3').html("Ahem. You forgot about the dependencies in <span style=\"color: #FEB3B3\">yellow</span>.");
+            $('.infotext h3').html("The dependencies in <span style=\"color: #FEB3B3\">red</span> are not actually present in your system.");
             switchDependencies('red');
             normalClick($('#redArrow'));
             break;
         case 2:
-      
+             $('.infotext h3').html("And a final overview...");
             break;
         default:
             window.location.href = '/hikomsys/quizzes/success';
