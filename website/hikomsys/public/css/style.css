@@ -145,12 +145,16 @@ dt, dd{
 	position: absolute;
 	top: 0;
 	width: 200px;
-	height: 200px;
+	height: 225px;
 	right: -200px;
 }
 
 #finalscore p{
 	margin-bottom: 10px;
+}
+
+#score{
+	margin-top: 20px;
 }
 
 .functions{
