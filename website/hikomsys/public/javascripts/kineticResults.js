@@ -109,6 +109,7 @@ $('#continue').click(function() {
         case 2:
             $('.infotext h3').html("And a final overview...");
             $('#finalscore').show();
+            $('#continue').html('Finish')
             break;
         default:
             window.location.href = '/hikomsys/quizzes/success';
@@ -116,51 +117,3 @@ $('#continue').click(function() {
     }
     ++clicks;
 });
-
-
-function show(color){
-    animationComplete = true;
-    if(animationComplete){
-        var animationComplete = false;
-        var bgColor, direction, newPoints;
-        greenPoints = document.getElementById('green-points').value;
-        redPoints = document.getElementById('red-points').value;
-        points = parseFloat(greenPoints)+parseFloat(redPoints);
-        switch(color){
-            case 'green':
-                bgColor = '#B3DAB3';
-                direction = 'tb';
-                newPoints = greenPoints;
-                break;
-            case 'orange':
-                bgColor = '#FCE5B3';
-                direction = 'rl';
-                newPoints = 0;
-                break;
-            case 'red':
-                bgColor = '#FEB3B3';
-                direction = 'bt';
-                newPoints = redPoints;
-                break;
-        }
-        flip(color, bgColor, direction, points, newPoints);
-    }   
-}
-
-function flip(color, bgColor, direction, points, newPoints){
-    $("#flipped").flip({
-        direction: direction,
-        color: bgColor,
-        content: '<p>Points: ' + points + ' (+' + newPoints + ')</p>',
-        onAnimation: function(){
-            for (var i = 0; i < arrows.length; i++) {
-                if (arrows[i].color == color) {
-                    arrows[i].changeVisibility();
-                }
-            }   
-        },
-        onEnd: function(){
-            animationComplete = true;
-        }
-    })
-}
