@@ -54,7 +54,7 @@
 			<p>Correct: <span id="correct-count"> 1</span></p>
 			<p>Correct: <span id="missing-count"> 12</span></p>
 			<p>Correct: <span id="wrong-count"> 4</span></p>
-			<div id="score"><h3>Score: <strong>78</strong></h3></div>
+			<h3>Score: <strong>{{ $redPoints + $greenPoints }} %</strong></h3>
 		</div>
 
 	</div>
