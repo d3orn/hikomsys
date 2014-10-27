@@ -133,3 +133,11 @@ dt, dd{
 #ranking li ul{
     margin-left: 0;
 }
+
+#finalscore{
+	position: absolute;
+	top: 0;
+	width: 200px;
+	height: 150px;
+	right: -200px;
+}
