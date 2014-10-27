@@ -55,13 +55,22 @@
 				<p> Sorry you did not upload any projects yet, please do so by filling out the form below </p>
 			@endif
 		</div>
+
+		<div class="medium-4 columns">
+			<div class="panel callout radius">
+				<h3>Awesome!</h3>
+				<p>You don't want to upload a project yet? You just want to see what others submitted?</p>
+				<p>No Problem! Just select one of the projects on the left.</p>
+			</div>
+		</div>
+
 	</div>
 
 	<div class="row">
 
 		<div class="medium-8 columns">
 
-			<p>The first step you have to take is to upload one of your Opensource Java projects. To do so, please enter a valid link to a Git Repository below</p>
+			<p>The first step you have to take is to upload one of your Opensource Java projects from Github. To do so, please enter a valid link to a Github Repository below</p>
 
 			@if($errors->has())
 				<div id="errors">
@@ -99,13 +108,6 @@
 
 		</div>
 
-		<div class="medium-4 columns">
-			<div class="panel callout radius">
-				<h3>Awesome!</h3>
-				<p>You don't want to upload a project yet? You just want to see what others submitted?</p>
-				<p>No Problem! {{ HTML::linkRoute('projects.showall', 'Check them out now!') }}</p>
-			</div>
-		</div>
 	</div>
 
 @stop
