@@ -107,7 +107,8 @@ $('#continue').click(function() {
             normalClick($('#redArrow'));
             break;
         case 2:
-             $('.infotext h3').html("And a final overview...");
+            $('.infotext h3').html("And a final overview...");
+            $('#finalscore').show();
             break;
         default:
             window.location.href = '/hikomsys/quizzes/success';
