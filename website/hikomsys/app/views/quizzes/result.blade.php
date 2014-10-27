@@ -51,9 +51,9 @@
 
 		<div class="panel" id="finalscore">
 			<h2>Summary</h2>
-			<div id="correct-count">Correct: 1</div>
-			<div id="missing-count">Missing: 12</div>
-			<div id="wrong-count">Wrong: 4</div>
+			<p>Correct: <span id="correct-count"> 1</span></p>
+			<p>Correct: <span id="missing-count"> 12</span></p>
+			<p>Correct: <span id="wrong-count"> 4</span></p>
 			<div id="score"><h3>Score: <strong>78</strong></h3></div>
 		</div>
 
