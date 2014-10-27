@@ -54,14 +54,15 @@
 		<div class="medium-12 columns">
 			<div id="container"></div>
 		</div>
-	</div>
 
-	<div class="panel" id="finalscore">
-		<h2>Summary</h2>
-		<div id="correct-count"></div>
-		<div id="missing-count"></div>
-		<div id="wrong-count"></div>
-		<div id="score"></div>
+		<div class="panel" id="finalscore">
+			<h2>Summary</h2>
+			<div id="correct-count"></div>
+			<div id="missing-count"></div>
+			<div id="wrong-count"></div>
+			<div id="score"></div>
+		</div>
+
 	</div>
 
 	<input id="quizId" type="hidden" value={{ $quizId }} >
