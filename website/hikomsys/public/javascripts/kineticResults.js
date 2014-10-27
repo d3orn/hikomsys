@@ -62,6 +62,7 @@ $(document).ready(function() {
                 }
             }
             switchDependencies('green');
+            normalClick($('#greenArrow'));
             stage.draw();
             moreInfosEnabled = false;
         });
@@ -97,19 +98,14 @@ $('#continue').click(function() {
     switch(clicks){
         case 0:
             $('.infotext h3').text("klick 1");
-            show('green');
-            
-            break;
-        case 1:
-            color = 'orange';
-            show('orange');
+            switchDependencies('orange');
             normalClick($('#orangeArrow'));
             break;
-        case 2:
-            color = 'red';
-            $('#continue').text('Finish');
-            show('red');
+        case 1:
+            switchDependencies('red');
             normalClick($('#redArrow'));
+            break;
+        case 2:
             break;
         default:
             window.location.href = '/hikomsys/quizzes/success';
