@@ -23,8 +23,8 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="medium-12 columns">
-			<p>Well done! The dependencies highlighted in <span class="color">green</span> are correct.</p>
+		<div class="medium-12 columns infotext">
+			<h3>Well done! The dependencies highlighted in <span class="color">green</span> are correct.</h3>
 		</div>
 	</div>
 
