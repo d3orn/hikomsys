@@ -142,6 +142,7 @@ dt, dd{
 /* Result View */ 
 
 #finalscore{
+	display: none;
 	position: absolute;
 	top: 0;
 	width: 200px;
