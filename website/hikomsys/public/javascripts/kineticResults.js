@@ -17,6 +17,7 @@ function switchMode() {
 
 function switchDependencies(color) {
     for (var i = 0; i < arrows.length; i++) {
+        console.log(arrows[i].color);
         if (arrows[i].color == color) {
             arrows[i].changeVisibility();
         }
