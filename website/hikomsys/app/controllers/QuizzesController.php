@@ -63,8 +63,8 @@ class QuizzesController extends \BaseController {
 		return View::make('quizzes.result', compact($quiz))
 			->with('quizId', $id)
 			->with('totalPoints', $quiz->total_points)
-			->with('countCorrect', $quiz->number_of_correct_dependencies);
-			->with('countMissing', $quiz->number_of_missing_dependencies);
+			->with('countCorrect', $quiz->number_of_correct_dependencies)
+			->with('countMissing', $quiz->number_of_missing_dependencies)
 			->with('countWrong', $quiz->number_of_wrong_dependencies);
 	}
 
