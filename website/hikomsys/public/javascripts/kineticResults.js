@@ -109,6 +109,7 @@ $('#continue').click(function() {
         case 2:
             $('.infotext h3').html("And a final overview...");
             $('#finalscore').show();
+            $('.functions').show();
             $('#continue').html('Finish')
             break;
         default:

@@ -19,12 +19,11 @@
 	<div class="row">
 		<div class="medium-12 columns">
 			<h2>Your Result</h2>
-			<p>Click below to show/hide the dependencies you would like to see and the points rewarded for those dependencies.</p>
 		</div>
 	</div>
 	<div class="row">
 		<div class="medium-12 columns infotext">
-			<h3>Well done! The dependencies highlighted in <span style="color: #B3DAB3">gre{{ $totalPoints }} </span> are correct.</h3>
+			<h3>Well done! The dependencies highlighted in <span style="color: #B3DAB3">green </span> are correct.</h3>
 		</div>
 	</div>
 
@@ -52,8 +51,8 @@
 		<div class="panel" id="finalscore">
 			<h2>Summary</h2>
 			<p>Correct: <span id="correct-count"> {{ $countCorrect }} </span></p>
-			<p>Correct: <span id="missing-count"> {{ $countMissing }} </span></p>
-			<p>Correct: <span id="wrong-count"> {{ $countWrong }} </span></p>
+			<p>Missing: <span id="missing-count"> {{ $countMissing }} </span></p>
+			<p>Wrong: <span id="wrong-count"> {{ $countWrong }} </span></p>
 			<h3>Score: <strong>{{ $totalPoints }} %</strong></h3>
 		</div>
 
