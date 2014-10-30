@@ -97,12 +97,12 @@ $('#continue').click(function() {
     var color;
     switch(clicks){
         case 0:
-            $('.infotext h3').html("Ahem. You forgot about the dependencies in <span style=\"color: #FCE5B3\">yellow</span>.");
+            $('.infotext h3').html("Ahem. You forgot about the dependencies in <span style=\"color: orange\">yellow</span>.");
             switchDependencies('orange');
             normalClick($('#orangeArrow'));
             break;
         case 1:
-            $('.infotext h3').html("The dependencies in <span style=\"color: #FEB3B3\">red</span> are not actually present in your system.");
+            $('.infotext h3').html("The dependencies in <span style=\"color: red\">red</span> are not actually present in your system.");
             switchDependencies('red');
             normalClick($('#redArrow'));
             break;
