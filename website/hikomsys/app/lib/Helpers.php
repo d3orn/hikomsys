@@ -18,13 +18,13 @@ class Helpers {
 				}
 				$html = $html.'</ul>';
 			}
-			$html = $html."</li>\n";	
+			$html = $html."</li>\n";
 		}
 		return $html;
 	}
 
-	public static function hasChildren($name, $collection){	
-		//Find the package with the given $name and check if it has children	
+	public static function hasChildren($name, $collection){
+		//Find the package with the given $name and check if it has children
 		$tmpCursor = $collection->find(array('name' => $name, 'children' => array('$exists' => true)));
 
 		return($tmpCursor->hasNext());
@@ -34,7 +34,7 @@ class Helpers {
 		$tmpCursor = $collection->find(array('name' => $name));
 		$document = $tmpCursor->getNext();
 
-		if(array_key_exists('classes', $document)){
+		if(array_key_exists('classes', $document) && strpos($name, '**') !== 	False{
 			if(count($document['classes']) === 1){
 				return " (1 Class)";
 			}
