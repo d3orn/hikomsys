@@ -12,7 +12,13 @@ class AddNumberOfDependenciesToQuizzes extends Migration {
 	 */
 	public function up()
 	{
-		//
+        Schema::table('quizzes', function($table)
+        {
+            $table
+            	->integer('number_of_correct_dependencies')
+            	->integer('number_of_missing_dependencies')
+            	->integer('number_of_wrong_dependencies');
+        });
 	}
 
 	/**
@@ -22,7 +28,13 @@ class AddNumberOfDependenciesToQuizzes extends Migration {
 	 */
 	public function down()
 	{
-		//
+        Schema::table('quizzes', function($table)
+        {
+            $table
+            	->dropColumn('number_of_correct_dependencies')
+            	->dropColumn('number_of_missing_dependencies')
+            	->dropColumn('number_of_wrong_dependencies');
+			 	});
 	}
 
 }
