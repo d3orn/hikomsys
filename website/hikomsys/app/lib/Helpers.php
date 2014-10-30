@@ -34,7 +34,7 @@ class Helpers {
 		$tmpCursor = $collection->find(array('name' => $name));
 		$document = $tmpCursor->getNext();
 
-		if(array_key_exists('classes', $document) && strpos($name, '**') !== 	False{
+		if(array_key_exists('classes', $document) && strpos($name, '**') !== 	False){
 			if(count($document['classes']) === 1){
 				return " (1 Class)";
 			}
