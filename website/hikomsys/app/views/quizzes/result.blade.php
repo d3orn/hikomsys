@@ -24,7 +24,7 @@
 	</div>
 	<div class="row">
 		<div class="medium-12 columns infotext">
-			<h3>Well done! The dependencies highlighted in <span style="color: #B3DAB3">green</span> are correct.</h3>
+			<h3>Well done! The dependencies highlighted in <span style="color: #B3DAB3">gre{{ $totalPoints }} </span> are correct.</h3>
 		</div>
 	</div>
 
@@ -51,10 +51,10 @@
 
 		<div class="panel" id="finalscore">
 			<h2>Summary</h2>
-			<p>Correct: <span id="correct-count"> 1</span></p>
-			<p>Correct: <span id="missing-count"> 12</span></p>
-			<p>Correct: <span id="wrong-count"> 4</span></p>
-			<h3>Score: <strong>{{ $redPoints + $greenPoints }} %</strong></h3>
+			<p>Correct: <span id="correct-count"> {{ $countCorrect }} </span></p>
+			<p>Correct: <span id="missing-count"> {{ $countMissing }} </span></p>
+			<p>Correct: <span id="wrong-count"> {{ $countWrong }} </span></p>
+			<h3>Score: <strong>{{ $totalPoints }} %</strong></h3>
 		</div>
 
 	</div>
