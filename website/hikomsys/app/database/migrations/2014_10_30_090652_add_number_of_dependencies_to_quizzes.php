@@ -29,10 +29,9 @@ class AddNumberOfDependenciesToQuizzes extends Migration {
 	{
         Schema::table('quizzes', function($table)
         {
-            $table
-            	->dropColumn('number_of_correct_dependencies');
-            	->dropColumn('number_of_missing_dependencies');
-            	->dropColumn('number_of_wrong_dependencies');
+            $table->dropColumn('number_of_correct_dependencies');
+            $table->dropColumn('number_of_missing_dependencies');
+            $table->dropColumn('number_of_wrong_dependencies');
 			 	});
 	}
 
