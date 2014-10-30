@@ -6,7 +6,7 @@ class Helpers {
 		foreach($children as $child){
 
 			$tmpName = $child['name'];
-			$strRepName = str_replace('::','\\.',$tmpName);
+			$strRepName = str_replace('::','.',$tmpName);
 			$classCount = self::countClasses($collection, $tmpName);
 			$html = $html."\n\t<li id=\"$strRepName\"><a>".$tmpName.$classCount."</a>";
 			if(self::hasChildren($tmpName, $collection)){
