@@ -18,9 +18,9 @@
 @section("content")
 	<div class="row">
 		<div class="medium-12 columns">
-			<h1>{{ $project->name }}</h1>  
+			<h1>{{ $project->name }}</h1>
 
-			<p> Please select the packages you think are most important for your project. Your knowledge will be tested base on the selection you made. </p> 
+			<p> Please select the packages you think are most important for your project. Your knowledge will be tested base on the selection you made. </p>
 			<p> Right click a node to show additional options for expanding and closing nodes</p>
 		</div>
 	</div>
@@ -30,7 +30,9 @@
 
 				<div id="package_list">
 					<ul>
+					 {{ $collection }}
 						{{ Helpers::recursiveTree($cursor, $collection) }}
+					 }
 					</ul>
 				</div>
 				{{ Form::hidden('project_id', $project->id) }}
