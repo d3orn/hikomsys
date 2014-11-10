@@ -20,7 +20,7 @@ class UserTableSeeder extends Seeder {
             'lastname' => '',
             'email' => 'haidar@ese.com',
             'password' => Hash::make('98769876'),
-            'username' => '',
+            'username' => 'haidar',
             'picturepath' => 'img/dummy_picture.jpg'
         ]);
 
@@ -29,15 +29,15 @@ class UserTableSeeder extends Seeder {
             'lastname' => '',
             'email' => 'bledar@ese.com',
             'password' => Hash::make('98769876'),
-            'username' => '',
+            'username' => 'bledar',
             'picturepath' => 'img/dummy_picture.jpg'
         ]);
 
         User::create([
-            'lastname' => '',
+            'lastname' => 'Andrea',
             'email' => 'andrea@ese.com',
             'password' => Hash::make('98769876'),
-            'username' => '',
+            'username' => 'andrea',
             'picturepath' => 'img/dummy_picture.jpg'
         ]);
 
@@ -46,7 +46,7 @@ class UserTableSeeder extends Seeder {
         	'lastname' => '',
         	'email' => 'mircea@ese.com',
         	'password' => Hash::make('98769876'),
-        	'username' => '',
+        	'username' => 'mircea',
             'picturepath' => 'img/dummy_picture.jpg'
         ]);
     }
