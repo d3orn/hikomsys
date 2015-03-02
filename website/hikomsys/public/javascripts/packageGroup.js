@@ -239,7 +239,7 @@ function PackageGroup(text, color, infos) {
 		this.infoBoxEnabled = true;
 
 		this.createInfoTexts();
-		this.createCloseButton();
+		this.closeGroup = createCloseGroup(this.textField.getText());
 
 		this.infoBox = new Kinetic.Rect({
 			width: this.dependenciesInfoBoxText.getWidth()+10,
@@ -256,7 +256,7 @@ function PackageGroup(text, color, infos) {
 			name: 'infoGroup'	
 		});
 		this.infoGroup.add(this.infoBox);
-		this.infoGroup.add(this.closeButton);
+		this.infoGroup.add(this.closeGroup);
 		//this is not really nice it also add the info to the infoGroup either use a better name or seperate functions
 		this.moveInfoTexts();
 									
@@ -355,24 +355,31 @@ function PackageGroup(text, color, infos) {
 		packagegroup.dependenciesEnabled = false;
 	};
 
-	this.createCloseButton = function(){
-		this.closeButton = new Kinetic.Rect({
-			width: 13,
-			height: 13,
-			fill: 'red',
-			stroke: 'black',
-			strokeWidth:2,
-			id: this.textField.getText()+'CloseButton'
-		});
+	var createCloseGroup = function(id){
+		return new Kinetic.Group({id: id + 'CloseButton'})
+			.add(new Kinetic.Rect({
+					width: 16,
+					height: 16,
+					fill: 'white',
+					stroke: 'black',
+					strokeWidth:2,
+					"y" : -(PACKAGE_HEIGHT-9), 
+				})
+			)
+			.add(kineticText({
+					"size" : 14, 
+					"x" : 4, 
+					"y" : -(PACKAGE_HEIGHT-10), 
+					"text" : 'X'
+				})
+			)
+			.on('click', function(){
+				var id = this.getId().replace('CloseButton', '');
+				var pack = findPackageById(id);
+				pack.hide(pack.infoGroup);
+				pack.removeInfos();
+			});
 
-		this.closeButton.move({x:0, y:-this.closeButton.getHeight()});
-										
-		this.closeButton.on('click', function(){
-			var id = this.getId().replace('CloseButton', '');
-			var pack = findPackageById(id);
-			pack.hide(pack.infoGroup);
-			pack.removeInfos();
-		});
 	};
 
 	this.moveInfoTexts = function(){

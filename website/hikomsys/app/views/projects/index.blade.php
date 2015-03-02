@@ -3,6 +3,17 @@
 @section("styles")
 @stop
 
+@section("header")
+	<header class="panel">
+		<a href="{{ route('home') }}">
+			<h1 class="row">
+				{{ HTML::image('foundation/img/logo.fw.png', 'Hikomsys Logo') }}
+				How I KnOw My SYStem
+			</h1>
+		</a>
+	</header>
+@stop
+
 @section("content")
 
 	<div class="row">
@@ -23,8 +34,11 @@
 							<tr>
 								<td>{{ $project->name }}</td>
 								<td>{{ $project->version }}</td>
-								<td>{{ HTML::linkRoute('projects.show', 'Start new Quiz', [$project->project_id], ['class'=>'small button radius'])}}
-								{{ HTML::linkRoute('quizzes.index', 'Solutions', ['project_id' => $project->project_id], ['class'=>'success small button radius']) }}</td>
+								<td>
+									{{ HTML::linkRoute('projects.show', 'Start new Quiz', ['project_id' => $project->id], ['class'=>'small button radius'])}}
+									{{ HTML::linkRoute('projects.ranking', 'Ranking', ['project_id' => $project->id], ['class'=>'secondary small button radius']) }}
+									{{ HTML::linkRoute('quizzes.index', 'Solutions', ['project_id' => $project->id], ['class'=>'success small button radius']) }}
+								</td>
 							</tr>
 						@endforeach
 					</tbody>

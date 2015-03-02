@@ -4,9 +4,11 @@ class Helpers {
 	public static function recursiveTree($children, $collection){
 		$html = '';
 		foreach($children as $child){
+
 			$tmpName = $child['name'];
 			$strRepName = str_replace('::','\\:\\:',$tmpName);
-			$html = $html."\n\t<li id=\"$strRepName\"><a>".$tmpName."</a>";
+			$classCount = self::countClasses($collection, $tmpName);
+			$html = $html."\n\t<li id=\"$strRepName\"><a>".str_replace('::','.',$tmpName).$classCount."</a>";
 			if(self::hasChildren($tmpName, $collection)){
 				$html = $html.'<ul>';
 				$cursor = $collection->find(array('name' => $tmpName));
@@ -16,16 +18,29 @@ class Helpers {
 				}
 				$html = $html.'</ul>';
 			}
-			$html = $html."</li>\n";	
+			$html = $html."</li>\n";
 		}
 		return $html;
 	}
 
-	public static function hasChildren($name, $collection){	
-		//Find the package with the given $name and check if it has children	
+	public static function hasChildren($name, $collection){
+		//Find the package with the given $name and check if it has children
 		$tmpCursor = $collection->find(array('name' => $name, 'children' => array('$exists' => true)));
 
 		return($tmpCursor->hasNext());
+	}
+
+	private static function countClasses($collection, $name){
+		$tmpCursor = $collection->find(array('name' => $name));
+		$document = $tmpCursor->getNext();
+
+		if(array_key_exists('classes', $document) && strpos($name, '**') !== 	False){
+			if(count($document['classes']) === 1){
+				return " (1 Class)";
+			}
+			return " (".count($document['classes'])." Classes)";
+		}
+		return;
 	}
 
 	public static function addPackages($array){

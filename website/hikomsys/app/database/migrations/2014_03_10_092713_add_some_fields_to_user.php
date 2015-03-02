@@ -14,9 +14,9 @@ class AddSomeFieldsToUser extends Migration {
 	{
         Schema::table('users', function($table)
         {
-            $table->string('username')->unique();
+          $table->string('username')->unique();
         	$table->longText('description');
-            $table->string('picturepath');
+          $table->string('picturepath');
         });
 	}
 

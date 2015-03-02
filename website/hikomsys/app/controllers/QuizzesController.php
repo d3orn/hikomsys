@@ -7,7 +7,7 @@ class QuizzesController extends \BaseController {
 	public function __construct() {
 		parent::__construct();
 		// $this->beforeFilter(function(){
-		// 	if(Auth::guest()) 
+		// 	if(Auth::guest())
 		// 		return Redirect::route('sessions.login');
 		// });
 	}
@@ -17,13 +17,14 @@ class QuizzesController extends \BaseController {
 		$projectId =Input::get('project_id');
 		try {
 			$project = Project::findOrFail($projectId);
-		} 
+		}
 		catch (ModelNotFoundException $e) {
 			return Redirect::home()->with('error', 'Oops something went wrong, project was not found.');
 		}
 
+		$userId = Auth::user()->id;
 		$projectName = "Your results for ".$project->name." version ".$project->version;
-		$quizzes = Quiz::where('project_id', '=', $projectId)->orderBy('total_points', 'desc')->get();
+		$quizzes = Quiz::where('project_id', '=', $projectId)->where('user_id', '=', $userId)->orderBy('total_points', 'desc')->get();
 
 		return View::make('quizzes.quizlist', compact('quizzes', 'projectName'));
 	}
@@ -36,11 +37,11 @@ class QuizzesController extends \BaseController {
 
 		$userId = Auth::user()->id;
 		$projectId = $input['project_id'];
-		$quiz = Quiz::create(['user_id' => $userId, 'project_id' => $projectId]); 
-		
+		$quiz = Quiz::create(['user_id' => $userId, 'project_id' => $projectId]);
+
 		return Redirect::route('quizzes.edit', [$quiz->id])
 			->with('selected', $input);
-	}	
+	}
 
 	public function edit($id)
 	{
@@ -54,20 +55,22 @@ class QuizzesController extends \BaseController {
 	{
 		try {
 			$quiz = Quiz::findOrFail($id);
-		} 
+		}
 		catch (ModelNotFoundException $e) {
 			return Redirect::home()->with('error', 'Oops something went wrong, quiz was not found.');
 		}
 
 		return View::make('quizzes.result', compact($quiz))
 			->with('quizId', $id)
-			->with('greenPoints', $quiz->green_points)
-			->with('redPoints', $quiz->red_points);
+			->with('totalPoints', $quiz->total_points)
+			->with('countCorrect', $quiz->number_of_correct_dependencies)
+			->with('countMissing', $quiz->number_of_missing_dependencies)
+			->with('countWrong', $quiz->number_of_wrong_dependencies);
 	}
 
 	public function success()
 	{
-		return Redirect::home()->with('message', 'Thank you for participating!');
+		return Redirect::route('users.index')->with('message', 'Thank you for participating!');
 	}
 
 	public function createResults()
@@ -81,7 +84,7 @@ class QuizzesController extends \BaseController {
 		$solutionName = $quizId.'_So';
 		self::createSolutionTable($quizId);
 		$solution = $db->$solutionName;
-		
+
 		self::createUserSubmTable($packages, $quizId);
 		self::createResultTable($quizId);
 		self::crossCheck();
@@ -97,13 +100,13 @@ class QuizzesController extends \BaseController {
 		$db = self::getDb('localhost', 'hikomsysQuizzes');
 
 		$quizId = Input::get('quizId');
-		$resultsName = $quizId.'_RES';	
+		$resultsName = $quizId.'_RES';
 		$results = $db->$resultsName;
 
 		$cursor = $results->find([],['_id' => 0]);;
 
 		return json_encode(iterator_to_array($cursor));
-	}								
+	}
 
 	//Currently unused!
 	public function visualization()
@@ -111,17 +114,17 @@ class QuizzesController extends \BaseController {
 		$quiz = Quiz::orderBy(DB::raw('RAND()'))->get()->first();
 		$id = $quiz->id;
 		return View::make('quizzes.visualization')
-			->with('quizId' , $id);	
+			->with('quizId' , $id);
 	}
 
 /*----------------------------------------------------- Private Functions -----------------------------------------------------*/
 	private function createSolutionTable($quizId)
 	{
 		$db = self::getDb('localhost', 'hikomsys');
-		
+
 		try {
-			$quiz = Quiz::findOrFail($id);
-		} 
+			$quiz = Quiz::findOrFail($quizId);
+		}
 		catch (ModelNotFoundException $e) {
 			return Redirect::home()->with('error', 'Oops something went wrong, quiz was not found.');
 		}
@@ -167,7 +170,7 @@ class QuizzesController extends \BaseController {
 		foreach($cursor as $document){
 			$results->insert($document);
 		}
-	}	
+	}
 
 	private function crossCheck()
 	{
@@ -189,7 +192,7 @@ class QuizzesController extends \BaseController {
 
 		foreach ($dependencies as $dep => $depName) {
 			$isCorrect = $solution->find(['name' => $packageName,'outgoingDependencies.to.package' => $depName['to']]);
-			
+
 			$color = $isCorrect->hasNext() ? 'green' : 'red';
 
 			$results->update(['name' => $packageName], ['$push' => ['dependencies' => ['to' => $depName['to'], 'color' => $color]]]);
@@ -230,7 +233,7 @@ class QuizzesController extends \BaseController {
 		$packages = $results->find([], ['position' => 0, '_id' => 0]);
 
 		foreach ($packages as $key => $package) {
-			$color = "rgba(0,128,0,$alpha)"; 
+			$color = "rgba(0,128,0,$alpha)";
 			if(array_key_exists('dependencies', $package)){
 				$dependencies = $package['dependencies'];
 				foreach ($dependencies as $k => $dependency) {
@@ -238,9 +241,9 @@ class QuizzesController extends \BaseController {
 						case 'orange':
 							$color = "rgba(242,165,0,$alpha)";
 							break;
-						
+
 						case 'red':
-							$color = "rgba(255,0,0,$alpha)"; 
+							$color = "rgba(255,0,0,$alpha)";
 							break;
 					}
 				}
@@ -287,7 +290,7 @@ class QuizzesController extends \BaseController {
 		$maxDependencies = $nbrOfPackages * ($nbrOfPackages - 1);
 
 		$cursor = $results->find([], ['_id' => 0, 'name' => 0,'position' => 0, 'color' => 0]);
-		
+
 		$counted = self::countColors($cursor);
 		$countGreen = $counted[0];
 		$countOrange = $counted[1];
@@ -304,8 +307,8 @@ class QuizzesController extends \BaseController {
 		$userPoints = $green_points + $red_points;
 
 		try {
-			$quiz = Quiz::findOrFail($id);
-		} 
+			$quiz = Quiz::findOrFail($quizId);
+		}
 		catch (ModelNotFoundException $e) {
 			return Redirect::home()->with('error', 'Oops something went wrong, quiz was not found.');
 		}
@@ -313,6 +316,9 @@ class QuizzesController extends \BaseController {
 		$quiz->red_points = round($red_points,2);
 		$quiz->green_points = round($green_points,2);
 		$quiz->total_points = round($userPoints,2);
+		$quiz->number_of_correct_dependencies = $counted[0];
+		$quiz->number_of_missing_dependencies = $counted[1];
+		$quiz->number_of_wrong_dependencies = $counted[2];
 		$quiz->save();
 
 		return $quiz->total_points;

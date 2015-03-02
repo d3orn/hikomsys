@@ -21,7 +21,7 @@ class ProjectsController extends BaseController {
 			->get([
 				'projects.name', 
 				'projects.version',
-				'usersprojects.project_id', 
+				'projects.id', 
 				'usersprojects.user_id'
 			]);
 		return View::make('projects.index', compact('projects', 'title'));
@@ -115,14 +115,8 @@ class ProjectsController extends BaseController {
 
 	public function showall(){
 		$title = 'All projects on HIKOMSYS';
-		$projects = DB::table('projects')
-			->join('usersprojects', 'projects.id', '=', 'usersprojects.project_id')
-			->get([
-				'projects.name', 
-				'projects.version',
-				'usersprojects.project_id', 
-				'usersprojects.user_id'
-			]);
+		$projects = Project::all();
+
 		return View::make('projects.index', compact('projects', 'title'));
 	}
 
@@ -152,6 +146,37 @@ class ProjectsController extends BaseController {
 		}
 
 		return $project->id;
+	}
+
+	public function ranking($projectid){
+		try
+		{
+			$projectName = Project::findOrFail($projectid)->name;
+		} 
+		catch (ModelNotFoundException $e) 
+		{
+			return Redirect::home()->with('error', 'Sorry currenlty no user has done a quiz on this project.');
+		}
+
+		$ranking = DB::select('	SELECT
+									quizzes.id,
+									quizzes.user_id,
+									quizzes.project_id,
+									MAX(quizzes.total_points) as result,
+									users.username
+								FROM
+									hikomsys.quizzes quizzes,
+									hikomsys.users users
+								WHERE
+									quizzes.user_id = users.id and
+									quizzes.project_id = '. intval($projectid) .
+							  ' GROUP BY
+									quizzes.user_id,
+									quizzes.project_id
+								ORDER BY 
+									result DESC ');
+
+		return View::make('projects.ranking', compact('ranking', 'projectName'));
 	}
 
 }

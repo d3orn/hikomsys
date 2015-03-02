@@ -1,4 +1,16 @@
 @extends('layouts.default')
+
+@section("header")
+	<header class="panel">
+		<a href="{{ route('home') }}">
+			<h1 class="row">
+				{{ HTML::image('foundation/img/logo.fw.png', 'Hikomsys Logo') }}
+				How I KnOw My SYStem
+			</h1>
+		</a>
+	</header>
+@stop
+
 @section("content")
 	<h1>{{ $project->name }}</h1>  
 
